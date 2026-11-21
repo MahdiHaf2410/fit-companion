@@ -1,0 +1,323 @@
+{
+  "@@locale": "ar",
+  "appTitle": "رفيق اللياقة",
+  "navHome": "الرئيسية",
+  "navNutrition": "التغذية",
+  "navWorkouts": "التمارين",
+  "navProgress": "التقدم",
+  "navProfile": "الملف الشخصي",
+
+  "dashboardTitle": "نظرة عامة يومية",
+  "dashboardNutritionCard": "التغذية اليومية",
+  "dashboardCalories": "السعرات الحرارية",
+  "dashboardCalorieTarget": "الهدف: {target} سعرة",
+  "@dashboardCalorieTarget": {
+    "placeholders": {
+      "target": {"type": "int"}
+    }
+  },
+  "dashboardConsumed": "المستهلك",
+  "dashboardRemaining": "المتبقي",
+  "dashboardOverLimit": "تجاوز بـ",
+  "dashboardProtein": "بروتين",
+  "dashboardCarbs": "كربوهيدرات",
+  "dashboardFat": "دهون",
+  "dashboardGrams": "{amount}غ / {target}غ",
+  "@dashboardGrams": {
+    "placeholders": {
+      "amount": {"type": "String"},
+      "target": {"type": "String"}
+    }
+  },
+  "dashboardTodayWorkout": "تمرين اليوم",
+  "dashboardNoWorkoutToday": "لا يوجد تمرين مجدول لهذا اليوم",
+  "dashboardStartWorkout": "بدء التمرين",
+  "dashboardResumeWorkout": "استئناف التمرين",
+  "dashboardWorkoutCompleted": "تم إكمال تمرين اليوم بنجاح!",
+  "dashboardBodyProgress": "تطور الجسم",
+  "dashboardLatestWeight": "آخر وزن: {weight} كغ",
+  "@dashboardLatestWeight": {
+    "placeholders": {
+      "weight": {"type": "String"}
+    }
+  },
+  "dashboardNoWeightYet": "لم يتم تسجيل أي وزن بعد",
+  "dashboardQuickActions": "إجراءات سريعة",
+  "dashboardActionAddFood": "تسجيل وجبة",
+  "dashboardActionStartWorkout": "تمرين",
+  "dashboardActionLogWeight": "تسجيل الوزن",
+  "dashboardActionBuildRecipe": "وصفة جديدة",
+  "dashboardEstimatedTarget": "الهدف اليومي التقديري: {target} سعرة",
+  "@dashboardEstimatedTarget": {
+    "placeholders": {
+      "target": {"type": "int"}
+    }
+  },
+  "dashboardCalculatorCard": "حاسبة الاحتياج الشخصي",
+  "dashboardCalculatorDesc": "احسب احتياجك من السعرات والمغذيات بدقة وفق معادلة ميفلين - سانت جور.",
+  "dashboardAcademyCard": "أكاديمية التغذية",
+  "dashboardAcademyDesc": "14 درساً عملياً مع اختبارات قصيرة وأدوات تفاعلية.",
+
+  "onboardingTitle": "مرحباً بك في رفيق اللياقة",
+  "onboardingSubtitle": "رفيقك الشخصي للياقة والتغذية دون الحاجة إلى إنترنت",
+  "onboardingName": "الاسم المستعار (اختياري)",
+  "onboardingAge": "العمر",
+  "onboardingSex": "الجنس",
+  "onboardingSexMale": "ذكر",
+  "onboardingSexFemale": "أنثى",
+  "onboardingHeight": "الطول (سم)",
+  "onboardingWeight": "الوزن الحالي (كغ)",
+  "onboardingActivity": "مستوى النشاط البدني",
+  "onboardingActivitySedentary": "خامل (قليل أو بدون نشاط)",
+  "onboardingActivityLight": "نشاط خفيف (تمارين 1-3 أيام/أسبوع)",
+  "onboardingActivityModerate": "نشاط معتدل (تمارين 3-5 أيام/أسبوع)",
+  "onboardingActivityVery": "نشيط جداً (تمارين 6-7 أيام/أسبوع)",
+  "onboardingActivityExtra": "نشاط فائق (تمارين شاقة أو عمل بدني مجهد)",
+  "onboardingGoal": "الهدف الرياضي",
+  "onboardingGoalMuscleGain": "بناء العضلات / زيادة الوزن",
+  "onboardingGoalFatLoss": "خسارة الدهون",
+  "onboardingGoalMaintenance": "المحافظة على الوزن",
+  "onboardingGoalRecomp": "إعادة تشكيل الجسم",
+  "onboardingTrainingFreq": "أيام التمرين في الأسبوع",
+  "onboardingUnits": "وحدات القياس",
+  "onboardingLanguage": "اللغة",
+  "onboardingAppearance": "المظهر",
+  "onboardingCalculate": "حساب الاحتياجات اليومية",
+  "onboardingTargetSummary": "الاحتياج اليومي التقديري من الطاقة",
+  "onboardingDisclaimer": "تم الحساب باستخدام معادلة ميفلين-سانت جور المعتمدة. السعرات المقدرة هي أرقام إرشادية علمية وليست وصفة طبية.",
+  "onboardingGetStarted": "حفظ والبدء الآن",
+
+  "nutritionTitle": "التغذية",
+  "nutritionDailySummary": "ملخص اليوم",
+  "nutritionLogFood": "تسجيل طعام",
+  "nutritionMealBreakfast": "الفطور",
+  "nutritionMealLunch": "الغداء",
+  "nutritionMealDinner": "العشاء",
+  "nutritionMealSnacks": "وجبات خفيفة",
+  "nutritionSearchPlaceholder": "ابحث عن طعام أو أطباق جزائرية...",
+  "nutritionCategories": "التصنيفات",
+  "nutritionCategoryAll": "الكل",
+  "nutritionCategoryStaples": "حبوب ونشويات",
+  "nutritionCategoryProtein": "لحوم وأسماك",
+  "nutritionCategoryDairy": "ألبان وبيض",
+  "nutritionCategoryProduce": "فواكه وخضار",
+  "nutritionCategoryAlgerian": "أطباق جزائرية",
+  "nutritionCategorySnacks": "بقوليات ومكسرات",
+  "nutritionRecent": "الأطعمة الأخيرة",
+  "nutritionFavorites": "المفضلة",
+  "nutritionCustom": "أطعمة مخصصة",
+  "nutritionAddCustomFood": "إضافة طعام مخصص",
+  "nutritionRecipes": "الوصفات",
+  "nutritionCreateRecipe": "إنشاء وصفة",
+  "nutritionServingSize": "حجم الحصة",
+  "nutritionQuantity": "الكمية (بالغرام)",
+  "nutritionSelectMeal": "اختر الوجبة",
+  "nutritionSaveLog": "إضافة إلى السجل",
+  "nutritionDeleteLog": "حذف الإدخال",
+  "nutritionCaloriesPer100g": "السعرات (لكل 100غ)",
+  "nutritionProteinPer100g": "البروتين (لكل 100غ)",
+  "nutritionCarbsPer100g": "الكربوهيدرات (لكل 100غ)",
+  "nutritionFatPer100g": "الدهون (لكل 100غ)",
+  "nutritionFiberPer100g": "الألياف (لكل 100غ)",
+  "nutritionFoodName": "اسم الطعام",
+  "nutritionFoodNameArabic": "اسم الطعام بالعربية",
+  "nutritionState": "حالة التحضير (مثلاً: ناضج، غير مطبوخ)",
+  "nutritionSource": "المصدر / درجة الموثوقية",
+  "nutritionVerified": "موثوق",
+  "nutritionEstimated": "تقديري",
+  "nutritionUserAdded": "مخصص",
+  "nutritionNoLogs": "لم تسجل أي طعام اليوم بعد. اضغط '+' للبدء!",
+  "nutritionTotalCalories": "{calories} سعرة",
+  "@nutritionTotalCalories": {
+    "placeholders": {
+      "calories": {"type": "int"}
+    }
+  },
+
+  "recipeTitle": "منشئ الوصفات",
+  "recipeName": "اسم الوصفة",
+  "recipeServings": "عدد الحصص",
+  "recipeTotalCookedYield": "الوزن الكلي بعد الطهي (غرام، اختياري)",
+  "recipeYieldHelp": "فقدان أو امتصاص الماء أثناء الطهي يغير الوزن الكلي.",
+  "recipeIngredients": "المكونات",
+  "recipeAddIngredient": "إضافة مكوّن",
+  "recipePerServing": "لكل حصة: {cal} سعرة | ب: {p}غ | ك: {c}غ | د: {f}غ",
+  "@recipePerServing": {
+    "placeholders": {
+      "cal": {"type": "int"},
+      "p": {"type": "String"},
+      "c": {"type": "String"},
+      "f": {"type": "String"}
+    }
+  },
+  "recipeSave": "حفظ الوصفة",
+
+  "workoutsTitle": "التمارين",
+  "workoutsPrograms": "برامج التدريب",
+  "workoutsCreateProgram": "برنامج جديد",
+  "workoutsProgramName": "اسم البرنامج",
+  "workoutsProgramDesc": "الوصف",
+  "workoutsDays": "الأيام: {days}",
+  "@workoutsDays": {
+    "placeholders": {
+      "days": {"type": "String"}
+    }
+  },
+  "workoutsExercises": "التمارين",
+  "workoutsAddExercise": "إضافة تمرين",
+  "workoutsExerciseLibrary": "مكتبة التمارين",
+  "workoutsMuscleGroup": "العضلة المستهدفة",
+  "workoutsEquipment": "الأداة / الجهاز",
+  "workoutsTargetSets": "المجموعات المستهدفة: {sets} × {reps} تكرار",
+  "@workoutsTargetSets": {
+    "placeholders": {
+      "sets": {"type": "int"},
+      "reps": {"type": "int"}
+    }
+  },
+  "workoutsActiveSession": "التمرين الجاري",
+  "workoutsRestTimer": "مؤقت الراحة",
+  "workoutsRestTimeRemaining": "متبقي {seconds} ثانية راحة",
+  "@workoutsRestTimeRemaining": {
+    "placeholders": {
+      "seconds": {"type": "int"}
+    }
+  },
+  "workoutsSetHeader": "المجموعة",
+  "workoutsWeightHeader": "كغ",
+  "workoutsRepsHeader": "تكرارات",
+  "workoutsCompletedHeader": "تم",
+  "workoutsAddSet": "إضافة جولة",
+  "workoutsSkipExercise": "تخطي التمرين",
+  "workoutsFinishWorkout": "إنهاء التمرين",
+  "workoutsDiscardWorkout": "إلغاء التمرين",
+  "workoutsConfirmFinish": "هل ترغب في إنهاء وحفظ جلسة التمرين هذه؟",
+  "workoutsConfirmDiscard": "هل أنت متأكد من إلغاء جلسة التمرين دون حفظ؟",
+  "workoutsSessionCompleted": "ملخص التمرين",
+  "workoutsDuration": "المدة: {minutes} دقيقة",
+  "@workoutsDuration": {
+    "placeholders": {
+      "minutes": {"type": "int"}
+    }
+  },
+  "workoutsTotalVolume": "الحجم الإجمالي: {volume} كغ",
+  "@workoutsTotalVolume": {
+    "placeholders": {
+      "volume": {"type": "String"}
+    }
+  },
+  "workoutsTotalSets": "الجولات المكتملة: {sets}",
+  "@workoutsTotalSets": {
+    "placeholders": {
+      "sets": {"type": "int"}
+    }
+  },
+  "workoutsHistory": "سجل التمارين",
+  "workoutsNoHistory": "لا توجد تمارين مكتملة بعد. ابدأ جلستك الأولى!",
+  "workoutsPR": "رقم قياسي جديد!",
+
+  "progressTitle": "التقدم والمقاييس",
+  "progressWeightHistory": "مسار وزن الجسم",
+  "progressAddMetric": "تسجيل قياس جديد",
+  "progressWaist": "محيط الخصر (سم)",
+  "progressDate": "التاريخ",
+  "progressTimeRange1M": "شهر واحد",
+  "progressTimeRange3M": "3 أشهر",
+  "progressTimeRangeAll": "كل الأوقات",
+  "progressWeeklyAverage": "المتوسط الأسبوعي المتحرك: {avg} كغ",
+  "@progressWeeklyAverage": {
+    "placeholders": {
+      "avg": {"type": "String"}
+    }
+  },
+  "progressExercisePRs": "الأرقام القياسية في التمارين",
+  "progressNoMetrics": "لم يتم تسجيل أي قياسات بعد. سجّل وزنك بانتظام لمتابعة التطور!",
+
+  "profileTitle": "الملف والإعدادات",
+  "profilePersonalInfo": "المعلومات الشخصية",
+  "profileGoals": "الأهداف والاحتياجات",
+  "profileEditGoals": "تعديل الأهداف",
+  "profileAppearance": "المظهر",
+  "profileThemeSystem": "افتراضي النظام",
+  "profileThemeLight": "الوضع الفاتح",
+  "profileThemeDark": "الوضع الداكن",
+  "profileLanguage": "اللغة",
+  "profileLanguageEn": "English",
+  "profileLanguageAr": "العربية",
+  "profileUnits": "الوحدات",
+  "profileUnitsMetric": "متري (كغ، سم)",
+  "profileUnitsImperial": "إمبراطوري (باوند، إنش)",
+  "profileData": "البيانات والخصوصية",
+  "profileExportJson": "تصدير البيانات (JSON)",
+  "profileResetData": "مسح جميع البيانات",
+  "profileResetConfirm": "هل أنت متأكد تماماً؟ سيؤدي ذلك إلى حذف كافة الوجبات والتمارين والقياسات المخزنة.",
+  "profileAbout": "عن رفيق اللياقة",
+  "profileAboutText": "رفيق اللياقة هو تطبيق شخصي لتتبع التمارين والتغذية يعمل بشكل كامل ومستقل دون إنترنت وبأعلى درجات الخصوصية.",
+  "profileOfflineStatus": "يعمل محلياً بالكامل 100%: تُحفظ بياناتك حصراً على جهازك.",
+
+  "commonSave": "حفظ",
+  "commonCancel": "إلغاء",
+  "commonDelete": "حذف",
+  "commonEdit": "تعديل",
+  "commonConfirm": "تأكيد",
+  "commonBack": "رجوع",
+  "commonDone": "تم",
+  "commonSearch": "بحث",
+  "commonFilter": "تصفية",
+  "commonClose": "إغلاق",
+  "commonError": "حدث خطأ ما",
+  "commonSuccess": "تمت العملية بنجاح",
+  "commonRetry": "إعادة المحاولة",
+  "commonLoading": "جارِ التحميل...",
+  "commonKcal": "سعرة",
+  "commonGrams": "غ",
+  "commonKg": "كغ",
+  "commonCm": "سم",
+  "commonReps": "تكرارات",
+  "commonSets": "جولات",
+
+  "nutritionCalculatorTitle": "حاسبة الاحتياجات الغذائية",
+  "nutritionCalculatorDesc": "احسب احتياجك اليومي من السعرات والمغذيات بدقة وفق معادلات علمية معتمدة ومخصصة لجسمك.",
+  "nutritionCalculatorBmr": "معدل الأيض الأساسي (BMR)",
+  "nutritionCalculatorBmrDesc": "السعرات التي يستهلكها جسمك أثناء الراحة التامة للحفاظ على وظائف الأعضاء الحيوية.",
+  "nutritionCalculatorTdee": "الاحتياج اليومي الكلي للطاقة (TDEE)",
+  "nutritionCalculatorTdeeDesc": "معدل الأيض الأساسي مضروباً في معامل نشاطك البدني والتمارين.",
+  "nutritionCalculatorTarget": "الهدف اليومي المقترح",
+  "nutritionCalculatorHow": "كيف تم حساب هذه الاحتياجات؟",
+  "nutritionCalculatorFormula": "معادلة ميفلين - سانت جور",
+  "nutritionCalculatorManualAdjust": "تعديل الأهداف يدوياً",
+  "nutritionCalculatorReset": "استعادة القيم الموصى بها",
+  "nutritionCalculatorApply": "تطبيق الأهداف على ملفي الشخصي",
+  "nutritionCalculatorConfirm": "هل ترغب في تحديث أهدافك اليومية؟ سيتم تطبيق هذه القيم فوراً على لوحة التحكم وسجل التغذية.",
+  "nutritionCalculatorMacroWarning": "تنبيه: مجموع سعرات المغذيات (بروتين×4 + كربوهيدرات×4 + دهون×9) لا يطابق إجمالي السعرات المستهدفة.",
+  "nutritionTrainingType": "نوع التدريب الأساسي",
+  "nutritionTrainingStrength": "بناء الأجسام والقوة (هايبرتروفي)",
+  "nutritionTrainingCardio": "تمارين هوائية وتحمل (كارديو)",
+  "nutritionTrainingHybrid": "تمارين وظيفية وهجينة",
+  "nutritionTrainingGeneral": "صحة عامة ولياقة خفيفة",
+
+  "academyTitle": "أكاديمية التغذية",
+  "academySubtitle": "تعلّم أسرار التغذية وحساب السعرات خطوة بخطوة مع دروس مبسطة وتمارين تفاعلية.",
+  "academyLesson": "الدرس {number}",
+  "@academyLesson": {
+    "placeholders": {
+      "number": {"type": "int"}
+    }
+  },
+  "academyQuiz": "اختبار الفهم",
+  "academyCompleted": "مكتمل",
+  "academyTakeaway": "خلاصة عملية",
+  "academyInteractiveTool": "أداة حساب تفاعلية",
+  "academyScore": "النتيجة: {score}%",
+  "@academyScore": {
+    "placeholders": {
+      "score": {"type": "int"}
+    }
+  },
+
+  "foodCalculatorTitle": "الحاسبة الذكية للأطعمة",
+  "foodCalculatorSubtitle": "احسب القيم الغذائية الدقيقة بناءً على وزن الحصة وحالة التحضير (مطبوخ / نيء).",
+  "foodCalculatorServingType": "الحصة وحالة التحضير",
+  "foodCalculatorFormulaHelp": "المعادلة: (القيمة لكل 100غ × عدد الغرامات) ÷ 100",
+  "foodCalculatorAddToMeal": "تسجيل الطعام المحسوب"
+}

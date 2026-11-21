@@ -1,0 +1,323 @@
+{
+  "@@locale": "en",
+  "appTitle": "Fit Companion",
+  "navHome": "Home",
+  "navNutrition": "Nutrition",
+  "navWorkouts": "Workouts",
+  "navProgress": "Progress",
+  "navProfile": "Profile",
+
+  "dashboardTitle": "Daily Overview",
+  "dashboardNutritionCard": "Daily Nutrition",
+  "dashboardCalories": "Calories",
+  "dashboardCalorieTarget": "Target: {target} kcal",
+  "@dashboardCalorieTarget": {
+    "placeholders": {
+      "target": {"type": "int"}
+    }
+  },
+  "dashboardConsumed": "Consumed",
+  "dashboardRemaining": "Remaining",
+  "dashboardOverLimit": "Over by",
+  "dashboardProtein": "Protein",
+  "dashboardCarbs": "Carbs",
+  "dashboardFat": "Fat",
+  "dashboardGrams": "{amount}g / {target}g",
+  "@dashboardGrams": {
+    "placeholders": {
+      "amount": {"type": "String"},
+      "target": {"type": "String"}
+    }
+  },
+  "dashboardTodayWorkout": "Today's Workout",
+  "dashboardNoWorkoutToday": "No workout scheduled for today",
+  "dashboardStartWorkout": "Start Workout",
+  "dashboardResumeWorkout": "Resume Workout",
+  "dashboardWorkoutCompleted": "Today's Workout Completed!",
+  "dashboardBodyProgress": "Body Progress",
+  "dashboardLatestWeight": "Latest Weight: {weight} kg",
+  "@dashboardLatestWeight": {
+    "placeholders": {
+      "weight": {"type": "String"}
+    }
+  },
+  "dashboardNoWeightYet": "No weight recorded yet",
+  "dashboardQuickActions": "Quick Actions",
+  "dashboardActionAddFood": "Log Food",
+  "dashboardActionStartWorkout": "Workout",
+  "dashboardActionLogWeight": "Log Weight",
+  "dashboardActionBuildRecipe": "New Recipe",
+  "dashboardEstimatedTarget": "Estimated Daily Target: {target} kcal",
+  "@dashboardEstimatedTarget": {
+    "placeholders": {
+      "target": {"type": "int"}
+    }
+  },
+  "dashboardCalculatorCard": "Personal Energy Calculator",
+  "dashboardCalculatorDesc": "Calculate evidence-based calories and macros with Mifflin–St Jeor.",
+  "dashboardAcademyCard": "Nutrition Academy",
+  "dashboardAcademyDesc": "14 practical lessons with quizzes and interactive tools.",
+
+  "onboardingTitle": "Welcome to Fit Companion",
+  "onboardingSubtitle": "Your offline personal fitness and nutrition companion",
+  "onboardingName": "Display Name (Optional)",
+  "onboardingAge": "Age",
+  "onboardingSex": "Sex",
+  "onboardingSexMale": "Male",
+  "onboardingSexFemale": "Female",
+  "onboardingHeight": "Height (cm)",
+  "onboardingWeight": "Current Weight (kg)",
+  "onboardingActivity": "Activity Level",
+  "onboardingActivitySedentary": "Sedentary (little or no exercise)",
+  "onboardingActivityLight": "Lightly Active (1-3 days/week)",
+  "onboardingActivityModerate": "Moderately Active (3-5 days/week)",
+  "onboardingActivityVery": "Very Active (6-7 days/week)",
+  "onboardingActivityExtra": "Extra Active (hard daily exercise or physical job)",
+  "onboardingGoal": "Fitness Goal",
+  "onboardingGoalMuscleGain": "Muscle Gain / Weight Gain",
+  "onboardingGoalFatLoss": "Fat Loss",
+  "onboardingGoalMaintenance": "Maintenance",
+  "onboardingGoalRecomp": "Body Recomposition",
+  "onboardingTrainingFreq": "Training Days Per Week",
+  "onboardingUnits": "Measurement Units",
+  "onboardingLanguage": "Language",
+  "onboardingAppearance": "Appearance",
+  "onboardingCalculate": "Calculate Energy Needs",
+  "onboardingTargetSummary": "Estimated Daily Energy Needs",
+  "onboardingDisclaimer": "Estimated with the Mifflin–St Jeor equation. Calorie targets are scientific estimates for guidance, not medical prescriptions.",
+  "onboardingGetStarted": "Save and Get Started",
+
+  "nutritionTitle": "Nutrition",
+  "nutritionDailySummary": "Daily Summary",
+  "nutritionLogFood": "Log Food",
+  "nutritionMealBreakfast": "Breakfast",
+  "nutritionMealLunch": "Lunch",
+  "nutritionMealDinner": "Dinner",
+  "nutritionMealSnacks": "Snacks",
+  "nutritionSearchPlaceholder": "Search foods or Algerian dishes...",
+  "nutritionCategories": "Categories",
+  "nutritionCategoryAll": "All",
+  "nutritionCategoryStaples": "Staples & Grains",
+  "nutritionCategoryProtein": "Meat & Fish",
+  "nutritionCategoryDairy": "Dairy & Eggs",
+  "nutritionCategoryProduce": "Fruits & Veggies",
+  "nutritionCategoryAlgerian": "Algerian Dishes",
+  "nutritionCategorySnacks": "Legumes & Nuts",
+  "nutritionRecent": "Recent Foods",
+  "nutritionFavorites": "Favorites",
+  "nutritionCustom": "Custom Foods",
+  "nutritionAddCustomFood": "Create Custom Food",
+  "nutritionRecipes": "Recipes",
+  "nutritionCreateRecipe": "Build Recipe",
+  "nutritionServingSize": "Serving Size",
+  "nutritionQuantity": "Quantity (grams)",
+  "nutritionSelectMeal": "Select Meal Type",
+  "nutritionSaveLog": "Add to Log",
+  "nutritionDeleteLog": "Delete Entry",
+  "nutritionCaloriesPer100g": "Calories (per 100g)",
+  "nutritionProteinPer100g": "Protein (per 100g)",
+  "nutritionCarbsPer100g": "Carbs (per 100g)",
+  "nutritionFatPer100g": "Fat (per 100g)",
+  "nutritionFiberPer100g": "Fiber (per 100g)",
+  "nutritionFoodName": "Food Name",
+  "nutritionFoodNameArabic": "Food Name (Arabic - Optional)",
+  "nutritionState": "Preparation State (e.g., Raw, Cooked)",
+  "nutritionSource": "Source / Confidence",
+  "nutritionVerified": "Verified",
+  "nutritionEstimated": "Estimated",
+  "nutritionUserAdded": "Custom",
+  "nutritionNoLogs": "No food logged for this day yet. Tap '+' to start logging!",
+  "nutritionTotalCalories": "{calories} kcal",
+  "@nutritionTotalCalories": {
+    "placeholders": {
+      "calories": {"type": "int"}
+    }
+  },
+
+  "recipeTitle": "Recipe Builder",
+  "recipeName": "Recipe Name",
+  "recipeServings": "Number of Servings",
+  "recipeTotalCookedYield": "Total Cooked Weight (grams, optional)",
+  "recipeYieldHelp": "Water loss or absorption during cooking changes total weight.",
+  "recipeIngredients": "Ingredients",
+  "recipeAddIngredient": "Add Ingredient",
+  "recipePerServing": "Per Serving: {cal} kcal | P: {p}g | C: {c}g | F: {f}g",
+  "@recipePerServing": {
+    "placeholders": {
+      "cal": {"type": "int"},
+      "p": {"type": "String"},
+      "c": {"type": "String"},
+      "f": {"type": "String"}
+    }
+  },
+  "recipeSave": "Save Recipe",
+
+  "workoutsTitle": "Workouts",
+  "workoutsPrograms": "Workout Programs",
+  "workoutsCreateProgram": "New Program",
+  "workoutsProgramName": "Program Name",
+  "workoutsProgramDesc": "Description",
+  "workoutsDays": "Days: {days}",
+  "@workoutsDays": {
+    "placeholders": {
+      "days": {"type": "String"}
+    }
+  },
+  "workoutsExercises": "Exercises",
+  "workoutsAddExercise": "Add Exercise",
+  "workoutsExerciseLibrary": "Exercise Library",
+  "workoutsMuscleGroup": "Muscle Group",
+  "workoutsEquipment": "Equipment",
+  "workoutsTargetSets": "Target Sets: {sets} x {reps} reps",
+  "@workoutsTargetSets": {
+    "placeholders": {
+      "sets": {"type": "int"},
+      "reps": {"type": "int"}
+    }
+  },
+  "workoutsActiveSession": "Active Workout",
+  "workoutsRestTimer": "Rest Timer",
+  "workoutsRestTimeRemaining": "{seconds}s Rest",
+  "@workoutsRestTimeRemaining": {
+    "placeholders": {
+      "seconds": {"type": "int"}
+    }
+  },
+  "workoutsSetHeader": "Set",
+  "workoutsWeightHeader": "kg",
+  "workoutsRepsHeader": "Reps",
+  "workoutsCompletedHeader": "Done",
+  "workoutsAddSet": "Add Set",
+  "workoutsSkipExercise": "Skip Exercise",
+  "workoutsFinishWorkout": "Finish Workout",
+  "workoutsDiscardWorkout": "Discard Workout",
+  "workoutsConfirmFinish": "Do you want to complete and save this workout?",
+  "workoutsConfirmDiscard": "Are you sure you want to discard this session?",
+  "workoutsSessionCompleted": "Workout Summary",
+  "workoutsDuration": "Duration: {minutes} mins",
+  "@workoutsDuration": {
+    "placeholders": {
+      "minutes": {"type": "int"}
+    }
+  },
+  "workoutsTotalVolume": "Total Volume: {volume} kg",
+  "@workoutsTotalVolume": {
+    "placeholders": {
+      "volume": {"type": "String"}
+    }
+  },
+  "workoutsTotalSets": "Completed Sets: {sets}",
+  "@workoutsTotalSets": {
+    "placeholders": {
+      "sets": {"type": "int"}
+    }
+  },
+  "workoutsHistory": "Workout History",
+  "workoutsNoHistory": "No completed workouts yet. Start your first session!",
+  "workoutsPR": "Personal Record!",
+
+  "progressTitle": "Progress & Metrics",
+  "progressWeightHistory": "Body Weight Trend",
+  "progressAddMetric": "Log Body Metric",
+  "progressWaist": "Waist Circumference (cm)",
+  "progressDate": "Date",
+  "progressTimeRange1M": "1 Month",
+  "progressTimeRange3M": "3 Months",
+  "progressTimeRangeAll": "All Time",
+  "progressWeeklyAverage": "7-Day Moving Avg: {avg} kg",
+  "@progressWeeklyAverage": {
+    "placeholders": {
+      "avg": {"type": "String"}
+    }
+  },
+  "progressExercisePRs": "Exercise Personal Records",
+  "progressNoMetrics": "No body measurements logged yet. Track your weight regularly to see trends!",
+
+  "profileTitle": "Profile & Settings",
+  "profilePersonalInfo": "Personal Information",
+  "profileGoals": "Goals & Targets",
+  "profileEditGoals": "Adjust Targets",
+  "profileAppearance": "Appearance",
+  "profileThemeSystem": "System Default",
+  "profileThemeLight": "Light Mode",
+  "profileThemeDark": "Dark Mode",
+  "profileLanguage": "Language",
+  "profileLanguageEn": "English",
+  "profileLanguageAr": "العربية (Arabic)",
+  "profileUnits": "Units",
+  "profileUnitsMetric": "Metric (kg, cm)",
+  "profileUnitsImperial": "Imperial (lb, in)",
+  "profileData": "Data & Privacy",
+  "profileExportJson": "Export Data (JSON)",
+  "profileResetData": "Clear All Data",
+  "profileResetConfirm": "Are you sure? This will delete all logged foods, workouts, and measurements.",
+  "profileAbout": "About Fit Companion",
+  "profileAboutText": "Fit Companion is a private, offline-first fitness and nutrition companion engineered for real-life workout and nutrition tracking.",
+  "profileOfflineStatus": "100% Offline & Private: Your data is stored strictly on your device.",
+
+  "commonSave": "Save",
+  "commonCancel": "Cancel",
+  "commonDelete": "Delete",
+  "commonEdit": "Edit",
+  "commonConfirm": "Confirm",
+  "commonBack": "Back",
+  "commonDone": "Done",
+  "commonSearch": "Search",
+  "commonFilter": "Filter",
+  "commonClose": "Close",
+  "commonError": "An error occurred",
+  "commonSuccess": "Operation completed successfully",
+  "commonRetry": "Retry",
+  "commonLoading": "Loading...",
+  "commonKcal": "kcal",
+  "commonGrams": "g",
+  "commonKg": "kg",
+  "commonCm": "cm",
+  "commonReps": "reps",
+  "commonSets": "sets",
+
+  "nutritionCalculatorTitle": "Personal Nutrition Calculator",
+  "nutritionCalculatorDesc": "Calculate evidence-based energy requirements and macronutrient targets tailored to your body.",
+  "nutritionCalculatorBmr": "Basal Metabolic Rate (BMR)",
+  "nutritionCalculatorBmrDesc": "Energy consumed at complete rest to keep your brain, heart, and vital organs alive.",
+  "nutritionCalculatorTdee": "Total Daily Energy Expenditure (TDEE)",
+  "nutritionCalculatorTdeeDesc": "Resting energy multiplied by your physical activity factor.",
+  "nutritionCalculatorTarget": "Personalized Target",
+  "nutritionCalculatorHow": "How Was This Calculated?",
+  "nutritionCalculatorFormula": "Mifflin–St Jeor Equation",
+  "nutritionCalculatorManualAdjust": "Adjust Targets Manually",
+  "nutritionCalculatorReset": "Restore Recommended Targets",
+  "nutritionCalculatorApply": "Apply Targets to My Profile",
+  "nutritionCalculatorConfirm": "Update your profile targets? Your daily dashboard and diary targets will update immediately.",
+  "nutritionCalculatorMacroWarning": "Warning: Total calories from macros (P×4 + C×4 + F×9) does not match the target calories.",
+  "nutritionTrainingType": "Training Style",
+  "nutritionTrainingStrength": "Strength & Hypertrophy",
+  "nutritionTrainingCardio": "Cardio & Endurance",
+  "nutritionTrainingHybrid": "Functional & Hybrid",
+  "nutritionTrainingGeneral": "General Health & Fitness",
+
+  "academyTitle": "Nutrition Academy",
+  "academySubtitle": "Master nutrition and calorie tracking with practical beginner-friendly lessons and quizzes.",
+  "academyLesson": "Lesson {number}",
+  "@academyLesson": {
+    "placeholders": {
+      "number": {"type": "int"}
+    }
+  },
+  "academyQuiz": "Knowledge Check",
+  "academyCompleted": "Completed",
+  "academyTakeaway": "Practical Takeaway",
+  "academyInteractiveTool": "Interactive Calculator Tool",
+  "academyScore": "Score: {score}%",
+  "@academyScore": {
+    "placeholders": {
+      "score": {"type": "int"}
+    }
+  },
+
+  "foodCalculatorTitle": "Smart Food Calculator",
+  "foodCalculatorSubtitle": "Calculate precise nutrition values based on portion weight and preparation state.",
+  "foodCalculatorServingType": "Serving & Prep State",
+  "foodCalculatorFormulaHelp": "Formula: (Nutrient per 100g × Grams) ÷ 100",
+  "foodCalculatorAddToMeal": "Log Calculated Food"
+}
