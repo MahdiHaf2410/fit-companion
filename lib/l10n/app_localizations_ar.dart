@@ -1997,4 +1997,442 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profilePreferences => 'تفضيلات التطبيق';
+
+  @override
+  String get tdeeTitle => 'سعراتك الحقيقية للثبات';
+
+  @override
+  String get tdeeNeedData =>
+      'سجّل وجباتك ووزنك لمدة أسبوعين تقريباً وسيحسب التطبيق سعراتك الحقيقية (TDEE).';
+
+  @override
+  String get tdeePerDay => 'سعرة / يوم';
+
+  @override
+  String tdeeExplain(int avg, String change, int days) {
+    return 'أكلت $avg سعرة في المتوسط ووزنك تغيّر $change كغ/أسبوع ($days يوم مسجّل).';
+  }
+
+  @override
+  String tdeeSuggest(int target, int current) {
+    return 'الهدف المقترح: $target سعرة (حالياً $current)';
+  }
+
+  @override
+  String get tdeeApply => 'طبّق';
+
+  @override
+  String get tdeeApplied => 'تم تحديث هدف السعرات';
+
+  @override
+  String get tdeeOnTrack => 'هدف سعراتك متوافق مع سعراتك الحقيقية';
+
+  @override
+  String get fatigueFresh => 'الاستشفاء جيد';
+
+  @override
+  String get fatigueFreshBody => 'قوتك ثابتة أو في تحسن. واصل!';
+
+  @override
+  String get fatigueWatch => 'انتبه للاستشفاء';
+
+  @override
+  String get fatigueWatchBody =>
+      'هناك علامات تعب. نم جيداً، كُل كفاية ولا تزد الحجم هذا الأسبوع.';
+
+  @override
+  String get fatigueDeload => 'حان وقت أسبوع تخفيف (Deload)';
+
+  @override
+  String get fatigueDeloadBody =>
+      'خفّف الأوزان بحوالي 40% والمجموعات للنصف لمدة أسبوع، ثم ارجع أقوى.';
+
+  @override
+  String fatigueReasonDeclining(int n) {
+    return '$n تمارين ضعفت حصتين متتاليتين';
+  }
+
+  @override
+  String get fatigueReasonRpe => 'مجهود عالٍ جداً (RPE ≥ 9) آخر أسبوعين';
+
+  @override
+  String fatigueReasonWeeks(int weeks) {
+    return '$weeks أسابيع صعبة متتالية بدون راحة';
+  }
+
+  @override
+  String get noteSkipped => 'تجاوزت مجموعة — ترجع تكملها؟';
+
+  @override
+  String get noteWeightDropping =>
+      'وزنك الأعلى نقص حصتين متتاليتين. ارتح مليح قبل هذا التمرين.';
+
+  @override
+  String get noteMissedReps =>
+      'المرة الماضية ما وصلتش للتكرارات المطلوبة. خلي نفس الوزن اليوم.';
+
+  @override
+  String noteCloseToPr(String kg) {
+    return 'باقي $kg كغ فقط على رقمك القياسي — روح عليه! 🏆';
+  }
+
+  @override
+  String get chTitle => 'التحديات والمستويات';
+
+  @override
+  String get chWeekly => 'هذا الأسبوع';
+
+  @override
+  String get chMonthly => 'هذا الشهر';
+
+  @override
+  String chWorkouts(int n) {
+    return 'أكمل $n حصص تمرين';
+  }
+
+  @override
+  String chProtein(int n) {
+    return 'حقق هدف البروتين $n أيام';
+  }
+
+  @override
+  String chWater(int n) {
+    return 'حقق هدف الماء $n أيام';
+  }
+
+  @override
+  String chLog(int n) {
+    return 'سجّل أكلك $n أيام';
+  }
+
+  @override
+  String chPrs(int n) {
+    return 'حطّم $n أرقام قياسية';
+  }
+
+  @override
+  String chVolume(String t) {
+    return 'ارفع $t طن في المجموع';
+  }
+
+  @override
+  String chWeigh(int n) {
+    return 'سجّل وزنك $n مرات';
+  }
+
+  @override
+  String get chDone => 'مكتمل';
+
+  @override
+  String chDaysLeft(int n) {
+    return 'باقي $n أيام';
+  }
+
+  @override
+  String get chCompleted => 'تحدٍّ مكتمل';
+
+  @override
+  String xpToNext(int xp, int level) {
+    return '$xp XP للمستوى $level';
+  }
+
+  @override
+  String get xpHowTitle => 'من أين تأتي نقاطك';
+
+  @override
+  String get xpWorkouts => 'الحصص (50 لكل حصة)';
+
+  @override
+  String get xpPrs => 'الأرقام القياسية (30 لكل رقم)';
+
+  @override
+  String get xpFood => 'أيام تسجيل الأكل (10)';
+
+  @override
+  String get xpWater => 'أيام هدف الماء (10)';
+
+  @override
+  String get xpWeigh => 'تسجيلات الوزن (5)';
+
+  @override
+  String get xpChallenges => 'التحديات';
+
+  @override
+  String get lvlBeginner => 'مبتدئ';
+
+  @override
+  String get lvlRookie => 'صاعد';
+
+  @override
+  String get lvlAthlete => 'رياضي';
+
+  @override
+  String get lvlWarrior => 'محارب';
+
+  @override
+  String get lvlBeast => 'وحش';
+
+  @override
+  String get lvlLegend => 'أسطورة';
+
+  @override
+  String get aiToolsTitle => 'أدوات الذكاء الاصطناعي';
+
+  @override
+  String get aiSignIn => 'تسجيل الدخول';
+
+  @override
+  String get aiGenerate => 'أنشئ';
+
+  @override
+  String get aiRegenerate => 'أنشئ من جديد';
+
+  @override
+  String get aiThinking => 'الذكاء الاصطناعي يحضّر… (حتى دقيقة)';
+
+  @override
+  String get aiKcal => 'سعرة';
+
+  @override
+  String get aiReportTitle => 'التقرير الأسبوعي';
+
+  @override
+  String get aiReportIntro =>
+      'مراجعة أسبوعك كأنها من مدرب: التمرين، الأكل، الوزن، النوم، مع أهداف للأسبوع القادم.';
+
+  @override
+  String get aiReportRemind => 'ذكّرني كل جمعة مساءً';
+
+  @override
+  String get aiReportNotifTitle => 'تقريرك الأسبوعي جاهز 📊';
+
+  @override
+  String get aiReportNotifBody => 'افتح Fit Companion وشوف كيفاش داز أسبوعك.';
+
+  @override
+  String get aiWins => 'ما نجح';
+
+  @override
+  String get aiImprove => 'للتحسين';
+
+  @override
+  String get aiNextWeek => 'أهداف الأسبوع القادم';
+
+  @override
+  String get aiProgramTitle => 'بناء برنامج بالذكاء الاصطناعي';
+
+  @override
+  String aiProgramDays(int n) {
+    return '$n أيام تمرين في الأسبوع';
+  }
+
+  @override
+  String get aiProgramGoal => 'الهدف';
+
+  @override
+  String get aiProgramEquipment => 'المعدات المتوفرة';
+
+  @override
+  String get aiProgramNotes => 'ملاحظات (اختياري)';
+
+  @override
+  String get aiProgramNotesHint =>
+      'مثلاً: ألم في الركبة، 45 دقيقة كحد أقصى، تركيز على الذراعين';
+
+  @override
+  String get aiProgramSave => 'احفظ في برامجي';
+
+  @override
+  String get aiProgramSaved => 'تم حفظ البرنامج في تمارينك';
+
+  @override
+  String get aiGoalStrength => 'قوة';
+
+  @override
+  String get aiGoalMuscle => 'عضلات';
+
+  @override
+  String get aiGoalFatLoss => 'حرق الدهون';
+
+  @override
+  String get aiGoalEndurance => 'تحمّل';
+
+  @override
+  String get aiEqBarbell => 'بار';
+
+  @override
+  String get aiEqDumbbell => 'دمبل';
+
+  @override
+  String get aiEqCable => 'كابل';
+
+  @override
+  String get aiEqMachine => 'آلات';
+
+  @override
+  String get aiEqBodyweight => 'وزن الجسم';
+
+  @override
+  String get aiMealTitle => 'خطة وجبات بالذكاء الاصطناعي';
+
+  @override
+  String get aiMealIntro =>
+      'يوم كامل من الوجبات يطابق سعراتك وماكروزك، بأكل محلي وقائمة مشتريات.';
+
+  @override
+  String get aiMealRequest => 'تفضيلات (اختياري)';
+
+  @override
+  String get aiMealRequestHint =>
+      'مثلاً: رخيص، بلا حوت، 4 وجبات، نخدم حتى 17:00';
+
+  @override
+  String get aiMealAdd => 'أضف لليوم';
+
+  @override
+  String get aiMealAddedShort => 'تمت الإضافة';
+
+  @override
+  String get aiMealAdded => 'أضيفت لليوم كمخطط (علّمها عندما تأكلها)';
+
+  @override
+  String get aiShopping => 'قائمة المشتريات';
+
+  @override
+  String get aiVoiceTitle => 'سجّل الأكل بالصوت';
+
+  @override
+  String get aiVoiceHint =>
+      'قول واش كليت، مثلاً: \"زوج بيضات، طرف كسرة وقهوة بالحليب\". بالدارجة، العربية، الفرنسية أو الإنجليزية.';
+
+  @override
+  String get aiVoiceTap => 'اضغط للتسجيل';
+
+  @override
+  String get aiVoiceListening => 'نسمع… اضغط للإيقاف';
+
+  @override
+  String get aiVoiceNoMic => 'يلزم إذن الميكروفون';
+
+  @override
+  String get aiVoiceNothing => 'ما تعرفناش على حتى أكلة. عاود.';
+
+  @override
+  String aiVoiceLog(int n) {
+    return 'سجّل $n عناصر';
+  }
+
+  @override
+  String aiVoiceLogged(int n) {
+    return 'تم تسجيل $n عناصر';
+  }
+
+  @override
+  String get shareAction => 'مشاركة';
+
+  @override
+  String get friendsTitle => 'الأصدقاء';
+
+  @override
+  String get friendsSubtitle => 'ترتيب أسبوعي مع أصدقائك';
+
+  @override
+  String get friendsNeedAccount =>
+      'سجّل الدخول لحسابك السحابي باش تضيف أصدقاء وتقارن التقدم.';
+
+  @override
+  String get friendsRetry => 'إعادة المحاولة';
+
+  @override
+  String get friendsMyCode => 'رمز الصداقة تاعي';
+
+  @override
+  String get friendsMyCodeHint => 'شاركه — غير الأصدقاء يشوفو إحصائياتك';
+
+  @override
+  String get friendsCopy => 'نسخ';
+
+  @override
+  String get friendsCopied => 'تم نسخ الرمز';
+
+  @override
+  String friendsInvite(String code) {
+    return 'تمرّن معايا في Fit Companion! رمز الصداقة تاعي: $code';
+  }
+
+  @override
+  String get friendsAdd => 'أضف صديق';
+
+  @override
+  String get friendsCode => 'رمز الصديق';
+
+  @override
+  String friendsAdded(String name) {
+    return 'تمت إضافة $name';
+  }
+
+  @override
+  String get friendsCodeNotFound => 'ما كاين حتى مستخدم بهاذ الرمز';
+
+  @override
+  String get friendsOwnCode => 'هذا رمزك أنت';
+
+  @override
+  String get friendsRemove => 'حذف الصديق';
+
+  @override
+  String friendsRemoveConfirm(String name) {
+    return 'تحذف $name من أصدقائك؟';
+  }
+
+  @override
+  String get friendsRemoveHint => 'اضغط مطولاً على صديق لحذفه';
+
+  @override
+  String get friendsSortVolume => 'الحجم';
+
+  @override
+  String get friendsSortWorkouts => 'الحصص';
+
+  @override
+  String get friendsEmpty => 'ما عندك حتى صديق. شارك رمزك وابدأ المنافسة!';
+
+  @override
+  String get friendsYou => 'أنت';
+
+  @override
+  String friendsLevel(int level) {
+    return 'المستوى $level';
+  }
+
+  @override
+  String get sleepTitle => 'النوم والأداء';
+
+  @override
+  String get sleepConnect =>
+      'اربط Health Connect لقراءة نومك (من الساعة أو تطبيق النوم) وشوف تأثيره على تمارينك.';
+
+  @override
+  String get sleepConnectButton => 'اربط بيانات النوم';
+
+  @override
+  String sleepAvg(String hours, int nights) {
+    return 'متوسط $hours ساعة في الليلة ($nights ليالي هذا الأسبوع)';
+  }
+
+  @override
+  String get sleepNeedMore =>
+      'تمرّن أكثر في الليالي المسجلة باش تشوف التأثير على أدائك.';
+
+  @override
+  String sleepBetter(String pct) {
+    return 'ترفع حجم أكثر بـ $pct% بعد نوم 7 ساعات أو أكثر';
+  }
+
+  @override
+  String get sleepNoEffect =>
+      'ما كاينش تأثير واضح لليالي القصيرة على حجمك حتى الآن';
+
+  @override
+  String get sleepTip => 'حاول تنام 7–9 ساعات: العضلات تتبنى وأنت راقد.';
 }

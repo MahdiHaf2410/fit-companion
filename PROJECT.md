@@ -189,6 +189,29 @@ features/
 
 **Supabase additions:** bucket `coach-media` (private, 40MB, images/videos, RLS per user folder), `coach_messages.media_path/media_type` columns, `ai_usage.kind` = food_macros/food_photo/label/progress, function `ai-vision` (limits: food_photo 60, label 60, progress 10 per day).
 
+## 4b-5) Version 1.6.0: smart coach, challenges, friends, AI tools, sleep
+**Offline analysis (no internet, tested in `test/insights_test.dart`):** logic in `lib/core/utils/insights.dart`, UI in `lib/features/insights/insights.dart`
+- **Adaptive TDEE** (card in Progress): real maintenance calories from what you actually ate + your weight trend (least squares, 7700 kcal/kg). Needs ≥10 logged days, ≥4 weigh-ins and a ≥14-day span. The "Apply" button changes the calorie target and moves the difference into carbs.
+- **Fatigue and deload detection** (card in Workouts): e1RM dropping 2 sessions in a row + average RPE ≥ 9 over 14 days + ≥6 hard weeks in a row → fresh / watch / deload.
+- **Coach notes during the workout** (`active_workout_screen.dart`): you skipped a set, weight dropping, you missed the target reps last time, close to a PR (≤ 2.5 kg).
+- **Sleep and performance** (card in Progress): reads `SLEEP_SESSION` from Health Connect (permission `READ_SLEEP`) → average hours for the week + volume after nights of 7 h or more vs short nights (`SleepAnalyzer`).
+
+**Challenges + XP** (`lib/features/challenges/challenges.dart`, route `/challenges`, card on the home screen): 4 weekly challenges (the week starts on **Saturday**) + 4 monthly ones. XP = workouts ×50 + PRs ×30 + days with food logged ×10 + water days ×10 + weigh-ins ×5 + challenges. Level n needs 100·n(n−1)/2 XP. Titles: Beginner → Rookie → Athlete → Warrior → Beast → Legend. Completed challenges are saved in `AppPreferences('challenges_done')`, so their XP stays forever.
+
+**AI tools** (`lib/features/ai/ai_tools.dart`, "AI tools" card on the home screen), one Edge Function **`ai-tools`** with 4 modes:
+- `weekly_report` (`/ai/report`): score /10 + summary + what went well + what to improve + goals. Saved in `AppPreferences('ai_weekly_report')`. Optional notification every Friday at 19:00 (`scheduleWeeklyReport`, id 500). Limit 6/day.
+- `program` (`/ai/program`): days + goal + equipment + notes → the AI chooses **only from the exercise ids in the app catalogue** (the server filters any other id) → "Save" creates one program per day. Limit 10/day.
+- `meal_plan` (`/ai/meals`): one day that hits your targets, with local Algerian foods + a shopping list. "Add to today" logs it as **planned** (isEaten = false). Limit 12/day.
+- `voice_log` (🎤 in the nutrition bar + the card): records m4a (package `record`, `RECORD_AUDIO`) → Gemini → transcript + items with macros → pick items + meal → log. The audio is not saved anywhere. Limit 60/day.
+
+**Shareable cards** (`lib/features/social/social.dart` `showShareCard`): RepaintBoundary → 3× PNG → share_plus. Buttons: workout summary (session detail) + challenges/level.
+
+**Friends** (`/friends`, from the challenges screen): a random 6-character friend code (`friend_profiles.friend_code`) + leaderboard (weekly volume / workouts / XP). Only friends can read your stats (RLS). Adding and removing go through the `SECURITY DEFINER` functions `add_friend(code)` / `remove_friend(uuid)`, both directions. Long-press to remove.
+
+**Supabase additions:** tables `friend_profiles`, `friendships` (RLS), functions `add_friend`/`remove_friend` (authenticated only), `ai_usage.kind` + weekly_report/program/meal_plan/voice_log, Edge Function `ai-tools` (verify_jwt=false + `auth.getUser()`). Everything is still on the **free plan**.
+**Sources in the repo:** `supabase/functions/*/index.ts` + `supabase/migrations/*.sql` (copied from what's deployed).
+**Tests:** 184 ✅ (incl. layout tests for the new screens at 360px en/ar light/dark).
+
 ## 4c) Supabase (cloud + coach)
 - **Project:** `fit-companion`, ID `keuheinbxgevhuhywfou`, region eu-west-3 (Paris), **free plan ($0)**.
 - **URL:** https://keuheinbxgevhuhywfou.supabase.co. The publishable key is in `lib/core/services/cloud_service.dart` (`SupabaseConfig`). It's safe in the APK because RLS protects everything.
@@ -226,7 +249,7 @@ dart run build_runner build --delete-conflicting-outputs   # after changing tabl
 - Any new table → `schemaVersion++` + `onUpgrade` (from < N) + build_runner.
 - Small settings with no new table → use the `AppPreferences` key/value table (as with water).
 - Tab screens use `padding bottom: kNavBarClearance` so content isn't hidden under the floating bar.
-- The project is now a **git** repository (a "Baseline snapshot" commit before the changes). The current changes are not committed yet.
+- The project is a **git** repository on GitHub (public), see `README.md`.
 
 ---
 

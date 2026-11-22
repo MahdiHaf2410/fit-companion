@@ -15,6 +15,9 @@ import '../../../core/widgets/ui_kit.dart';
 import '../../../shared/providers/database_provider.dart';
 import '../../../shared/providers/settings_provider.dart';
 import '../data/workout_repository.dart';
+import '../../../core/utils/insights.dart';
+import '../../insights/insights.dart' show coachNoteText;
+import 'exercise_detail_screen.dart' show exerciseHistoryProvider;
 import 'exercise_picker.dart';
 import 'workout_providers.dart';
 import '../../../l10n/app_localizations.dart';
@@ -493,6 +496,18 @@ class _ExerciseCard extends ConsumerWidget {
     final allDone = sets.every((s) => s.isCompleted);
     final hasPr = sets.any((s) => s.isPersonalRecord);
     final superset = first.supersetGroup;
+    // Live coach notes (offline rules)
+    final history = ref.watch(exerciseHistoryProvider(first.exerciseId)).value ?? const [];
+    final prWeight = history.isEmpty ? null : history.map((h) => h.topWeightKg).reduce((a, b) => a > b ? a : b);
+    final working = sets.where((s) => s.setType != 'warmup').toList();
+    final coachNotes = WorkoutCoach.notes(
+      setsDone: [for (final s in working) s.isCompleted],
+      recentTopWeights: [for (final h in history.length > 3 ? history.sublist(history.length - 3) : history) h.topWeightKg],
+      lastReps: [for (final s in previous ?? const <WorkoutSet>[]) if (s.setType != 'warmup') s.reps],
+      targetReps: targetReps,
+      currentTop: working.isEmpty ? null : working.map((s) => s.weightKg).reduce((a, b) => a > b ? a : b),
+      prWeight: prWeight,
+    );
     final suggestion = previous == null
         ? null
         : StrengthCalculator.suggestNextWeight(
@@ -588,6 +603,23 @@ class _ExerciseCard extends ConsumerWidget {
                 style: theme.textTheme.bodySmall,
               ),
             ],
+            for (final n in coachNotes)
+              Container(
+                margin: const EdgeInsets.only(top: 6),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+                decoration: BoxDecoration(
+                  color: (n.type == CoachNoteType.closeToPr ? AppColors.carbs : AppColors.cyan).withValues(alpha: 0.13),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
+                  children: [
+                    Icon(n.type == CoachNoteType.closeToPr ? Icons.emoji_events_rounded : Icons.tips_and_updates_rounded,
+                        size: 16, color: n.type == CoachNoteType.closeToPr ? AppColors.carbs : AppColors.cyan),
+                    const SizedBox(width: 8),
+                    Expanded(child: Text(coachNoteText(l10n, n), style: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600))),
+                  ],
+                ),
+              ),
             const SizedBox(height: 10),
             Row(
               children: [

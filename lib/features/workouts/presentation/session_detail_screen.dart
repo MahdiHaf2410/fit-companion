@@ -9,6 +9,7 @@ import '../../../core/utils/strength_calculator.dart';
 import '../../../core/widgets/app_card.dart';
 import '../../../shared/providers/database_provider.dart';
 import '../../../shared/providers/settings_provider.dart';
+import '../../social/social.dart' show ShareStat, showShareCard;
 import 'workout_providers.dart';
 import '../../../l10n/app_localizations.dart';
 
@@ -29,6 +30,28 @@ class SessionDetailScreen extends ConsumerWidget {
       appBar: AppBar(
         title: Text(l10n.sessionDetailTitle),
         actions: [
+          IconButton(
+            tooltip: l10n.shareAction,
+            icon: const Icon(Icons.ios_share_rounded),
+            onPressed: () {
+              final d = detailAsync.value;
+              if (d == null) return;
+              final s = d.session;
+              final prs = d.sets.where((x) => x.isPersonalRecord).length;
+              showShareCard(
+                context,
+                title: s.programName ?? l10n.workoutsQuickStart,
+                subtitle: DateFormat.yMMMMEEEEd(locale).format(s.startTime),
+                badge: prs > 0 ? '🏆 $prs PR' : null,
+                stats: [
+                  ShareStat(Icons.timer_outlined, l10n.sessionMinutes(s.endTime?.difference(s.startTime).inMinutes ?? 0), l10n.workoutsElapsed, AppColors.violet),
+                  ShareStat(Icons.layers_rounded, '${s.totalCompletedSets}', l10n.commonSets, AppColors.cyan),
+                  ShareStat(Icons.fitness_center_rounded, NumberFormat.compact(locale: locale).format(s.totalVolumeKg), '${l10n.statsVolume} (${l10n.commonKg})', AppColors.lime),
+                  if (prs > 0) ShareStat(Icons.emoji_events_rounded, '$prs', 'PR', AppColors.carbs),
+                ],
+              );
+            },
+          ),
           IconButton(
             tooltip: l10n.sessionDelete,
             icon: const Icon(Icons.delete_outline_rounded, color: AppColors.error),

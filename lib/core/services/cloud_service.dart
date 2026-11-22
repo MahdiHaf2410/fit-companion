@@ -275,6 +275,57 @@ class CloudService {
     if (data is Map && data['error'] == null) return Map<String, dynamic>.from(data);
     throw CoachException((data is Map ? data['error'] : null)?.toString() ?? 'unknown');
   }
+  /// AI tools (Edge Function `ai-tools`): weekly_report | program | meal_plan | voice_log.
+  Future<Map<String, dynamic>> aiTool(String mode, {required String language, Map<String, dynamic> body = const {}}) async {
+    if (user == null) throw CoachException('unauthorized');
+    final FunctionResponse res;
+    try {
+      res = await _sb.functions
+          .invoke('ai-tools', body: {'mode': mode, 'language': language, ...body})
+          .timeout(const Duration(seconds: 95));
+    } on TimeoutException {
+      throw CoachException('gemini_busy');
+    } on FunctionException catch (e) {
+      final d = e.details;
+      throw CoachException((d is Map ? d['error'] : null)?.toString() ?? 'http_${e.status}');
+    }
+    final data = res.data;
+    if (data is Map && data['error'] == null) return Map<String, dynamic>.from(data);
+    throw CoachException((data is Map ? data['error'] : null)?.toString() ?? 'unknown');
+  }
+
+  // ---------------- Friends ----------------
+
+  /// Publishes my public stats (only friends can read them) and returns my row.
+  Future<Map<String, dynamic>> upsertFriendProfile(Map<String, dynamic> stats) async {
+    final u = user;
+    if (u == null) throw CoachException('unauthorized');
+    final row = await _sb
+        .from('friend_profiles')
+        .upsert({'user_id': u.id, ...stats, 'updated_at': DateTime.now().toUtc().toIso8601String()})
+        .select()
+        .single();
+    return Map<String, dynamic>.from(row);
+  }
+
+  /// Me + my friends' public stats.
+  Future<List<Map<String, dynamic>>> friendLeaderboard() async {
+    if (user == null) throw CoachException('unauthorized');
+    final rows = await _sb.from('friend_profiles').select();
+    return [for (final r in rows) Map<String, dynamic>.from(r)];
+  }
+
+  Future<String> addFriend(String code) async {
+    try {
+      final name = await _sb.rpc('add_friend', params: {'code': code});
+      return name?.toString() ?? '';
+    } on PostgrestException catch (e) {
+      final m = e.message;
+      throw CoachException(m.contains('code_not_found') ? 'code_not_found' : (m.contains('own_code') ? 'own_code' : 'unknown'));
+    }
+  }
+
+  Future<void> removeFriend(String friendId) => _sb.rpc('remove_friend', params: {'friend': friendId});
 }
 
 class CoachException implements Exception {

@@ -158,6 +158,8 @@ abstract class NotificationService {
   /// Live countdown (mirrors to paired smartwatches) + alert when it ends.
   Future<void> showRestTimer({required DateTime endsAt, required String title, required String endTitle, required String endBody});
   Future<void> cancelRestTimer();
+  /// Weekly "your AI report is ready" reminder (Friday 19:00).
+  Future<void> scheduleWeeklyReport({required bool enabled, required String title, required String body});
 }
 
 class NoopNotificationService implements NotificationService {
@@ -171,6 +173,8 @@ class NoopNotificationService implements NotificationService {
   Future<void> showRestTimer({required DateTime endsAt, required String title, required String endTitle, required String endBody}) async {}
   @override
   Future<void> cancelRestTimer() async {}
+  @override
+  Future<void> scheduleWeeklyReport({required bool enabled, required String title, required String body}) async {}
 }
 
 class LocalNotificationService implements NotificationService {
@@ -328,6 +332,25 @@ class LocalNotificationService implements NotificationService {
         matchDateTimeComponents: DateTimeComponents.time,
       );
     }
+  }
+
+  static const _weeklyReportId = 500;
+
+  @override
+  Future<void> scheduleWeeklyReport({required bool enabled, required String title, required String body}) async {
+    await init();
+    if (!_ready) return;
+    await _plugin.cancel(id: _weeklyReportId);
+    if (!enabled) return;
+    await _plugin.zonedSchedule(
+      id: _weeklyReportId,
+      title: title,
+      body: body,
+      scheduledDate: _nextAt(19, 0, weekday: DateTime.friday),
+      notificationDetails: const NotificationDetails(android: _reminderChannel),
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
+    );
   }
 
   @override

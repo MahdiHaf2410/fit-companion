@@ -11,6 +11,9 @@ import 'package:fit_companion/features/nutrition/presentation/nutrition_screen.d
 import 'package:fit_companion/features/profile/presentation/profile_providers.dart';
 import 'package:fit_companion/features/progress/presentation/progress_screen.dart';
 import 'package:fit_companion/features/tools/presentation/gym_tools_screen.dart';
+import 'package:fit_companion/features/ai/ai_tools.dart';
+import 'package:fit_companion/features/challenges/challenges.dart';
+import 'package:fit_companion/features/social/social.dart';
 import 'package:fit_companion/features/workouts/presentation/workouts_screen.dart';
 import 'package:fit_companion/features/workouts/presentation/active_workout_screen.dart';
 import 'package:fit_companion/features/workouts/data/workout_repository.dart';
@@ -27,6 +30,11 @@ void main() {
     'workouts': () => const WorkoutsScreen(),
     'progress': () => const ProgressScreen(),
     'tools': () => const GymToolsScreen(),
+    'challenges': () => const ChallengesScreen(),
+    'weekly report': () => const WeeklyReportScreen(),
+    'program builder': () => const ProgramBuilderScreen(),
+    'meal plan': () => const MealPlanScreen(),
+    'friends': () => const FriendsScreen(),
     'active workout': () => const ActiveWorkoutScreen(),
     'dashboard (active)': () => const DashboardScreen(),
   };

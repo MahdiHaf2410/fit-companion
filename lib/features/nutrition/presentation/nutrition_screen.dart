@@ -14,6 +14,7 @@ import '../../../shared/providers/settings_provider.dart';
 import '../../hydration/presentation/water_card.dart';
 import '../data/meal_tools_repository.dart';
 import 'eaten_widgets.dart';
+import '../../ai/ai_tools.dart' show showVoiceLogSheet;
 import 'nutrition_providers.dart';
 import '../../../l10n/app_localizations.dart';
 
@@ -34,6 +35,11 @@ class NutritionScreen extends ConsumerWidget {
       appBar: AppBar(
         title: Text(l10n.nutritionTitle),
         actions: [
+          IconButton(
+            tooltip: l10n.aiVoiceTitle,
+            icon: const Icon(Icons.mic_rounded),
+            onPressed: () => showVoiceLogSheet(context),
+          ),
           IconButton(
             tooltip: l10n.photoTitle,
             icon: const Icon(Icons.photo_camera_rounded),

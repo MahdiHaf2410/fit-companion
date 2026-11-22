@@ -10,6 +10,7 @@ import '../../../core/widgets/app_card.dart';
 import '../../../core/widgets/ui_kit.dart';
 import '../../../shared/providers/database_provider.dart';
 import '../../../shared/providers/settings_provider.dart';
+import '../../insights/insights.dart';
 import 'muscle_heatmap.dart';
 import 'workout_providers.dart';
 import '../../../l10n/app_localizations.dart';
@@ -174,6 +175,10 @@ class WorkoutsScreen extends ConsumerWidget {
                 ),
               ),
             ),
+
+          // ---------------- Recovery / deload ----------------
+          const SizedBox(height: 12),
+          const FatigueCard(),
 
           // ---------------- Muscles this week ----------------
           SectionHeader(title: l10n.heatmapTitle),

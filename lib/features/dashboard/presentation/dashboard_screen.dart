@@ -10,6 +10,8 @@ import '../../../core/widgets/macro_progress_bar.dart';
 import '../../../core/widgets/ui_kit.dart';
 import '../../../shared/providers/settings_provider.dart';
 import '../../achievements/achievements_screen.dart';
+import '../../ai/ai_tools.dart' show AiToolsCard;
+import '../../challenges/challenges.dart' show ChallengesHomeCard;
 import '../../progress/presentation/progress_photos_screen.dart' show ProgressPhotosHomeCard;
 import '../../hydration/presentation/water_card.dart';
 import '../../nutrition/domain/daily_nutrition_summary.dart';
@@ -270,6 +272,10 @@ class DashboardScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 12),
 
+              const FadeSlideIn(index: 4, child: AiToolsCard()),
+              const SizedBox(height: 12),
+              const FadeSlideIn(index: 4, child: ChallengesHomeCard()),
+              const SizedBox(height: 12),
               const FadeSlideIn(index: 4, child: ProgressPhotosHomeCard()),
               const SizedBox(height: 12),
               const FadeSlideIn(index: 4, child: AchievementsSummaryCard()),

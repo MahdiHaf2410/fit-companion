@@ -37,6 +37,9 @@ import '../features/progress/presentation/progress_screen.dart';
 import '../features/progress/presentation/add_metric_screen.dart';
 import '../features/profile/presentation/profile_screen.dart';
 import '../features/profile/presentation/data_export_screen.dart';
+import '../features/ai/ai_tools.dart';
+import '../features/challenges/challenges.dart';
+import '../features/social/social.dart';
 import '../features/onboarding/presentation/onboarding_screen.dart';
 import '../features/profile/presentation/profile_providers.dart';
 
@@ -274,6 +277,31 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/settings/cloud',
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const CloudScreen(),
+      ),
+      GoRoute(
+        path: '/ai/report',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const WeeklyReportScreen(),
+      ),
+      GoRoute(
+        path: '/ai/program',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const ProgramBuilderScreen(),
+      ),
+      GoRoute(
+        path: '/ai/meals',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const MealPlanScreen(),
+      ),
+      GoRoute(
+        path: '/friends',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const FriendsScreen(),
+      ),
+      GoRoute(
+        path: '/challenges',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const ChallengesScreen(),
       ),
       GoRoute(
         path: '/coach',

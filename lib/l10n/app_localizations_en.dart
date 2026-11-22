@@ -2012,4 +2012,446 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profilePreferences => 'App preferences';
+
+  @override
+  String get tdeeTitle => 'Your real maintenance calories';
+
+  @override
+  String get tdeeNeedData =>
+      'Log your meals and weigh in for ~2 weeks and the app will calculate your real TDEE.';
+
+  @override
+  String get tdeePerDay => 'kcal / day';
+
+  @override
+  String tdeeExplain(int avg, String change, int days) {
+    return 'You ate $avg kcal on average and your weight changed $change kg/week ($days days logged).';
+  }
+
+  @override
+  String tdeeSuggest(int target, int current) {
+    return 'Suggested target: $target kcal (now $current)';
+  }
+
+  @override
+  String get tdeeApply => 'Apply';
+
+  @override
+  String get tdeeApplied => 'Calorie target updated';
+
+  @override
+  String get tdeeOnTrack => 'Your calorie target matches your real TDEE';
+
+  @override
+  String get fatigueFresh => 'Recovery looks good';
+
+  @override
+  String get fatigueFreshBody =>
+      'Your strength is stable or rising. Keep pushing!';
+
+  @override
+  String get fatigueWatch => 'Watch your recovery';
+
+  @override
+  String get fatigueWatchBody =>
+      'Some fatigue signs. Sleep well, eat enough and don\'t add volume this week.';
+
+  @override
+  String get fatigueDeload => 'Time for a deload week';
+
+  @override
+  String get fatigueDeloadBody =>
+      'Cut weights by ~40% and sets by half for one week, then come back stronger.';
+
+  @override
+  String fatigueReasonDeclining(int n) {
+    return '$n exercises got weaker 2 sessions in a row';
+  }
+
+  @override
+  String get fatigueReasonRpe =>
+      'Very high effort (RPE ≥ 9) in the last 2 weeks';
+
+  @override
+  String fatigueReasonWeeks(int weeks) {
+    return '$weeks hard weeks in a row without a break';
+  }
+
+  @override
+  String get noteSkipped => 'You skipped a set — go back and finish it?';
+
+  @override
+  String get noteWeightDropping =>
+      'Your top weight dropped 2 sessions in a row. Rest well before this one.';
+
+  @override
+  String get noteMissedReps =>
+      'Last time you missed the target reps. Keep the same weight today.';
+
+  @override
+  String noteCloseToPr(String kg) {
+    return 'Only $kg kg from your record — go for it! 🏆';
+  }
+
+  @override
+  String get chTitle => 'Challenges & levels';
+
+  @override
+  String get chWeekly => 'This week';
+
+  @override
+  String get chMonthly => 'This month';
+
+  @override
+  String chWorkouts(int n) {
+    return 'Complete $n workouts';
+  }
+
+  @override
+  String chProtein(int n) {
+    return 'Hit your protein goal $n days';
+  }
+
+  @override
+  String chWater(int n) {
+    return 'Reach your water goal $n days';
+  }
+
+  @override
+  String chLog(int n) {
+    return 'Log your food $n days';
+  }
+
+  @override
+  String chPrs(int n) {
+    return 'Break $n personal records';
+  }
+
+  @override
+  String chVolume(String t) {
+    return 'Lift $t tonnes in total';
+  }
+
+  @override
+  String chWeigh(int n) {
+    return 'Weigh in $n times';
+  }
+
+  @override
+  String get chDone => 'Completed';
+
+  @override
+  String chDaysLeft(int n) {
+    return '$n days left';
+  }
+
+  @override
+  String get chCompleted => 'Challenge completed';
+
+  @override
+  String xpToNext(int xp, int level) {
+    return '$xp XP to level $level';
+  }
+
+  @override
+  String get xpHowTitle => 'Where your XP comes from';
+
+  @override
+  String get xpWorkouts => 'Workouts (50 each)';
+
+  @override
+  String get xpPrs => 'Personal records (30 each)';
+
+  @override
+  String get xpFood => 'Days with food logged (10)';
+
+  @override
+  String get xpWater => 'Water goal days (10)';
+
+  @override
+  String get xpWeigh => 'Weigh-ins (5)';
+
+  @override
+  String get xpChallenges => 'Challenges';
+
+  @override
+  String get lvlBeginner => 'Beginner';
+
+  @override
+  String get lvlRookie => 'Rookie';
+
+  @override
+  String get lvlAthlete => 'Athlete';
+
+  @override
+  String get lvlWarrior => 'Warrior';
+
+  @override
+  String get lvlBeast => 'Beast';
+
+  @override
+  String get lvlLegend => 'Legend';
+
+  @override
+  String get aiToolsTitle => 'AI tools';
+
+  @override
+  String get aiSignIn => 'Sign in';
+
+  @override
+  String get aiGenerate => 'Generate';
+
+  @override
+  String get aiRegenerate => 'Generate again';
+
+  @override
+  String get aiThinking => 'The AI is working on it… (up to a minute)';
+
+  @override
+  String get aiKcal => 'kcal';
+
+  @override
+  String get aiReportTitle => 'Weekly AI report';
+
+  @override
+  String get aiReportIntro =>
+      'A coach-style review of your week: training, food, weight, sleep, with goals for next week.';
+
+  @override
+  String get aiReportRemind => 'Remind me every Friday evening';
+
+  @override
+  String get aiReportNotifTitle => 'Your weekly report is ready 📊';
+
+  @override
+  String get aiReportNotifBody =>
+      'Open Fit Companion to see how your week went.';
+
+  @override
+  String get aiWins => 'What went well';
+
+  @override
+  String get aiImprove => 'To improve';
+
+  @override
+  String get aiNextWeek => 'Goals for next week';
+
+  @override
+  String get aiProgramTitle => 'AI program builder';
+
+  @override
+  String aiProgramDays(int n) {
+    return '$n training days per week';
+  }
+
+  @override
+  String get aiProgramGoal => 'Goal';
+
+  @override
+  String get aiProgramEquipment => 'Available equipment';
+
+  @override
+  String get aiProgramNotes => 'Notes (optional)';
+
+  @override
+  String get aiProgramNotesHint => 'e.g. knee pain, 45 min max, focus on arms';
+
+  @override
+  String get aiProgramSave => 'Save to my programs';
+
+  @override
+  String get aiProgramSaved => 'Program saved to your workouts';
+
+  @override
+  String get aiGoalStrength => 'Strength';
+
+  @override
+  String get aiGoalMuscle => 'Muscle';
+
+  @override
+  String get aiGoalFatLoss => 'Fat loss';
+
+  @override
+  String get aiGoalEndurance => 'Endurance';
+
+  @override
+  String get aiEqBarbell => 'Barbell';
+
+  @override
+  String get aiEqDumbbell => 'Dumbbells';
+
+  @override
+  String get aiEqCable => 'Cables';
+
+  @override
+  String get aiEqMachine => 'Machines';
+
+  @override
+  String get aiEqBodyweight => 'Bodyweight';
+
+  @override
+  String get aiMealTitle => 'AI meal plan';
+
+  @override
+  String get aiMealIntro =>
+      'A full day of meals that hits your calories and macros, with local foods and a shopping list.';
+
+  @override
+  String get aiMealRequest => 'Preferences (optional)';
+
+  @override
+  String get aiMealRequestHint =>
+      'e.g. cheap, no fish, 4 meals, I work until 17:00';
+
+  @override
+  String get aiMealAdd => 'Add to today';
+
+  @override
+  String get aiMealAddedShort => 'Added';
+
+  @override
+  String get aiMealAdded =>
+      'Added to today as planned (tick it when you eat it)';
+
+  @override
+  String get aiShopping => 'Shopping list';
+
+  @override
+  String get aiVoiceTitle => 'Log food by voice';
+
+  @override
+  String get aiVoiceHint =>
+      'Say what you ate, e.g. \"two eggs, a piece of kesra and a coffee with milk\". Darija, Arabic, French or English.';
+
+  @override
+  String get aiVoiceTap => 'Tap to record';
+
+  @override
+  String get aiVoiceListening => 'Listening… tap to stop';
+
+  @override
+  String get aiVoiceNoMic => 'Microphone permission is needed';
+
+  @override
+  String get aiVoiceNothing => 'No food was recognised. Try again.';
+
+  @override
+  String aiVoiceLog(int n) {
+    return 'Log $n items';
+  }
+
+  @override
+  String aiVoiceLogged(int n) {
+    return '$n items logged';
+  }
+
+  @override
+  String get shareAction => 'Share';
+
+  @override
+  String get friendsTitle => 'Friends';
+
+  @override
+  String get friendsSubtitle => 'Weekly leaderboard with your friends';
+
+  @override
+  String get friendsNeedAccount =>
+      'Sign in to your cloud account to add friends and compare progress.';
+
+  @override
+  String get friendsRetry => 'Retry';
+
+  @override
+  String get friendsMyCode => 'My friend code';
+
+  @override
+  String get friendsMyCodeHint => 'Share it — only friends see your stats';
+
+  @override
+  String get friendsCopy => 'Copy';
+
+  @override
+  String get friendsCopied => 'Code copied';
+
+  @override
+  String friendsInvite(String code) {
+    return 'Train with me on Fit Companion! My friend code: $code';
+  }
+
+  @override
+  String get friendsAdd => 'Add friend';
+
+  @override
+  String get friendsCode => 'Friend code';
+
+  @override
+  String friendsAdded(String name) {
+    return '$name added';
+  }
+
+  @override
+  String get friendsCodeNotFound => 'No user with this code';
+
+  @override
+  String get friendsOwnCode => 'This is your own code';
+
+  @override
+  String get friendsRemove => 'Remove friend';
+
+  @override
+  String friendsRemoveConfirm(String name) {
+    return 'Remove $name from your friends?';
+  }
+
+  @override
+  String get friendsRemoveHint => 'Long-press a friend to remove them';
+
+  @override
+  String get friendsSortVolume => 'Volume';
+
+  @override
+  String get friendsSortWorkouts => 'Workouts';
+
+  @override
+  String get friendsEmpty =>
+      'No friends yet. Share your code to start competing!';
+
+  @override
+  String get friendsYou => 'you';
+
+  @override
+  String friendsLevel(int level) {
+    return 'Level $level';
+  }
+
+  @override
+  String get sleepTitle => 'Sleep & performance';
+
+  @override
+  String get sleepConnect =>
+      'Connect Health Connect to read your sleep (from your watch or sleep app) and see how it affects your workouts.';
+
+  @override
+  String get sleepConnectButton => 'Connect sleep data';
+
+  @override
+  String sleepAvg(String hours, int nights) {
+    return 'Average $hours h per night ($nights nights this week)';
+  }
+
+  @override
+  String get sleepNeedMore =>
+      'Train more on tracked nights to see the effect on your performance.';
+
+  @override
+  String sleepBetter(String pct) {
+    return 'You lift $pct% more volume after 7 h+ of sleep';
+  }
+
+  @override
+  String get sleepNoEffect =>
+      'No clear effect of short nights on your volume yet';
+
+  @override
+  String get sleepTip => 'Aim for 7–9 h: muscle is built while you sleep.';
 }

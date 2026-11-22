@@ -12,6 +12,7 @@ import '../../../shared/providers/database_provider.dart';
 import '../../../shared/providers/settings_provider.dart';
 import '../../profile/presentation/profile_providers.dart';
 import '../../workouts/presentation/workout_providers.dart';
+import '../../insights/insights.dart';
 import 'measurements_card.dart';
 import 'progress_providers.dart';
 import '../../../l10n/app_localizations.dart';
@@ -94,6 +95,12 @@ class ProgressScreen extends ConsumerWidget {
             },
             orElse: () => const SizedBox.shrink(),
           ),
+
+          // ---------------- Adaptive TDEE ----------------
+          const AdaptiveTdeeCard(),
+          const SizedBox(height: 12),
+          const SleepCard(),
+          const SizedBox(height: 12),
 
           // ---------------- Range ----------------
           SegmentedButton<int?>(

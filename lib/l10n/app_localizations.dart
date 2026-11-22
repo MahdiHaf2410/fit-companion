@@ -3757,6 +3757,762 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'App preferences'**
   String get profilePreferences;
+
+  /// No description provided for @tdeeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your real maintenance calories'**
+  String get tdeeTitle;
+
+  /// No description provided for @tdeeNeedData.
+  ///
+  /// In en, this message translates to:
+  /// **'Log your meals and weigh in for ~2 weeks and the app will calculate your real TDEE.'**
+  String get tdeeNeedData;
+
+  /// No description provided for @tdeePerDay.
+  ///
+  /// In en, this message translates to:
+  /// **'kcal / day'**
+  String get tdeePerDay;
+
+  /// No description provided for @tdeeExplain.
+  ///
+  /// In en, this message translates to:
+  /// **'You ate {avg} kcal on average and your weight changed {change} kg/week ({days} days logged).'**
+  String tdeeExplain(int avg, String change, int days);
+
+  /// No description provided for @tdeeSuggest.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested target: {target} kcal (now {current})'**
+  String tdeeSuggest(int target, int current);
+
+  /// No description provided for @tdeeApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get tdeeApply;
+
+  /// No description provided for @tdeeApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Calorie target updated'**
+  String get tdeeApplied;
+
+  /// No description provided for @tdeeOnTrack.
+  ///
+  /// In en, this message translates to:
+  /// **'Your calorie target matches your real TDEE'**
+  String get tdeeOnTrack;
+
+  /// No description provided for @fatigueFresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Recovery looks good'**
+  String get fatigueFresh;
+
+  /// No description provided for @fatigueFreshBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your strength is stable or rising. Keep pushing!'**
+  String get fatigueFreshBody;
+
+  /// No description provided for @fatigueWatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch your recovery'**
+  String get fatigueWatch;
+
+  /// No description provided for @fatigueWatchBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Some fatigue signs. Sleep well, eat enough and don\'t add volume this week.'**
+  String get fatigueWatchBody;
+
+  /// No description provided for @fatigueDeload.
+  ///
+  /// In en, this message translates to:
+  /// **'Time for a deload week'**
+  String get fatigueDeload;
+
+  /// No description provided for @fatigueDeloadBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Cut weights by ~40% and sets by half for one week, then come back stronger.'**
+  String get fatigueDeloadBody;
+
+  /// No description provided for @fatigueReasonDeclining.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} exercises got weaker 2 sessions in a row'**
+  String fatigueReasonDeclining(int n);
+
+  /// No description provided for @fatigueReasonRpe.
+  ///
+  /// In en, this message translates to:
+  /// **'Very high effort (RPE ≥ 9) in the last 2 weeks'**
+  String get fatigueReasonRpe;
+
+  /// No description provided for @fatigueReasonWeeks.
+  ///
+  /// In en, this message translates to:
+  /// **'{weeks} hard weeks in a row without a break'**
+  String fatigueReasonWeeks(int weeks);
+
+  /// No description provided for @noteSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'You skipped a set — go back and finish it?'**
+  String get noteSkipped;
+
+  /// No description provided for @noteWeightDropping.
+  ///
+  /// In en, this message translates to:
+  /// **'Your top weight dropped 2 sessions in a row. Rest well before this one.'**
+  String get noteWeightDropping;
+
+  /// No description provided for @noteMissedReps.
+  ///
+  /// In en, this message translates to:
+  /// **'Last time you missed the target reps. Keep the same weight today.'**
+  String get noteMissedReps;
+
+  /// No description provided for @noteCloseToPr.
+  ///
+  /// In en, this message translates to:
+  /// **'Only {kg} kg from your record — go for it! 🏆'**
+  String noteCloseToPr(String kg);
+
+  /// No description provided for @chTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Challenges & levels'**
+  String get chTitle;
+
+  /// No description provided for @chWeekly.
+  ///
+  /// In en, this message translates to:
+  /// **'This week'**
+  String get chWeekly;
+
+  /// No description provided for @chMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'This month'**
+  String get chMonthly;
+
+  /// No description provided for @chWorkouts.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete {n} workouts'**
+  String chWorkouts(int n);
+
+  /// No description provided for @chProtein.
+  ///
+  /// In en, this message translates to:
+  /// **'Hit your protein goal {n} days'**
+  String chProtein(int n);
+
+  /// No description provided for @chWater.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach your water goal {n} days'**
+  String chWater(int n);
+
+  /// No description provided for @chLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Log your food {n} days'**
+  String chLog(int n);
+
+  /// No description provided for @chPrs.
+  ///
+  /// In en, this message translates to:
+  /// **'Break {n} personal records'**
+  String chPrs(int n);
+
+  /// No description provided for @chVolume.
+  ///
+  /// In en, this message translates to:
+  /// **'Lift {t} tonnes in total'**
+  String chVolume(String t);
+
+  /// No description provided for @chWeigh.
+  ///
+  /// In en, this message translates to:
+  /// **'Weigh in {n} times'**
+  String chWeigh(int n);
+
+  /// No description provided for @chDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get chDone;
+
+  /// No description provided for @chDaysLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} days left'**
+  String chDaysLeft(int n);
+
+  /// No description provided for @chCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Challenge completed'**
+  String get chCompleted;
+
+  /// No description provided for @xpToNext.
+  ///
+  /// In en, this message translates to:
+  /// **'{xp} XP to level {level}'**
+  String xpToNext(int xp, int level);
+
+  /// No description provided for @xpHowTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Where your XP comes from'**
+  String get xpHowTitle;
+
+  /// No description provided for @xpWorkouts.
+  ///
+  /// In en, this message translates to:
+  /// **'Workouts (50 each)'**
+  String get xpWorkouts;
+
+  /// No description provided for @xpPrs.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal records (30 each)'**
+  String get xpPrs;
+
+  /// No description provided for @xpFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Days with food logged (10)'**
+  String get xpFood;
+
+  /// No description provided for @xpWater.
+  ///
+  /// In en, this message translates to:
+  /// **'Water goal days (10)'**
+  String get xpWater;
+
+  /// No description provided for @xpWeigh.
+  ///
+  /// In en, this message translates to:
+  /// **'Weigh-ins (5)'**
+  String get xpWeigh;
+
+  /// No description provided for @xpChallenges.
+  ///
+  /// In en, this message translates to:
+  /// **'Challenges'**
+  String get xpChallenges;
+
+  /// No description provided for @lvlBeginner.
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner'**
+  String get lvlBeginner;
+
+  /// No description provided for @lvlRookie.
+  ///
+  /// In en, this message translates to:
+  /// **'Rookie'**
+  String get lvlRookie;
+
+  /// No description provided for @lvlAthlete.
+  ///
+  /// In en, this message translates to:
+  /// **'Athlete'**
+  String get lvlAthlete;
+
+  /// No description provided for @lvlWarrior.
+  ///
+  /// In en, this message translates to:
+  /// **'Warrior'**
+  String get lvlWarrior;
+
+  /// No description provided for @lvlBeast.
+  ///
+  /// In en, this message translates to:
+  /// **'Beast'**
+  String get lvlBeast;
+
+  /// No description provided for @lvlLegend.
+  ///
+  /// In en, this message translates to:
+  /// **'Legend'**
+  String get lvlLegend;
+
+  /// No description provided for @aiToolsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'AI tools'**
+  String get aiToolsTitle;
+
+  /// No description provided for @aiSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get aiSignIn;
+
+  /// No description provided for @aiGenerate.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate'**
+  String get aiGenerate;
+
+  /// No description provided for @aiRegenerate.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate again'**
+  String get aiRegenerate;
+
+  /// No description provided for @aiThinking.
+  ///
+  /// In en, this message translates to:
+  /// **'The AI is working on it… (up to a minute)'**
+  String get aiThinking;
+
+  /// No description provided for @aiKcal.
+  ///
+  /// In en, this message translates to:
+  /// **'kcal'**
+  String get aiKcal;
+
+  /// No description provided for @aiReportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly AI report'**
+  String get aiReportTitle;
+
+  /// No description provided for @aiReportIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'A coach-style review of your week: training, food, weight, sleep, with goals for next week.'**
+  String get aiReportIntro;
+
+  /// No description provided for @aiReportRemind.
+  ///
+  /// In en, this message translates to:
+  /// **'Remind me every Friday evening'**
+  String get aiReportRemind;
+
+  /// No description provided for @aiReportNotifTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your weekly report is ready 📊'**
+  String get aiReportNotifTitle;
+
+  /// No description provided for @aiReportNotifBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Fit Companion to see how your week went.'**
+  String get aiReportNotifBody;
+
+  /// No description provided for @aiWins.
+  ///
+  /// In en, this message translates to:
+  /// **'What went well'**
+  String get aiWins;
+
+  /// No description provided for @aiImprove.
+  ///
+  /// In en, this message translates to:
+  /// **'To improve'**
+  String get aiImprove;
+
+  /// No description provided for @aiNextWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Goals for next week'**
+  String get aiNextWeek;
+
+  /// No description provided for @aiProgramTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'AI program builder'**
+  String get aiProgramTitle;
+
+  /// No description provided for @aiProgramDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} training days per week'**
+  String aiProgramDays(int n);
+
+  /// No description provided for @aiProgramGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'Goal'**
+  String get aiProgramGoal;
+
+  /// No description provided for @aiProgramEquipment.
+  ///
+  /// In en, this message translates to:
+  /// **'Available equipment'**
+  String get aiProgramEquipment;
+
+  /// No description provided for @aiProgramNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes (optional)'**
+  String get aiProgramNotes;
+
+  /// No description provided for @aiProgramNotesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. knee pain, 45 min max, focus on arms'**
+  String get aiProgramNotesHint;
+
+  /// No description provided for @aiProgramSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save to my programs'**
+  String get aiProgramSave;
+
+  /// No description provided for @aiProgramSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Program saved to your workouts'**
+  String get aiProgramSaved;
+
+  /// No description provided for @aiGoalStrength.
+  ///
+  /// In en, this message translates to:
+  /// **'Strength'**
+  String get aiGoalStrength;
+
+  /// No description provided for @aiGoalMuscle.
+  ///
+  /// In en, this message translates to:
+  /// **'Muscle'**
+  String get aiGoalMuscle;
+
+  /// No description provided for @aiGoalFatLoss.
+  ///
+  /// In en, this message translates to:
+  /// **'Fat loss'**
+  String get aiGoalFatLoss;
+
+  /// No description provided for @aiGoalEndurance.
+  ///
+  /// In en, this message translates to:
+  /// **'Endurance'**
+  String get aiGoalEndurance;
+
+  /// No description provided for @aiEqBarbell.
+  ///
+  /// In en, this message translates to:
+  /// **'Barbell'**
+  String get aiEqBarbell;
+
+  /// No description provided for @aiEqDumbbell.
+  ///
+  /// In en, this message translates to:
+  /// **'Dumbbells'**
+  String get aiEqDumbbell;
+
+  /// No description provided for @aiEqCable.
+  ///
+  /// In en, this message translates to:
+  /// **'Cables'**
+  String get aiEqCable;
+
+  /// No description provided for @aiEqMachine.
+  ///
+  /// In en, this message translates to:
+  /// **'Machines'**
+  String get aiEqMachine;
+
+  /// No description provided for @aiEqBodyweight.
+  ///
+  /// In en, this message translates to:
+  /// **'Bodyweight'**
+  String get aiEqBodyweight;
+
+  /// No description provided for @aiMealTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'AI meal plan'**
+  String get aiMealTitle;
+
+  /// No description provided for @aiMealIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'A full day of meals that hits your calories and macros, with local foods and a shopping list.'**
+  String get aiMealIntro;
+
+  /// No description provided for @aiMealRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences (optional)'**
+  String get aiMealRequest;
+
+  /// No description provided for @aiMealRequestHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. cheap, no fish, 4 meals, I work until 17:00'**
+  String get aiMealRequestHint;
+
+  /// No description provided for @aiMealAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to today'**
+  String get aiMealAdd;
+
+  /// No description provided for @aiMealAddedShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Added'**
+  String get aiMealAddedShort;
+
+  /// No description provided for @aiMealAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Added to today as planned (tick it when you eat it)'**
+  String get aiMealAdded;
+
+  /// No description provided for @aiShopping.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping list'**
+  String get aiShopping;
+
+  /// No description provided for @aiVoiceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log food by voice'**
+  String get aiVoiceTitle;
+
+  /// No description provided for @aiVoiceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Say what you ate, e.g. \"two eggs, a piece of kesra and a coffee with milk\". Darija, Arabic, French or English.'**
+  String get aiVoiceHint;
+
+  /// No description provided for @aiVoiceTap.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to record'**
+  String get aiVoiceTap;
+
+  /// No description provided for @aiVoiceListening.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening… tap to stop'**
+  String get aiVoiceListening;
+
+  /// No description provided for @aiVoiceNoMic.
+  ///
+  /// In en, this message translates to:
+  /// **'Microphone permission is needed'**
+  String get aiVoiceNoMic;
+
+  /// No description provided for @aiVoiceNothing.
+  ///
+  /// In en, this message translates to:
+  /// **'No food was recognised. Try again.'**
+  String get aiVoiceNothing;
+
+  /// No description provided for @aiVoiceLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Log {n} items'**
+  String aiVoiceLog(int n);
+
+  /// No description provided for @aiVoiceLogged.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} items logged'**
+  String aiVoiceLogged(int n);
+
+  /// No description provided for @shareAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get shareAction;
+
+  /// No description provided for @friendsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Friends'**
+  String get friendsTitle;
+
+  /// No description provided for @friendsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly leaderboard with your friends'**
+  String get friendsSubtitle;
+
+  /// No description provided for @friendsNeedAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to your cloud account to add friends and compare progress.'**
+  String get friendsNeedAccount;
+
+  /// No description provided for @friendsRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get friendsRetry;
+
+  /// No description provided for @friendsMyCode.
+  ///
+  /// In en, this message translates to:
+  /// **'My friend code'**
+  String get friendsMyCode;
+
+  /// No description provided for @friendsMyCodeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Share it — only friends see your stats'**
+  String get friendsMyCodeHint;
+
+  /// No description provided for @friendsCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get friendsCopy;
+
+  /// No description provided for @friendsCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Code copied'**
+  String get friendsCopied;
+
+  /// No description provided for @friendsInvite.
+  ///
+  /// In en, this message translates to:
+  /// **'Train with me on Fit Companion! My friend code: {code}'**
+  String friendsInvite(String code);
+
+  /// No description provided for @friendsAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add friend'**
+  String get friendsAdd;
+
+  /// No description provided for @friendsCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Friend code'**
+  String get friendsCode;
+
+  /// No description provided for @friendsAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} added'**
+  String friendsAdded(String name);
+
+  /// No description provided for @friendsCodeNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No user with this code'**
+  String get friendsCodeNotFound;
+
+  /// No description provided for @friendsOwnCode.
+  ///
+  /// In en, this message translates to:
+  /// **'This is your own code'**
+  String get friendsOwnCode;
+
+  /// No description provided for @friendsRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove friend'**
+  String get friendsRemove;
+
+  /// No description provided for @friendsRemoveConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {name} from your friends?'**
+  String friendsRemoveConfirm(String name);
+
+  /// No description provided for @friendsRemoveHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Long-press a friend to remove them'**
+  String get friendsRemoveHint;
+
+  /// No description provided for @friendsSortVolume.
+  ///
+  /// In en, this message translates to:
+  /// **'Volume'**
+  String get friendsSortVolume;
+
+  /// No description provided for @friendsSortWorkouts.
+  ///
+  /// In en, this message translates to:
+  /// **'Workouts'**
+  String get friendsSortWorkouts;
+
+  /// No description provided for @friendsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No friends yet. Share your code to start competing!'**
+  String get friendsEmpty;
+
+  /// No description provided for @friendsYou.
+  ///
+  /// In en, this message translates to:
+  /// **'you'**
+  String get friendsYou;
+
+  /// No description provided for @friendsLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Level {level}'**
+  String friendsLevel(int level);
+
+  /// No description provided for @sleepTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep & performance'**
+  String get sleepTitle;
+
+  /// No description provided for @sleepConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect Health Connect to read your sleep (from your watch or sleep app) and see how it affects your workouts.'**
+  String get sleepConnect;
+
+  /// No description provided for @sleepConnectButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect sleep data'**
+  String get sleepConnectButton;
+
+  /// No description provided for @sleepAvg.
+  ///
+  /// In en, this message translates to:
+  /// **'Average {hours} h per night ({nights} nights this week)'**
+  String sleepAvg(String hours, int nights);
+
+  /// No description provided for @sleepNeedMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Train more on tracked nights to see the effect on your performance.'**
+  String get sleepNeedMore;
+
+  /// No description provided for @sleepBetter.
+  ///
+  /// In en, this message translates to:
+  /// **'You lift {pct}% more volume after 7 h+ of sleep'**
+  String sleepBetter(String pct);
+
+  /// No description provided for @sleepNoEffect.
+  ///
+  /// In en, this message translates to:
+  /// **'No clear effect of short nights on your volume yet'**
+  String get sleepNoEffect;
+
+  /// No description provided for @sleepTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Aim for 7–9 h: muscle is built while you sleep.'**
+  String get sleepTip;
 }
 
 class _AppLocalizationsDelegate

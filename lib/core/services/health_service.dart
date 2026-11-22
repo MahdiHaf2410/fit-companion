@@ -13,6 +13,8 @@ abstract class HealthService {
   Future<bool> hasAccess();
   Future<int?> stepsToday();
   Future<bool> writeWeight(double kg, DateTime at);
+  /// Hours slept per night (keyed by the wake-up day) over the last [days] days.
+  Future<Map<DateTime, double>> sleepByNight(int days);
 }
 
 class NoopHealthService implements HealthService {
@@ -28,14 +30,16 @@ class NoopHealthService implements HealthService {
   Future<int?> stepsToday() async => null;
   @override
   Future<bool> writeWeight(double kg, DateTime at) async => false;
+  @override
+  Future<Map<DateTime, double>> sleepByNight(int days) async => {};
 }
 
 class HealthConnectService implements HealthService {
   final _health = Health();
   bool _configured = false;
 
-  static const _types = [HealthDataType.STEPS, HealthDataType.WEIGHT];
-  static const _perms = [HealthDataAccess.READ, HealthDataAccess.READ_WRITE];
+  static const _types = [HealthDataType.STEPS, HealthDataType.WEIGHT, HealthDataType.SLEEP_SESSION];
+  static const _perms = [HealthDataAccess.READ, HealthDataAccess.READ_WRITE, HealthDataAccess.READ];
 
   Future<void> _configure() async {
     if (_configured) return;
@@ -90,6 +94,31 @@ class HealthConnectService implements HealthService {
       return await _health.getTotalStepsInInterval(DateTime(now.year, now.month, now.day), now);
     } catch (_) {
       return null;
+    }
+  }
+
+  @override
+  Future<Map<DateTime, double>> sleepByNight(int days) async {
+    try {
+      await _configure();
+      final ok = await _health.hasPermissions([HealthDataType.SLEEP_SESSION], permissions: [HealthDataAccess.READ]) ?? false;
+      if (!ok) return {};
+      final now = DateTime.now();
+      final points = await _health.getHealthDataFromTypes(
+        types: const [HealthDataType.SLEEP_SESSION],
+        startTime: now.subtract(Duration(days: days + 1)),
+        endTime: now,
+      );
+      final out = <DateTime, double>{};
+      for (final p in _health.removeDuplicates(points)) {
+        final hours = p.dateTo.difference(p.dateFrom).inMinutes / 60.0;
+        if (hours <= 0 || hours > 16) continue;
+        final wake = DateTime(p.dateTo.year, p.dateTo.month, p.dateTo.day);
+        out[wake] = (out[wake] ?? 0) + hours;
+      }
+      return out;
+    } catch (_) {
+      return {};
     }
   }
 
