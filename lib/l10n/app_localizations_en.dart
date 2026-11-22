@@ -746,4 +746,1270 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get foodCalculatorAddToMeal => 'Log Calculated Food';
+
+  @override
+  String get greetingMorning => 'Good morning';
+
+  @override
+  String get greetingAfternoon => 'Good afternoon';
+
+  @override
+  String get greetingEvening => 'Good evening';
+
+  @override
+  String get dashboardKcalLeft => 'kcal left';
+
+  @override
+  String get dashboardKcalOver => 'kcal over';
+
+  @override
+  String get dashboardGoal => 'Goal';
+
+  @override
+  String get dashboardInProgress => 'In progress';
+
+  @override
+  String get dashboardWeekActivity => 'Weekly activity';
+
+  @override
+  String get dashboardTools => 'Tools & learning';
+
+  @override
+  String get commonSeeAll => 'See all';
+
+  @override
+  String get commonMl => 'ml';
+
+  @override
+  String get commonToday => 'Today';
+
+  @override
+  String get waterTitle => 'Hydration';
+
+  @override
+  String waterProgress(int amount, int goal) {
+    return '$amount / $goal ml';
+  }
+
+  @override
+  String get waterGoalReached => 'Daily water goal reached!';
+
+  @override
+  String get waterSetGoal => 'Daily water goal';
+
+  @override
+  String get waterUndo => 'Remove 250 ml';
+
+  @override
+  String get statsThisWeek => 'This week';
+
+  @override
+  String get statsWorkouts => 'Workouts';
+
+  @override
+  String get statsVolume => 'Volume';
+
+  @override
+  String get statsStreak => 'Day streak';
+
+  @override
+  String get statsTotal => 'Total sessions';
+
+  @override
+  String academyLessonsCount(int count) {
+    return '$count lessons';
+  }
+
+  @override
+  String get calculatorBmrTdee => 'BMR & TDEE';
+
+  @override
+  String get portionScaler => 'Portion scaler';
+
+  @override
+  String get workoutsNoActive => 'No active workout session.';
+
+  @override
+  String get workoutsElapsed => 'Elapsed';
+
+  @override
+  String get workoutsPrevious => 'Last time';
+
+  @override
+  String get workoutsRest => 'Rest';
+
+  @override
+  String get workoutsSkip => 'Skip';
+
+  @override
+  String get workoutsNewPR => 'New personal record! 🏆';
+
+  @override
+  String get workoutsDeleteSet => 'Delete set';
+
+  @override
+  String get workoutsRestDone => 'Rest is over — next set!';
+
+  @override
+  String get workoutsQuickStart => 'Quick workout';
+
+  @override
+  String get workoutsQuickStartDesc =>
+      'Start empty and add exercises as you go';
+
+  @override
+  String get workoutsEmptySession =>
+      'Add your first exercise to start logging sets.';
+
+  @override
+  String get workoutsStart => 'Start';
+
+  @override
+  String workoutsExercisesCount(int count) {
+    return '$count exercises';
+  }
+
+  @override
+  String get workoutsNoProgramsYet => 'No programs created yet.';
+
+  @override
+  String get workoutsSearchExercise => 'Search exercises';
+
+  @override
+  String get sessionDetailTitle => 'Workout summary';
+
+  @override
+  String get sessionDelete => 'Delete workout';
+
+  @override
+  String get sessionDeleteConfirm =>
+      'Delete this workout from your history? This cannot be undone.';
+
+  @override
+  String sessionMinutes(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String get progressRecentLogs => 'Recent logs';
+
+  @override
+  String get progressNoPRs =>
+      'Complete workout sets to establish your personal strength records!';
+
+  @override
+  String get progressEst1RM => 'Est. 1RM';
+
+  @override
+  String get progressCurrent => 'Current';
+
+  @override
+  String get progressChange => 'Change';
+
+  @override
+  String get progressBmi => 'BMI';
+
+  @override
+  String progressSetFormat(String weight, int reps) {
+    return '$weight kg × $reps';
+  }
+
+  @override
+  String get toolsTitle => 'Gym tools';
+
+  @override
+  String get tools1RM => '1RM calculator';
+
+  @override
+  String get tools1RMDesc => 'Estimate your max and training loads';
+
+  @override
+  String get toolsPlates => 'Plate calculator';
+
+  @override
+  String get toolsPlatesDesc => 'Which plates to load on each side';
+
+  @override
+  String get toolsWeightKg => 'Weight (kg)';
+
+  @override
+  String get toolsReps => 'Reps';
+
+  @override
+  String get toolsTargetKg => 'Target weight (kg)';
+
+  @override
+  String get toolsBarKg => 'Bar (kg)';
+
+  @override
+  String get toolsPerSide => 'Per side';
+
+  @override
+  String toolsRemainder(String kg) {
+    return 'Can\'t load exactly — $kg kg short';
+  }
+
+  @override
+  String get toolsOnlyBar => 'Just the empty bar';
+
+  @override
+  String get toolsPercentOf1RM => '% of 1RM';
+
+  @override
+  String get nutritionMealEmpty => 'Nothing logged yet — tap + to add food';
+
+  @override
+  String get nutritionMacros => 'Macros';
+
+  @override
+  String get mealsCopyYesterdayHint =>
+      'Nothing logged this day. Copy yesterday\'s meals?';
+
+  @override
+  String get mealsCopy => 'Copy';
+
+  @override
+  String mealsCopied(int count) {
+    return '$count items copied';
+  }
+
+  @override
+  String get mealsNothingToCopy => 'Nothing to copy';
+
+  @override
+  String get mealsCopyFromYesterday => 'Copy from yesterday';
+
+  @override
+  String get mealsUseTemplate => 'Add from template';
+
+  @override
+  String get mealsSaveTemplate => 'Save as template';
+
+  @override
+  String get mealsTemplateName => 'Template name';
+
+  @override
+  String get mealsTemplateSaved => 'Template saved';
+
+  @override
+  String get mealsTemplates => 'Meal templates';
+
+  @override
+  String get mealsNoTemplates =>
+      'No templates yet. Open a meal menu (⋮) and choose \"Save as template\".';
+
+  @override
+  String get setsSuperset => 'Superset';
+
+  @override
+  String get setsSupersetWithNext => 'Superset with next exercise';
+
+  @override
+  String get setsRemoveSuperset => 'Remove superset';
+
+  @override
+  String get setTypeTitle => 'Set type';
+
+  @override
+  String get setTypeNormal => 'Normal';
+
+  @override
+  String get setTypeWarmup => 'Warm-up';
+
+  @override
+  String get setTypeDrop => 'Drop set';
+
+  @override
+  String get setTypeFailure => 'To failure';
+
+  @override
+  String get rpeHelp =>
+      'RPE = how hard the set felt. 10 = no reps left, 8 = 2 reps left in the tank. Warm-up sets don\'t count toward volume or records.';
+
+  @override
+  String get commonClear => 'Clear';
+
+  @override
+  String overloadIncrease(String kg) {
+    return 'Add $kg kg today';
+  }
+
+  @override
+  String get overloadKeep => 'Same weight — beat your reps';
+
+  @override
+  String overloadDeload(String kg) {
+    return 'Deload to $kg kg';
+  }
+
+  @override
+  String get exerciseProgress => 'Exercise progress';
+
+  @override
+  String get exerciseTopWeight => 'Top weight';
+
+  @override
+  String get exerciseNoHistory =>
+      'No completed sets for this exercise yet. Finish a workout with it to see your progress chart.';
+
+  @override
+  String get heatmapTitle => 'Muscles this week';
+
+  @override
+  String get heatmapHelp =>
+      'Working sets in the last 7 days. 10–20 sets per muscle per week is the sweet spot for growth (green). Orange = very high volume.';
+
+  @override
+  String get muscleChest => 'Chest';
+
+  @override
+  String get muscleBack => 'Back';
+
+  @override
+  String get muscleLegs => 'Legs';
+
+  @override
+  String get muscleShoulders => 'Shoulders';
+
+  @override
+  String get muscleArms => 'Arms';
+
+  @override
+  String get muscleCore => 'Core';
+
+  @override
+  String get achTitle => 'Achievements';
+
+  @override
+  String get achSubtitle =>
+      'Earn badges by training consistently, eating well and hitting new records.';
+
+  @override
+  String get achNext => 'Next';
+
+  @override
+  String get achUnlocked => 'Achievement unlocked';
+
+  @override
+  String get achFirstWorkout => 'First step';
+
+  @override
+  String get achFirstWorkoutDesc => 'Complete your first workout.';
+
+  @override
+  String get achWorkouts10 => 'Regular';
+
+  @override
+  String get achWorkouts50 => 'Dedicated';
+
+  @override
+  String get achWorkouts100 => 'Iron legend';
+
+  @override
+  String achWorkoutsDesc(int count) {
+    return 'Complete $count workouts.';
+  }
+
+  @override
+  String get achStreak3 => 'On fire';
+
+  @override
+  String get achStreak7 => 'Unstoppable week';
+
+  @override
+  String get achStreak30 => 'Machine';
+
+  @override
+  String achStreakDesc(int count) {
+    return 'Train $count days in a row.';
+  }
+
+  @override
+  String get achFirstPr => 'Record breaker';
+
+  @override
+  String get achFirstPrDesc => 'Set your first personal record.';
+
+  @override
+  String get achPrs25 => 'PR hunter';
+
+  @override
+  String achPrsDesc(int count) {
+    return 'Set $count personal records.';
+  }
+
+  @override
+  String get achFood7 => 'Mindful eater';
+
+  @override
+  String get achFood30 => 'Nutrition pro';
+
+  @override
+  String achFoodDesc(int count) {
+    return 'Log your food on $count different days.';
+  }
+
+  @override
+  String get achWater7 => 'Hydrated';
+
+  @override
+  String achWaterDesc(int count) {
+    return 'Reach your water goal on $count days.';
+  }
+
+  @override
+  String get achWeigh10 => 'Tracker';
+
+  @override
+  String achWeighDesc(int count) {
+    return 'Log your weight $count times.';
+  }
+
+  @override
+  String get achVolume10t => '10 tonnes';
+
+  @override
+  String get achVolume100t => '100 tonnes';
+
+  @override
+  String achVolumeDesc(String tonnes) {
+    return 'Lift $tonnes tonnes of total volume.';
+  }
+
+  @override
+  String get measureTitle => 'Body measurements';
+
+  @override
+  String get measureMore => 'More measurements (optional)';
+
+  @override
+  String get measureChest => 'Chest';
+
+  @override
+  String get measureArm => 'Arm';
+
+  @override
+  String get measureThigh => 'Thigh';
+
+  @override
+  String get measureHips => 'Hips';
+
+  @override
+  String get measureBodyFat => 'Body fat';
+
+  @override
+  String get measureSaved => 'Measurement saved';
+
+  @override
+  String get profileFeatures => 'Tools & sync';
+
+  @override
+  String get scanTitle => 'Scan barcode';
+
+  @override
+  String get scanHint => 'Point the camera at a product barcode';
+
+  @override
+  String scanLooking(String code) {
+    return 'Looking up $code…';
+  }
+
+  @override
+  String get scanOffline =>
+      'No internet — product lookup needs a connection the first time.';
+
+  @override
+  String get scanNotFound => 'Product not found';
+
+  @override
+  String scanNotFoundBody(String code) {
+    return 'Barcode $code is not in the database yet. You can add it as a custom food.';
+  }
+
+  @override
+  String get scanAgain => 'Scan again';
+
+  @override
+  String get scanCameraError =>
+      'Camera unavailable. Allow camera access in the phone settings.';
+
+  @override
+  String get remTitle => 'Reminders';
+
+  @override
+  String get remSubtitle =>
+      'Smart reminders that work even when the app is closed.';
+
+  @override
+  String get remWaterTitle => 'Drink water';
+
+  @override
+  String get remWaterBody => 'Time for a glass of water 💧';
+
+  @override
+  String get remMealTitle => 'Log your meal';
+
+  @override
+  String get remWorkoutTitle => 'Workout time';
+
+  @override
+  String get remWorkoutBody => 'Let\'s train today 💪';
+
+  @override
+  String get remWeighTitle => 'Morning weigh-in';
+
+  @override
+  String get remWeighBody =>
+      'Weigh yourself before breakfast for the most accurate trend.';
+
+  @override
+  String get remEvery => 'Every';
+
+  @override
+  String remHours(int h) {
+    return '$h h';
+  }
+
+  @override
+  String get remFromTo => 'From – to';
+
+  @override
+  String get remTime => 'Time';
+
+  @override
+  String get remPermissionDenied =>
+      'Notifications are blocked. Allow them in the phone settings.';
+
+  @override
+  String get remWatchInfo =>
+      'The rest timer appears as a live countdown notification. If your watch (Wear OS, Galaxy Watch, Mi Band…) shows phone notifications, it shows the timer and vibrates when rest ends.';
+
+  @override
+  String get backupTitle => 'Backup & restore';
+
+  @override
+  String get backupSubtitle =>
+      'Save all your data to one file (send it to Google Drive, Telegram, email…) and restore it on any phone.';
+
+  @override
+  String get backupExport => 'Create backup';
+
+  @override
+  String get backupExportDesc =>
+      'Exports a .json file and opens the share menu';
+
+  @override
+  String get backupRestore => 'Restore backup';
+
+  @override
+  String get backupRestoreDesc =>
+      'Pick a backup file — replaces the data on this phone';
+
+  @override
+  String get backupRestoreConfirm =>
+      'All current data on this phone will be replaced by the backup. Continue?';
+
+  @override
+  String get backupRestored => 'Backup restored ✓';
+
+  @override
+  String get backupInvalid => 'This file is not a Fit Companion backup.';
+
+  @override
+  String get backupPhotosNote =>
+      'Note: progress photos stay on the phone and are not included in the backup file.';
+
+  @override
+  String get photosTitle => 'Progress photos';
+
+  @override
+  String get photosAdd => 'Add photo';
+
+  @override
+  String get photosCamera => 'Take a photo';
+
+  @override
+  String get photosGallery => 'Choose from gallery';
+
+  @override
+  String get photosFront => 'Front';
+
+  @override
+  String get photosSide => 'Side';
+
+  @override
+  String get photosBack => 'Back';
+
+  @override
+  String get photosCompare => 'Before / after';
+
+  @override
+  String get photosBefore => 'Before';
+
+  @override
+  String get photosAfter => 'After';
+
+  @override
+  String get photosEmpty =>
+      'Take a photo every 2–4 weeks in the same light and pose to see your real change.';
+
+  @override
+  String get photosPrivacy =>
+      '🔒 Photos are private and stored only on this phone. They leave it only if you ask for an AI analysis (you confirm each time).';
+
+  @override
+  String get photosDelete => 'Delete this photo?';
+
+  @override
+  String get healthTitle => 'Health Connect';
+
+  @override
+  String get healthSubtitle =>
+      'Connect Android\'s Health Connect to read your daily steps and save your weight there automatically.';
+
+  @override
+  String get healthUnavailable =>
+      'Health Connect is not available on this phone (needs Android 9+ and not a work profile).';
+
+  @override
+  String get healthNeedsInstall =>
+      'Install or update the Health Connect app from Google Play first.';
+
+  @override
+  String get healthInstall => 'Open Google Play';
+
+  @override
+  String get healthConnected => 'Connected';
+
+  @override
+  String get healthNotConnected => 'Not connected';
+
+  @override
+  String get healthWhat => 'Reads: steps • Writes: body weight';
+
+  @override
+  String get healthConnect => 'Connect Health Connect';
+
+  @override
+  String get healthStepsToday => 'Steps today';
+
+  @override
+  String get cloudTitle => 'Cloud sync';
+
+  @override
+  String get coachTitle => 'AI coach';
+
+  @override
+  String get cloudSubtitle =>
+      'Keep your data safe in the cloud and move it between phones. Free, with your own account.';
+
+  @override
+  String get cloudUnavailable =>
+      'Cloud is unavailable right now (no internet at app start). Restart the app with internet.';
+
+  @override
+  String get cloudSignIn => 'Sign in';
+
+  @override
+  String get cloudCreateAccount => 'Create account';
+
+  @override
+  String get cloudEmail => 'Email';
+
+  @override
+  String get cloudPassword => 'Password (6+ characters)';
+
+  @override
+  String get cloudInvalidForm =>
+      'Enter a valid email and a password of at least 6 characters.';
+
+  @override
+  String get cloudConfirmEmail =>
+      'Account created. Check your email to confirm it, then sign in.';
+
+  @override
+  String get cloudSignedIn => 'Signed in ✓';
+
+  @override
+  String get cloudSignOut => 'Sign out';
+
+  @override
+  String get cloudLastSync => 'Last sync';
+
+  @override
+  String get cloudCloudCopy => 'Cloud copy';
+
+  @override
+  String get cloudRemoteNewer =>
+      'The cloud copy is newer than this phone (uploaded from another device). Download it, or upload to replace it.';
+
+  @override
+  String get cloudUpload => 'Upload';
+
+  @override
+  String get cloudDownload => 'Download';
+
+  @override
+  String get cloudUploadOverwrite =>
+      'This replaces the newer cloud copy with this phone\'s data. Continue?';
+
+  @override
+  String get cloudDownloadOverwrite =>
+      'This replaces ALL data on this phone with the cloud copy. Continue?';
+
+  @override
+  String get cloudUploaded => 'Uploaded to the cloud ✓';
+
+  @override
+  String get cloudDownloaded => 'Cloud data restored ✓';
+
+  @override
+  String get cloudAuto => 'Automatic backup';
+
+  @override
+  String get cloudAutoDesc =>
+      'Uploads when you leave the app (never overwrites a newer cloud copy).';
+
+  @override
+  String get cloudPrivacy =>
+      '🔒 Each account can only read its own data (Row Level Security). Progress photos are never uploaded. Free projects pause after ~1 week without use and wake up on the next sync.';
+
+  @override
+  String get coachTagline => 'Personal advice from your own data';
+
+  @override
+  String get coachIntro =>
+      'Ask anything about training, nutrition or your progress. The coach sees a short summary of your data (averages, goals, best lifts) — never your raw logs. It is not a doctor.';
+
+  @override
+  String get coachHint => 'Ask your coach…';
+
+  @override
+  String get coachClear => 'Clear conversation';
+
+  @override
+  String get coachNeedsAccount =>
+      'The AI coach needs a free cloud account (your conversation is saved there).';
+
+  @override
+  String get coachSuggest1 => 'Analyse my last week';
+
+  @override
+  String get coachSuggest2 => 'How much protein do I need?';
+
+  @override
+  String get coachSuggest3 => 'Why isn\'t my weight moving?';
+
+  @override
+  String get coachSuggest4 => 'Suggest an Algerian high-protein dinner';
+
+  @override
+  String get coachErrNoKey =>
+      'The coach is not configured yet: the Gemini API key must be added in Supabase (Edge Functions → Secrets → GEMINI_API_KEY).';
+
+  @override
+  String get coachErrLimit =>
+      'Daily limit reached (40 messages). Try again tomorrow.';
+
+  @override
+  String get coachErrQuota =>
+      'The free Gemini quota is used up for now. Try again later.';
+
+  @override
+  String get coachErrGeneric => 'The coach could not answer. Try again.';
+
+  @override
+  String get coachErrNetwork =>
+      'No connection to the coach. Check your internet.';
+
+  @override
+  String get coachErrModel =>
+      'The AI model name is not available. Set GEMINI_MODEL in Supabase secrets (e.g. gemini-3.8-flash).';
+
+  @override
+  String get coachErrBusy =>
+      'The AI servers are busy right now. Wait a few seconds and try again.';
+
+  @override
+  String get muscleCardio => 'Cardio';
+
+  @override
+  String get equipBarbell => 'Barbell';
+
+  @override
+  String get equipDumbbell => 'Dumbbell';
+
+  @override
+  String get equipMachine => 'Machine';
+
+  @override
+  String get equipCable => 'Cable';
+
+  @override
+  String get equipBodyweight => 'Bodyweight';
+
+  @override
+  String get equipKettlebell => 'Kettlebell';
+
+  @override
+  String get equipOther => 'Other';
+
+  @override
+  String get exerciseCreateCustom => 'Add my exercise';
+
+  @override
+  String get exerciseCreateCustomHint => 'Can\'t find it? Create it in seconds';
+
+  @override
+  String get exerciseNotFound =>
+      'No exercise found. Use \"Add my exercise\" above.';
+
+  @override
+  String get exerciseName => 'Exercise name';
+
+  @override
+  String get exerciseCompound => 'Compound';
+
+  @override
+  String get exerciseIsolation => 'Isolation';
+
+  @override
+  String get exerciseNotesOptional => 'Notes / how to do it (optional)';
+
+  @override
+  String get exerciseCreated => 'Exercise added ✓';
+
+  @override
+  String get programEdit => 'Edit program';
+
+  @override
+  String get programNameRequired => 'Give your program a name';
+
+  @override
+  String get programNeedsExercise => 'Add at least one exercise';
+
+  @override
+  String get programSaved => 'Program saved ✓';
+
+  @override
+  String get programNameHint => 'e.g. Upper A, Lower B, Arms & Abs';
+
+  @override
+  String get programReorderHint => 'Drag ⋮⋮ to reorder';
+
+  @override
+  String get programEmptyHint =>
+      'No exercises yet. Tap \"Add exercise\" to build your workout.';
+
+  @override
+  String get programDeleteConfirm =>
+      'Delete this program? Your workout history is kept.';
+
+  @override
+  String get programsEmptyTitle => 'Build your own split';
+
+  @override
+  String get programsEmptyBody =>
+      'Create one program per training day, e.g. \"Upper A\", \"Lower A\", \"Upper B\", \"Lower B\", \"Arms & Abs\". Add only the exercises you want.';
+
+  @override
+  String get templatesTitle => 'Ready-made programs';
+
+  @override
+  String get templatesSubtitle =>
+      'PPL, Upper/Lower, Full Body, 5/3/1 — copy one and customise it';
+
+  @override
+  String get templateUse => 'Add to my programs & edit';
+
+  @override
+  String get templateCopied => 'Copied to your programs — customise it';
+
+  @override
+  String get templateBadge => 'Template';
+
+  @override
+  String get foodsMine => 'My foods';
+
+  @override
+  String get foodsSuggestions => 'Suggestions';
+
+  @override
+  String get foodsAddMine => 'Add my food';
+
+  @override
+  String get foodsMineEmptyTitle => 'Your food list is empty';
+
+  @override
+  String get foodsMineEmptyBody =>
+      'Add what you really eat: write the name, a short description and the weight — AI calculates calories, protein, carbs and fat for you. Ready-made foods are in \"Suggestions\".';
+
+  @override
+  String get foodsDeleteConfirm =>
+      'Delete this food from your list? Past logs are kept.';
+
+  @override
+  String get myFoodName => 'Food name';
+
+  @override
+  String get myFoodNameHint => 'e.g. Chicken couscous';
+
+  @override
+  String get myFoodDescription =>
+      'Description (ingredients, how it was cooked)';
+
+  @override
+  String get myFoodDescriptionHint =>
+      'e.g. 150 g cooked couscous, 120 g chicken breast, vegetables, 1 tbsp olive oil';
+
+  @override
+  String get myFoodWeight => 'Weight of the portion';
+
+  @override
+  String get myFoodAnalyze => 'Calculate with AI';
+
+  @override
+  String get myFoodAnalyzing => 'Analysing…';
+
+  @override
+  String get myFoodNeedNameWeight => 'Enter the food name and its weight.';
+
+  @override
+  String get myFoodNeedValues =>
+      'Calculate with AI or enter the calories manually.';
+
+  @override
+  String get myFoodNeedAccount =>
+      'AI calculation needs a free account (My account → Cloud sync). You can also type the values yourself.';
+
+  @override
+  String get myFoodConfHigh => 'High accuracy';
+
+  @override
+  String get myFoodConfMedium => 'Medium accuracy';
+
+  @override
+  String get myFoodConfLow => 'Low accuracy — add details';
+
+  @override
+  String get myFoodPer100 => 'Per 100 g';
+
+  @override
+  String myFoodPortionValues(String grams) {
+    return 'Values for $grams g';
+  }
+
+  @override
+  String get myFoodEditHint =>
+      'You can correct any value before saving. The more details in the description, the more accurate the result.';
+
+  @override
+  String get myFoodLogNow => 'Add it to today\'s meals';
+
+  @override
+  String get myFoodSaveAndLog => 'Save & add to meal';
+
+  @override
+  String get myFoodSaved => 'Food saved to your list ✓';
+
+  @override
+  String get myFoodSavedLogged => 'Food saved and added ✓';
+
+  @override
+  String get eatenQuestion => 'Did you eat it?';
+
+  @override
+  String get eatenYes => 'Yes — counts in today\'s totals';
+
+  @override
+  String get eatenPlanned => 'Not yet — saved as planned';
+
+  @override
+  String get eatenAtTime => 'Eaten at';
+
+  @override
+  String get eatenMark => 'Mark as eaten';
+
+  @override
+  String get eatenUndo => 'Mark as not eaten';
+
+  @override
+  String get eatenWhen => 'When did you eat it?';
+
+  @override
+  String get eatenAtShort => 'Eaten at';
+
+  @override
+  String get eatenPlannedShort => 'Planned — tap ○ when you eat it';
+
+  @override
+  String eatenPlannedKcal(int kcal) {
+    return '$kcal kcal planned, not eaten yet';
+  }
+
+  @override
+  String get themesTitle => 'Themes & appearance';
+
+  @override
+  String get themesColors => 'Colour themes';
+
+  @override
+  String get themesBackground => 'Animated background';
+
+  @override
+  String get themesAnimated => 'Animated background';
+
+  @override
+  String get themesAnimatedDesc =>
+      'Smooth moving background behind every screen';
+
+  @override
+  String get themesInteractive => 'React to touch';
+
+  @override
+  String get themesInteractiveDesc =>
+      'Ripples, glow and particles follow your finger';
+
+  @override
+  String get themesIntensity => 'Intensity';
+
+  @override
+  String get themesEffect => 'Effect';
+
+  @override
+  String get themesBatteryNote =>
+      'The animation runs at 30 fps, pauses when the app is in the background and turns off automatically if \"Remove animations\" is enabled in Android accessibility settings.';
+
+  @override
+  String get fxAuto => 'Theme default';
+
+  @override
+  String get fxNone => 'None';
+
+  @override
+  String get fxOrbs => 'Glow orbs';
+
+  @override
+  String get fxParticles => 'Particles';
+
+  @override
+  String get fxWaves => 'Waves';
+
+  @override
+  String get fxGrid => 'Neon grid';
+
+  @override
+  String get fxAurora => 'Aurora';
+
+  @override
+  String get fxBokeh => 'Bokeh';
+
+  @override
+  String get fxStars => 'Stars';
+
+  @override
+  String get shapeSharp => 'Sharp corners';
+
+  @override
+  String get shapeSoft => 'Soft corners';
+
+  @override
+  String get shapeRounded => 'Rounded';
+
+  @override
+  String get shapePill => 'Pill shapes';
+
+  @override
+  String get aboutDevelopedBy => 'Developed by';
+
+  @override
+  String get aboutDeveloperName => 'Mahdi Hafiane';
+
+  @override
+  String scanAiEstimating(String name) {
+    return 'Found \"$name\" — AI is calculating its nutrition…';
+  }
+
+  @override
+  String scanNotFoundAi(String code) {
+    return 'Barcode $code is not in the online database. Take a photo of the package (ideally the nutrition table) and AI will read the product name and its values.';
+  }
+
+  @override
+  String get scanPhotoLabel => 'Photo of product';
+
+  @override
+  String get scanManual => 'Enter manually';
+
+  @override
+  String get scanReadingLabel => 'AI is reading the product…';
+
+  @override
+  String get photoTitle => 'Meal photo (AI)';
+
+  @override
+  String get photoHint =>
+      'Take a photo of your plate, meal or product: AI identifies the foods and calculates calories, protein, carbs and fat.';
+
+  @override
+  String get photoAnalyzing => 'Analysing…';
+
+  @override
+  String get photoNote => 'Note for the AI (optional)';
+
+  @override
+  String get photoNoteHint => 'e.g. fried in olive oil, 2 eggs, big portion';
+
+  @override
+  String get photoNotFood =>
+      'No food detected in this photo. Try another angle with the whole plate visible.';
+
+  @override
+  String get photoResults => 'Detected foods';
+
+  @override
+  String get photoSuggestions => 'To make it better';
+
+  @override
+  String photoLogged(int count) {
+    return '$count items added to your meal ✓';
+  }
+
+  @override
+  String get coachAttach => 'Send photo or video';
+
+  @override
+  String get coachTakePhoto => 'Take a photo';
+
+  @override
+  String get coachPickPhoto => 'Photo from gallery';
+
+  @override
+  String get coachRecordVideo => 'Record a video (max 60 s)';
+
+  @override
+  String get coachPickVideo => 'Video from gallery';
+
+  @override
+  String get coachPhotoAttached => 'Photo attached';
+
+  @override
+  String get coachVideoAttached => 'Video';
+
+  @override
+  String get coachUploading => 'Uploading…';
+
+  @override
+  String get coachAnalyzingVideo =>
+      'Analysing the video (can take up to a minute)…';
+
+  @override
+  String get coachErrMediaBig =>
+      'File too large (max 40 MB). Send a shorter video.';
+
+  @override
+  String get coachErrUpload =>
+      'Upload failed. Check your internet and try again.';
+
+  @override
+  String get coachErrMediaType =>
+      'This file type could not be analysed. Try another photo or an MP4 video.';
+
+  @override
+  String get photosDate => 'Date of the photo';
+
+  @override
+  String get photosLastWeek => 'Last week';
+
+  @override
+  String get photos2Weeks => '2 weeks ago';
+
+  @override
+  String get photosLastMonth => 'Last month';
+
+  @override
+  String get photosPose => 'Pose';
+
+  @override
+  String get photosNeedTwo =>
+      'Add at least 2 photos in the same pose to compare them and get an AI analysis.';
+
+  @override
+  String photosDaysApart(int days) {
+    return '$days days between the photos';
+  }
+
+  @override
+  String get photosAiAnalyze => 'Analyse my progress with AI';
+
+  @override
+  String get photosAiConsentTitle => 'Send these 2 photos for analysis?';
+
+  @override
+  String get photosAiConsent =>
+      'Your photos are private and stay on this phone. For this analysis only, the 2 selected photos are sent securely to Google Gemini (via your account). They are not saved on our server.';
+
+  @override
+  String get photosHomeEmpty =>
+      'Add body photos to see your real transformation';
+
+  @override
+  String photosHomeLast(int days) {
+    return 'Last photo $days days ago';
+  }
+
+  @override
+  String get photosHomeCompare =>
+      'Compare before / after and get an AI progress analysis';
+
+  @override
+  String get aiProgressTitle => 'AI progress analysis';
+
+  @override
+  String get aiMuscle => 'Muscle gain';
+
+  @override
+  String get aiFat => 'Body fat';
+
+  @override
+  String get aiGainClear => 'clear';
+
+  @override
+  String get aiGainSlight => 'slight';
+
+  @override
+  String get aiGainNone => 'not visible';
+
+  @override
+  String get aiUnclear => 'unclear';
+
+  @override
+  String get aiFatLess => 'lower';
+
+  @override
+  String get aiFatSame => 'same';
+
+  @override
+  String get aiFatMore => 'higher';
+
+  @override
+  String get aiNotComparable =>
+      'The photos are hard to compare (different light, pose or distance).';
+
+  @override
+  String get aiAreas => 'By muscle group';
+
+  @override
+  String get aiTips => 'How to progress faster';
+
+  @override
+  String get profileAthlete => 'Athlete';
+
+  @override
+  String profileYears(int age) {
+    return '$age y';
+  }
+
+  @override
+  String get profilePreferences => 'App preferences';
 }

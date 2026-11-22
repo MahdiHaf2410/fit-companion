@@ -24,7 +24,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get navProgress => 'التقدم';
 
   @override
-  String get navProfile => 'الملف الشخصي';
+  String get navProfile => 'حسابي';
 
   @override
   String get dashboardTitle => 'نظرة عامة يومية';
@@ -744,4 +744,1257 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get foodCalculatorAddToMeal => 'تسجيل الطعام المحسوب';
+
+  @override
+  String get greetingMorning => 'صباح الخير';
+
+  @override
+  String get greetingAfternoon => 'نهارك سعيد';
+
+  @override
+  String get greetingEvening => 'مساء الخير';
+
+  @override
+  String get dashboardKcalLeft => 'سعرة متبقية';
+
+  @override
+  String get dashboardKcalOver => 'سعرة زائدة';
+
+  @override
+  String get dashboardGoal => 'الهدف';
+
+  @override
+  String get dashboardInProgress => 'قيد التنفيذ';
+
+  @override
+  String get dashboardWeekActivity => 'نشاط الأسبوع';
+
+  @override
+  String get dashboardTools => 'الأدوات والتعلّم';
+
+  @override
+  String get commonSeeAll => 'عرض الكل';
+
+  @override
+  String get commonMl => 'مل';
+
+  @override
+  String get commonToday => 'اليوم';
+
+  @override
+  String get waterTitle => 'شرب الماء';
+
+  @override
+  String waterProgress(int amount, int goal) {
+    return '$amount / $goal مل';
+  }
+
+  @override
+  String get waterGoalReached => 'وصلت لهدف الماء اليومي!';
+
+  @override
+  String get waterSetGoal => 'هدف الماء اليومي';
+
+  @override
+  String get waterUndo => 'إزالة 250 مل';
+
+  @override
+  String get statsThisWeek => 'هذا الأسبوع';
+
+  @override
+  String get statsWorkouts => 'تمارين';
+
+  @override
+  String get statsVolume => 'الحجم';
+
+  @override
+  String get statsStreak => 'أيام متتالية';
+
+  @override
+  String get statsTotal => 'مجموع الحصص';
+
+  @override
+  String academyLessonsCount(int count) {
+    return '$count درساً';
+  }
+
+  @override
+  String get calculatorBmrTdee => 'الأيض والطاقة';
+
+  @override
+  String get portionScaler => 'حاسبة الحصص';
+
+  @override
+  String get workoutsNoActive => 'لا توجد حصة تدريب نشطة.';
+
+  @override
+  String get workoutsElapsed => 'المدة';
+
+  @override
+  String get workoutsPrevious => 'المرة السابقة';
+
+  @override
+  String get workoutsRest => 'راحة';
+
+  @override
+  String get workoutsSkip => 'تخطي';
+
+  @override
+  String get workoutsNewPR => 'رقم قياسي شخصي جديد! 🏆';
+
+  @override
+  String get workoutsDeleteSet => 'حذف المجموعة';
+
+  @override
+  String get workoutsRestDone => 'انتهت الراحة — المجموعة التالية!';
+
+  @override
+  String get workoutsQuickStart => 'تمرين سريع';
+
+  @override
+  String get workoutsQuickStartDesc =>
+      'ابدأ فارغاً وأضف التمارين أثناء التدريب';
+
+  @override
+  String get workoutsEmptySession => 'أضف أول تمرين لبدء تسجيل المجموعات.';
+
+  @override
+  String get workoutsStart => 'ابدأ';
+
+  @override
+  String workoutsExercisesCount(int count) {
+    return '$count تمارين';
+  }
+
+  @override
+  String get workoutsNoProgramsYet => 'لم يتم إنشاء أي برنامج بعد.';
+
+  @override
+  String get workoutsSearchExercise => 'ابحث عن تمرين';
+
+  @override
+  String get sessionDetailTitle => 'ملخص التمرين';
+
+  @override
+  String get sessionDelete => 'حذف التمرين';
+
+  @override
+  String get sessionDeleteConfirm =>
+      'حذف هذا التمرين من السجل؟ لا يمكن التراجع عن ذلك.';
+
+  @override
+  String sessionMinutes(int minutes) {
+    return '$minutes د';
+  }
+
+  @override
+  String get progressRecentLogs => 'آخر التسجيلات';
+
+  @override
+  String get progressNoPRs =>
+      'أكمل مجموعات التمرين لتسجيل أرقامك القياسية في القوة!';
+
+  @override
+  String get progressEst1RM => '1RM تقديري';
+
+  @override
+  String get progressCurrent => 'الحالي';
+
+  @override
+  String get progressChange => 'التغيّر';
+
+  @override
+  String get progressBmi => 'مؤشر الكتلة';
+
+  @override
+  String progressSetFormat(String weight, int reps) {
+    return '$weight كغ × $reps';
+  }
+
+  @override
+  String get toolsTitle => 'أدوات الجيم';
+
+  @override
+  String get tools1RM => 'حاسبة 1RM';
+
+  @override
+  String get tools1RMDesc => 'قدّر أقصى وزن لك وأوزان التدريب';
+
+  @override
+  String get toolsPlates => 'حاسبة الأقراص';
+
+  @override
+  String get toolsPlatesDesc => 'الأقراص المطلوبة على كل جهة من البار';
+
+  @override
+  String get toolsWeightKg => 'الوزن (كغ)';
+
+  @override
+  String get toolsReps => 'التكرارات';
+
+  @override
+  String get toolsTargetKg => 'الوزن المستهدف (كغ)';
+
+  @override
+  String get toolsBarKg => 'البار (كغ)';
+
+  @override
+  String get toolsPerSide => 'لكل جهة';
+
+  @override
+  String toolsRemainder(String kg) {
+    return 'لا يمكن التحميل بدقة — ينقص $kg كغ';
+  }
+
+  @override
+  String get toolsOnlyBar => 'البار فارغ فقط';
+
+  @override
+  String get toolsPercentOf1RM => '% من 1RM';
+
+  @override
+  String get nutritionMealEmpty => 'لا شيء مسجّل بعد — اضغط + لإضافة طعام';
+
+  @override
+  String get nutritionMacros => 'المغذيات الكبرى';
+
+  @override
+  String get mealsCopyYesterdayHint =>
+      'لا شيء مسجّل في هذا اليوم. نسخ وجبات الأمس؟';
+
+  @override
+  String get mealsCopy => 'نسخ';
+
+  @override
+  String mealsCopied(int count) {
+    return 'تم نسخ $count عنصر';
+  }
+
+  @override
+  String get mealsNothingToCopy => 'لا يوجد شيء للنسخ';
+
+  @override
+  String get mealsCopyFromYesterday => 'نسخ من الأمس';
+
+  @override
+  String get mealsUseTemplate => 'إضافة من قالب';
+
+  @override
+  String get mealsSaveTemplate => 'حفظ كقالب';
+
+  @override
+  String get mealsTemplateName => 'اسم القالب';
+
+  @override
+  String get mealsTemplateSaved => 'تم حفظ القالب';
+
+  @override
+  String get mealsTemplates => 'قوالب الوجبات';
+
+  @override
+  String get mealsNoTemplates =>
+      'لا توجد قوالب بعد. افتح قائمة الوجبة (⋮) واختر \"حفظ كقالب\".';
+
+  @override
+  String get setsSuperset => 'سوبرسيت';
+
+  @override
+  String get setsSupersetWithNext => 'سوبرسيت مع التمرين التالي';
+
+  @override
+  String get setsRemoveSuperset => 'إلغاء السوبرسيت';
+
+  @override
+  String get setTypeTitle => 'نوع المجموعة';
+
+  @override
+  String get setTypeNormal => 'عادية';
+
+  @override
+  String get setTypeWarmup => 'إحماء';
+
+  @override
+  String get setTypeDrop => 'دروب سيت';
+
+  @override
+  String get setTypeFailure => 'حتى الفشل';
+
+  @override
+  String get rpeHelp =>
+      'RPE = مدى صعوبة المجموعة. 10 = لم يتبقَّ أي تكرار، 8 = بقي تكراران. مجموعات الإحماء لا تُحسب في الحجم ولا في الأرقام القياسية.';
+
+  @override
+  String get commonClear => 'مسح';
+
+  @override
+  String overloadIncrease(String kg) {
+    return 'زِد $kg كغ اليوم';
+  }
+
+  @override
+  String get overloadKeep => 'نفس الوزن — حاول تزيد التكرارات';
+
+  @override
+  String overloadDeload(String kg) {
+    return 'خفّف إلى $kg كغ';
+  }
+
+  @override
+  String get exerciseProgress => 'تطور التمرين';
+
+  @override
+  String get exerciseTopWeight => 'أعلى وزن';
+
+  @override
+  String get exerciseNoHistory =>
+      'لا توجد مجموعات مكتملة لهذا التمرين بعد. أكمل تمريناً يحتويه لرؤية مخطط تطورك.';
+
+  @override
+  String get heatmapTitle => 'العضلات هذا الأسبوع';
+
+  @override
+  String get heatmapHelp =>
+      'المجموعات الفعّالة خلال آخر 7 أيام. من 10 إلى 20 مجموعة لكل عضلة أسبوعياً هو النطاق المثالي للنمو (أخضر). البرتقالي = حجم مرتفع جداً.';
+
+  @override
+  String get muscleChest => 'الصدر';
+
+  @override
+  String get muscleBack => 'الظهر';
+
+  @override
+  String get muscleLegs => 'الأرجل';
+
+  @override
+  String get muscleShoulders => 'الأكتاف';
+
+  @override
+  String get muscleArms => 'الذراعان';
+
+  @override
+  String get muscleCore => 'البطن والجذع';
+
+  @override
+  String get achTitle => 'الإنجازات';
+
+  @override
+  String get achSubtitle =>
+      'اربح الشارات بالتمرين المنتظم والأكل الجيد وتحطيم أرقامك.';
+
+  @override
+  String get achNext => 'التالي';
+
+  @override
+  String get achUnlocked => 'إنجاز جديد';
+
+  @override
+  String get achFirstWorkout => 'الخطوة الأولى';
+
+  @override
+  String get achFirstWorkoutDesc => 'أكمل أول تمرين لك.';
+
+  @override
+  String get achWorkouts10 => 'منتظم';
+
+  @override
+  String get achWorkouts50 => 'مثابر';
+
+  @override
+  String get achWorkouts100 => 'أسطورة الحديد';
+
+  @override
+  String achWorkoutsDesc(int count) {
+    return 'أكمل $count تمريناً.';
+  }
+
+  @override
+  String get achStreak3 => 'مشتعل';
+
+  @override
+  String get achStreak7 => 'أسبوع لا يتوقف';
+
+  @override
+  String get achStreak30 => 'آلة';
+
+  @override
+  String achStreakDesc(int count) {
+    return 'تمرّن $count أيام متتالية.';
+  }
+
+  @override
+  String get achFirstPr => 'محطّم الأرقام';
+
+  @override
+  String get achFirstPrDesc => 'سجّل أول رقم قياسي شخصي.';
+
+  @override
+  String get achPrs25 => 'صائد الأرقام';
+
+  @override
+  String achPrsDesc(int count) {
+    return 'سجّل $count رقماً قياسياً.';
+  }
+
+  @override
+  String get achFood7 => 'آكل واعٍ';
+
+  @override
+  String get achFood30 => 'محترف التغذية';
+
+  @override
+  String achFoodDesc(int count) {
+    return 'سجّل طعامك في $count أيام مختلفة.';
+  }
+
+  @override
+  String get achWater7 => 'مرتوٍ';
+
+  @override
+  String achWaterDesc(int count) {
+    return 'حقّق هدف الماء في $count أيام.';
+  }
+
+  @override
+  String get achWeigh10 => 'متابع';
+
+  @override
+  String achWeighDesc(int count) {
+    return 'سجّل وزنك $count مرات.';
+  }
+
+  @override
+  String get achVolume10t => '10 أطنان';
+
+  @override
+  String get achVolume100t => '100 طن';
+
+  @override
+  String achVolumeDesc(String tonnes) {
+    return 'ارفع $tonnes طن من الحجم الإجمالي.';
+  }
+
+  @override
+  String get measureTitle => 'قياسات الجسم';
+
+  @override
+  String get measureMore => 'قياسات إضافية (اختياري)';
+
+  @override
+  String get measureChest => 'الصدر';
+
+  @override
+  String get measureArm => 'الذراع';
+
+  @override
+  String get measureThigh => 'الفخذ';
+
+  @override
+  String get measureHips => 'الورك';
+
+  @override
+  String get measureBodyFat => 'نسبة الدهون';
+
+  @override
+  String get measureSaved => 'تم حفظ القياس';
+
+  @override
+  String get profileFeatures => 'الأدوات والمزامنة';
+
+  @override
+  String get scanTitle => 'مسح الباركود';
+
+  @override
+  String get scanHint => 'وجّه الكاميرا نحو باركود المنتج';
+
+  @override
+  String scanLooking(String code) {
+    return 'جارٍ البحث عن $code…';
+  }
+
+  @override
+  String get scanOffline =>
+      'لا يوجد إنترنت — البحث عن المنتج يحتاج اتصالاً في المرة الأولى.';
+
+  @override
+  String get scanNotFound => 'المنتج غير موجود';
+
+  @override
+  String scanNotFoundBody(String code) {
+    return 'الباركود $code غير موجود في قاعدة البيانات. يمكنك إضافته كطعام مخصص.';
+  }
+
+  @override
+  String get scanAgain => 'مسح مرة أخرى';
+
+  @override
+  String get scanCameraError =>
+      'الكاميرا غير متاحة. اسمح بالوصول للكاميرا من إعدادات الهاتف.';
+
+  @override
+  String get remTitle => 'التذكيرات';
+
+  @override
+  String get remSubtitle => 'تذكيرات ذكية تعمل حتى والتطبيق مغلق.';
+
+  @override
+  String get remWaterTitle => 'اشرب الماء';
+
+  @override
+  String get remWaterBody => 'حان وقت كأس ماء 💧';
+
+  @override
+  String get remMealTitle => 'سجّل وجبتك';
+
+  @override
+  String get remWorkoutTitle => 'وقت التمرين';
+
+  @override
+  String get remWorkoutBody => 'هيا نتمرن اليوم 💪';
+
+  @override
+  String get remWeighTitle => 'وزن الصباح';
+
+  @override
+  String get remWeighBody => 'زِن نفسك قبل الفطور لأدق متابعة.';
+
+  @override
+  String get remEvery => 'كل';
+
+  @override
+  String remHours(int h) {
+    return '$h ساعة';
+  }
+
+  @override
+  String get remFromTo => 'من – إلى';
+
+  @override
+  String get remTime => 'الوقت';
+
+  @override
+  String get remPermissionDenied =>
+      'الإشعارات محظورة. فعّلها من إعدادات الهاتف.';
+
+  @override
+  String get remWatchInfo =>
+      'مؤقت الراحة يظهر كإشعار عدّ تنازلي مباشر. إذا كانت ساعتك (Wear OS أو Galaxy Watch أو Mi Band…) تعرض إشعارات الهاتف، فستعرض المؤقت وتهتز عند انتهاء الراحة.';
+
+  @override
+  String get backupTitle => 'النسخ الاحتياطي والاستعادة';
+
+  @override
+  String get backupSubtitle =>
+      'احفظ كل بياناتك في ملف واحد (أرسله إلى Google Drive أو Telegram أو البريد…) واستعده على أي هاتف.';
+
+  @override
+  String get backupExport => 'إنشاء نسخة احتياطية';
+
+  @override
+  String get backupExportDesc => 'يصدّر ملف .json ويفتح قائمة المشاركة';
+
+  @override
+  String get backupRestore => 'استعادة نسخة';
+
+  @override
+  String get backupRestoreDesc =>
+      'اختر ملف النسخة — يستبدل البيانات الموجودة على هذا الهاتف';
+
+  @override
+  String get backupRestoreConfirm =>
+      'سيتم استبدال كل البيانات الحالية على هذا الهاتف بالنسخة الاحتياطية. متابعة؟';
+
+  @override
+  String get backupRestored => 'تمت الاستعادة ✓';
+
+  @override
+  String get backupInvalid => 'هذا الملف ليس نسخة احتياطية من Fit Companion.';
+
+  @override
+  String get backupPhotosNote =>
+      'ملاحظة: صور التقدم تبقى على الهاتف ولا تُضمَّن في ملف النسخة.';
+
+  @override
+  String get photosTitle => 'صور التقدم';
+
+  @override
+  String get photosAdd => 'إضافة صورة';
+
+  @override
+  String get photosCamera => 'التقاط صورة';
+
+  @override
+  String get photosGallery => 'اختيار من المعرض';
+
+  @override
+  String get photosFront => 'أمامي';
+
+  @override
+  String get photosSide => 'جانبي';
+
+  @override
+  String get photosBack => 'خلفي';
+
+  @override
+  String get photosCompare => 'قبل / بعد';
+
+  @override
+  String get photosBefore => 'قبل';
+
+  @override
+  String get photosAfter => 'بعد';
+
+  @override
+  String get photosEmpty =>
+      'التقط صورة كل 2–4 أسابيع بنفس الإضاءة والوضعية لترى تغيّرك الحقيقي.';
+
+  @override
+  String get photosPrivacy =>
+      '🔒 الصور خاصة وتُحفظ على هذا الهاتف فقط. لا تخرج منه إلا إذا طلبت تحليلاً بالذكاء الاصطناعي (تؤكد في كل مرة).';
+
+  @override
+  String get photosDelete => 'حذف هذه الصورة؟';
+
+  @override
+  String get healthTitle => 'Health Connect';
+
+  @override
+  String get healthSubtitle =>
+      'اربط Health Connect في أندرويد لقراءة خطواتك اليومية وحفظ وزنك هناك تلقائياً.';
+
+  @override
+  String get healthUnavailable =>
+      'Health Connect غير متاح على هذا الهاتف (يحتاج أندرويد 9+ وليس ملف عمل).';
+
+  @override
+  String get healthNeedsInstall =>
+      'ثبّت أو حدّث تطبيق Health Connect من Google Play أولاً.';
+
+  @override
+  String get healthInstall => 'فتح Google Play';
+
+  @override
+  String get healthConnected => 'متصل';
+
+  @override
+  String get healthNotConnected => 'غير متصل';
+
+  @override
+  String get healthWhat => 'يقرأ: الخطوات • يكتب: وزن الجسم';
+
+  @override
+  String get healthConnect => 'ربط Health Connect';
+
+  @override
+  String get healthStepsToday => 'خطوات اليوم';
+
+  @override
+  String get cloudTitle => 'المزامنة السحابية';
+
+  @override
+  String get coachTitle => 'المدرب الذكي';
+
+  @override
+  String get cloudSubtitle =>
+      'احفظ بياناتك بأمان في السحابة وانقلها بين الهواتف. مجاني، بحسابك الخاص.';
+
+  @override
+  String get cloudUnavailable =>
+      'السحابة غير متاحة الآن (لا إنترنت عند فتح التطبيق). أعد فتح التطبيق مع الإنترنت.';
+
+  @override
+  String get cloudSignIn => 'تسجيل الدخول';
+
+  @override
+  String get cloudCreateAccount => 'إنشاء حساب';
+
+  @override
+  String get cloudEmail => 'البريد الإلكتروني';
+
+  @override
+  String get cloudPassword => 'كلمة المرور (6 أحرف على الأقل)';
+
+  @override
+  String get cloudInvalidForm =>
+      'أدخل بريداً صحيحاً وكلمة مرور من 6 أحرف على الأقل.';
+
+  @override
+  String get cloudConfirmEmail =>
+      'تم إنشاء الحساب. افتح بريدك لتأكيده ثم سجّل الدخول.';
+
+  @override
+  String get cloudSignedIn => 'تم تسجيل الدخول ✓';
+
+  @override
+  String get cloudSignOut => 'تسجيل الخروج';
+
+  @override
+  String get cloudLastSync => 'آخر مزامنة';
+
+  @override
+  String get cloudCloudCopy => 'النسخة السحابية';
+
+  @override
+  String get cloudRemoteNewer =>
+      'النسخة السحابية أحدث من هذا الهاتف (رُفعت من جهاز آخر). نزّلها، أو ارفع بياناتك لاستبدالها.';
+
+  @override
+  String get cloudUpload => 'رفع';
+
+  @override
+  String get cloudDownload => 'تنزيل';
+
+  @override
+  String get cloudUploadOverwrite =>
+      'سيتم استبدال النسخة السحابية الأحدث ببيانات هذا الهاتف. متابعة؟';
+
+  @override
+  String get cloudDownloadOverwrite =>
+      'سيتم استبدال كل بيانات هذا الهاتف بالنسخة السحابية. متابعة؟';
+
+  @override
+  String get cloudUploaded => 'تم الرفع إلى السحابة ✓';
+
+  @override
+  String get cloudDownloaded => 'تمت استعادة البيانات من السحابة ✓';
+
+  @override
+  String get cloudAuto => 'نسخ احتياطي تلقائي';
+
+  @override
+  String get cloudAutoDesc =>
+      'يرفع عند الخروج من التطبيق (ولا يستبدل نسخة سحابية أحدث أبداً).';
+
+  @override
+  String get cloudPrivacy =>
+      '🔒 كل حساب يقرأ بياناته فقط (Row Level Security). صور التقدم لا تُرفع أبداً. المشاريع المجانية تتوقف مؤقتاً بعد أسبوع تقريباً دون استعمال وتعود عند المزامنة التالية.';
+
+  @override
+  String get coachTagline => 'نصائح شخصية مبنية على بياناتك';
+
+  @override
+  String get coachIntro =>
+      'اسأل عن التمرين أو التغذية أو تقدمك. المدرب يرى ملخصاً قصيراً لبياناتك (المتوسطات، الأهداف، أفضل الأرقام) وليس سجلاتك الكاملة. وهو ليس طبيباً.';
+
+  @override
+  String get coachHint => 'اسأل مدربك…';
+
+  @override
+  String get coachClear => 'مسح المحادثة';
+
+  @override
+  String get coachNeedsAccount =>
+      'المدرب الذكي يحتاج حساباً سحابياً مجانياً (تُحفظ المحادثة فيه).';
+
+  @override
+  String get coachSuggest1 => 'حلّل أسبوعي الماضي';
+
+  @override
+  String get coachSuggest2 => 'كم أحتاج من البروتين؟';
+
+  @override
+  String get coachSuggest3 => 'لماذا وزني لا يتغير؟';
+
+  @override
+  String get coachSuggest4 => 'اقترح عشاء جزائري غني بالبروتين';
+
+  @override
+  String get coachErrNoKey =>
+      'المدرب غير مُعدّ بعد: يجب إضافة مفتاح Gemini في Supabase (Edge Functions → Secrets → GEMINI_API_KEY).';
+
+  @override
+  String get coachErrLimit => 'وصلت للحد اليومي (40 رسالة). حاول غداً.';
+
+  @override
+  String get coachErrQuota => 'انتهت حصة Gemini المجانية حالياً. حاول لاحقاً.';
+
+  @override
+  String get coachErrGeneric => 'لم يتمكن المدرب من الرد. حاول مرة أخرى.';
+
+  @override
+  String get coachErrNetwork => 'لا يوجد اتصال بالمدرب. تحقق من الإنترنت.';
+
+  @override
+  String get coachErrModel =>
+      'اسم نموذج الذكاء الاصطناعي غير متاح. اضبط GEMINI_MODEL في أسرار Supabase (مثلاً gemini-3.8-flash).';
+
+  @override
+  String get coachErrBusy =>
+      'خوادم الذكاء الاصطناعي مشغولة حالياً. انتظر بضع ثوانٍ وحاول مرة أخرى.';
+
+  @override
+  String get muscleCardio => 'كارديو';
+
+  @override
+  String get equipBarbell => 'بار';
+
+  @override
+  String get equipDumbbell => 'دمبل';
+
+  @override
+  String get equipMachine => 'آلة';
+
+  @override
+  String get equipCable => 'كابل';
+
+  @override
+  String get equipBodyweight => 'وزن الجسم';
+
+  @override
+  String get equipKettlebell => 'كيتلبل';
+
+  @override
+  String get equipOther => 'أخرى';
+
+  @override
+  String get exerciseCreateCustom => 'إضافة تمرين خاص بي';
+
+  @override
+  String get exerciseCreateCustomHint => 'لم تجده؟ أنشئه في ثوانٍ';
+
+  @override
+  String get exerciseNotFound =>
+      'لا يوجد تمرين بهذا الاسم. استعمل \"إضافة تمرين خاص بي\" في الأعلى.';
+
+  @override
+  String get exerciseName => 'اسم التمرين';
+
+  @override
+  String get exerciseCompound => 'مركّب';
+
+  @override
+  String get exerciseIsolation => 'عزل';
+
+  @override
+  String get exerciseNotesOptional => 'ملاحظات / طريقة الأداء (اختياري)';
+
+  @override
+  String get exerciseCreated => 'تمت إضافة التمرين ✓';
+
+  @override
+  String get programEdit => 'تعديل البرنامج';
+
+  @override
+  String get programNameRequired => 'أعطِ برنامجك اسماً';
+
+  @override
+  String get programNeedsExercise => 'أضف تمريناً واحداً على الأقل';
+
+  @override
+  String get programSaved => 'تم حفظ البرنامج ✓';
+
+  @override
+  String get programNameHint => 'مثال: Upper A، Lower B، ذراعين وبطن';
+
+  @override
+  String get programReorderHint => 'اسحب ⋮⋮ لإعادة الترتيب';
+
+  @override
+  String get programEmptyHint =>
+      'لا توجد تمارين بعد. اضغط \"إضافة تمرين\" لبناء حصتك.';
+
+  @override
+  String get programDeleteConfirm =>
+      'حذف هذا البرنامج؟ سجل تمارينك يبقى محفوظاً.';
+
+  @override
+  String get programsEmptyTitle => 'ابنِ برنامجك الخاص';
+
+  @override
+  String get programsEmptyBody =>
+      'أنشئ برنامجاً لكل يوم تدريب، مثلاً \"Upper A\" و\"Lower A\" و\"Upper B\" و\"Lower B\" و\"ذراعين وبطن\". أضف فقط التمارين التي تريدها.';
+
+  @override
+  String get templatesTitle => 'برامج جاهزة';
+
+  @override
+  String get templatesSubtitle =>
+      'PPL و Upper/Lower و Full Body و 5/3/1 — انسخ واحداً وعدّله كما تريد';
+
+  @override
+  String get templateUse => 'أضف إلى برامجي وعدّله';
+
+  @override
+  String get templateCopied => 'تم النسخ إلى برامجك — عدّله كما تريد';
+
+  @override
+  String get templateBadge => 'قالب جاهز';
+
+  @override
+  String get foodsMine => 'أكلاتي';
+
+  @override
+  String get foodsSuggestions => 'اقتراحات';
+
+  @override
+  String get foodsAddMine => 'إضافة أكلة خاصة بي';
+
+  @override
+  String get foodsMineEmptyTitle => 'قائمة أكلاتك فارغة';
+
+  @override
+  String get foodsMineEmptyBody =>
+      'أضف ما تأكله فعلاً: اكتب الاسم ووصفاً قصيراً والوزن — والذكاء الاصطناعي يحسب السعرات والبروتين والكربوهيدرات والدهون. الأكلات الجاهزة موجودة في \"اقتراحات\".';
+
+  @override
+  String get foodsDeleteConfirm =>
+      'حذف هذه الأكلة من قائمتك؟ السجلات السابقة تبقى.';
+
+  @override
+  String get myFoodName => 'اسم الأكلة';
+
+  @override
+  String get myFoodNameHint => 'مثال: كسكس بالدجاج';
+
+  @override
+  String get myFoodDescription => 'الوصف (المكونات، طريقة الطهي)';
+
+  @override
+  String get myFoodDescriptionHint =>
+      'مثال: 150غ كسكس مطبوخ، 120غ صدر دجاج، خضر، ملعقة زيت زيتون';
+
+  @override
+  String get myFoodWeight => 'وزن الحصة';
+
+  @override
+  String get myFoodAnalyze => 'احسب بالذكاء الاصطناعي';
+
+  @override
+  String get myFoodAnalyzing => 'جارٍ التحليل…';
+
+  @override
+  String get myFoodNeedNameWeight => 'أدخل اسم الأكلة ووزنها.';
+
+  @override
+  String get myFoodNeedValues =>
+      'احسب بالذكاء الاصطناعي أو أدخل السعرات يدوياً.';
+
+  @override
+  String get myFoodNeedAccount =>
+      'الحساب بالذكاء الاصطناعي يحتاج حساباً مجانياً (حسابي → المزامنة السحابية). يمكنك أيضاً كتابة القيم بنفسك.';
+
+  @override
+  String get myFoodConfHigh => 'دقة عالية';
+
+  @override
+  String get myFoodConfMedium => 'دقة متوسطة';
+
+  @override
+  String get myFoodConfLow => 'دقة منخفضة — أضف تفاصيل';
+
+  @override
+  String get myFoodPer100 => 'لكل 100غ';
+
+  @override
+  String myFoodPortionValues(String grams) {
+    return 'القيم لـ $grams غ';
+  }
+
+  @override
+  String get myFoodEditHint =>
+      'يمكنك تصحيح أي قيمة قبل الحفظ. كلما زادت تفاصيل الوصف كانت النتيجة أدق.';
+
+  @override
+  String get myFoodLogNow => 'أضفها إلى وجبات اليوم';
+
+  @override
+  String get myFoodSaveAndLog => 'حفظ وإضافة للوجبة';
+
+  @override
+  String get myFoodSaved => 'تم حفظ الأكلة في قائمتك ✓';
+
+  @override
+  String get myFoodSavedLogged => 'تم حفظ الأكلة وإضافتها ✓';
+
+  @override
+  String get eatenQuestion => 'هل أكلتها؟';
+
+  @override
+  String get eatenYes => 'نعم — تُحسب في مجموع اليوم';
+
+  @override
+  String get eatenPlanned => 'ليس بعد — تُحفظ كمخطط لها';
+
+  @override
+  String get eatenAtTime => 'وقت الأكل';
+
+  @override
+  String get eatenMark => 'تعليم كمأكولة';
+
+  @override
+  String get eatenUndo => 'إلغاء — لم آكلها';
+
+  @override
+  String get eatenWhen => 'متى أكلتها؟';
+
+  @override
+  String get eatenAtShort => 'أُكلت على';
+
+  @override
+  String get eatenPlannedShort => 'مخطط لها — اضغط ○ عند أكلها';
+
+  @override
+  String eatenPlannedKcal(int kcal) {
+    return '$kcal سعرة مخطط لها لم تؤكل بعد';
+  }
+
+  @override
+  String get themesTitle => 'الثيمات والمظهر';
+
+  @override
+  String get themesColors => 'ثيمات الألوان';
+
+  @override
+  String get themesBackground => 'الخلفية المتحركة';
+
+  @override
+  String get themesAnimated => 'خلفية متحركة';
+
+  @override
+  String get themesAnimatedDesc => 'خلفية تتحرك بنعومة خلف كل الشاشات';
+
+  @override
+  String get themesInteractive => 'تتفاعل مع اللمس';
+
+  @override
+  String get themesInteractiveDesc => 'تموجات وإضاءة وجزيئات تتبع إصبعك';
+
+  @override
+  String get themesIntensity => 'الشدة';
+
+  @override
+  String get themesEffect => 'التأثير';
+
+  @override
+  String get themesBatteryNote =>
+      'الحركة تعمل بـ 30 إطاراً في الثانية، وتتوقف عندما يكون التطبيق في الخلفية، وتنطفئ تلقائياً إذا فعّلت \"إزالة الرسوم المتحركة\" في إعدادات إمكانية الوصول.';
+
+  @override
+  String get fxAuto => 'افتراضي الثيم';
+
+  @override
+  String get fxNone => 'بدون';
+
+  @override
+  String get fxOrbs => 'كرات مضيئة';
+
+  @override
+  String get fxParticles => 'جزيئات';
+
+  @override
+  String get fxWaves => 'أمواج';
+
+  @override
+  String get fxGrid => 'شبكة نيون';
+
+  @override
+  String get fxAurora => 'شفق';
+
+  @override
+  String get fxBokeh => 'فقاعات';
+
+  @override
+  String get fxStars => 'نجوم';
+
+  @override
+  String get shapeSharp => 'زوايا حادة';
+
+  @override
+  String get shapeSoft => 'زوايا ناعمة';
+
+  @override
+  String get shapeRounded => 'دائري';
+
+  @override
+  String get shapePill => 'كبسولي';
+
+  @override
+  String get aboutDevelopedBy => 'تم تطويره من طرف المطور';
+
+  @override
+  String get aboutDeveloperName => 'حفيان المهدي';
+
+  @override
+  String scanAiEstimating(String name) {
+    return 'تم العثور على \"$name\" — الذكاء الاصطناعي يحسب قيمه الغذائية…';
+  }
+
+  @override
+  String scanNotFoundAi(String code) {
+    return 'الباركود $code غير موجود في قاعدة البيانات. صوّر العلبة (ويُفضّل جدول القيم الغذائية) وسيقرأ الذكاء الاصطناعي اسم المنتج وقيمه.';
+  }
+
+  @override
+  String get scanPhotoLabel => 'صوّر المنتج';
+
+  @override
+  String get scanManual => 'إدخال يدوي';
+
+  @override
+  String get scanReadingLabel => 'الذكاء الاصطناعي يقرأ المنتج…';
+
+  @override
+  String get photoTitle => 'صورة الوجبة (AI)';
+
+  @override
+  String get photoHint =>
+      'صوّر طبقك أو وجبتك أو المنتج: الذكاء الاصطناعي يتعرف على الأكل ويحسب السعرات والبروتين والكربوهيدرات والدهون.';
+
+  @override
+  String get photoAnalyzing => 'جارٍ التحليل…';
+
+  @override
+  String get photoNote => 'ملاحظة للذكاء الاصطناعي (اختياري)';
+
+  @override
+  String get photoNoteHint => 'مثال: مقلي بزيت الزيتون، بيضتان، حصة كبيرة';
+
+  @override
+  String get photoNotFood =>
+      'لم يتم التعرف على أكل في الصورة. جرّب زاوية أخرى يظهر فيها الطبق كاملاً.';
+
+  @override
+  String get photoResults => 'الأكلات المكتشفة';
+
+  @override
+  String get photoSuggestions => 'لتصبح أفضل';
+
+  @override
+  String photoLogged(int count) {
+    return 'تمت إضافة $count عناصر إلى وجبتك ✓';
+  }
+
+  @override
+  String get coachAttach => 'إرسال صورة أو فيديو';
+
+  @override
+  String get coachTakePhoto => 'التقاط صورة';
+
+  @override
+  String get coachPickPhoto => 'صورة من المعرض';
+
+  @override
+  String get coachRecordVideo => 'تسجيل فيديو (60 ثانية كحد أقصى)';
+
+  @override
+  String get coachPickVideo => 'فيديو من المعرض';
+
+  @override
+  String get coachPhotoAttached => 'صورة مرفقة';
+
+  @override
+  String get coachVideoAttached => 'فيديو';
+
+  @override
+  String get coachUploading => 'جارٍ الرفع…';
+
+  @override
+  String get coachAnalyzingVideo => 'جارٍ تحليل الفيديو (قد يستغرق دقيقة)…';
+
+  @override
+  String get coachErrMediaBig =>
+      'الملف كبير جداً (40 ميغا كحد أقصى). أرسل فيديو أقصر.';
+
+  @override
+  String get coachErrUpload => 'فشل الرفع. تحقق من الإنترنت وحاول مجدداً.';
+
+  @override
+  String get coachErrMediaType =>
+      'تعذر تحليل هذا النوع من الملفات. جرّب صورة أخرى أو فيديو MP4.';
+
+  @override
+  String get photosDate => 'تاريخ الصورة';
+
+  @override
+  String get photosLastWeek => 'الأسبوع الماضي';
+
+  @override
+  String get photos2Weeks => 'قبل أسبوعين';
+
+  @override
+  String get photosLastMonth => 'الشهر الماضي';
+
+  @override
+  String get photosPose => 'الوضعية';
+
+  @override
+  String get photosNeedTwo =>
+      'أضف صورتين على الأقل بنفس الوضعية لمقارنتهما والحصول على تحليل بالذكاء الاصطناعي.';
+
+  @override
+  String photosDaysApart(int days) {
+    return '$days يوماً بين الصورتين';
+  }
+
+  @override
+  String get photosAiAnalyze => 'حلّل تقدّمي بالذكاء الاصطناعي';
+
+  @override
+  String get photosAiConsentTitle => 'إرسال هاتين الصورتين للتحليل؟';
+
+  @override
+  String get photosAiConsent =>
+      'صورك خاصة وتبقى على هذا الهاتف. من أجل هذا التحليل فقط، تُرسل الصورتان المختارتان بأمان إلى Google Gemini (عبر حسابك). ولا تُحفظان في خادمنا.';
+
+  @override
+  String get photosHomeEmpty => 'أضف صور جسمك لترى تحوّلك الحقيقي';
+
+  @override
+  String photosHomeLast(int days) {
+    return 'آخر صورة قبل $days يوماً';
+  }
+
+  @override
+  String get photosHomeCompare =>
+      'قارن قبل / بعد واحصل على تحليل لتقدمك بالذكاء الاصطناعي';
+
+  @override
+  String get aiProgressTitle => 'تحليل التقدم بالذكاء الاصطناعي';
+
+  @override
+  String get aiMuscle => 'زيادة العضلات';
+
+  @override
+  String get aiFat => 'الدهون';
+
+  @override
+  String get aiGainClear => 'واضحة';
+
+  @override
+  String get aiGainSlight => 'طفيفة';
+
+  @override
+  String get aiGainNone => 'غير ظاهرة';
+
+  @override
+  String get aiUnclear => 'غير واضح';
+
+  @override
+  String get aiFatLess => 'أقل';
+
+  @override
+  String get aiFatSame => 'نفسها';
+
+  @override
+  String get aiFatMore => 'أكثر';
+
+  @override
+  String get aiNotComparable =>
+      'يصعب مقارنة الصورتين (إضاءة أو وضعية أو مسافة مختلفة).';
+
+  @override
+  String get aiAreas => 'حسب العضلة';
+
+  @override
+  String get aiTips => 'كيف تتطور أسرع';
+
+  @override
+  String get profileAthlete => 'رياضي';
+
+  @override
+  String profileYears(int age) {
+    return '$age سنة';
+  }
+
+  @override
+  String get profilePreferences => 'تفضيلات التطبيق';
 }

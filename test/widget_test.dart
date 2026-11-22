@@ -37,7 +37,10 @@ void main() {
       ),
     );
 
-    await tester.pumpAndSettle();
+    // The animated background never "settles": pump a fixed number of frames.
+    for (int i = 0; i < 15; i++) {
+      await tester.pump(const Duration(milliseconds: 100));
+    }
 
     // Verify Onboarding screen is shown
     expect(find.text('Welcome to Fit Companion'), findsOneWidget);
@@ -64,7 +67,10 @@ void main() {
       ),
     );
 
-    await tester.pumpAndSettle();
+    // The animated background never "settles": pump a fixed number of frames.
+    for (int i = 0; i < 15; i++) {
+      await tester.pump(const Duration(milliseconds: 100));
+    }
 
     // Verify Arabic Onboarding screen is shown with RTL directionality
     expect(find.text('مرحباً بك في رفيق اللياقة'), findsOneWidget);

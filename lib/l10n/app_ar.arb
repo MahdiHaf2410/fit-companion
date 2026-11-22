@@ -5,15 +5,16 @@
   "navNutrition": "التغذية",
   "navWorkouts": "التمارين",
   "navProgress": "التقدم",
-  "navProfile": "الملف الشخصي",
-
+  "navProfile": "حسابي",
   "dashboardTitle": "نظرة عامة يومية",
   "dashboardNutritionCard": "التغذية اليومية",
   "dashboardCalories": "السعرات الحرارية",
   "dashboardCalorieTarget": "الهدف: {target} سعرة",
   "@dashboardCalorieTarget": {
     "placeholders": {
-      "target": {"type": "int"}
+      "target": {
+        "type": "int"
+      }
     }
   },
   "dashboardConsumed": "المستهلك",
@@ -25,8 +26,12 @@
   "dashboardGrams": "{amount}غ / {target}غ",
   "@dashboardGrams": {
     "placeholders": {
-      "amount": {"type": "String"},
-      "target": {"type": "String"}
+      "amount": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
     }
   },
   "dashboardTodayWorkout": "تمرين اليوم",
@@ -38,7 +43,9 @@
   "dashboardLatestWeight": "آخر وزن: {weight} كغ",
   "@dashboardLatestWeight": {
     "placeholders": {
-      "weight": {"type": "String"}
+      "weight": {
+        "type": "String"
+      }
     }
   },
   "dashboardNoWeightYet": "لم يتم تسجيل أي وزن بعد",
@@ -50,14 +57,15 @@
   "dashboardEstimatedTarget": "الهدف اليومي التقديري: {target} سعرة",
   "@dashboardEstimatedTarget": {
     "placeholders": {
-      "target": {"type": "int"}
+      "target": {
+        "type": "int"
+      }
     }
   },
   "dashboardCalculatorCard": "حاسبة الاحتياج الشخصي",
   "dashboardCalculatorDesc": "احسب احتياجك من السعرات والمغذيات بدقة وفق معادلة ميفلين - سانت جور.",
   "dashboardAcademyCard": "أكاديمية التغذية",
   "dashboardAcademyDesc": "14 درساً عملياً مع اختبارات قصيرة وأدوات تفاعلية.",
-
   "onboardingTitle": "مرحباً بك في رفيق اللياقة",
   "onboardingSubtitle": "رفيقك الشخصي للياقة والتغذية دون الحاجة إلى إنترنت",
   "onboardingName": "الاسم المستعار (اختياري)",
@@ -86,7 +94,6 @@
   "onboardingTargetSummary": "الاحتياج اليومي التقديري من الطاقة",
   "onboardingDisclaimer": "تم الحساب باستخدام معادلة ميفلين-سانت جور المعتمدة. السعرات المقدرة هي أرقام إرشادية علمية وليست وصفة طبية.",
   "onboardingGetStarted": "حفظ والبدء الآن",
-
   "nutritionTitle": "التغذية",
   "nutritionDailySummary": "ملخص اليوم",
   "nutritionLogFood": "تسجيل طعام",
@@ -130,10 +137,11 @@
   "nutritionTotalCalories": "{calories} سعرة",
   "@nutritionTotalCalories": {
     "placeholders": {
-      "calories": {"type": "int"}
+      "calories": {
+        "type": "int"
+      }
     }
   },
-
   "recipeTitle": "منشئ الوصفات",
   "recipeName": "اسم الوصفة",
   "recipeServings": "عدد الحصص",
@@ -144,14 +152,21 @@
   "recipePerServing": "لكل حصة: {cal} سعرة | ب: {p}غ | ك: {c}غ | د: {f}غ",
   "@recipePerServing": {
     "placeholders": {
-      "cal": {"type": "int"},
-      "p": {"type": "String"},
-      "c": {"type": "String"},
-      "f": {"type": "String"}
+      "cal": {
+        "type": "int"
+      },
+      "p": {
+        "type": "String"
+      },
+      "c": {
+        "type": "String"
+      },
+      "f": {
+        "type": "String"
+      }
     }
   },
   "recipeSave": "حفظ الوصفة",
-
   "workoutsTitle": "التمارين",
   "workoutsPrograms": "برامج التدريب",
   "workoutsCreateProgram": "برنامج جديد",
@@ -160,7 +175,9 @@
   "workoutsDays": "الأيام: {days}",
   "@workoutsDays": {
     "placeholders": {
-      "days": {"type": "String"}
+      "days": {
+        "type": "String"
+      }
     }
   },
   "workoutsExercises": "التمارين",
@@ -171,8 +188,12 @@
   "workoutsTargetSets": "المجموعات المستهدفة: {sets} × {reps} تكرار",
   "@workoutsTargetSets": {
     "placeholders": {
-      "sets": {"type": "int"},
-      "reps": {"type": "int"}
+      "sets": {
+        "type": "int"
+      },
+      "reps": {
+        "type": "int"
+      }
     }
   },
   "workoutsActiveSession": "التمرين الجاري",
@@ -180,7 +201,9 @@
   "workoutsRestTimeRemaining": "متبقي {seconds} ثانية راحة",
   "@workoutsRestTimeRemaining": {
     "placeholders": {
-      "seconds": {"type": "int"}
+      "seconds": {
+        "type": "int"
+      }
     }
   },
   "workoutsSetHeader": "المجموعة",
@@ -197,25 +220,30 @@
   "workoutsDuration": "المدة: {minutes} دقيقة",
   "@workoutsDuration": {
     "placeholders": {
-      "minutes": {"type": "int"}
+      "minutes": {
+        "type": "int"
+      }
     }
   },
   "workoutsTotalVolume": "الحجم الإجمالي: {volume} كغ",
   "@workoutsTotalVolume": {
     "placeholders": {
-      "volume": {"type": "String"}
+      "volume": {
+        "type": "String"
+      }
     }
   },
   "workoutsTotalSets": "الجولات المكتملة: {sets}",
   "@workoutsTotalSets": {
     "placeholders": {
-      "sets": {"type": "int"}
+      "sets": {
+        "type": "int"
+      }
     }
   },
   "workoutsHistory": "سجل التمارين",
   "workoutsNoHistory": "لا توجد تمارين مكتملة بعد. ابدأ جلستك الأولى!",
   "workoutsPR": "رقم قياسي جديد!",
-
   "progressTitle": "التقدم والمقاييس",
   "progressWeightHistory": "مسار وزن الجسم",
   "progressAddMetric": "تسجيل قياس جديد",
@@ -227,12 +255,13 @@
   "progressWeeklyAverage": "المتوسط الأسبوعي المتحرك: {avg} كغ",
   "@progressWeeklyAverage": {
     "placeholders": {
-      "avg": {"type": "String"}
+      "avg": {
+        "type": "String"
+      }
     }
   },
   "progressExercisePRs": "الأرقام القياسية في التمارين",
   "progressNoMetrics": "لم يتم تسجيل أي قياسات بعد. سجّل وزنك بانتظام لمتابعة التطور!",
-
   "profileTitle": "الملف والإعدادات",
   "profilePersonalInfo": "المعلومات الشخصية",
   "profileGoals": "الأهداف والاحتياجات",
@@ -254,7 +283,6 @@
   "profileAbout": "عن رفيق اللياقة",
   "profileAboutText": "رفيق اللياقة هو تطبيق شخصي لتتبع التمارين والتغذية يعمل بشكل كامل ومستقل دون إنترنت وبأعلى درجات الخصوصية.",
   "profileOfflineStatus": "يعمل محلياً بالكامل 100%: تُحفظ بياناتك حصراً على جهازك.",
-
   "commonSave": "حفظ",
   "commonCancel": "إلغاء",
   "commonDelete": "حذف",
@@ -275,7 +303,6 @@
   "commonCm": "سم",
   "commonReps": "تكرارات",
   "commonSets": "جولات",
-
   "nutritionCalculatorTitle": "حاسبة الاحتياجات الغذائية",
   "nutritionCalculatorDesc": "احسب احتياجك اليومي من السعرات والمغذيات بدقة وفق معادلات علمية معتمدة ومخصصة لجسمك.",
   "nutritionCalculatorBmr": "معدل الأيض الأساسي (BMR)",
@@ -295,13 +322,14 @@
   "nutritionTrainingCardio": "تمارين هوائية وتحمل (كارديو)",
   "nutritionTrainingHybrid": "تمارين وظيفية وهجينة",
   "nutritionTrainingGeneral": "صحة عامة ولياقة خفيفة",
-
   "academyTitle": "أكاديمية التغذية",
   "academySubtitle": "تعلّم أسرار التغذية وحساب السعرات خطوة بخطوة مع دروس مبسطة وتمارين تفاعلية.",
   "academyLesson": "الدرس {number}",
   "@academyLesson": {
     "placeholders": {
-      "number": {"type": "int"}
+      "number": {
+        "type": "int"
+      }
     }
   },
   "academyQuiz": "اختبار الفهم",
@@ -311,13 +339,395 @@
   "academyScore": "النتيجة: {score}%",
   "@academyScore": {
     "placeholders": {
-      "score": {"type": "int"}
+      "score": {
+        "type": "int"
+      }
     }
   },
-
   "foodCalculatorTitle": "الحاسبة الذكية للأطعمة",
   "foodCalculatorSubtitle": "احسب القيم الغذائية الدقيقة بناءً على وزن الحصة وحالة التحضير (مطبوخ / نيء).",
   "foodCalculatorServingType": "الحصة وحالة التحضير",
   "foodCalculatorFormulaHelp": "المعادلة: (القيمة لكل 100غ × عدد الغرامات) ÷ 100",
-  "foodCalculatorAddToMeal": "تسجيل الطعام المحسوب"
+  "foodCalculatorAddToMeal": "تسجيل الطعام المحسوب",
+  "greetingMorning": "صباح الخير",
+  "greetingAfternoon": "نهارك سعيد",
+  "greetingEvening": "مساء الخير",
+  "dashboardKcalLeft": "سعرة متبقية",
+  "dashboardKcalOver": "سعرة زائدة",
+  "dashboardGoal": "الهدف",
+  "dashboardInProgress": "قيد التنفيذ",
+  "dashboardWeekActivity": "نشاط الأسبوع",
+  "dashboardTools": "الأدوات والتعلّم",
+  "commonSeeAll": "عرض الكل",
+  "commonMl": "مل",
+  "commonToday": "اليوم",
+  "waterTitle": "شرب الماء",
+  "waterProgress": "{amount} / {goal} مل",
+  "waterGoalReached": "وصلت لهدف الماء اليومي!",
+  "waterSetGoal": "هدف الماء اليومي",
+  "waterUndo": "إزالة 250 مل",
+  "statsThisWeek": "هذا الأسبوع",
+  "statsWorkouts": "تمارين",
+  "statsVolume": "الحجم",
+  "statsStreak": "أيام متتالية",
+  "statsTotal": "مجموع الحصص",
+  "academyLessonsCount": "{count} درساً",
+  "calculatorBmrTdee": "الأيض والطاقة",
+  "portionScaler": "حاسبة الحصص",
+  "workoutsNoActive": "لا توجد حصة تدريب نشطة.",
+  "workoutsElapsed": "المدة",
+  "workoutsPrevious": "المرة السابقة",
+  "workoutsRest": "راحة",
+  "workoutsSkip": "تخطي",
+  "workoutsNewPR": "رقم قياسي شخصي جديد! 🏆",
+  "workoutsDeleteSet": "حذف المجموعة",
+  "workoutsRestDone": "انتهت الراحة — المجموعة التالية!",
+  "workoutsQuickStart": "تمرين سريع",
+  "workoutsQuickStartDesc": "ابدأ فارغاً وأضف التمارين أثناء التدريب",
+  "workoutsEmptySession": "أضف أول تمرين لبدء تسجيل المجموعات.",
+  "workoutsStart": "ابدأ",
+  "workoutsExercisesCount": "{count} تمارين",
+  "workoutsNoProgramsYet": "لم يتم إنشاء أي برنامج بعد.",
+  "workoutsSearchExercise": "ابحث عن تمرين",
+  "sessionDetailTitle": "ملخص التمرين",
+  "sessionDelete": "حذف التمرين",
+  "sessionDeleteConfirm": "حذف هذا التمرين من السجل؟ لا يمكن التراجع عن ذلك.",
+  "sessionMinutes": "{minutes} د",
+  "progressRecentLogs": "آخر التسجيلات",
+  "progressNoPRs": "أكمل مجموعات التمرين لتسجيل أرقامك القياسية في القوة!",
+  "progressEst1RM": "1RM تقديري",
+  "progressCurrent": "الحالي",
+  "progressChange": "التغيّر",
+  "progressBmi": "مؤشر الكتلة",
+  "progressSetFormat": "{weight} كغ × {reps}",
+  "toolsTitle": "أدوات الجيم",
+  "tools1RM": "حاسبة 1RM",
+  "tools1RMDesc": "قدّر أقصى وزن لك وأوزان التدريب",
+  "toolsPlates": "حاسبة الأقراص",
+  "toolsPlatesDesc": "الأقراص المطلوبة على كل جهة من البار",
+  "toolsWeightKg": "الوزن (كغ)",
+  "toolsReps": "التكرارات",
+  "toolsTargetKg": "الوزن المستهدف (كغ)",
+  "toolsBarKg": "البار (كغ)",
+  "toolsPerSide": "لكل جهة",
+  "toolsRemainder": "لا يمكن التحميل بدقة — ينقص {kg} كغ",
+  "toolsOnlyBar": "البار فارغ فقط",
+  "toolsPercentOf1RM": "% من 1RM",
+  "nutritionMealEmpty": "لا شيء مسجّل بعد — اضغط + لإضافة طعام",
+  "nutritionMacros": "المغذيات الكبرى",
+  "mealsCopyYesterdayHint": "لا شيء مسجّل في هذا اليوم. نسخ وجبات الأمس؟",
+  "mealsCopy": "نسخ",
+  "mealsCopied": "تم نسخ {count} عنصر",
+  "mealsNothingToCopy": "لا يوجد شيء للنسخ",
+  "mealsCopyFromYesterday": "نسخ من الأمس",
+  "mealsUseTemplate": "إضافة من قالب",
+  "mealsSaveTemplate": "حفظ كقالب",
+  "mealsTemplateName": "اسم القالب",
+  "mealsTemplateSaved": "تم حفظ القالب",
+  "mealsTemplates": "قوالب الوجبات",
+  "mealsNoTemplates": "لا توجد قوالب بعد. افتح قائمة الوجبة (⋮) واختر \"حفظ كقالب\".",
+  "setsSuperset": "سوبرسيت",
+  "setsSupersetWithNext": "سوبرسيت مع التمرين التالي",
+  "setsRemoveSuperset": "إلغاء السوبرسيت",
+  "setTypeTitle": "نوع المجموعة",
+  "setTypeNormal": "عادية",
+  "setTypeWarmup": "إحماء",
+  "setTypeDrop": "دروب سيت",
+  "setTypeFailure": "حتى الفشل",
+  "rpeHelp": "RPE = مدى صعوبة المجموعة. 10 = لم يتبقَّ أي تكرار، 8 = بقي تكراران. مجموعات الإحماء لا تُحسب في الحجم ولا في الأرقام القياسية.",
+  "commonClear": "مسح",
+  "overloadIncrease": "زِد {kg} كغ اليوم",
+  "overloadKeep": "نفس الوزن — حاول تزيد التكرارات",
+  "overloadDeload": "خفّف إلى {kg} كغ",
+  "exerciseProgress": "تطور التمرين",
+  "exerciseTopWeight": "أعلى وزن",
+  "exerciseNoHistory": "لا توجد مجموعات مكتملة لهذا التمرين بعد. أكمل تمريناً يحتويه لرؤية مخطط تطورك.",
+  "heatmapTitle": "العضلات هذا الأسبوع",
+  "heatmapHelp": "المجموعات الفعّالة خلال آخر 7 أيام. من 10 إلى 20 مجموعة لكل عضلة أسبوعياً هو النطاق المثالي للنمو (أخضر). البرتقالي = حجم مرتفع جداً.",
+  "muscleChest": "الصدر",
+  "muscleBack": "الظهر",
+  "muscleLegs": "الأرجل",
+  "muscleShoulders": "الأكتاف",
+  "muscleArms": "الذراعان",
+  "muscleCore": "البطن والجذع",
+  "achTitle": "الإنجازات",
+  "achSubtitle": "اربح الشارات بالتمرين المنتظم والأكل الجيد وتحطيم أرقامك.",
+  "achNext": "التالي",
+  "achUnlocked": "إنجاز جديد",
+  "achFirstWorkout": "الخطوة الأولى",
+  "achFirstWorkoutDesc": "أكمل أول تمرين لك.",
+  "achWorkouts10": "منتظم",
+  "achWorkouts50": "مثابر",
+  "achWorkouts100": "أسطورة الحديد",
+  "achWorkoutsDesc": "أكمل {count} تمريناً.",
+  "achStreak3": "مشتعل",
+  "achStreak7": "أسبوع لا يتوقف",
+  "achStreak30": "آلة",
+  "achStreakDesc": "تمرّن {count} أيام متتالية.",
+  "achFirstPr": "محطّم الأرقام",
+  "achFirstPrDesc": "سجّل أول رقم قياسي شخصي.",
+  "achPrs25": "صائد الأرقام",
+  "achPrsDesc": "سجّل {count} رقماً قياسياً.",
+  "achFood7": "آكل واعٍ",
+  "achFood30": "محترف التغذية",
+  "achFoodDesc": "سجّل طعامك في {count} أيام مختلفة.",
+  "achWater7": "مرتوٍ",
+  "achWaterDesc": "حقّق هدف الماء في {count} أيام.",
+  "achWeigh10": "متابع",
+  "achWeighDesc": "سجّل وزنك {count} مرات.",
+  "achVolume10t": "10 أطنان",
+  "achVolume100t": "100 طن",
+  "achVolumeDesc": "ارفع {tonnes} طن من الحجم الإجمالي.",
+  "measureTitle": "قياسات الجسم",
+  "measureMore": "قياسات إضافية (اختياري)",
+  "measureChest": "الصدر",
+  "measureArm": "الذراع",
+  "measureThigh": "الفخذ",
+  "measureHips": "الورك",
+  "measureBodyFat": "نسبة الدهون",
+  "measureSaved": "تم حفظ القياس",
+  "profileFeatures": "الأدوات والمزامنة",
+  "scanTitle": "مسح الباركود",
+  "scanHint": "وجّه الكاميرا نحو باركود المنتج",
+  "scanLooking": "جارٍ البحث عن {code}…",
+  "scanOffline": "لا يوجد إنترنت — البحث عن المنتج يحتاج اتصالاً في المرة الأولى.",
+  "scanNotFound": "المنتج غير موجود",
+  "scanNotFoundBody": "الباركود {code} غير موجود في قاعدة البيانات. يمكنك إضافته كطعام مخصص.",
+  "scanAgain": "مسح مرة أخرى",
+  "scanCameraError": "الكاميرا غير متاحة. اسمح بالوصول للكاميرا من إعدادات الهاتف.",
+  "remTitle": "التذكيرات",
+  "remSubtitle": "تذكيرات ذكية تعمل حتى والتطبيق مغلق.",
+  "remWaterTitle": "اشرب الماء",
+  "remWaterBody": "حان وقت كأس ماء 💧",
+  "remMealTitle": "سجّل وجبتك",
+  "remWorkoutTitle": "وقت التمرين",
+  "remWorkoutBody": "هيا نتمرن اليوم 💪",
+  "remWeighTitle": "وزن الصباح",
+  "remWeighBody": "زِن نفسك قبل الفطور لأدق متابعة.",
+  "remEvery": "كل",
+  "remHours": "{h} ساعة",
+  "remFromTo": "من – إلى",
+  "remTime": "الوقت",
+  "remPermissionDenied": "الإشعارات محظورة. فعّلها من إعدادات الهاتف.",
+  "remWatchInfo": "مؤقت الراحة يظهر كإشعار عدّ تنازلي مباشر. إذا كانت ساعتك (Wear OS أو Galaxy Watch أو Mi Band…) تعرض إشعارات الهاتف، فستعرض المؤقت وتهتز عند انتهاء الراحة.",
+  "backupTitle": "النسخ الاحتياطي والاستعادة",
+  "backupSubtitle": "احفظ كل بياناتك في ملف واحد (أرسله إلى Google Drive أو Telegram أو البريد…) واستعده على أي هاتف.",
+  "backupExport": "إنشاء نسخة احتياطية",
+  "backupExportDesc": "يصدّر ملف .json ويفتح قائمة المشاركة",
+  "backupRestore": "استعادة نسخة",
+  "backupRestoreDesc": "اختر ملف النسخة — يستبدل البيانات الموجودة على هذا الهاتف",
+  "backupRestoreConfirm": "سيتم استبدال كل البيانات الحالية على هذا الهاتف بالنسخة الاحتياطية. متابعة؟",
+  "backupRestored": "تمت الاستعادة ✓",
+  "backupInvalid": "هذا الملف ليس نسخة احتياطية من Fit Companion.",
+  "backupPhotosNote": "ملاحظة: صور التقدم تبقى على الهاتف ولا تُضمَّن في ملف النسخة.",
+  "photosTitle": "صور التقدم",
+  "photosAdd": "إضافة صورة",
+  "photosCamera": "التقاط صورة",
+  "photosGallery": "اختيار من المعرض",
+  "photosFront": "أمامي",
+  "photosSide": "جانبي",
+  "photosBack": "خلفي",
+  "photosCompare": "قبل / بعد",
+  "photosBefore": "قبل",
+  "photosAfter": "بعد",
+  "photosEmpty": "التقط صورة كل 2–4 أسابيع بنفس الإضاءة والوضعية لترى تغيّرك الحقيقي.",
+  "photosPrivacy": "🔒 الصور خاصة وتُحفظ على هذا الهاتف فقط. لا تخرج منه إلا إذا طلبت تحليلاً بالذكاء الاصطناعي (تؤكد في كل مرة).",
+  "photosDelete": "حذف هذه الصورة؟",
+  "healthTitle": "Health Connect",
+  "healthSubtitle": "اربط Health Connect في أندرويد لقراءة خطواتك اليومية وحفظ وزنك هناك تلقائياً.",
+  "healthUnavailable": "Health Connect غير متاح على هذا الهاتف (يحتاج أندرويد 9+ وليس ملف عمل).",
+  "healthNeedsInstall": "ثبّت أو حدّث تطبيق Health Connect من Google Play أولاً.",
+  "healthInstall": "فتح Google Play",
+  "healthConnected": "متصل",
+  "healthNotConnected": "غير متصل",
+  "healthWhat": "يقرأ: الخطوات • يكتب: وزن الجسم",
+  "healthConnect": "ربط Health Connect",
+  "healthStepsToday": "خطوات اليوم",
+  "cloudTitle": "المزامنة السحابية",
+  "coachTitle": "المدرب الذكي",
+  "cloudSubtitle": "احفظ بياناتك بأمان في السحابة وانقلها بين الهواتف. مجاني، بحسابك الخاص.",
+  "cloudUnavailable": "السحابة غير متاحة الآن (لا إنترنت عند فتح التطبيق). أعد فتح التطبيق مع الإنترنت.",
+  "cloudSignIn": "تسجيل الدخول",
+  "cloudCreateAccount": "إنشاء حساب",
+  "cloudEmail": "البريد الإلكتروني",
+  "cloudPassword": "كلمة المرور (6 أحرف على الأقل)",
+  "cloudInvalidForm": "أدخل بريداً صحيحاً وكلمة مرور من 6 أحرف على الأقل.",
+  "cloudConfirmEmail": "تم إنشاء الحساب. افتح بريدك لتأكيده ثم سجّل الدخول.",
+  "cloudSignedIn": "تم تسجيل الدخول ✓",
+  "cloudSignOut": "تسجيل الخروج",
+  "cloudLastSync": "آخر مزامنة",
+  "cloudCloudCopy": "النسخة السحابية",
+  "cloudRemoteNewer": "النسخة السحابية أحدث من هذا الهاتف (رُفعت من جهاز آخر). نزّلها، أو ارفع بياناتك لاستبدالها.",
+  "cloudUpload": "رفع",
+  "cloudDownload": "تنزيل",
+  "cloudUploadOverwrite": "سيتم استبدال النسخة السحابية الأحدث ببيانات هذا الهاتف. متابعة؟",
+  "cloudDownloadOverwrite": "سيتم استبدال كل بيانات هذا الهاتف بالنسخة السحابية. متابعة؟",
+  "cloudUploaded": "تم الرفع إلى السحابة ✓",
+  "cloudDownloaded": "تمت استعادة البيانات من السحابة ✓",
+  "cloudAuto": "نسخ احتياطي تلقائي",
+  "cloudAutoDesc": "يرفع عند الخروج من التطبيق (ولا يستبدل نسخة سحابية أحدث أبداً).",
+  "cloudPrivacy": "🔒 كل حساب يقرأ بياناته فقط (Row Level Security). صور التقدم لا تُرفع أبداً. المشاريع المجانية تتوقف مؤقتاً بعد أسبوع تقريباً دون استعمال وتعود عند المزامنة التالية.",
+  "coachTagline": "نصائح شخصية مبنية على بياناتك",
+  "coachIntro": "اسأل عن التمرين أو التغذية أو تقدمك. المدرب يرى ملخصاً قصيراً لبياناتك (المتوسطات، الأهداف، أفضل الأرقام) وليس سجلاتك الكاملة. وهو ليس طبيباً.",
+  "coachHint": "اسأل مدربك…",
+  "coachClear": "مسح المحادثة",
+  "coachNeedsAccount": "المدرب الذكي يحتاج حساباً سحابياً مجانياً (تُحفظ المحادثة فيه).",
+  "coachSuggest1": "حلّل أسبوعي الماضي",
+  "coachSuggest2": "كم أحتاج من البروتين؟",
+  "coachSuggest3": "لماذا وزني لا يتغير؟",
+  "coachSuggest4": "اقترح عشاء جزائري غني بالبروتين",
+  "coachErrNoKey": "المدرب غير مُعدّ بعد: يجب إضافة مفتاح Gemini في Supabase (Edge Functions → Secrets → GEMINI_API_KEY).",
+  "coachErrLimit": "وصلت للحد اليومي (40 رسالة). حاول غداً.",
+  "coachErrQuota": "انتهت حصة Gemini المجانية حالياً. حاول لاحقاً.",
+  "coachErrGeneric": "لم يتمكن المدرب من الرد. حاول مرة أخرى.",
+  "coachErrNetwork": "لا يوجد اتصال بالمدرب. تحقق من الإنترنت.",
+  "coachErrModel": "اسم نموذج الذكاء الاصطناعي غير متاح. اضبط GEMINI_MODEL في أسرار Supabase (مثلاً gemini-3.8-flash).",
+  "coachErrBusy": "خوادم الذكاء الاصطناعي مشغولة حالياً. انتظر بضع ثوانٍ وحاول مرة أخرى.",
+  "muscleCardio": "كارديو",
+  "equipBarbell": "بار",
+  "equipDumbbell": "دمبل",
+  "equipMachine": "آلة",
+  "equipCable": "كابل",
+  "equipBodyweight": "وزن الجسم",
+  "equipKettlebell": "كيتلبل",
+  "equipOther": "أخرى",
+  "exerciseCreateCustom": "إضافة تمرين خاص بي",
+  "exerciseCreateCustomHint": "لم تجده؟ أنشئه في ثوانٍ",
+  "exerciseNotFound": "لا يوجد تمرين بهذا الاسم. استعمل \"إضافة تمرين خاص بي\" في الأعلى.",
+  "exerciseName": "اسم التمرين",
+  "exerciseCompound": "مركّب",
+  "exerciseIsolation": "عزل",
+  "exerciseNotesOptional": "ملاحظات / طريقة الأداء (اختياري)",
+  "exerciseCreated": "تمت إضافة التمرين ✓",
+  "programEdit": "تعديل البرنامج",
+  "programNameRequired": "أعطِ برنامجك اسماً",
+  "programNeedsExercise": "أضف تمريناً واحداً على الأقل",
+  "programSaved": "تم حفظ البرنامج ✓",
+  "programNameHint": "مثال: Upper A، Lower B، ذراعين وبطن",
+  "programReorderHint": "اسحب ⋮⋮ لإعادة الترتيب",
+  "programEmptyHint": "لا توجد تمارين بعد. اضغط \"إضافة تمرين\" لبناء حصتك.",
+  "programDeleteConfirm": "حذف هذا البرنامج؟ سجل تمارينك يبقى محفوظاً.",
+  "programsEmptyTitle": "ابنِ برنامجك الخاص",
+  "programsEmptyBody": "أنشئ برنامجاً لكل يوم تدريب، مثلاً \"Upper A\" و\"Lower A\" و\"Upper B\" و\"Lower B\" و\"ذراعين وبطن\". أضف فقط التمارين التي تريدها.",
+  "templatesTitle": "برامج جاهزة",
+  "templatesSubtitle": "PPL و Upper/Lower و Full Body و 5/3/1 — انسخ واحداً وعدّله كما تريد",
+  "templateUse": "أضف إلى برامجي وعدّله",
+  "templateCopied": "تم النسخ إلى برامجك — عدّله كما تريد",
+  "templateBadge": "قالب جاهز",
+  "foodsMine": "أكلاتي",
+  "foodsSuggestions": "اقتراحات",
+  "foodsAddMine": "إضافة أكلة خاصة بي",
+  "foodsMineEmptyTitle": "قائمة أكلاتك فارغة",
+  "foodsMineEmptyBody": "أضف ما تأكله فعلاً: اكتب الاسم ووصفاً قصيراً والوزن — والذكاء الاصطناعي يحسب السعرات والبروتين والكربوهيدرات والدهون. الأكلات الجاهزة موجودة في \"اقتراحات\".",
+  "foodsDeleteConfirm": "حذف هذه الأكلة من قائمتك؟ السجلات السابقة تبقى.",
+  "myFoodName": "اسم الأكلة",
+  "myFoodNameHint": "مثال: كسكس بالدجاج",
+  "myFoodDescription": "الوصف (المكونات، طريقة الطهي)",
+  "myFoodDescriptionHint": "مثال: 150غ كسكس مطبوخ، 120غ صدر دجاج، خضر، ملعقة زيت زيتون",
+  "myFoodWeight": "وزن الحصة",
+  "myFoodAnalyze": "احسب بالذكاء الاصطناعي",
+  "myFoodAnalyzing": "جارٍ التحليل…",
+  "myFoodNeedNameWeight": "أدخل اسم الأكلة ووزنها.",
+  "myFoodNeedValues": "احسب بالذكاء الاصطناعي أو أدخل السعرات يدوياً.",
+  "myFoodNeedAccount": "الحساب بالذكاء الاصطناعي يحتاج حساباً مجانياً (حسابي → المزامنة السحابية). يمكنك أيضاً كتابة القيم بنفسك.",
+  "myFoodConfHigh": "دقة عالية",
+  "myFoodConfMedium": "دقة متوسطة",
+  "myFoodConfLow": "دقة منخفضة — أضف تفاصيل",
+  "myFoodPer100": "لكل 100غ",
+  "myFoodPortionValues": "القيم لـ {grams} غ",
+  "myFoodEditHint": "يمكنك تصحيح أي قيمة قبل الحفظ. كلما زادت تفاصيل الوصف كانت النتيجة أدق.",
+  "myFoodLogNow": "أضفها إلى وجبات اليوم",
+  "myFoodSaveAndLog": "حفظ وإضافة للوجبة",
+  "myFoodSaved": "تم حفظ الأكلة في قائمتك ✓",
+  "myFoodSavedLogged": "تم حفظ الأكلة وإضافتها ✓",
+  "eatenQuestion": "هل أكلتها؟",
+  "eatenYes": "نعم — تُحسب في مجموع اليوم",
+  "eatenPlanned": "ليس بعد — تُحفظ كمخطط لها",
+  "eatenAtTime": "وقت الأكل",
+  "eatenMark": "تعليم كمأكولة",
+  "eatenUndo": "إلغاء — لم آكلها",
+  "eatenWhen": "متى أكلتها؟",
+  "eatenAtShort": "أُكلت على",
+  "eatenPlannedShort": "مخطط لها — اضغط ○ عند أكلها",
+  "eatenPlannedKcal": "{kcal} سعرة مخطط لها لم تؤكل بعد",
+  "themesTitle": "الثيمات والمظهر",
+  "themesColors": "ثيمات الألوان",
+  "themesBackground": "الخلفية المتحركة",
+  "themesAnimated": "خلفية متحركة",
+  "themesAnimatedDesc": "خلفية تتحرك بنعومة خلف كل الشاشات",
+  "themesInteractive": "تتفاعل مع اللمس",
+  "themesInteractiveDesc": "تموجات وإضاءة وجزيئات تتبع إصبعك",
+  "themesIntensity": "الشدة",
+  "themesEffect": "التأثير",
+  "themesBatteryNote": "الحركة تعمل بـ 30 إطاراً في الثانية، وتتوقف عندما يكون التطبيق في الخلفية، وتنطفئ تلقائياً إذا فعّلت \"إزالة الرسوم المتحركة\" في إعدادات إمكانية الوصول.",
+  "fxAuto": "افتراضي الثيم",
+  "fxNone": "بدون",
+  "fxOrbs": "كرات مضيئة",
+  "fxParticles": "جزيئات",
+  "fxWaves": "أمواج",
+  "fxGrid": "شبكة نيون",
+  "fxAurora": "شفق",
+  "fxBokeh": "فقاعات",
+  "fxStars": "نجوم",
+  "shapeSharp": "زوايا حادة",
+  "shapeSoft": "زوايا ناعمة",
+  "shapeRounded": "دائري",
+  "shapePill": "كبسولي",
+  "aboutDevelopedBy": "تم تطويره من طرف المطور",
+  "aboutDeveloperName": "حفيان المهدي",
+  "scanAiEstimating": "تم العثور على \"{name}\" — الذكاء الاصطناعي يحسب قيمه الغذائية…",
+  "scanNotFoundAi": "الباركود {code} غير موجود في قاعدة البيانات. صوّر العلبة (ويُفضّل جدول القيم الغذائية) وسيقرأ الذكاء الاصطناعي اسم المنتج وقيمه.",
+  "scanPhotoLabel": "صوّر المنتج",
+  "scanManual": "إدخال يدوي",
+  "scanReadingLabel": "الذكاء الاصطناعي يقرأ المنتج…",
+  "photoTitle": "صورة الوجبة (AI)",
+  "photoHint": "صوّر طبقك أو وجبتك أو المنتج: الذكاء الاصطناعي يتعرف على الأكل ويحسب السعرات والبروتين والكربوهيدرات والدهون.",
+  "photoAnalyzing": "جارٍ التحليل…",
+  "photoNote": "ملاحظة للذكاء الاصطناعي (اختياري)",
+  "photoNoteHint": "مثال: مقلي بزيت الزيتون، بيضتان، حصة كبيرة",
+  "photoNotFood": "لم يتم التعرف على أكل في الصورة. جرّب زاوية أخرى يظهر فيها الطبق كاملاً.",
+  "photoResults": "الأكلات المكتشفة",
+  "photoSuggestions": "لتصبح أفضل",
+  "photoLogged": "تمت إضافة {count} عناصر إلى وجبتك ✓",
+  "coachAttach": "إرسال صورة أو فيديو",
+  "coachTakePhoto": "التقاط صورة",
+  "coachPickPhoto": "صورة من المعرض",
+  "coachRecordVideo": "تسجيل فيديو (60 ثانية كحد أقصى)",
+  "coachPickVideo": "فيديو من المعرض",
+  "coachPhotoAttached": "صورة مرفقة",
+  "coachVideoAttached": "فيديو",
+  "coachUploading": "جارٍ الرفع…",
+  "coachAnalyzingVideo": "جارٍ تحليل الفيديو (قد يستغرق دقيقة)…",
+  "coachErrMediaBig": "الملف كبير جداً (40 ميغا كحد أقصى). أرسل فيديو أقصر.",
+  "coachErrUpload": "فشل الرفع. تحقق من الإنترنت وحاول مجدداً.",
+  "coachErrMediaType": "تعذر تحليل هذا النوع من الملفات. جرّب صورة أخرى أو فيديو MP4.",
+  "photosDate": "تاريخ الصورة",
+  "photosLastWeek": "الأسبوع الماضي",
+  "photos2Weeks": "قبل أسبوعين",
+  "photosLastMonth": "الشهر الماضي",
+  "photosPose": "الوضعية",
+  "photosNeedTwo": "أضف صورتين على الأقل بنفس الوضعية لمقارنتهما والحصول على تحليل بالذكاء الاصطناعي.",
+  "photosDaysApart": "{days} يوماً بين الصورتين",
+  "photosAiAnalyze": "حلّل تقدّمي بالذكاء الاصطناعي",
+  "photosAiConsentTitle": "إرسال هاتين الصورتين للتحليل؟",
+  "photosAiConsent": "صورك خاصة وتبقى على هذا الهاتف. من أجل هذا التحليل فقط، تُرسل الصورتان المختارتان بأمان إلى Google Gemini (عبر حسابك). ولا تُحفظان في خادمنا.",
+  "photosHomeEmpty": "أضف صور جسمك لترى تحوّلك الحقيقي",
+  "photosHomeLast": "آخر صورة قبل {days} يوماً",
+  "photosHomeCompare": "قارن قبل / بعد واحصل على تحليل لتقدمك بالذكاء الاصطناعي",
+  "aiProgressTitle": "تحليل التقدم بالذكاء الاصطناعي",
+  "aiMuscle": "زيادة العضلات",
+  "aiFat": "الدهون",
+  "aiGainClear": "واضحة",
+  "aiGainSlight": "طفيفة",
+  "aiGainNone": "غير ظاهرة",
+  "aiUnclear": "غير واضح",
+  "aiFatLess": "أقل",
+  "aiFatSame": "نفسها",
+  "aiFatMore": "أكثر",
+  "aiNotComparable": "يصعب مقارنة الصورتين (إضاءة أو وضعية أو مسافة مختلفة).",
+  "aiAreas": "حسب العضلة",
+  "aiTips": "كيف تتطور أسرع",
+  "profileAthlete": "رياضي",
+  "profileYears": "{age} سنة",
+  "profilePreferences": "تفضيلات التطبيق"
 }

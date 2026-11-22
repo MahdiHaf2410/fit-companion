@@ -7,6 +7,7 @@ import '../../../core/utils/energy_calculator.dart';
 import '../../../core/widgets/app_card.dart';
 import '../../../shared/providers/database_provider.dart';
 import '../../../shared/providers/settings_provider.dart';
+import 'eaten_widgets.dart';
 import 'nutrition_providers.dart';
 import '../../../l10n/app_localizations.dart';
 
@@ -29,6 +30,9 @@ class _AddFoodScreenState extends ConsumerState<AddFoodScreen> {
   late String _selectedMeal;
   Food? _food;
   bool _isLoading = true;
+  // "Did you eat it?" — eaten now (default) or planned for later
+  bool _eaten = true;
+  TimeOfDay _eatenTime = TimeOfDay.now();
 
   @override
   void initState() {
@@ -79,6 +83,8 @@ class _AddFoodScreenState extends ConsumerState<AddFoodScreen> {
       quantityGrams: quantity,
       mealType: _selectedMeal,
       timestamp: timestamp,
+      isEaten: _eaten,
+      eatenAt: DateTime(selectedDate.year, selectedDate.month, selectedDate.day, _eatenTime.hour, _eatenTime.minute),
     );
 
     if (mounted) {
@@ -233,7 +239,16 @@ class _AddFoodScreenState extends ConsumerState<AddFoodScreen> {
                   ),
               ],
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 20),
+
+            // Did you eat it? + when
+            EatenToggleCard(
+              eaten: _eaten,
+              time: _eatenTime,
+              onEatenChanged: (v) => setState(() => _eaten = v),
+              onTimeChanged: (t) => setState(() => _eatenTime = t),
+            ),
+            const SizedBox(height: 20),
 
             SizedBox(
               width: double.infinity,

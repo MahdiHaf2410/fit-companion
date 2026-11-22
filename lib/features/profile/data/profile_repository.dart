@@ -52,6 +52,9 @@ class ProfileRepository {
 
   Future<void> clearAllData() async {
     await _db.transaction(() async {
+      await _db.delete(_db.mealTemplateItems).go();
+      await _db.delete(_db.mealTemplates).go();
+      await _db.delete(_db.progressPhotos).go();
       await _db.delete(_db.workoutSets).go();
       await _db.delete(_db.workoutSessions).go();
       await _db.delete(_db.foodLogs).go();
@@ -60,6 +63,8 @@ class ProfileRepository {
       await _db.delete(_db.bodyMetrics).go();
       await _db.delete(_db.goals).go();
       await _db.delete(_db.profiles).go();
+      // Water intake & other key/value prefs
+      await _db.delete(_db.appPreferences).go();
       // Re-seed starter foods and exercises
       await _db.seedInitialData();
     });

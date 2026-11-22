@@ -7,6 +7,8 @@ class DailyNutritionSummary {
   final double targetProtein;
   final double targetCarbs;
   final double targetFat;
+  /// Calories of foods planned for the day but not eaten yet.
+  final double plannedCalories;
 
   const DailyNutritionSummary({
     this.caloriesConsumed = 0.0,
@@ -17,6 +19,7 @@ class DailyNutritionSummary {
     this.targetProtein = 150.0,
     this.targetCarbs = 200.0,
     this.targetFat = 65.0,
+    this.plannedCalories = 0.0,
   });
 
   double get caloriesRemaining => (targetCalories - caloriesConsumed).clamp(-9999.0, 9999.0);

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/widgets/app_card.dart';
 import '../../../shared/providers/settings_provider.dart';
+import 'exercise_picker.dart';
 import 'workout_providers.dart';
 import '../../../l10n/app_localizations.dart';
 
@@ -26,11 +28,22 @@ class ExerciseLibraryScreen extends ConsumerWidget {
       {'id': 'shoulders', 'label': isAr ? 'الأكتاف' : 'Shoulders'},
       {'id': 'arms', 'label': isAr ? 'الذراعين' : 'Arms'},
       {'id': 'core', 'label': isAr ? 'البطن والوسط' : 'Core'},
+      {'id': 'cardio', 'label': isAr ? 'كارديو' : 'Cardio'},
     ];
 
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.workoutsExerciseLibrary),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () async {
+          final ex = await showCreateExerciseSheet(context, ref, initialName: ref.read(exerciseSearchQueryProvider));
+          if (ex != null && context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.exerciseCreated)));
+          }
+        },
+        icon: const Icon(Icons.add_rounded),
+        label: Text(l10n.exerciseCreateCustom),
       ),
       body: Column(
         children: [
@@ -92,7 +105,7 @@ class ExerciseLibraryScreen extends ConsumerWidget {
                 }
 
                 return ListView.separated(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 96), // room for the FAB
                   itemCount: exercises.length,
                   separatorBuilder: (_, __) => const SizedBox(height: 8),
                   itemBuilder: (context, i) {
@@ -105,6 +118,7 @@ class ExerciseLibraryScreen extends ConsumerWidget {
                         : (ex.instructions ?? '');
 
                     return AppCard(
+                      onTap: () => context.push('/workouts/exercise/${ex.id}'),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

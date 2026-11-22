@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Keep resources used by notifications / widget so R8 resource shrinking can't remove them -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@mipmap/ic_launcher,@drawable/*,@layout/fit_widget,@xml/fit_widget_info" />

@@ -6,14 +6,15 @@
   "navWorkouts": "Workouts",
   "navProgress": "Progress",
   "navProfile": "Profile",
-
   "dashboardTitle": "Daily Overview",
   "dashboardNutritionCard": "Daily Nutrition",
   "dashboardCalories": "Calories",
   "dashboardCalorieTarget": "Target: {target} kcal",
   "@dashboardCalorieTarget": {
     "placeholders": {
-      "target": {"type": "int"}
+      "target": {
+        "type": "int"
+      }
     }
   },
   "dashboardConsumed": "Consumed",
@@ -25,8 +26,12 @@
   "dashboardGrams": "{amount}g / {target}g",
   "@dashboardGrams": {
     "placeholders": {
-      "amount": {"type": "String"},
-      "target": {"type": "String"}
+      "amount": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
     }
   },
   "dashboardTodayWorkout": "Today's Workout",
@@ -38,7 +43,9 @@
   "dashboardLatestWeight": "Latest Weight: {weight} kg",
   "@dashboardLatestWeight": {
     "placeholders": {
-      "weight": {"type": "String"}
+      "weight": {
+        "type": "String"
+      }
     }
   },
   "dashboardNoWeightYet": "No weight recorded yet",
@@ -50,14 +57,15 @@
   "dashboardEstimatedTarget": "Estimated Daily Target: {target} kcal",
   "@dashboardEstimatedTarget": {
     "placeholders": {
-      "target": {"type": "int"}
+      "target": {
+        "type": "int"
+      }
     }
   },
   "dashboardCalculatorCard": "Personal Energy Calculator",
   "dashboardCalculatorDesc": "Calculate evidence-based calories and macros with Mifflin–St Jeor.",
   "dashboardAcademyCard": "Nutrition Academy",
   "dashboardAcademyDesc": "14 practical lessons with quizzes and interactive tools.",
-
   "onboardingTitle": "Welcome to Fit Companion",
   "onboardingSubtitle": "Your offline personal fitness and nutrition companion",
   "onboardingName": "Display Name (Optional)",
@@ -86,7 +94,6 @@
   "onboardingTargetSummary": "Estimated Daily Energy Needs",
   "onboardingDisclaimer": "Estimated with the Mifflin–St Jeor equation. Calorie targets are scientific estimates for guidance, not medical prescriptions.",
   "onboardingGetStarted": "Save and Get Started",
-
   "nutritionTitle": "Nutrition",
   "nutritionDailySummary": "Daily Summary",
   "nutritionLogFood": "Log Food",
@@ -130,10 +137,11 @@
   "nutritionTotalCalories": "{calories} kcal",
   "@nutritionTotalCalories": {
     "placeholders": {
-      "calories": {"type": "int"}
+      "calories": {
+        "type": "int"
+      }
     }
   },
-
   "recipeTitle": "Recipe Builder",
   "recipeName": "Recipe Name",
   "recipeServings": "Number of Servings",
@@ -144,14 +152,21 @@
   "recipePerServing": "Per Serving: {cal} kcal | P: {p}g | C: {c}g | F: {f}g",
   "@recipePerServing": {
     "placeholders": {
-      "cal": {"type": "int"},
-      "p": {"type": "String"},
-      "c": {"type": "String"},
-      "f": {"type": "String"}
+      "cal": {
+        "type": "int"
+      },
+      "p": {
+        "type": "String"
+      },
+      "c": {
+        "type": "String"
+      },
+      "f": {
+        "type": "String"
+      }
     }
   },
   "recipeSave": "Save Recipe",
-
   "workoutsTitle": "Workouts",
   "workoutsPrograms": "Workout Programs",
   "workoutsCreateProgram": "New Program",
@@ -160,7 +175,9 @@
   "workoutsDays": "Days: {days}",
   "@workoutsDays": {
     "placeholders": {
-      "days": {"type": "String"}
+      "days": {
+        "type": "String"
+      }
     }
   },
   "workoutsExercises": "Exercises",
@@ -171,8 +188,12 @@
   "workoutsTargetSets": "Target Sets: {sets} x {reps} reps",
   "@workoutsTargetSets": {
     "placeholders": {
-      "sets": {"type": "int"},
-      "reps": {"type": "int"}
+      "sets": {
+        "type": "int"
+      },
+      "reps": {
+        "type": "int"
+      }
     }
   },
   "workoutsActiveSession": "Active Workout",
@@ -180,7 +201,9 @@
   "workoutsRestTimeRemaining": "{seconds}s Rest",
   "@workoutsRestTimeRemaining": {
     "placeholders": {
-      "seconds": {"type": "int"}
+      "seconds": {
+        "type": "int"
+      }
     }
   },
   "workoutsSetHeader": "Set",
@@ -197,25 +220,30 @@
   "workoutsDuration": "Duration: {minutes} mins",
   "@workoutsDuration": {
     "placeholders": {
-      "minutes": {"type": "int"}
+      "minutes": {
+        "type": "int"
+      }
     }
   },
   "workoutsTotalVolume": "Total Volume: {volume} kg",
   "@workoutsTotalVolume": {
     "placeholders": {
-      "volume": {"type": "String"}
+      "volume": {
+        "type": "String"
+      }
     }
   },
   "workoutsTotalSets": "Completed Sets: {sets}",
   "@workoutsTotalSets": {
     "placeholders": {
-      "sets": {"type": "int"}
+      "sets": {
+        "type": "int"
+      }
     }
   },
   "workoutsHistory": "Workout History",
   "workoutsNoHistory": "No completed workouts yet. Start your first session!",
   "workoutsPR": "Personal Record!",
-
   "progressTitle": "Progress & Metrics",
   "progressWeightHistory": "Body Weight Trend",
   "progressAddMetric": "Log Body Metric",
@@ -227,12 +255,13 @@
   "progressWeeklyAverage": "7-Day Moving Avg: {avg} kg",
   "@progressWeeklyAverage": {
     "placeholders": {
-      "avg": {"type": "String"}
+      "avg": {
+        "type": "String"
+      }
     }
   },
   "progressExercisePRs": "Exercise Personal Records",
   "progressNoMetrics": "No body measurements logged yet. Track your weight regularly to see trends!",
-
   "profileTitle": "Profile & Settings",
   "profilePersonalInfo": "Personal Information",
   "profileGoals": "Goals & Targets",
@@ -254,7 +283,6 @@
   "profileAbout": "About Fit Companion",
   "profileAboutText": "Fit Companion is a private, offline-first fitness and nutrition companion engineered for real-life workout and nutrition tracking.",
   "profileOfflineStatus": "100% Offline & Private: Your data is stored strictly on your device.",
-
   "commonSave": "Save",
   "commonCancel": "Cancel",
   "commonDelete": "Delete",
@@ -275,7 +303,6 @@
   "commonCm": "cm",
   "commonReps": "reps",
   "commonSets": "sets",
-
   "nutritionCalculatorTitle": "Personal Nutrition Calculator",
   "nutritionCalculatorDesc": "Calculate evidence-based energy requirements and macronutrient targets tailored to your body.",
   "nutritionCalculatorBmr": "Basal Metabolic Rate (BMR)",
@@ -295,13 +322,14 @@
   "nutritionTrainingCardio": "Cardio & Endurance",
   "nutritionTrainingHybrid": "Functional & Hybrid",
   "nutritionTrainingGeneral": "General Health & Fitness",
-
   "academyTitle": "Nutrition Academy",
   "academySubtitle": "Master nutrition and calorie tracking with practical beginner-friendly lessons and quizzes.",
   "academyLesson": "Lesson {number}",
   "@academyLesson": {
     "placeholders": {
-      "number": {"type": "int"}
+      "number": {
+        "type": "int"
+      }
     }
   },
   "academyQuiz": "Knowledge Check",
@@ -311,13 +339,590 @@
   "academyScore": "Score: {score}%",
   "@academyScore": {
     "placeholders": {
-      "score": {"type": "int"}
+      "score": {
+        "type": "int"
+      }
     }
   },
-
   "foodCalculatorTitle": "Smart Food Calculator",
   "foodCalculatorSubtitle": "Calculate precise nutrition values based on portion weight and preparation state.",
   "foodCalculatorServingType": "Serving & Prep State",
   "foodCalculatorFormulaHelp": "Formula: (Nutrient per 100g × Grams) ÷ 100",
-  "foodCalculatorAddToMeal": "Log Calculated Food"
+  "foodCalculatorAddToMeal": "Log Calculated Food",
+  "greetingMorning": "Good morning",
+  "greetingAfternoon": "Good afternoon",
+  "greetingEvening": "Good evening",
+  "dashboardKcalLeft": "kcal left",
+  "dashboardKcalOver": "kcal over",
+  "dashboardGoal": "Goal",
+  "dashboardInProgress": "In progress",
+  "dashboardWeekActivity": "Weekly activity",
+  "dashboardTools": "Tools & learning",
+  "commonSeeAll": "See all",
+  "commonMl": "ml",
+  "commonToday": "Today",
+  "waterTitle": "Hydration",
+  "waterProgress": "{amount} / {goal} ml",
+  "@waterProgress": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      },
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
+  "waterGoalReached": "Daily water goal reached!",
+  "waterSetGoal": "Daily water goal",
+  "waterUndo": "Remove 250 ml",
+  "statsThisWeek": "This week",
+  "statsWorkouts": "Workouts",
+  "statsVolume": "Volume",
+  "statsStreak": "Day streak",
+  "statsTotal": "Total sessions",
+  "academyLessonsCount": "{count} lessons",
+  "@academyLessonsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "calculatorBmrTdee": "BMR & TDEE",
+  "portionScaler": "Portion scaler",
+  "workoutsNoActive": "No active workout session.",
+  "workoutsElapsed": "Elapsed",
+  "workoutsPrevious": "Last time",
+  "workoutsRest": "Rest",
+  "workoutsSkip": "Skip",
+  "workoutsNewPR": "New personal record! 🏆",
+  "workoutsDeleteSet": "Delete set",
+  "workoutsRestDone": "Rest is over — next set!",
+  "workoutsQuickStart": "Quick workout",
+  "workoutsQuickStartDesc": "Start empty and add exercises as you go",
+  "workoutsEmptySession": "Add your first exercise to start logging sets.",
+  "workoutsStart": "Start",
+  "workoutsExercisesCount": "{count} exercises",
+  "@workoutsExercisesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "workoutsNoProgramsYet": "No programs created yet.",
+  "workoutsSearchExercise": "Search exercises",
+  "sessionDetailTitle": "Workout summary",
+  "sessionDelete": "Delete workout",
+  "sessionDeleteConfirm": "Delete this workout from your history? This cannot be undone.",
+  "sessionMinutes": "{minutes} min",
+  "@sessionMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "progressRecentLogs": "Recent logs",
+  "progressNoPRs": "Complete workout sets to establish your personal strength records!",
+  "progressEst1RM": "Est. 1RM",
+  "progressCurrent": "Current",
+  "progressChange": "Change",
+  "progressBmi": "BMI",
+  "progressSetFormat": "{weight} kg × {reps}",
+  "@progressSetFormat": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "reps": {
+        "type": "int"
+      }
+    }
+  },
+  "toolsTitle": "Gym tools",
+  "tools1RM": "1RM calculator",
+  "tools1RMDesc": "Estimate your max and training loads",
+  "toolsPlates": "Plate calculator",
+  "toolsPlatesDesc": "Which plates to load on each side",
+  "toolsWeightKg": "Weight (kg)",
+  "toolsReps": "Reps",
+  "toolsTargetKg": "Target weight (kg)",
+  "toolsBarKg": "Bar (kg)",
+  "toolsPerSide": "Per side",
+  "toolsRemainder": "Can't load exactly — {kg} kg short",
+  "@toolsRemainder": {
+    "placeholders": {
+      "kg": {
+        "type": "String"
+      }
+    }
+  },
+  "toolsOnlyBar": "Just the empty bar",
+  "toolsPercentOf1RM": "% of 1RM",
+  "nutritionMealEmpty": "Nothing logged yet — tap + to add food",
+  "nutritionMacros": "Macros",
+  "mealsCopyYesterdayHint": "Nothing logged this day. Copy yesterday's meals?",
+  "mealsCopy": "Copy",
+  "mealsCopied": "{count} items copied",
+  "@mealsCopied": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mealsNothingToCopy": "Nothing to copy",
+  "mealsCopyFromYesterday": "Copy from yesterday",
+  "mealsUseTemplate": "Add from template",
+  "mealsSaveTemplate": "Save as template",
+  "mealsTemplateName": "Template name",
+  "mealsTemplateSaved": "Template saved",
+  "mealsTemplates": "Meal templates",
+  "mealsNoTemplates": "No templates yet. Open a meal menu (⋮) and choose \"Save as template\".",
+  "setsSuperset": "Superset",
+  "setsSupersetWithNext": "Superset with next exercise",
+  "setsRemoveSuperset": "Remove superset",
+  "setTypeTitle": "Set type",
+  "setTypeNormal": "Normal",
+  "setTypeWarmup": "Warm-up",
+  "setTypeDrop": "Drop set",
+  "setTypeFailure": "To failure",
+  "rpeHelp": "RPE = how hard the set felt. 10 = no reps left, 8 = 2 reps left in the tank. Warm-up sets don't count toward volume or records.",
+  "commonClear": "Clear",
+  "overloadIncrease": "Add {kg} kg today",
+  "@overloadIncrease": {
+    "placeholders": {
+      "kg": {
+        "type": "String"
+      }
+    }
+  },
+  "overloadKeep": "Same weight — beat your reps",
+  "overloadDeload": "Deload to {kg} kg",
+  "@overloadDeload": {
+    "placeholders": {
+      "kg": {
+        "type": "String"
+      }
+    }
+  },
+  "exerciseProgress": "Exercise progress",
+  "exerciseTopWeight": "Top weight",
+  "exerciseNoHistory": "No completed sets for this exercise yet. Finish a workout with it to see your progress chart.",
+  "heatmapTitle": "Muscles this week",
+  "heatmapHelp": "Working sets in the last 7 days. 10–20 sets per muscle per week is the sweet spot for growth (green). Orange = very high volume.",
+  "muscleChest": "Chest",
+  "muscleBack": "Back",
+  "muscleLegs": "Legs",
+  "muscleShoulders": "Shoulders",
+  "muscleArms": "Arms",
+  "muscleCore": "Core",
+  "achTitle": "Achievements",
+  "achSubtitle": "Earn badges by training consistently, eating well and hitting new records.",
+  "achNext": "Next",
+  "achUnlocked": "Achievement unlocked",
+  "achFirstWorkout": "First step",
+  "achFirstWorkoutDesc": "Complete your first workout.",
+  "achWorkouts10": "Regular",
+  "achWorkouts50": "Dedicated",
+  "achWorkouts100": "Iron legend",
+  "achWorkoutsDesc": "Complete {count} workouts.",
+  "@achWorkoutsDesc": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "achStreak3": "On fire",
+  "achStreak7": "Unstoppable week",
+  "achStreak30": "Machine",
+  "achStreakDesc": "Train {count} days in a row.",
+  "@achStreakDesc": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "achFirstPr": "Record breaker",
+  "achFirstPrDesc": "Set your first personal record.",
+  "achPrs25": "PR hunter",
+  "achPrsDesc": "Set {count} personal records.",
+  "@achPrsDesc": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "achFood7": "Mindful eater",
+  "achFood30": "Nutrition pro",
+  "achFoodDesc": "Log your food on {count} different days.",
+  "@achFoodDesc": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "achWater7": "Hydrated",
+  "achWaterDesc": "Reach your water goal on {count} days.",
+  "@achWaterDesc": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "achWeigh10": "Tracker",
+  "achWeighDesc": "Log your weight {count} times.",
+  "@achWeighDesc": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "achVolume10t": "10 tonnes",
+  "achVolume100t": "100 tonnes",
+  "achVolumeDesc": "Lift {tonnes} tonnes of total volume.",
+  "@achVolumeDesc": {
+    "placeholders": {
+      "tonnes": {
+        "type": "String"
+      }
+    }
+  },
+  "measureTitle": "Body measurements",
+  "measureMore": "More measurements (optional)",
+  "measureChest": "Chest",
+  "measureArm": "Arm",
+  "measureThigh": "Thigh",
+  "measureHips": "Hips",
+  "measureBodyFat": "Body fat",
+  "measureSaved": "Measurement saved",
+  "profileFeatures": "Tools & sync",
+  "scanTitle": "Scan barcode",
+  "scanHint": "Point the camera at a product barcode",
+  "scanLooking": "Looking up {code}…",
+  "@scanLooking": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "scanOffline": "No internet — product lookup needs a connection the first time.",
+  "scanNotFound": "Product not found",
+  "scanNotFoundBody": "Barcode {code} is not in the database yet. You can add it as a custom food.",
+  "@scanNotFoundBody": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "scanAgain": "Scan again",
+  "scanCameraError": "Camera unavailable. Allow camera access in the phone settings.",
+  "remTitle": "Reminders",
+  "remSubtitle": "Smart reminders that work even when the app is closed.",
+  "remWaterTitle": "Drink water",
+  "remWaterBody": "Time for a glass of water 💧",
+  "remMealTitle": "Log your meal",
+  "remWorkoutTitle": "Workout time",
+  "remWorkoutBody": "Let's train today 💪",
+  "remWeighTitle": "Morning weigh-in",
+  "remWeighBody": "Weigh yourself before breakfast for the most accurate trend.",
+  "remEvery": "Every",
+  "remHours": "{h} h",
+  "@remHours": {
+    "placeholders": {
+      "h": {
+        "type": "int"
+      }
+    }
+  },
+  "remFromTo": "From – to",
+  "remTime": "Time",
+  "remPermissionDenied": "Notifications are blocked. Allow them in the phone settings.",
+  "remWatchInfo": "The rest timer appears as a live countdown notification. If your watch (Wear OS, Galaxy Watch, Mi Band…) shows phone notifications, it shows the timer and vibrates when rest ends.",
+  "backupTitle": "Backup & restore",
+  "backupSubtitle": "Save all your data to one file (send it to Google Drive, Telegram, email…) and restore it on any phone.",
+  "backupExport": "Create backup",
+  "backupExportDesc": "Exports a .json file and opens the share menu",
+  "backupRestore": "Restore backup",
+  "backupRestoreDesc": "Pick a backup file — replaces the data on this phone",
+  "backupRestoreConfirm": "All current data on this phone will be replaced by the backup. Continue?",
+  "backupRestored": "Backup restored ✓",
+  "backupInvalid": "This file is not a Fit Companion backup.",
+  "backupPhotosNote": "Note: progress photos stay on the phone and are not included in the backup file.",
+  "photosTitle": "Progress photos",
+  "photosAdd": "Add photo",
+  "photosCamera": "Take a photo",
+  "photosGallery": "Choose from gallery",
+  "photosFront": "Front",
+  "photosSide": "Side",
+  "photosBack": "Back",
+  "photosCompare": "Before / after",
+  "photosBefore": "Before",
+  "photosAfter": "After",
+  "photosEmpty": "Take a photo every 2–4 weeks in the same light and pose to see your real change.",
+  "photosPrivacy": "🔒 Photos are private and stored only on this phone. They leave it only if you ask for an AI analysis (you confirm each time).",
+  "photosDelete": "Delete this photo?",
+  "healthTitle": "Health Connect",
+  "healthSubtitle": "Connect Android's Health Connect to read your daily steps and save your weight there automatically.",
+  "healthUnavailable": "Health Connect is not available on this phone (needs Android 9+ and not a work profile).",
+  "healthNeedsInstall": "Install or update the Health Connect app from Google Play first.",
+  "healthInstall": "Open Google Play",
+  "healthConnected": "Connected",
+  "healthNotConnected": "Not connected",
+  "healthWhat": "Reads: steps • Writes: body weight",
+  "healthConnect": "Connect Health Connect",
+  "healthStepsToday": "Steps today",
+  "cloudTitle": "Cloud sync",
+  "coachTitle": "AI coach",
+  "cloudSubtitle": "Keep your data safe in the cloud and move it between phones. Free, with your own account.",
+  "cloudUnavailable": "Cloud is unavailable right now (no internet at app start). Restart the app with internet.",
+  "cloudSignIn": "Sign in",
+  "cloudCreateAccount": "Create account",
+  "cloudEmail": "Email",
+  "cloudPassword": "Password (6+ characters)",
+  "cloudInvalidForm": "Enter a valid email and a password of at least 6 characters.",
+  "cloudConfirmEmail": "Account created. Check your email to confirm it, then sign in.",
+  "cloudSignedIn": "Signed in ✓",
+  "cloudSignOut": "Sign out",
+  "cloudLastSync": "Last sync",
+  "cloudCloudCopy": "Cloud copy",
+  "cloudRemoteNewer": "The cloud copy is newer than this phone (uploaded from another device). Download it, or upload to replace it.",
+  "cloudUpload": "Upload",
+  "cloudDownload": "Download",
+  "cloudUploadOverwrite": "This replaces the newer cloud copy with this phone's data. Continue?",
+  "cloudDownloadOverwrite": "This replaces ALL data on this phone with the cloud copy. Continue?",
+  "cloudUploaded": "Uploaded to the cloud ✓",
+  "cloudDownloaded": "Cloud data restored ✓",
+  "cloudAuto": "Automatic backup",
+  "cloudAutoDesc": "Uploads when you leave the app (never overwrites a newer cloud copy).",
+  "cloudPrivacy": "🔒 Each account can only read its own data (Row Level Security). Progress photos are never uploaded. Free projects pause after ~1 week without use and wake up on the next sync.",
+  "coachTagline": "Personal advice from your own data",
+  "coachIntro": "Ask anything about training, nutrition or your progress. The coach sees a short summary of your data (averages, goals, best lifts) — never your raw logs. It is not a doctor.",
+  "coachHint": "Ask your coach…",
+  "coachClear": "Clear conversation",
+  "coachNeedsAccount": "The AI coach needs a free cloud account (your conversation is saved there).",
+  "coachSuggest1": "Analyse my last week",
+  "coachSuggest2": "How much protein do I need?",
+  "coachSuggest3": "Why isn't my weight moving?",
+  "coachSuggest4": "Suggest an Algerian high-protein dinner",
+  "coachErrNoKey": "The coach is not configured yet: the Gemini API key must be added in Supabase (Edge Functions → Secrets → GEMINI_API_KEY).",
+  "coachErrLimit": "Daily limit reached (40 messages). Try again tomorrow.",
+  "coachErrQuota": "The free Gemini quota is used up for now. Try again later.",
+  "coachErrGeneric": "The coach could not answer. Try again.",
+  "coachErrNetwork": "No connection to the coach. Check your internet.",
+  "coachErrModel": "The AI model name is not available. Set GEMINI_MODEL in Supabase secrets (e.g. gemini-3.8-flash).",
+  "coachErrBusy": "The AI servers are busy right now. Wait a few seconds and try again.",
+  "muscleCardio": "Cardio",
+  "equipBarbell": "Barbell",
+  "equipDumbbell": "Dumbbell",
+  "equipMachine": "Machine",
+  "equipCable": "Cable",
+  "equipBodyweight": "Bodyweight",
+  "equipKettlebell": "Kettlebell",
+  "equipOther": "Other",
+  "exerciseCreateCustom": "Add my exercise",
+  "exerciseCreateCustomHint": "Can't find it? Create it in seconds",
+  "exerciseNotFound": "No exercise found. Use \"Add my exercise\" above.",
+  "exerciseName": "Exercise name",
+  "exerciseCompound": "Compound",
+  "exerciseIsolation": "Isolation",
+  "exerciseNotesOptional": "Notes / how to do it (optional)",
+  "exerciseCreated": "Exercise added ✓",
+  "programEdit": "Edit program",
+  "programNameRequired": "Give your program a name",
+  "programNeedsExercise": "Add at least one exercise",
+  "programSaved": "Program saved ✓",
+  "programNameHint": "e.g. Upper A, Lower B, Arms & Abs",
+  "programReorderHint": "Drag ⋮⋮ to reorder",
+  "programEmptyHint": "No exercises yet. Tap \"Add exercise\" to build your workout.",
+  "programDeleteConfirm": "Delete this program? Your workout history is kept.",
+  "programsEmptyTitle": "Build your own split",
+  "programsEmptyBody": "Create one program per training day, e.g. \"Upper A\", \"Lower A\", \"Upper B\", \"Lower B\", \"Arms & Abs\". Add only the exercises you want.",
+  "templatesTitle": "Ready-made programs",
+  "templatesSubtitle": "PPL, Upper/Lower, Full Body, 5/3/1 — copy one and customise it",
+  "templateUse": "Add to my programs & edit",
+  "templateCopied": "Copied to your programs — customise it",
+  "templateBadge": "Template",
+  "foodsMine": "My foods",
+  "foodsSuggestions": "Suggestions",
+  "foodsAddMine": "Add my food",
+  "foodsMineEmptyTitle": "Your food list is empty",
+  "foodsMineEmptyBody": "Add what you really eat: write the name, a short description and the weight — AI calculates calories, protein, carbs and fat for you. Ready-made foods are in \"Suggestions\".",
+  "foodsDeleteConfirm": "Delete this food from your list? Past logs are kept.",
+  "myFoodName": "Food name",
+  "myFoodNameHint": "e.g. Chicken couscous",
+  "myFoodDescription": "Description (ingredients, how it was cooked)",
+  "myFoodDescriptionHint": "e.g. 150 g cooked couscous, 120 g chicken breast, vegetables, 1 tbsp olive oil",
+  "myFoodWeight": "Weight of the portion",
+  "myFoodAnalyze": "Calculate with AI",
+  "myFoodAnalyzing": "Analysing…",
+  "myFoodNeedNameWeight": "Enter the food name and its weight.",
+  "myFoodNeedValues": "Calculate with AI or enter the calories manually.",
+  "myFoodNeedAccount": "AI calculation needs a free account (My account → Cloud sync). You can also type the values yourself.",
+  "myFoodConfHigh": "High accuracy",
+  "myFoodConfMedium": "Medium accuracy",
+  "myFoodConfLow": "Low accuracy — add details",
+  "myFoodPer100": "Per 100 g",
+  "myFoodPortionValues": "Values for {grams} g",
+  "@myFoodPortionValues": {
+    "placeholders": {
+      "grams": {
+        "type": "String"
+      }
+    }
+  },
+  "myFoodEditHint": "You can correct any value before saving. The more details in the description, the more accurate the result.",
+  "myFoodLogNow": "Add it to today's meals",
+  "myFoodSaveAndLog": "Save & add to meal",
+  "myFoodSaved": "Food saved to your list ✓",
+  "myFoodSavedLogged": "Food saved and added ✓",
+  "eatenQuestion": "Did you eat it?",
+  "eatenYes": "Yes — counts in today's totals",
+  "eatenPlanned": "Not yet — saved as planned",
+  "eatenAtTime": "Eaten at",
+  "eatenMark": "Mark as eaten",
+  "eatenUndo": "Mark as not eaten",
+  "eatenWhen": "When did you eat it?",
+  "eatenAtShort": "Eaten at",
+  "eatenPlannedShort": "Planned — tap ○ when you eat it",
+  "eatenPlannedKcal": "{kcal} kcal planned, not eaten yet",
+  "@eatenPlannedKcal": {
+    "placeholders": {
+      "kcal": {
+        "type": "int"
+      }
+    }
+  },
+  "themesTitle": "Themes & appearance",
+  "themesColors": "Colour themes",
+  "themesBackground": "Animated background",
+  "themesAnimated": "Animated background",
+  "themesAnimatedDesc": "Smooth moving background behind every screen",
+  "themesInteractive": "React to touch",
+  "themesInteractiveDesc": "Ripples, glow and particles follow your finger",
+  "themesIntensity": "Intensity",
+  "themesEffect": "Effect",
+  "themesBatteryNote": "The animation runs at 30 fps, pauses when the app is in the background and turns off automatically if \"Remove animations\" is enabled in Android accessibility settings.",
+  "fxAuto": "Theme default",
+  "fxNone": "None",
+  "fxOrbs": "Glow orbs",
+  "fxParticles": "Particles",
+  "fxWaves": "Waves",
+  "fxGrid": "Neon grid",
+  "fxAurora": "Aurora",
+  "fxBokeh": "Bokeh",
+  "fxStars": "Stars",
+  "shapeSharp": "Sharp corners",
+  "shapeSoft": "Soft corners",
+  "shapeRounded": "Rounded",
+  "shapePill": "Pill shapes",
+  "aboutDevelopedBy": "Developed by",
+  "aboutDeveloperName": "Mahdi Hafiane",
+  "scanAiEstimating": "Found \"{name}\" — AI is calculating its nutrition…",
+  "@scanAiEstimating": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "scanNotFoundAi": "Barcode {code} is not in the online database. Take a photo of the package (ideally the nutrition table) and AI will read the product name and its values.",
+  "@scanNotFoundAi": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "scanPhotoLabel": "Photo of product",
+  "scanManual": "Enter manually",
+  "scanReadingLabel": "AI is reading the product…",
+  "photoTitle": "Meal photo (AI)",
+  "photoHint": "Take a photo of your plate, meal or product: AI identifies the foods and calculates calories, protein, carbs and fat.",
+  "photoAnalyzing": "Analysing…",
+  "photoNote": "Note for the AI (optional)",
+  "photoNoteHint": "e.g. fried in olive oil, 2 eggs, big portion",
+  "photoNotFood": "No food detected in this photo. Try another angle with the whole plate visible.",
+  "photoResults": "Detected foods",
+  "photoSuggestions": "To make it better",
+  "photoLogged": "{count} items added to your meal ✓",
+  "@photoLogged": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coachAttach": "Send photo or video",
+  "coachTakePhoto": "Take a photo",
+  "coachPickPhoto": "Photo from gallery",
+  "coachRecordVideo": "Record a video (max 60 s)",
+  "coachPickVideo": "Video from gallery",
+  "coachPhotoAttached": "Photo attached",
+  "coachVideoAttached": "Video",
+  "coachUploading": "Uploading…",
+  "coachAnalyzingVideo": "Analysing the video (can take up to a minute)…",
+  "coachErrMediaBig": "File too large (max 40 MB). Send a shorter video.",
+  "coachErrUpload": "Upload failed. Check your internet and try again.",
+  "coachErrMediaType": "This file type could not be analysed. Try another photo or an MP4 video.",
+  "photosDate": "Date of the photo",
+  "photosLastWeek": "Last week",
+  "photos2Weeks": "2 weeks ago",
+  "photosLastMonth": "Last month",
+  "photosPose": "Pose",
+  "photosNeedTwo": "Add at least 2 photos in the same pose to compare them and get an AI analysis.",
+  "photosDaysApart": "{days} days between the photos",
+  "@photosDaysApart": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "photosAiAnalyze": "Analyse my progress with AI",
+  "photosAiConsentTitle": "Send these 2 photos for analysis?",
+  "photosAiConsent": "Your photos are private and stay on this phone. For this analysis only, the 2 selected photos are sent securely to Google Gemini (via your account). They are not saved on our server.",
+  "photosHomeEmpty": "Add body photos to see your real transformation",
+  "photosHomeLast": "Last photo {days} days ago",
+  "@photosHomeLast": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "photosHomeCompare": "Compare before / after and get an AI progress analysis",
+  "aiProgressTitle": "AI progress analysis",
+  "aiMuscle": "Muscle gain",
+  "aiFat": "Body fat",
+  "aiGainClear": "clear",
+  "aiGainSlight": "slight",
+  "aiGainNone": "not visible",
+  "aiUnclear": "unclear",
+  "aiFatLess": "lower",
+  "aiFatSame": "same",
+  "aiFatMore": "higher",
+  "aiNotComparable": "The photos are hard to compare (different light, pose or distance).",
+  "aiAreas": "By muscle group",
+  "aiTips": "How to progress faster",
+  "profileAthlete": "Athlete",
+  "profileYears": "{age} y",
+  "@profileYears": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "profilePreferences": "App preferences"
 }

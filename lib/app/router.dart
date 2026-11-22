@@ -7,7 +7,8 @@ import '../features/dashboard/presentation/dashboard_screen.dart';
 import '../features/nutrition/presentation/nutrition_screen.dart';
 import '../features/nutrition/presentation/food_search_screen.dart';
 import '../features/nutrition/presentation/add_food_screen.dart';
-import '../features/nutrition/presentation/custom_food_screen.dart';
+import '../features/nutrition/presentation/my_food_screen.dart';
+import '../features/nutrition/presentation/food_photo_screen.dart';
 import '../features/nutrition/presentation/recipe_builder_screen.dart';
 import '../features/nutrition/presentation/nutrition_calculator_screen.dart';
 import '../features/nutrition/presentation/smart_food_calculator_screen.dart';
@@ -15,9 +16,23 @@ import '../features/nutrition/presentation/academy_screen.dart';
 import '../features/nutrition/presentation/lesson_detail_screen.dart';
 import '../features/workouts/presentation/workouts_screen.dart';
 import '../features/workouts/presentation/program_details_screen.dart';
-import '../features/workouts/presentation/create_program_screen.dart';
+import '../features/workouts/presentation/program_editor_screen.dart';
+import '../features/workouts/presentation/templates_screen.dart';
 import '../features/workouts/presentation/active_workout_screen.dart';
 import '../features/workouts/presentation/exercise_library_screen.dart';
+import '../features/workouts/presentation/session_detail_screen.dart';
+import '../features/workouts/presentation/exercise_detail_screen.dart';
+import '../features/tools/presentation/gym_tools_screen.dart';
+import '../features/achievements/achievements_screen.dart';
+import '../features/settings/reminders_screen.dart';
+import '../features/nutrition/presentation/barcode_scan_screen.dart';
+import '../core/services/home_widget_service.dart';
+import '../features/settings/backup_screen.dart';
+import '../features/settings/cloud_screen.dart';
+import '../features/settings/themes_screen.dart';
+import '../features/coach/coach_screen.dart';
+import '../features/settings/health_screen.dart';
+import '../features/progress/presentation/progress_photos_screen.dart';
 import '../features/progress/presentation/progress_screen.dart';
 import '../features/progress/presentation/add_metric_screen.dart';
 import '../features/profile/presentation/profile_screen.dart';
@@ -28,13 +43,21 @@ import '../features/profile/presentation/profile_providers.dart';
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 final routerProvider = Provider<GoRouter>((ref) {
-  final profileAsync = ref.watch(profileStreamProvider);
+  // The router is created ONCE. Profile changes (e.g. logging weight updates the
+  // profile) only trigger a redirect re-evaluation instead of rebuilding the whole
+  // GoRouter, which previously reset navigation back to /home.
+  final refresh = ValueNotifier<int>(0);
+  ref.listen(profileStreamProvider, (_, __) => refresh.value++);
+  ref.onDispose(refresh.dispose);
 
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/home',
+    // INITIAL_ROUTE is a dev helper (e.g. --dart-define=INITIAL_ROUTE=/workouts)
+    initialLocation: const String.fromEnvironment('INITIAL_ROUTE', defaultValue: '/home'),
+    refreshListenable: refresh,
     redirect: (context, state) {
       // Check if user is onboarded
+      final profileAsync = ref.read(profileStreamProvider);
       final profile = profileAsync.value;
       final isOnboardingLocation = state.matchedLocation == '/onboarding';
 
@@ -42,6 +65,11 @@ final routerProvider = Provider<GoRouter>((ref) {
         final isOnboarded = profile != null && profile.isOnboarded;
         if (!isOnboarded && !isOnboardingLocation) {
           return '/onboarding';
+        }
+        // Leave onboarding as soon as the saved profile arrives (works whatever the
+        // timing between context.go('/home') and the drift stream re-emitting).
+        if (isOnboarded && isOnboardingLocation) {
+          return '/home';
         }
       }
       return null;
@@ -54,7 +82,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
-          return AppScaffoldShell(navigationShell: navigationShell);
+          return HomeWidgetSync(child: AppScaffoldShell(navigationShell: navigationShell));
         },
         branches: [
           // Branch 0: Home
@@ -130,7 +158,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/nutrition/custom',
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => const CustomFoodScreen(),
+        builder: (context, state) => MyFoodScreen(mealType: state.uri.queryParameters['meal']),
       ),
       GoRoute(
         path: '/nutrition/recipe/create',
@@ -172,7 +200,17 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/workouts/programs/create',
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => const CreateProgramScreen(),
+        builder: (context, state) => const ProgramEditorScreen(),
+      ),
+      GoRoute(
+        path: '/workouts/program/:id/edit',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => ProgramEditorScreen(programId: state.pathParameters['id']),
+      ),
+      GoRoute(
+        path: '/workouts/templates',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const TemplatesScreen(),
       ),
       GoRoute(
         path: '/workouts/program/:id',
@@ -191,6 +229,71 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/workouts/exercises',
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const ExerciseLibraryScreen(),
+      ),
+      GoRoute(
+        path: '/workouts/session/:id',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => SessionDetailScreen(sessionId: state.pathParameters['id'] ?? ''),
+      ),
+      GoRoute(
+        path: '/workouts/exercise/:id',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => ExerciseDetailScreen(exerciseId: state.pathParameters['id'] ?? ''),
+      ),
+      GoRoute(
+        path: '/achievements',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const AchievementsScreen(),
+      ),
+      GoRoute(
+        path: '/settings/reminders',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const RemindersScreen(),
+      ),
+      GoRoute(
+        path: '/nutrition/scan',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => BarcodeScanScreen(mealType: state.uri.queryParameters['meal']),
+      ),
+      GoRoute(
+        path: '/settings/backup',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const BackupScreen(),
+      ),
+      GoRoute(
+        path: '/settings/health',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const HealthScreen(),
+      ),
+      GoRoute(
+        path: '/progress/photos',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const ProgressPhotosScreen(),
+      ),
+      GoRoute(
+        path: '/settings/cloud',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const CloudScreen(),
+      ),
+      GoRoute(
+        path: '/coach',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const CoachScreen(),
+      ),
+      GoRoute(
+        path: '/settings/themes',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const ThemesScreen(),
+      ),
+      GoRoute(
+        path: '/nutrition/photo',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => FoodPhotoScreen(mealType: state.uri.queryParameters['meal']),
+      ),
+      GoRoute(
+        path: '/tools',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const GymToolsScreen(),
       ),
       GoRoute(
         path: '/progress/add',

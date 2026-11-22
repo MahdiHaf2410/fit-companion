@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/app_card.dart';
 import '../../../core/widgets/macro_progress_bar.dart';
+import '../../../core/widgets/ui_kit.dart';
 import '../../../shared/providers/settings_provider.dart';
+import '../../achievements/achievements_screen.dart';
+import '../../progress/presentation/progress_photos_screen.dart' show ProgressPhotosHomeCard;
+import '../../hydration/presentation/water_card.dart';
+import '../../nutrition/domain/daily_nutrition_summary.dart';
 import '../../nutrition/presentation/nutrition_providers.dart';
 import '../../workouts/presentation/workout_providers.dart';
 import '../../progress/presentation/progress_providers.dart';
@@ -15,540 +22,471 @@ import '../../../l10n/app_localizations.dart';
 class DashboardScreen extends ConsumerWidget {
   const DashboardScreen({super.key});
 
+  String _greeting(AppLocalizations l10n) {
+    final h = DateTime.now().hour;
+    if (h < 12) return l10n.greetingMorning;
+    if (h < 18) return l10n.greetingAfternoon;
+    return l10n.greetingEvening;
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
+    final locale = ref.watch(localeProvider).languageCode;
 
-    final summaryAsync = ref.watch(dailyNutritionSummaryProvider);
+    // The dashboard always shows TODAY, even if the nutrition tab browsed another day.
+    final summaryAsync = ref.watch(todayNutritionSummaryProvider);
     final activeSessionAsync = ref.watch(activeWorkoutSessionProvider);
     final latestMetricAsync = ref.watch(latestBodyMetricProvider);
-    final profileAsync = ref.watch(profileStreamProvider);
-
-    final profile = profileAsync.value;
+    final statsAsync = ref.watch(trainingStatsProvider);
+    final profile = ref.watch(profileStreamProvider).value;
     final userName = profile?.displayName ?? '';
+    final stats = statsAsync.value;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              userName.isNotEmpty ? '${l10n.dashboardTitle}, $userName' : l10n.dashboardTitle,
-              style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            Text(
-              DateTime.now().toLocal().toString().split(' ')[0],
-              style: theme.textTheme.bodySmall,
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            tooltip: l10n.profileLanguage,
-            icon: const Icon(Icons.language_rounded),
-            onPressed: () {
-              ref.read(localeProvider.notifier).toggleLanguage();
-            },
-          ),
-          IconButton(
-            tooltip: l10n.dashboardActionAddFood,
-            icon: const Icon(Icons.add_circle_outline_rounded),
-            onPressed: () => context.push('/nutrition/search'),
-          ),
-        ],
-      ),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          ref.invalidate(dailyNutritionSummaryProvider);
-          ref.invalidate(activeWorkoutSessionProvider);
-          ref.invalidate(latestBodyMetricProvider);
-        },
-        child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      body: SafeArea(
+        bottom: false,
+        child: RefreshIndicator(
+          onRefresh: () async {
+            ref.invalidate(todayNutritionSummaryProvider);
+            ref.invalidate(activeWorkoutSessionProvider);
+            ref.invalidate(latestBodyMetricProvider);
+          },
+          child: ListView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            padding: const EdgeInsets.fromLTRB(18, 8, 18, kNavBarClearance),
             children: [
-              // 1. Quick Actions Row
+              // ---------------- Header ----------------
               Row(
                 children: [
                   Expanded(
-                    child: _QuickActionButton(
-                      icon: Icons.fastfood_rounded,
-                      label: l10n.dashboardActionAddFood,
-                      onTap: () => context.push('/nutrition/search'),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          DateFormat.MMMMEEEEd(locale).format(DateTime.now()).toUpperCase(),
+                          style: theme.textTheme.labelSmall?.copyWith(letterSpacing: 1.1),
+                        ),
+                        const SizedBox(height: 4),
+                        // Smaller greeting so the user's name always fits
+                        Text.rich(
+                          TextSpan(children: [
+                            TextSpan(
+                              text: userName.isNotEmpty ? '${_greeting(l10n)}${locale == 'ar' ? '،' : ','} ' : _greeting(l10n),
+                              style: theme.textTheme.titleMedium?.copyWith(color: context.textSecondary, fontWeight: FontWeight.w600),
+                            ),
+                            if (userName.isNotEmpty)
+                              TextSpan(
+                                text: userName,
+                                style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900, color: theme.colorScheme.onSurface),
+                              ),
+                          ]),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: _QuickActionButton(
-                      icon: Icons.fitness_center_rounded,
-                      label: l10n.dashboardActionStartWorkout,
-                      onTap: () => context.push('/workouts/programs'),
-                    ),
+                  _CircleButton(
+                    icon: Icons.translate_rounded,
+                    tooltip: l10n.profileLanguage,
+                    onTap: () => ref.read(localeProvider.notifier).toggleLanguage(),
                   ),
                   const SizedBox(width: 8),
-                  Expanded(
-                    child: _QuickActionButton(
-                      icon: Icons.monitor_weight_rounded,
-                      label: l10n.dashboardActionLogWeight,
-                      onTap: () => context.push('/progress/add'),
-                    ),
+                  _CircleButton(
+                    icon: Icons.add_rounded,
+                    tooltip: l10n.dashboardActionAddFood,
+                    filled: true,
+                    onTap: () => context.push('/nutrition/search'),
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 18),
 
-              // 2. Daily Nutrition Card
-              Text(
-                l10n.dashboardNutritionCard,
-                style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              // ---------------- Calories hero ----------------
+              FadeSlideIn(
+                child: summaryAsync.when(
+                  data: (s) => _CaloriesHero(summary: s),
+                  loading: () => const _LoadingCard(height: 250),
+                  error: (e, _) => AppCard(child: Text('${l10n.commonError}: $e')),
+                ),
               ),
-              const SizedBox(height: 8),
-              summaryAsync.when(
-                data: (summary) => AppCard(
-                  onTap: () => context.go('/nutrition'),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                l10n.dashboardConsumed,
-                                style: theme.textTheme.bodySmall,
-                              ),
-                              Text(
-                                "${summary.caloriesConsumed.toInt()} ${l10n.commonKcal}",
-                                style: theme.textTheme.headlineMedium?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: theme.colorScheme.primary,
-                                ),
-                              ),
-                              Row(
+              const SizedBox(height: 12),
+
+              // ---------------- KPI tiles ----------------
+              FadeSlideIn(
+                index: 1,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: StatTile(
+                        icon: Icons.local_fire_department_rounded,
+                        color: AppColors.flame,
+                        value: '${stats?.currentStreakDays ?? 0}',
+                        label: l10n.statsStreak,
+                        onTap: () => context.go('/workouts'),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: StatTile(
+                        icon: Icons.fitness_center_rounded,
+                        color: AppColors.violet,
+                        value: '${stats?.workoutsThisWeek ?? 0}',
+                        label: l10n.statsThisWeek,
+                        onTap: () => context.go('/workouts'),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: StatTile(
+                        icon: Icons.monitor_weight_rounded,
+                        color: AppColors.cyan,
+                        value: latestMetricAsync.value != null
+                            ? latestMetricAsync.value!.weightKg.toStringAsFixed(1)
+                            : '—',
+                        label: l10n.commonKg,
+                        onTap: () => latestMetricAsync.value == null
+                            ? context.push('/progress/add')
+                            : context.go('/progress'),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              // ---------------- Today's workout ----------------
+              SectionHeader(
+                title: l10n.dashboardTodayWorkout,
+                actionLabel: l10n.commonSeeAll,
+                onAction: () => context.go('/workouts'),
+              ),
+              FadeSlideIn(
+                index: 2,
+                child: activeSessionAsync.when(
+                  data: (active) {
+                    if (active != null) {
+                      final done = active.sets.where((s) => s.isCompleted).length;
+                      final total = active.sets.length;
+                      return AppCard(
+                        onTap: () => context.push('/workouts/active'),
+                        gradient: AppColors.violetGradient,
+                        border: Border.all(color: Colors.transparent),
+                        child: Row(
+                          children: [
+                            ProgressRing(
+                              progress: total == 0 ? 0 : done / total,
+                              size: 64,
+                              strokeWidth: 7,
+                              color: AppColors.onSecondary,
+                              trackColor: AppColors.onSecondary.withValues(alpha: 0.25),
+                              child: Text('$done/$total',
+                                  style: TextStyle(color: AppColors.onSecondary, fontWeight: FontWeight.w800, fontSize: 13)),
+                            ),
+                            const SizedBox(width: 14),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  Pill(label: l10n.dashboardInProgress, color: AppColors.onSecondary, icon: Icons.bolt_rounded),
+                                  const SizedBox(height: 6),
                                   Text(
-                                    l10n.dashboardEstimatedTarget(summary.targetCalories),
-                                    style: theme.textTheme.bodySmall,
-                                  ),
-                                  const SizedBox(width: 4),
-                                  GestureDetector(
-                                    onTap: () => _showTargetExplanationDialog(context, l10n),
-                                    child: Icon(
-                                      Icons.info_outline_rounded,
-                                      size: 14,
-                                      color: theme.colorScheme.primary,
-                                    ),
+                                    active.session.programName ?? l10n.workoutsActiveSession,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(color: AppColors.onSecondary, fontWeight: FontWeight.w800, fontSize: 18),
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                            decoration: BoxDecoration(
-                              color: summary.caloriesRemaining >= 0
-                                  ? theme.colorScheme.primary.withAlpha(25)
-                                  : theme.colorScheme.error.withAlpha(25),
-                              borderRadius: BorderRadius.circular(12),
                             ),
+                            Icon(Icons.play_circle_fill_rounded, color: AppColors.onSecondary, size: 40),
+                          ],
+                        ),
+                      );
+                    }
+                    return AppCard(
+                      onTap: () => context.go('/workouts'),
+                      child: Row(
+                        children: [
+                          IconBadge(
+                            icon: Icons.fitness_center_rounded,
+                            color: AppColors.violet,
+                            gradient: AppColors.limeGradient,
+                            size: 52,
+                            iconSize: 26,
+                          ),
+                          const SizedBox(width: 14),
+                          Expanded(
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  summary.caloriesRemaining >= 0
-                                      ? l10n.dashboardRemaining
-                                      : l10n.dashboardOverLimit,
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                    color: summary.caloriesRemaining >= 0
-                                        ? theme.colorScheme.primary
-                                        : theme.colorScheme.error,
-                                  ),
-                                ),
-                                Text(
-                                  "${summary.caloriesRemaining.abs().toInt()} ${l10n.commonKcal}",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: summary.caloriesRemaining >= 0
-                                        ? theme.colorScheme.primary
-                                        : theme.colorScheme.error,
-                                  ),
-                                ),
+                                Text(l10n.dashboardStartWorkout, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800)),
+                                const SizedBox(height: 2),
+                                Text(l10n.dashboardNoWorkoutToday, style: theme.textTheme.bodySmall),
                               ],
                             ),
                           ),
+                          Icon(
+                            context.forwardChevron,
+                            color: context.textSecondary,
+                          ),
                         ],
                       ),
-                      const SizedBox(height: 16),
-                      // Linear Overall Calorie progress
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(6),
-                        child: LinearProgressIndicator(
-                          value: summary.calorieProgress,
-                          minHeight: 10,
-                          backgroundColor: theme.colorScheme.outline.withAlpha(30),
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            summary.caloriesRemaining >= 0
-                                ? theme.colorScheme.primary
-                                : theme.colorScheme.error,
-                          ),
+                    );
+                  },
+                  loading: () => const _LoadingCard(height: 90),
+                  error: (e, _) => AppCard(child: Text('${l10n.commonError}: $e')),
+                ),
+              ),
+              const SizedBox(height: 12),
+
+              // ---------------- Weekly activity ----------------
+              FadeSlideIn(
+                index: 3,
+                child: AppCard(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(child: Text(l10n.dashboardWeekActivity, style: theme.textTheme.titleSmall)),
+                          if ((stats?.volumeThisWeekKg ?? 0) > 0)
+                            Pill(
+                              label: '${NumberFormat.compact(locale: locale).format(stats!.volumeThisWeekKg)} ${l10n.commonKg}',
+                              color: theme.colorScheme.primary,
+                            ),
+                        ],
+                      ),
+                      const SizedBox(height: 14),
+                      WeekStrip(
+                        days: stats?.last7Days ?? List.filled(7, false),
+                        labels: last7DayLabels(locale),
+                        color: theme.colorScheme.primary,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+
+              const FadeSlideIn(index: 4, child: ProgressPhotosHomeCard()),
+              const SizedBox(height: 12),
+              const FadeSlideIn(index: 4, child: AchievementsSummaryCard()),
+              const SizedBox(height: 12),
+
+              // ---------------- Water ----------------
+              const FadeSlideIn(index: 4, child: WaterCard(today: true)),
+
+              // ---------------- Tools ----------------
+              SectionHeader(title: l10n.dashboardTools),
+              FadeSlideIn(
+                index: 5,
+                child: AppCard(
+                  onTap: () => context.push('/coach'),
+                  gradient: AppColors.violetGradient,
+                  border: Border.all(color: Colors.transparent),
+                  child: Row(
+                    children: [
+                      Icon(Icons.smart_toy_rounded, color: AppColors.onSecondary, size: 34),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(l10n.coachTitle, style: TextStyle(color: AppColors.onSecondary, fontWeight: FontWeight.w800, fontSize: 16)),
+                            Text(l10n.coachTagline, style: TextStyle(color: AppColors.onSecondary.withValues(alpha: 0.75), fontSize: 12)),
+                          ],
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      // Macronutrient Breakdown
-                      MacroProgressBar(
-                        label: l10n.dashboardProtein,
-                        current: summary.proteinConsumed,
-                        target: summary.targetProtein,
-                        unit: l10n.commonGrams,
-                        color: AppColors.protein,
-                      ),
-                      const SizedBox(height: 10),
-                      MacroProgressBar(
-                        label: l10n.dashboardCarbs,
-                        current: summary.carbsConsumed,
-                        target: summary.targetCarbs,
-                        unit: l10n.commonGrams,
-                        color: AppColors.carbs,
-                      ),
-                      const SizedBox(height: 10),
-                      MacroProgressBar(
-                        label: l10n.dashboardFat,
-                        current: summary.fatConsumed,
-                        target: summary.targetFat,
-                        unit: l10n.commonGrams,
-                        color: AppColors.fat,
-                      ),
-                      const SizedBox(height: 12),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton.icon(
-                          onPressed: () => context.push('/nutrition/calculator'),
-                          icon: const Icon(Icons.tune_rounded, size: 16),
-                          label: Text(l10n.profileEditGoals),
+                      Icon(context.forwardChevron, color: AppColors.onSecondary),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              FadeSlideIn(
+                index: 5,
+                child: AppCard(
+                  onTap: () => context.push('/nutrition/academy'),
+                  gradient: context.heroGradient,
+                  child: Row(
+                    children: [
+                      IconBadge(icon: Icons.school_rounded, color: AppColors.violet, size: 48),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Wrap(
+                              spacing: 8,
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              children: [
+                                Text(l10n.dashboardAcademyCard, style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w800)),
+                                Pill(label: l10n.academyLessonsCount(14), color: AppColors.violet),
+                              ],
+                            ),
+                            const SizedBox(height: 4),
+                            Text(l10n.dashboardAcademyDesc, style: theme.textTheme.bodySmall),
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
-                loading: () => const AppCard(
-                  child: Center(child: Padding(padding: EdgeInsets.all(24), child: CircularProgressIndicator())),
-                ),
-                error: (e, _) => AppCard(
-                  child: Text('${l10n.commonError}: $e'),
-                ),
               ),
-              const SizedBox(height: 16),
-
-              // Nutrition Academy & Calculators Section
-              AppCard(
-                onTap: () => context.push('/nutrition/academy'),
-                backgroundColor: theme.colorScheme.primary.withAlpha(20),
-                border: Border.all(color: theme.colorScheme.primary.withAlpha(50)),
-                child: Row(
+              const SizedBox(height: 10),
+              FadeSlideIn(
+                index: 6,
+                child: GridView.count(
+                  crossAxisCount: 3,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 0.95,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.primary.withAlpha(30),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(Icons.school_rounded, color: theme.colorScheme.primary, size: 24),
+                    _ToolTile(
+                      icon: Icons.calculate_rounded,
+                      color: AppColors.lime,
+                      title: l10n.nutritionCalculatorTitle,
+                      subtitle: l10n.calculatorBmrTdee,
+                      onTap: () => context.push('/nutrition/calculator'),
                     ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                l10n.dashboardAcademyCard,
-                                style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(width: 6),
-                              Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                                decoration: BoxDecoration(
-                                  color: theme.colorScheme.primary,
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                child: const Text(
-                                  '14 Lessons',
-                                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 2),
-                          Text(
-                            l10n.dashboardAcademyDesc,
-                            style: theme.textTheme.bodySmall?.copyWith(height: 1.3),
-                          ),
-                        ],
-                      ),
+                    _ToolTile(
+                      icon: Icons.scale_rounded,
+                      color: AppColors.carbs,
+                      title: l10n.foodCalculatorTitle,
+                      subtitle: l10n.portionScaler,
+                      onTap: () => context.push('/nutrition/food-calculator'),
                     ),
-                    const Icon(Icons.chevron_right_rounded, color: Colors.grey),
+                    _ToolTile(
+                      icon: Icons.construction_rounded,
+                      color: AppColors.cyan,
+                      title: l10n.toolsTitle,
+                      subtitle: '1RM • ${l10n.toolsPlates}',
+                      onTap: () => context.push('/tools'),
+                    ),
                   ],
                 ),
               ),
-              const SizedBox(height: 10),
-              Row(
-                children: [
-                  Expanded(
-                    child: AppCard(
-                      onTap: () => context.push('/nutrition/calculator'),
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                      child: Row(
-                        children: [
-                          Icon(Icons.calculate_rounded, color: theme.colorScheme.primary, size: 22),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  l10n.nutritionCalculatorTitle,
-                                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                const SizedBox(height: 2),
-                                const Text(
-                                  'BMR & TDEE',
-                                  style: TextStyle(fontSize: 11, color: Colors.grey),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: AppCard(
-                      onTap: () => context.push('/nutrition/food-calculator'),
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                      child: Row(
-                        children: [
-                          Icon(Icons.scale_rounded, color: theme.colorScheme.primary, size: 22),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  l10n.foodCalculatorTitle,
-                                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                const SizedBox(height: 2),
-                                const Text(
-                                  'Portion Scaler',
-                                  style: TextStyle(fontSize: 11, color: Colors.grey),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-
-              // 3. Workout Card (Planned or In-Progress or Finished)
-              Text(
-                l10n.dashboardTodayWorkout,
-                style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              activeSessionAsync.when(
-                data: (active) {
-                  if (active != null) {
-                    // Active session in progress!
-                    return AppCard(
-                      backgroundColor: theme.colorScheme.primary.withAlpha(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                width: 10,
-                                height: 10,
-                                decoration: const BoxDecoration(
-                                  color: Colors.green,
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                              const SizedBox(width: 8),
-                              Expanded(
-                                child: Text(
-                                  active.session.programName ?? 'Workout',
-                                  style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            "${active.sets.where((s) => s.isCompleted).length} / ${active.sets.length} ${l10n.commonSets}",
-                            style: theme.textTheme.bodyMedium,
-                          ),
-                          const SizedBox(height: 12),
-                          SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton.icon(
-                              icon: const Icon(Icons.play_arrow_rounded),
-                              label: Text(l10n.dashboardResumeWorkout),
-                              onPressed: () => context.push('/workouts/active'),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }
-
-                  // No active session
-                  return AppCard(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          l10n.dashboardNoWorkoutToday,
-                          style: theme.textTheme.bodyMedium,
-                        ),
-                        const SizedBox(height: 12),
-                        SizedBox(
-                          width: double.infinity,
-                          child: OutlinedButton.icon(
-                            icon: const Icon(Icons.fitness_center_rounded),
-                            label: Text(l10n.dashboardStartWorkout),
-                            onPressed: () => context.push('/workouts/programs'),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-                loading: () => const AppCard(child: Center(child: CircularProgressIndicator())),
-                error: (e, _) => AppCard(child: Text('${l10n.commonError}: $e')),
-              ),
-              const SizedBox(height: 20),
-
-              // 4. Body Progress Card
-              Text(
-                l10n.dashboardBodyProgress,
-                style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              latestMetricAsync.when(
-                data: (metric) {
-                  if (metric == null) {
-                    return AppCard(
-                      onTap: () => context.push('/progress/add'),
-                      child: Row(
-                        children: [
-                          Icon(Icons.monitor_weight_outlined, color: theme.colorScheme.primary, size: 32),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(l10n.dashboardNoWeightYet, style: theme.textTheme.bodyMedium),
-                                Text(l10n.dashboardActionLogWeight, style: TextStyle(color: theme.colorScheme.primary, fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                          ),
-                          const Icon(Icons.chevron_right_rounded),
-                        ],
-                      ),
-                    );
-                  }
-
-                  return AppCard(
-                    onTap: () => context.go('/progress'),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(12),
-                              decoration: BoxDecoration(
-                                color: theme.colorScheme.primary.withAlpha(25),
-                                shape: BoxShape.circle,
-                              ),
-                              child: Icon(Icons.monitor_weight_rounded, color: theme.colorScheme.primary),
-                            ),
-                            const SizedBox(width: 14),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  l10n.dashboardLatestWeight(metric.weightKg.toStringAsFixed(1)),
-                                  style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  metric.date,
-                                  style: theme.textTheme.bodySmall,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        const Icon(Icons.chevron_right_rounded),
-                      ],
-                    ),
-                  );
-                },
-                loading: () => const AppCard(child: Center(child: CircularProgressIndicator())),
-                error: (e, _) => AppCard(child: Text('${l10n.commonError}: $e')),
-              ),
-              const SizedBox(height: 30),
             ],
           ),
         ),
       ),
     );
   }
+}
 
-  void _showTargetExplanationDialog(BuildContext context, AppLocalizations l10n) {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Row(
-          children: [
-            const Icon(Icons.info_outline_rounded, color: Colors.green),
-            const SizedBox(width: 8),
-            Text(l10n.nutritionCalculatorHow),
-          ],
-        ),
-        content: Text(
-          l10n.onboardingDisclaimer,
-          style: const TextStyle(fontSize: 14, height: 1.4),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: Text(l10n.commonClose),
+/// Big calories ring + macro bars.
+class _CaloriesHero extends StatelessWidget {
+  final DailyNutritionSummary summary;
+
+  const _CaloriesHero({required this.summary});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final over = summary.caloriesRemaining < 0;
+    final ringColor = over ? theme.colorScheme.error : theme.colorScheme.primary;
+
+    return AppCard(
+      onTap: () => context.go('/nutrition'),
+      gradient: context.heroGradient,
+      padding: const EdgeInsets.all(18),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              ProgressRing(
+                progress: summary.calorieProgress,
+                size: 138,
+                strokeWidth: 14,
+                color: ringColor,
+                gradient: over ? null : (context.isDark ? AppColors.limeGradient : null),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    AnimatedNumber(
+                      value: summary.caloriesRemaining.abs(),
+                      style: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w900, color: over ? ringColor : null),
+                    ),
+                    Text(over ? l10n.dashboardKcalOver : l10n.dashboardKcalLeft, style: theme.textTheme.labelMedium),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 18),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _HeroStat(
+                      icon: Icons.restaurant_rounded,
+                      label: l10n.dashboardConsumed,
+                      value: '${summary.caloriesConsumed.toInt()}',
+                      unit: l10n.commonKcal,
+                    ),
+                    const SizedBox(height: 14),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: _HeroStat(
+                            icon: Icons.flag_rounded,
+                            label: l10n.dashboardGoal,
+                            value: '${summary.targetCalories}',
+                            unit: l10n.commonKcal,
+                          ),
+                        ),
+                        IconButton(
+                          tooltip: l10n.profileEditGoals,
+                          visualDensity: VisualDensity.compact,
+                          icon: Icon(Icons.tune_rounded, size: 20, color: context.textSecondary),
+                          onPressed: () => context.push('/nutrition/calculator'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(ctx);
-              context.push('/nutrition/calculator');
-            },
-            child: Text(l10n.profileEditGoals),
+          const SizedBox(height: 18),
+          Row(
+            children: [
+              Expanded(
+                child: MacroProgressBar(
+                  label: l10n.dashboardProtein,
+                  current: summary.proteinConsumed,
+                  target: summary.targetProtein,
+                  unit: l10n.commonGrams,
+                  color: AppColors.protein,
+                  isCompact: true,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: MacroProgressBar(
+                  label: l10n.dashboardCarbs,
+                  current: summary.carbsConsumed,
+                  target: summary.targetCarbs,
+                  unit: l10n.commonGrams,
+                  color: AppColors.carbs,
+                  isCompact: true,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: MacroProgressBar(
+                  label: l10n.dashboardFat,
+                  current: summary.fatConsumed,
+                  target: summary.targetFat,
+                  unit: l10n.commonGrams,
+                  color: AppColors.fat,
+                  isCompact: true,
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -556,47 +494,114 @@ class DashboardScreen extends ConsumerWidget {
   }
 }
 
-class _QuickActionButton extends StatelessWidget {
+class _HeroStat extends StatelessWidget {
   final IconData icon;
   final String label;
-  final VoidCallback onTap;
+  final String value;
+  final String unit;
 
-  const _QuickActionButton({
-    required this.icon,
-    required this.label,
-    required this.onTap,
-  });
+  const _HeroStat({required this.icon, required this.label, required this.value, required this.unit});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Material(
-      color: theme.cardTheme.color,
-      borderRadius: BorderRadius.circular(12),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: theme.colorScheme.outline.withAlpha(50)),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(icon, color: theme.colorScheme.primary, size: 24),
-              const SizedBox(height: 6),
-              Text(
-                label,
-                textAlign: TextAlign.center,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-              ),
-            ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(icon, size: 14, color: context.textSecondary),
+            const SizedBox(width: 4),
+            Flexible(child: Text(label, style: theme.textTheme.labelMedium, overflow: TextOverflow.ellipsis)),
+          ],
+        ),
+        const SizedBox(height: 2),
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: AlignmentDirectional.centerStart,
+          child: Text.rich(TextSpan(children: [
+            TextSpan(text: value, style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800)),
+            TextSpan(text: ' $unit', style: theme.textTheme.bodySmall),
+          ])),
+        ),
+      ],
+    );
+  }
+}
+
+class _ToolTile extends StatelessWidget {
+  final IconData icon;
+  final Color color;
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
+
+  const _ToolTile({required this.icon, required this.color, required this.title, required this.subtitle, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final c = context.isDark ? color : Color.lerp(color, Colors.black, 0.25)!;
+    return AppCard(
+      onTap: onTap,
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          IconBadge(icon: icon, color: c, size: 36, iconSize: 19),
+          const Spacer(),
+          Text(title, maxLines: 2, overflow: TextOverflow.ellipsis, style: theme.textTheme.labelLarge?.copyWith(fontSize: 12.5, height: 1.2)),
+          const SizedBox(height: 2),
+          Text(subtitle, maxLines: 1, overflow: TextOverflow.ellipsis, style: theme.textTheme.bodySmall?.copyWith(fontSize: 10.5)),
+        ],
+      ),
+    );
+  }
+}
+
+class _CircleButton extends StatelessWidget {
+  final IconData icon;
+  final String tooltip;
+  final VoidCallback onTap;
+  final bool filled;
+
+  const _CircleButton({required this.icon, required this.tooltip, required this.onTap, this.filled = false});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Tooltip(
+      message: tooltip,
+      child: Material(
+        color: filled ? theme.colorScheme.primary : theme.colorScheme.surface,
+        shape: CircleBorder(side: BorderSide(color: filled ? Colors.transparent : context.borderColor)),
+        child: InkWell(
+          customBorder: const CircleBorder(),
+          onTap: () {
+            HapticFeedback.selectionClick();
+            onTap();
+          },
+          child: SizedBox(
+            width: 44,
+            height: 44,
+            child: Icon(icon, size: 22, color: filled ? theme.colorScheme.onPrimary : theme.colorScheme.onSurface),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _LoadingCard extends StatelessWidget {
+  final double height;
+  const _LoadingCard({required this.height});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppCard(
+      child: SizedBox(
+        height: height - 32,
+        child: const Center(child: CircularProgressIndicator(strokeWidth: 2.5)),
       ),
     );
   }

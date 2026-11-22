@@ -49,6 +49,11 @@ class ProgressRepository {
   Future<void> logMetric({
     required double weightKg,
     double? waistCm,
+    double? chestCm,
+    double? armCm,
+    double? thighCm,
+    double? hipsCm,
+    double? bodyFatPercent,
     String? notes,
     DateTime? date,
   }) async {
@@ -62,6 +67,11 @@ class ProgressRepository {
         timestamp: timestamp,
         weightKg: weightKg,
         waistCm: Value(waistCm),
+        chestCm: Value(chestCm),
+        armCm: Value(armCm),
+        thighCm: Value(thighCm),
+        hipsCm: Value(hipsCm),
+        bodyFatPercent: Value(bodyFatPercent),
         notes: Value(notes),
       ),
     );
@@ -76,6 +86,10 @@ class ProgressRepository {
         ),
       );
     }
+  }
+
+  Future<void> deleteMetric(String id) async {
+    await (_db.delete(_db.bodyMetrics)..where((m) => m.id.equals(id))).go();
   }
 
   /// Calculates a 7-day moving average series from raw weight logs

@@ -149,6 +149,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Center(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(28),
+                    child: Image.asset('assets/branding/logo.png', width: 120, height: 120, fit: BoxFit.cover),
+                  ),
+                ),
+                const SizedBox(height: 16),
                 Text(
                   l10n.onboardingTitle,
                   style: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),

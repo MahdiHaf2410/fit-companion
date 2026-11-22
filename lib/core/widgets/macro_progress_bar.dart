@@ -76,17 +76,7 @@ class MacroProgressBar extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 6),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(4),
-              child: LinearProgressIndicator(
-                value: ratio,
-                minHeight: 6,
-                backgroundColor: color.withAlpha(30),
-                valueColor: AlwaysStoppedAnimation<Color>(
-                  isOver ? theme.colorScheme.error : color,
-                ),
-              ),
-            ),
+            _MacroBar(ratio: ratio, height: 6, color: isOver ? theme.colorScheme.error : color),
           ],
         ),
       );
@@ -138,18 +128,42 @@ class MacroProgressBar extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 6),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(6),
-          child: LinearProgressIndicator(
-            value: ratio,
-            minHeight: 8,
-            backgroundColor: color.withAlpha(35),
-            valueColor: AlwaysStoppedAnimation<Color>(
-              isOver ? theme.colorScheme.error : color,
+        _MacroBar(ratio: ratio, height: 8, color: isOver ? theme.colorScheme.error : color),
+      ],
+    );
+  }
+}
+
+class _MacroBar extends StatelessWidget {
+  final double ratio;
+  final double height;
+  final Color color;
+
+  const _MacroBar({required this.ratio, required this.height, required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      decoration: BoxDecoration(
+        color: color.withAlpha(36),
+        borderRadius: BorderRadius.circular(height),
+      ),
+      child: TweenAnimationBuilder<double>(
+        tween: Tween(begin: 0, end: ratio),
+        duration: const Duration(milliseconds: 800),
+        curve: Curves.easeOutCubic,
+        builder: (_, v, __) => FractionallySizedBox(
+          alignment: AlignmentDirectional.centerStart,
+          widthFactor: v,
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [color.withAlpha(200), color]),
+              borderRadius: BorderRadius.circular(height),
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 }

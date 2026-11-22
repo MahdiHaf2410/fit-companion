@@ -30,8 +30,14 @@ class NutritionRepository {
       double p = 0;
       double c = 0;
       double f = 0;
+      double planned = 0;
 
       for (final log in logs) {
+        // Only food actually eaten counts; planned items are shown separately.
+        if (!log.isEaten) {
+          planned += log.calories;
+          continue;
+        }
         cals += log.calories;
         p += log.protein;
         c += log.carbs;
@@ -47,8 +53,23 @@ class NutritionRepository {
         targetProtein: targetProtein,
         targetCarbs: targetCarbs,
         targetFat: targetFat,
+        plannedCalories: double.parse(planned.toStringAsFixed(1)),
       );
     });
+  }
+
+  /// Marks a log as eaten at [at] (default now).
+  Future<void> markEaten(String logId, {DateTime? at}) async {
+    await (_db.update(_db.foodLogs)..where((l) => l.id.equals(logId))).write(
+      FoodLogsCompanion(isEaten: const Value(true), eatenAt: Value(at ?? DateTime.now())),
+    );
+  }
+
+  /// Back to "planned / not eaten yet".
+  Future<void> markPlanned(String logId) async {
+    await (_db.update(_db.foodLogs)..where((l) => l.id.equals(logId))).write(
+      const FoodLogsCompanion(isEaten: Value(false), eatenAt: Value(null)),
+    );
   }
 
   Future<void> logFood({
@@ -56,6 +77,8 @@ class NutritionRepository {
     required double quantityGrams,
     required String mealType,
     required DateTime timestamp,
+    bool isEaten = true,
+    DateTime? eatenAt,
   }) async {
     final date = "${timestamp.year.toString().padLeft(4, '0')}-${timestamp.month.toString().padLeft(2, '0')}-${timestamp.day.toString().padLeft(2, '0')}";
     final calories = EnergyCalculator.calculateNutrient(nutrientPer100g: food.caloriesPer100g, quantityGrams: quantityGrams);
@@ -77,6 +100,42 @@ class NutritionRepository {
         protein: protein,
         carbs: carbs,
         fat: fat,
+        isEaten: Value(isEaten),
+        eatenAt: Value(isEaten ? (eatenAt ?? timestamp) : null),
+      ),
+    );
+  }
+
+  /// Logs an entry that is not in the food database (e.g. AI analysis of a
+  /// photographed plate). Values are for the whole portion.
+  Future<void> logCustomEntry({
+    required String name,
+    required double grams,
+    required double calories,
+    required double protein,
+    required double carbs,
+    required double fat,
+    required String mealType,
+    required DateTime timestamp,
+    bool isEaten = true,
+    DateTime? eatenAt,
+  }) async {
+    final date = "${timestamp.year.toString().padLeft(4, '0')}-${timestamp.month.toString().padLeft(2, '0')}-${timestamp.day.toString().padLeft(2, '0')}";
+    await _db.into(_db.foodLogs).insert(
+      FoodLogsCompanion.insert(
+        id: _uuid.v4(),
+        foodId: const Value(null),
+        date: date,
+        timestamp: timestamp,
+        mealType: mealType,
+        quantityG: grams,
+        foodName: name,
+        calories: calories,
+        protein: protein,
+        carbs: carbs,
+        fat: fat,
+        isEaten: Value(isEaten),
+        eatenAt: Value(isEaten ? (eatenAt ?? timestamp) : null),
       ),
     );
   }
@@ -85,9 +144,12 @@ class NutritionRepository {
     await (_db.delete(_db.foodLogs)..where((l) => l.id.equals(logId))).go();
   }
 
+  /// [mine]: true = only the user's own foods, false = only the built-in
+  /// suggestions, null = everything.
   Stream<List<Food>> searchFoodsStream({
     String query = '',
     String category = 'all',
+    bool? mine,
   }) {
     return (_db.select(_db.foods)
           ..where((f) {
@@ -98,7 +160,8 @@ class NutritionRepository {
             final matchesCategory = category == 'all'
                 ? const Constant(true)
                 : f.category.equals(category);
-            return matchesQuery & matchesCategory;
+            final matchesOwner = mine == null ? const Constant(true) : f.isCustom.equals(mine);
+            return matchesQuery & matchesCategory & matchesOwner;
           })
           ..orderBy([(f) => OrderingTerm.desc(f.isFavorite), (f) => OrderingTerm.asc(f.name)]))
         .watch();
@@ -117,7 +180,8 @@ class NutritionRepository {
     );
   }
 
-  Future<void> saveCustomFood({
+  Future<String> saveCustomFood({
+    String? description,
     required String name,
     String? nameAr,
     required String category,
@@ -131,9 +195,11 @@ class NutritionRepository {
     required String prepState,
   }) async {
     final now = DateTime.now();
+    final id = _uuid.v4();
     await _db.into(_db.foods).insert(
       FoodsCompanion.insert(
-        id: _uuid.v4(),
+        id: id,
+        description: Value(description),
         name: name,
         nameAr: Value(nameAr),
         category: category,
@@ -152,9 +218,21 @@ class NutritionRepository {
         updatedAt: now,
       ),
     );
+    return id;
   }
 
-  Stream<List<Recipe>> watchRecipes() {
+  /// Deletes one of the user's own foods. Past logs keep their snapshot values.
+  /// Returns false when the food is still used by a recipe.
+  Future<bool> deleteCustomFood(String foodId) async {
+    try {
+      await (_db.delete(_db.foods)..where((f) => f.id.equals(foodId) & f.isCustom.equals(true))).go();
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+    Stream<List<Recipe>> watchRecipes() {
     return (_db.select(_db.recipes)..orderBy([(r) => OrderingTerm.desc(r.updatedAt)])).watch();
   }
 

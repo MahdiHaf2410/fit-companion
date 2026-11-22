@@ -70,3 +70,59 @@ final localeProvider = StateNotifierProvider<LocaleNotifier, Locale>((ref) {
   final prefs = ref.watch(sharedPreferencesProvider);
   return LocaleNotifier(prefs);
 });
+
+// ---------------------------------------------------------------------------
+// Visual themes (v1.4)
+// ---------------------------------------------------------------------------
+
+/// Appearance options beyond light/dark: palette, animated background, effect.
+class AppearanceSettings {
+  final String paletteId;
+  final bool animated; // animated background on/off
+  final String effect; // 'auto' (palette default) or a BackgroundEffect name
+  final bool interactive; // background reacts to touches
+  final double intensity; // 0.3 .. 1.0
+
+  const AppearanceSettings({
+    this.paletteId = 'neon',
+    this.animated = true,
+    this.effect = 'auto',
+    this.interactive = true,
+    this.intensity = 0.7,
+  });
+
+  AppearanceSettings copyWith({String? paletteId, bool? animated, String? effect, bool? interactive, double? intensity}) =>
+      AppearanceSettings(
+        paletteId: paletteId ?? this.paletteId,
+        animated: animated ?? this.animated,
+        effect: effect ?? this.effect,
+        interactive: interactive ?? this.interactive,
+        intensity: intensity ?? this.intensity,
+      );
+}
+
+class AppearanceNotifier extends StateNotifier<AppearanceSettings> {
+  final SharedPreferences _prefs;
+
+  AppearanceNotifier(this._prefs)
+      : super(AppearanceSettings(
+          paletteId: _prefs.getString('ui_palette') ?? 'neon',
+          animated: _prefs.getBool('ui_animated') ?? true,
+          effect: _prefs.getString('ui_effect') ?? 'auto',
+          interactive: _prefs.getBool('ui_interactive') ?? true,
+          intensity: _prefs.getDouble('ui_intensity') ?? 0.7,
+        ));
+
+  Future<void> update(AppearanceSettings s) async {
+    state = s;
+    await _prefs.setString('ui_palette', s.paletteId);
+    await _prefs.setBool('ui_animated', s.animated);
+    await _prefs.setString('ui_effect', s.effect);
+    await _prefs.setBool('ui_interactive', s.interactive);
+    await _prefs.setDouble('ui_intensity', s.intensity);
+  }
+}
+
+final appearanceProvider = StateNotifierProvider<AppearanceNotifier, AppearanceSettings>((ref) {
+  return AppearanceNotifier(ref.watch(sharedPreferencesProvider));
+});

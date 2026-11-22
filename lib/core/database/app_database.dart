@@ -6,6 +6,8 @@ import 'package:path/path.dart' as p;
 
 import 'tables.dart';
 import 'seed_data.dart';
+import 'seed_v3.dart';
+import 'seed_v4.dart';
 
 part 'app_database.g.dart';
 
@@ -24,14 +26,17 @@ part 'app_database.g.dart';
   BodyMetrics,
   AppPreferences,
   AcademyProgress,
+  MealTemplates,
+  MealTemplateItems,
+  ProgressPhotos,
 ])
 class AppDatabase extends _$AppDatabase {
-  AppDatabase() : super(_openConnection());
+  AppDatabase({String fileName = 'fit_companion.sqlite'}) : super(_openConnection(fileName));
 
   AppDatabase.forTesting(super.e);
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 4;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -43,6 +48,33 @@ class AppDatabase extends _$AppDatabase {
       if (from < 2) {
         await m.createTable(academyProgress);
       }
+      if (from < 3) {
+        await m.addColumn(foods, foods.barcode);
+        await m.addColumn(workoutSets, workoutSets.setType);
+        await m.addColumn(workoutSets, workoutSets.rpe);
+        await m.addColumn(workoutSets, workoutSets.supersetGroup);
+        await m.addColumn(bodyMetrics, bodyMetrics.chestCm);
+        await m.addColumn(bodyMetrics, bodyMetrics.armCm);
+        await m.addColumn(bodyMetrics, bodyMetrics.thighCm);
+        await m.addColumn(bodyMetrics, bodyMetrics.hipsCm);
+        await m.addColumn(bodyMetrics, bodyMetrics.bodyFatPercent);
+        await m.createTable(mealTemplates);
+        await m.createTable(mealTemplateItems);
+        await m.createTable(progressPhotos);
+      }
+      if (from < 4) {
+        await m.addColumn(foods, foods.description);
+        await m.addColumn(foodLogs, foodLogs.isEaten);
+        await m.addColumn(foodLogs, foodLogs.eatenAt);
+        await m.addColumn(workoutPrograms, workoutPrograms.isTemplate);
+        // Existing logs were eaten at the time they were logged.
+        await customStatement('UPDATE food_logs SET eaten_at = timestamp WHERE eaten_at IS NULL');
+        // Built-in programs become templates; user programs stay "my programs".
+        await customStatement("UPDATE workout_programs SET is_template = 1 WHERE substr(id, 1, 5) = 'prog_'");
+      }
+    },
+    beforeOpen: (details) async {
+      await customStatement('PRAGMA foreign_keys = ON');
     },
   );
 
@@ -118,6 +150,7 @@ class AppDatabase extends _$AppDatabase {
           name: prog['name'] as String,
           description: Value(prog['description'] as String?),
           scheduledDays: prog['scheduledDays'] as String,
+          isTemplate: const Value(true),
           createdAt: now,
           updatedAt: now,
         ),
@@ -145,6 +178,77 @@ class AppDatabase extends _$AppDatabase {
     }
   }
 
+  /// Idempotent v3 seed (new exercises + ready-made programs). Safe to call on
+  /// every startup: rows that already exist (same id) are ignored.
+  Future<void> ensureSeedV3() async {
+    final now = DateTime.now();
+    await batch((b) {
+      // v4: full exercise library
+      for (final e in SeedV4.exercises) {
+        b.insert(
+          exercises,
+          ExercisesCompanion.insert(
+            id: e.$1,
+            name: e.$2,
+            nameAr: Value(e.$3),
+            muscleGroup: e.$4,
+            equipment: e.$5,
+            exerciseType: Value(e.$6),
+          ),
+          mode: InsertMode.insertOrIgnore,
+        );
+      }
+      for (final ex in SeedV3.exercises) {
+        b.insert(
+          exercises,
+          ExercisesCompanion.insert(
+            id: ex['id']!,
+            name: ex['name']!,
+            nameAr: Value(ex['nameAr']),
+            muscleGroup: ex['muscleGroup']!,
+            equipment: ex['equipment']!,
+            exerciseType: Value(ex['type'] ?? 'compound'),
+          ),
+          mode: InsertMode.insertOrIgnore,
+        );
+      }
+      for (final prog in SeedV3.programs) {
+        final progId = prog['id'] as String;
+        b.insert(
+          workoutPrograms,
+          WorkoutProgramsCompanion.insert(
+            id: progId,
+            name: prog['name'] as String,
+            description: Value(prog['description'] as String?),
+            scheduledDays: prog['scheduledDays'] as String,
+            isTemplate: const Value(true),
+            createdAt: now,
+            updatedAt: now,
+          ),
+          mode: InsertMode.insertOrIgnore,
+        );
+        final list = prog['exercises'] as List;
+        for (int i = 0; i < list.length; i++) {
+          final e = list[i] as List;
+          b.insert(
+            programExercises,
+            ProgramExercisesCompanion.insert(
+              id: '${progId}_$i',
+              programId: progId,
+              exerciseId: e[0] as String,
+              sortOrder: i + 1,
+              targetSets: e[1] as int,
+              targetReps: e[2] as int,
+              targetRestSeconds: Value(e[3] as int),
+              notes: Value(e[4] as String?),
+            ),
+            mode: InsertMode.insertOrIgnore,
+          );
+        }
+      }
+    });
+  }
+
   Stream<List<AcademyProgressData>> watchAllAcademyProgress() {
     return select(academyProgress).watch();
   }
@@ -169,10 +273,10 @@ class AppDatabase extends _$AppDatabase {
   }
 }
 
-LazyDatabase _openConnection() {
+LazyDatabase _openConnection(String fileName) {
   return LazyDatabase(() async {
     final dbFolder = await getApplicationDocumentsDirectory();
-    final file = File(p.join(dbFolder.path, 'fit_companion.sqlite'));
+    final file = File(p.join(dbFolder.path, fileName));
     return NativeDatabase.createInBackground(file);
   });
 }

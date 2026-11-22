@@ -1,7 +1,7 @@
 name: fit_companion
 description: "A complete offline-first Gym & Nutrition Tracking App with Flutter"
 publish_to: 'none'
-version: 1.0.0+1
+version: 1.5.0+8
 
 environment:
   sdk: ^3.7.0
@@ -22,6 +22,17 @@ dependencies:
   shared_preferences: ^2.5.2
   uuid: ^4.5.1
   cupertino_icons: ^1.0.8
+  flutter_local_notifications: ^23.0.3
+  timezone: ^0.11.2
+  flutter_timezone: ^5.1.1
+  mobile_scanner: ^7.5.0
+  http: ^1.6.0
+  image_picker: ^1.2.4
+  share_plus: ^13.3.1
+  file_picker: ^13.4.1
+  home_widget: ^0.10.0
+  health: ^14.0.0
+  supabase_flutter: ^2.18.3
 
 dev_dependencies:
   flutter_test:
@@ -32,4 +43,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/branding/
   generate: true

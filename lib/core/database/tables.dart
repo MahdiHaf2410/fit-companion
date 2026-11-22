@@ -54,6 +54,8 @@ class Foods extends Table {
   BoolColumn get isCustom => boolean().withDefault(const Constant(false))();
   DateTimeColumn get createdAt => dateTime()();
   DateTimeColumn get updatedAt => dateTime()();
+  TextColumn get barcode => text().nullable()(); // v3: scanned products
+  TextColumn get description => text().nullable()(); // v4: user description (ingredients, cooking)
 
   @override
   Set<Column> get primaryKey => {id};
@@ -73,6 +75,9 @@ class FoodLogs extends Table {
   RealColumn get protein => real()();
   RealColumn get carbs => real()();
   RealColumn get fat => real()();
+  // v4: planned vs eaten. Only eaten entries count toward the day's totals.
+  BoolColumn get isEaten => boolean().withDefault(const Constant(true))();
+  DateTimeColumn get eatenAt => dateTime().nullable()();
 
   @override
   Set<Column> get primaryKey => {id};
@@ -129,7 +134,9 @@ class WorkoutPrograms extends Table {
   TextColumn get id => text()();
   TextColumn get name => text()();
   TextColumn get description => text().nullable()();
-  TextColumn get scheduledDays => text()(); // e.g. "Monday,Wednesday,Friday"
+  TextColumn get scheduledDays => text()(); // legacy (no longer shown); '' for new programs
+  // v4: ready-made programs are templates; "my programs" are the user's own.
+  BoolColumn get isTemplate => boolean().withDefault(const Constant(false))();
   DateTimeColumn get createdAt => dateTime()();
   DateTimeColumn get updatedAt => dateTime()();
 
@@ -177,6 +184,10 @@ class WorkoutSets extends Table {
   BoolColumn get isCompleted => boolean().withDefault(const Constant(false))();
   BoolColumn get isPersonalRecord => boolean().withDefault(const Constant(false))();
   DateTimeColumn get completedAt => dateTime().nullable()();
+  // v3: advanced set types
+  TextColumn get setType => text().withDefault(const Constant('normal'))(); // normal, warmup, drop, failure
+  RealColumn get rpe => real().nullable()(); // 6..10
+  IntColumn get supersetGroup => integer().nullable()(); // exercises sharing a group = superset
 
   @override
   Set<Column> get primaryKey => {id};
@@ -189,6 +200,12 @@ class BodyMetrics extends Table {
   RealColumn get weightKg => real()();
   RealColumn get waistCm => real().nullable()();
   TextColumn get notes => text().nullable()();
+  // v3: full body measurements
+  RealColumn get chestCm => real().nullable()();
+  RealColumn get armCm => real().nullable()();
+  RealColumn get thighCm => real().nullable()();
+  RealColumn get hipsCm => real().nullable()();
+  RealColumn get bodyFatPercent => real().nullable()();
 
   @override
   Set<Column> get primaryKey => {id};
@@ -210,4 +227,46 @@ class AcademyProgress extends Table {
 
   @override
   Set<Column> get primaryKey => {lessonId};
+}
+
+// ---------------------------------------------------------------------------
+// v3 tables
+// ---------------------------------------------------------------------------
+
+class MealTemplates extends Table {
+  TextColumn get id => text()();
+  TextColumn get name => text()();
+  TextColumn get mealType => text().withDefault(const Constant('lunch'))();
+  DateTimeColumn get createdAt => dateTime()();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
+class MealTemplateItems extends Table {
+  TextColumn get id => text()();
+  TextColumn get templateId => text().references(MealTemplates, #id, onDelete: KeyAction.cascade)();
+  TextColumn get foodId => text().nullable()();
+  TextColumn get foodName => text()();
+  TextColumn get foodNameAr => text().nullable()();
+  RealColumn get quantityG => real()();
+  RealColumn get calories => real()();
+  RealColumn get protein => real()();
+  RealColumn get carbs => real()();
+  RealColumn get fat => real()();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
+class ProgressPhotos extends Table {
+  TextColumn get id => text()();
+  TextColumn get date => text()(); // YYYY-MM-DD
+  DateTimeColumn get timestamp => dateTime()();
+  TextColumn get filePath => text()();
+  TextColumn get pose => text().withDefault(const Constant('front'))(); // front, side, back
+  RealColumn get weightKg => real().nullable()();
+
+  @override
+  Set<Column> get primaryKey => {id};
 }

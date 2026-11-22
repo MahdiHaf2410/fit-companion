@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import '../../../core/widgets/ui_kit.dart' show kNavBarClearance;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_palettes.dart';
 import '../../../core/widgets/app_card.dart';
 import '../../../shared/providers/database_provider.dart';
 import '../../../shared/providers/settings_provider.dart';
@@ -28,18 +31,28 @@ class ProfileScreen extends ConsumerWidget {
         title: Text(l10n.profileTitle),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        // Leave room for the floating bottom navigation bar
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, kNavBarClearance),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // User Header Card
             AppCard(
+              gradient: context.heroGradient,
+              padding: const EdgeInsets.all(18),
               child: Row(
                 children: [
-                  CircleAvatar(
-                    radius: 28,
-                    backgroundColor: theme.colorScheme.primaryContainer,
-                    child: Icon(Icons.person_rounded, size: 32, color: theme.colorScheme.primary),
+                  Container(
+                    width: 60,
+                    height: 60,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(gradient: AppColors.limeGradient, shape: BoxShape.circle),
+                    child: Text(
+                      (profile?.displayName?.trim().isNotEmpty ?? false)
+                          ? profile!.displayName!.trim()[0].toUpperCase()
+                          : '💪',
+                      style: TextStyle(fontSize: 26, fontWeight: FontWeight.w900, color: AppColors.onAccent),
+                    ),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
@@ -47,12 +60,14 @@ class ProfileScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          profile?.displayName ?? 'Athlete',
+                          (profile?.displayName?.trim().isNotEmpty ?? false) ? profile!.displayName! : l10n.profileAthlete,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          "${profile?.age ?? 25} yrs • ${profile?.heightCm.toInt() ?? 175} cm • ${profile?.currentWeightKg.toStringAsFixed(1) ?? '75'} kg",
+                          "${l10n.profileYears(profile?.age ?? 25)} • ${profile?.heightCm.toInt() ?? 175} ${l10n.commonCm} • ${profile?.currentWeightKg.toStringAsFixed(1) ?? '75'} ${l10n.commonKg}",
                           style: theme.textTheme.bodyMedium,
                         ),
                       ],
@@ -76,9 +91,9 @@ class ProfileScreen extends ConsumerWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(l10n.dashboardCalories, style: theme.textTheme.bodyLarge),
+                      Expanded(child: Text(l10n.dashboardCalories, maxLines: 2, overflow: TextOverflow.ellipsis, style: theme.textTheme.bodyLarge)),
                       Text(
-                        "${goal?.targetCalories ?? 2000} kcal",
+                        "${goal?.targetCalories ?? 2000} ${l10n.commonKcal}",
                         style: TextStyle(fontWeight: FontWeight.bold, color: theme.colorScheme.primary, fontSize: 16),
                       ),
                     ],
@@ -107,7 +122,7 @@ class ProfileScreen extends ConsumerWidget {
 
             // Preferences Section
             Text(
-              'App Preferences',
+              l10n.profilePreferences,
               style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
@@ -117,29 +132,14 @@ class ProfileScreen extends ConsumerWidget {
                 children: [
                   // Theme Selector
                   ListTile(
-                    leading: const Icon(Icons.brightness_6_rounded),
-                    title: Text(l10n.profileAppearance),
+                    leading: Icon(Icons.palette_rounded, color: theme.colorScheme.primary),
+                    title: Text(l10n.themesTitle),
                     subtitle: Text(
-                      currentTheme == ThemeMode.light
-                          ? l10n.profileThemeLight
-                          : currentTheme == ThemeMode.dark
-                              ? l10n.profileThemeDark
-                              : l10n.profileThemeSystem,
+                      '${AppPalettes.byId(ref.watch(appearanceProvider).paletteId).name(currentLocale.languageCode)} • '
+                      '${currentTheme == ThemeMode.light ? l10n.profileThemeLight : currentTheme == ThemeMode.dark ? l10n.profileThemeDark : l10n.profileThemeSystem}',
                     ),
-                    trailing: DropdownButton<ThemeMode>(
-                      value: currentTheme,
-                      underline: const SizedBox.shrink(),
-                      items: [
-                        DropdownMenuItem(value: ThemeMode.system, child: Text(l10n.profileThemeSystem)),
-                        DropdownMenuItem(value: ThemeMode.light, child: Text(l10n.profileThemeLight)),
-                        DropdownMenuItem(value: ThemeMode.dark, child: Text(l10n.profileThemeDark)),
-                      ],
-                      onChanged: (mode) {
-                        if (mode != null) {
-                          ref.read(themeModeProvider.notifier).setThemeMode(mode);
-                        }
-                      },
-                    ),
+                    trailing: const Icon(Icons.chevron_right_rounded),
+                    onTap: () => context.push('/settings/themes'),
                   ),
                   const Divider(height: 1),
 
@@ -150,20 +150,49 @@ class ProfileScreen extends ConsumerWidget {
                     subtitle: Text(
                       currentLocale.languageCode == 'ar' ? l10n.profileLanguageAr : l10n.profileLanguageEn,
                     ),
-                    trailing: DropdownButton<String>(
-                      value: currentLocale.languageCode,
-                      underline: const SizedBox.shrink(),
-                      items: [
-                        DropdownMenuItem(value: 'en', child: Text(l10n.profileLanguageEn)),
-                        DropdownMenuItem(value: 'ar', child: Text(l10n.profileLanguageAr)),
+                    trailing: SegmentedButton<String>(
+                      showSelectedIcon: false,
+                      style: const ButtonStyle(visualDensity: VisualDensity.compact, tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                      segments: const [
+                        ButtonSegment(value: 'en', label: Text('EN')),
+                        ButtonSegment(value: 'ar', label: Text('ع')),
                       ],
-                      onChanged: (lang) {
-                        if (lang != null) {
-                          ref.read(localeProvider.notifier).setLocale(Locale(lang));
-                        }
-                      },
+                      selected: {currentLocale.languageCode},
+                      onSelectionChanged: (v) => ref.read(localeProvider.notifier).setLocale(Locale(v.first)),
                     ),
                   ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            // v1.1 features hub
+            Text(
+              l10n.profileFeatures,
+              style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            AppCard(
+              padding: EdgeInsets.zero,
+              child: Column(
+                children: [
+                  for (final item in [
+                    (Icons.smart_toy_rounded, l10n.coachTitle, '/coach'),
+                    (Icons.cloud_sync_rounded, l10n.cloudTitle, '/settings/cloud'),
+                    (Icons.notifications_active_rounded, l10n.remTitle, '/settings/reminders'),
+                    (Icons.favorite_rounded, l10n.healthTitle, '/settings/health'),
+                    (Icons.photo_library_rounded, l10n.photosTitle, '/progress/photos'),
+                    (Icons.military_tech_rounded, l10n.achTitle, '/achievements'),
+                    (Icons.backup_rounded, l10n.backupTitle, '/settings/backup'),
+                  ]) ...[
+                    ListTile(
+                      leading: Icon(item.$1, color: theme.colorScheme.primary),
+                      title: Text(item.$2),
+                      trailing: const Icon(Icons.chevron_right_rounded),
+                      onTap: () => context.push(item.$3),
+                    ),
+                    if (item.$3 != '/settings/backup') const Divider(height: 1),
+                  ],
                 ],
               ),
             ),
@@ -231,9 +260,11 @@ class ProfileScreen extends ConsumerWidget {
                     children: [
                       Icon(Icons.shield_outlined, color: theme.colorScheme.primary, size: 20),
                       const SizedBox(width: 8),
-                      Text(
-                        l10n.profileAbout,
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                      Expanded(
+                        child: Text(
+                          l10n.profileAbout,
+                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
                       ),
                     ],
                   ),
@@ -243,6 +274,33 @@ class ProfileScreen extends ConsumerWidget {
                   Text(
                     l10n.profileOfflineStatus,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: theme.colorScheme.primary),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Branding + developer credit
+            AppCard(
+              gradient: context.heroGradient,
+              padding: const EdgeInsets.all(18),
+              child: Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(22),
+                    child: Image.asset('assets/branding/logo.png', width: 96, height: 96, fit: BoxFit.cover),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(l10n.appTitle, style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900)),
+                  const SizedBox(height: 2),
+                  Text('v1.5.0', style: theme.textTheme.bodySmall),
+                  const SizedBox(height: 12),
+                  Text(l10n.aboutDevelopedBy, textAlign: TextAlign.center, style: theme.textTheme.bodySmall),
+                  const SizedBox(height: 2),
+                  Text(
+                    l10n.aboutDeveloperName,
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w900, color: theme.colorScheme.primary),
                   ),
                 ],
               ),

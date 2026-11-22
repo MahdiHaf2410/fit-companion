@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../data/meal_tools_repository.dart';
 import '../../../core/database/app_database.dart';
 import '../../../shared/providers/database_provider.dart';
 import '../../profile/presentation/profile_providers.dart';
@@ -20,24 +21,29 @@ final dailyLogsProvider = StreamProvider<List<FoodLog>>((ref) {
   return repo.watchDailyLogs(dateStr);
 });
 
-final dailyNutritionSummaryProvider = StreamProvider<DailyNutritionSummary>((ref) {
+String formatDateKey(DateTime date) =>
+    "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
+
+Stream<DailyNutritionSummary> _summaryFor(Ref ref, String dateStr) {
   final repo = ref.watch(nutritionRepositoryProvider);
-  final dateStr = ref.watch(selectedDateFormattedProvider);
-  final goalAsync = ref.watch(goalStreamProvider);
-
-  final goal = goalAsync.value;
-  final targetCalories = goal?.targetCalories ?? 2000;
-  final targetProtein = goal?.targetProteinGrams ?? 150.0;
-  final targetCarbs = goal?.targetCarbsGrams ?? 200.0;
-  final targetFat = goal?.targetFatGrams ?? 65.0;
-
+  final goal = ref.watch(goalStreamProvider).value;
   return repo.watchDailySummary(
     dateStr,
-    targetCalories: targetCalories,
-    targetProtein: targetProtein,
-    targetCarbs: targetCarbs,
-    targetFat: targetFat,
+    targetCalories: goal?.targetCalories ?? 2000,
+    targetProtein: goal?.targetProteinGrams ?? 150.0,
+    targetCarbs: goal?.targetCarbsGrams ?? 200.0,
+    targetFat: goal?.targetFatGrams ?? 65.0,
   );
+}
+
+/// Summary for the date selected in the Nutrition tab.
+final dailyNutritionSummaryProvider = StreamProvider<DailyNutritionSummary>((ref) {
+  return _summaryFor(ref, ref.watch(selectedDateFormattedProvider));
+});
+
+/// Summary for TODAY (used by the dashboard so it never shows another day).
+final todayNutritionSummaryProvider = StreamProvider<DailyNutritionSummary>((ref) {
+  return _summaryFor(ref, formatDateKey(DateTime.now()));
 });
 
 final foodSearchQueryProvider = StateProvider<String>((ref) => '');
@@ -53,4 +59,12 @@ final foodSearchResultsProvider = StreamProvider<List<Food>>((ref) {
 final recipesStreamProvider = StreamProvider<List<Recipe>>((ref) {
   final repo = ref.watch(nutritionRepositoryProvider);
   return repo.watchRecipes();
+});
+
+final mealToolsRepositoryProvider = Provider<MealToolsRepository>((ref) {
+  return MealToolsRepository(ref.watch(databaseProvider));
+});
+
+final mealTemplatesProvider = StreamProvider<List<MealTemplateWithItems>>((ref) {
+  return ref.watch(mealToolsRepositoryProvider).watchTemplates();
 });

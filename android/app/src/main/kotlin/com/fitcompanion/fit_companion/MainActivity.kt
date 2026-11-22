@@ -1,5 +1,6 @@
 package com.fitcompanion.fit_companion
 
-import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.android.FlutterFragmentActivity
 
-class MainActivity : FlutterActivity()
+// FlutterFragmentActivity is required by Health Connect's permission dialog.
+class MainActivity : FlutterFragmentActivity()

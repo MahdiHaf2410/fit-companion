@@ -3,7 +3,11 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  app_links_linux
+  file_selector_linux
+  flutter_timezone
   sqlite3_flutter_libs
+  url_launcher_linux
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

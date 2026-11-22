@@ -8,6 +8,7 @@ import '../../../shared/providers/database_provider.dart';
 import '../../../shared/providers/settings_provider.dart';
 import 'progress_providers.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../core/services/health_service.dart';
 
 class AddMetricScreen extends ConsumerStatefulWidget {
   const AddMetricScreen({super.key});
@@ -21,6 +22,12 @@ class _AddMetricScreenState extends ConsumerState<AddMetricScreen> {
   final _weightController = TextEditingController();
   final _waistController = TextEditingController();
   final _notesController = TextEditingController();
+  // v3 optional body measurements
+  final _chest = TextEditingController();
+  final _arm = TextEditingController();
+  final _thigh = TextEditingController();
+  final _hips = TextEditingController();
+  final _bodyFat = TextEditingController();
   DateTime _selectedDate = DateTime.now();
 
   @override
@@ -28,6 +35,9 @@ class _AddMetricScreenState extends ConsumerState<AddMetricScreen> {
     _weightController.dispose();
     _waistController.dispose();
     _notesController.dispose();
+    for (final c in [_chest, _arm, _thigh, _hips, _bodyFat]) {
+      c.dispose();
+    }
     super.dispose();
   }
 
@@ -41,16 +51,25 @@ class _AddMetricScreenState extends ConsumerState<AddMetricScreen> {
     await ref.read(progressRepositoryProvider).logMetric(
       weightKg: weight,
       waistCm: waist,
+      chestCm: double.tryParse(_chest.text.replaceAll(',', '.')),
+      armCm: double.tryParse(_arm.text.replaceAll(',', '.')),
+      thighCm: double.tryParse(_thigh.text.replaceAll(',', '.')),
+      hipsCm: double.tryParse(_hips.text.replaceAll(',', '.')),
+      bodyFatPercent: double.tryParse(_bodyFat.text.replaceAll(',', '.')),
       notes: notes,
       date: _selectedDate,
     );
+
+    // Also send the weight to Health Connect when the user connected it.
+    final health = ref.read(healthServiceProvider);
+    if (await health.hasAccess()) await health.writeWeight(weight, _selectedDate);
 
     ref.invalidate(bodyMetricsStreamProvider);
     ref.invalidate(latestBodyMetricProvider);
 
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Measurement saved successfully!')),
+        SnackBar(content: Text(AppLocalizations.of(context)!.measureSaved)),
       );
       context.pop();
     }
@@ -137,7 +156,35 @@ class _AddMetricScreenState extends ConsumerState<AddMetricScreen> {
                   suffixText: l10n.commonCm,
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
+              // Optional full body measurements
+              Theme(
+                data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+                child: ExpansionTile(
+                  tilePadding: EdgeInsets.zero,
+                  leading: const Icon(Icons.accessibility_new_rounded),
+                  title: Text(l10n.measureMore),
+                  childrenPadding: const EdgeInsets.only(bottom: 8),
+                  children: [
+                    for (final f in [
+                      (_chest, l10n.measureChest, l10n.commonCm),
+                      (_arm, l10n.measureArm, l10n.commonCm),
+                      (_thigh, l10n.measureThigh, l10n.commonCm),
+                      (_hips, l10n.measureHips, l10n.commonCm),
+                      (_bodyFat, l10n.measureBodyFat, '%'),
+                    ])
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: TextFormField(
+                          controller: f.$1,
+                          keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                          decoration: InputDecoration(labelText: f.$2, suffixText: f.$3),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 8),
 
               // Notes input
               TextFormField(
