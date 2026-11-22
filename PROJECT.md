@@ -202,13 +202,14 @@ features/
 - `weekly_report` (`/ai/report`): score /10 + summary + what went well + what to improve + goals. Saved in `AppPreferences('ai_weekly_report')`. Optional notification every Friday at 19:00 (`scheduleWeeklyReport`, id 500). Limit 6/day.
 - `program` (`/ai/program`): days + goal + equipment + notes → the AI chooses **only from the exercise ids in the app catalogue** (the server filters any other id) → "Save" creates one program per day. Limit 10/day.
 - `meal_plan` (`/ai/meals`): one day that hits your targets, with local Algerian foods + a shopping list. "Add to today" logs it as **planned** (isEaten = false). Limit 12/day.
-- `voice_log` (🎤 in the nutrition bar + the card): records m4a (package `record`, `RECORD_AUDIO`) → Gemini → transcript + items with macros → pick items + meal → log. The audio is not saved anywhere. Limit 60/day.
+- `voice_log` (🎤 in the nutrition bar + the card): records 16 kHz mono WAV (package `record`, `RECORD_AUDIO`) → Gemini → transcript + items with macros → pick items + meal → log. The audio is not saved anywhere. Limit 60/day.
 
 **Shareable cards** (`lib/features/social/social.dart` `showShareCard`): RepaintBoundary → 3× PNG → share_plus. Buttons: workout summary (session detail) + challenges/level.
 
 **Friends** (`/friends`, from the challenges screen): a random 6-character friend code (`friend_profiles.friend_code`) + leaderboard (weekly volume / workouts / XP). Only friends can read your stats (RLS). Adding and removing go through the `SECURITY DEFINER` functions `add_friend(code)` / `remove_friend(uuid)`, both directions. Long-press to remove.
 
 **Supabase additions:** tables `friend_profiles`, `friendships` (RLS), functions `add_friend`/`remove_friend` (authenticated only), `ai_usage.kind` + weekly_report/program/meal_plan/voice_log, Edge Function `ai-tools` (verify_jwt=false + `auth.getUser()`). Everything is still on the **free plan**.
+**Security advisor:** 2 intentional warnings for `add_friend`/`remove_friend` (SECURITY DEFINER callable by authenticated users: they only act on `auth.uid()` and need a valid code). "Leaked password protection" is off (a dashboard setting).
 **Sources in the repo:** `supabase/functions/*/index.ts` + `supabase/migrations/*.sql` (copied from what's deployed).
 **Tests:** 184 ✅ (incl. layout tests for the new screens at 360px en/ar light/dark).
 

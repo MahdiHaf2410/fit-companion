@@ -755,7 +755,7 @@ class _VoiceLogSheetState extends ConsumerState<_VoiceLogSheet> {
       setState(() => _busy = true);
       if (!mounted) return;
       final r = await _runAi(context, ref, 'voice_log', {
-        'audio': {'data': base64Encode(bytes), 'mime': 'audio/mp4'},
+        'audio': {'data': base64Encode(bytes), 'mime': 'audio/wav'},
       });
       if (!mounted) return;
       setState(() {
@@ -780,8 +780,8 @@ class _VoiceLogSheetState extends ConsumerState<_VoiceLogSheet> {
     }
     final dir = await getTemporaryDirectory();
     await _rec.start(
-      const RecordConfig(encoder: AudioEncoder.aacLc, bitRate: 64000, sampleRate: 16000, numChannels: 1),
-      path: '${dir.path}/voice_${DateTime.now().millisecondsSinceEpoch}.m4a',
+      const RecordConfig(encoder: AudioEncoder.wav, sampleRate: 16000, numChannels: 1),
+      path: '${dir.path}/voice_${DateTime.now().millisecondsSinceEpoch}.wav',
     );
     _startedAt = DateTime.now();
     setState(() {
