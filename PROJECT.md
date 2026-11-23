@@ -248,7 +248,11 @@ features/
 ## 4b-9) Website + downloads that update automatically
 - **Website:** https://mahdihaf2410.github.io/fit-companion/ (GitHub Pages from the `docs/` folder on the `main` branch; free).
   - Files: `docs/index.html` + `style.css` + `app.js`.
-  - Neon design like the app + a phone mockup + features + AI + "What's new" + install steps + FAQ + developer credit.
+  - **Design (v2, redone so it doesn't look generated):** "training log + competition barbell".
+    - Chalk background `#EEF1F4`, steel ink `#172033`, and the IWF plate colours. Each colour marks one of the app's tabs: red training / green nutrition / blue progress / yellow coach.
+    - Type: Big Shoulders Display + IBM Plex Sans; in Arabic: Reem Kufi + IBM Plex Sans Arabic.
+    - The memorable thing: an SVG barbell (160 kg) whose plates load once when the page opens. That's the only motion on the page.
+    - No cards / eyebrows / orbs / scroll animations. Numbers only on the install steps.
   - EN/AR with RTL (the ع button, remembered in localStorage, picked automatically from the browser language).
 - **Downloads:** every version is a **GitHub Release** with fixed file names: `fit-companion-arm64.apk` (main), `fit-companion-armv7.apk` (old phones), `fit-companion-universal.apk`.
   - The buttons point to `releases/latest/download/<name>`, which is **always the newest version**.

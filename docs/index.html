@@ -3,170 +3,185 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fit Companion: Gym &amp; Nutrition App for Android</title>
-  <meta name="description" content="Fit Companion: workout logger, custom programs, ~420 exercises with demo videos, nutrition tracker with Algerian foods, AI coach (Gemini), challenges, friends and progress tracking. English & Arabic. Free APK download." />
-  <meta name="theme-color" content="#07090f" />
-  <meta property="og:title" content="Fit Companion: train smarter, eat better" />
-  <meta property="og:description" content="All-in-one gym & nutrition app for Android with an AI coach. English & Arabic. Free." />
+  <title>Fit Companion: training log, nutrition and coach for Android</title>
+  <meta name="description" content="Log your workouts, track what you eat and follow your progress in one free Android app. 420 exercises with demo videos, Algerian foods, an AI coach. English and Arabic." />
+  <meta name="theme-color" content="#EEF1F4" />
+  <meta property="og:title" content="Fit Companion" />
+  <meta property="og:description" content="Training log, nutrition and coach in one free Android app. English and Arabic." />
   <meta property="og:image" content="logo.png" />
   <meta property="og:type" content="website" />
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Reem+Kufi:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="orbs" aria-hidden="true"><span></span><span></span><span></span></div>
+  <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
 
-  <!-- ============ NAV ============ -->
-  <header class="nav">
-    <a class="brand" href="#top" aria-label="Fit Companion">
-      <img src="logo.png" alt="" width="36" height="36" />
+  <header class="top">
+    <a class="brand" href="#main">
+      <img src="logo.png" alt="" width="34" height="34" />
       <span>Fit Companion</span>
     </a>
-    <nav class="links">
-      <a href="#features" data-i18n="navFeatures">Features</a>
-      <a href="#ai" data-i18n="navAi">AI coach</a>
-      <a href="#whatsnew" data-i18n="navNew">What's new</a>
+    <nav class="menu" aria-label="Sections">
+      <a href="#inside" data-i18n="navInside">What's inside</a>
+      <a href="#coach" data-i18n="navCoach">AI coach</a>
+      <a href="#changes" data-i18n="navChanges">Latest update</a>
       <a href="#install" data-i18n="navInstall">Install</a>
     </nav>
-    <div class="nav-actions">
-      <button class="lang" id="langBtn" type="button" aria-label="Language">ع</button>
-      <a class="btn btn-sm dl-main" href="https://github.com/MahdiHaf2410/fit-companion/releases/latest/download/fit-companion-arm64.apk" data-i18n="download">Download</a>
-    </div>
+    <button class="lang" id="langBtn" type="button" lang="ar">العربية</button>
   </header>
 
-  <main id="top">
+  <main id="main">
     <!-- ============ HERO ============ -->
     <section class="hero">
-      <div class="hero-text">
-        <p class="eyebrow"><span class="dot"></span><span data-i18n="eyebrow">Free · Android · English & العربية</span></p>
-        <h1><span data-i18n="h1a">Train smarter.</span><br /><span class="grad" data-i18n="h1b">Eat better.</span><br /><span data-i18n="h1c">Track everything.</span></h1>
-        <p class="lead" data-i18n="lead">Your all-in-one gym and nutrition companion: workouts, ~420 exercises with demo videos, Algerian food tracking, progress photos and an AI coach powered by Gemini.</p>
-        <div class="cta">
-          <a class="btn btn-lg dl-main" href="https://github.com/MahdiHaf2410/fit-companion/releases/latest/download/fit-companion-arm64.apk">
-            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/></svg>
-            <span><b data-i18n="downloadApk">Download APK</b><small class="ver-line"><span data-i18n="latest">Latest version</span> <span class="ver">v1.7.1</span> · <span class="size">35 MB</span></small></span>
+      <h1 data-i18n="h1">Log the lift. Fuel the lift. Watch it go up.</h1>
+      <div class="hero-row">
+        <p class="lead" data-i18n="lead">Fit Companion is a training log, a food diary and a coach in one Android app. It works offline, speaks Arabic and English, and knows what kesra and chorba are.</p>
+        <div class="get">
+          <a class="dl dl-main" href="https://github.com/MahdiHaf2410/fit-companion/releases/latest/download/fit-companion-arm64.apk">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M11 3h2v10.2l3.6-3.6 1.4 1.4-6 6-6-6 1.4-1.4 3.6 3.6V3zM4 19h16v2H4z"/></svg>
+            <span data-i18n="download">Download for Android</span>
           </a>
-          <a class="btn btn-ghost btn-lg" href="#features" data-i18n="seeFeatures">See features</a>
+          <p class="dl-meta"><span data-i18n="version">Version</span> <span class="ver">1.7.1</span>, <span class="size">35 MB</span>. <span data-i18n="free">Free, no ads.</span></p>
         </div>
-        <p class="other-dl"><span data-i18n="otherBuilds">Older phone?</span>
-          <a class="dl-armv7" href="https://github.com/MahdiHaf2410/fit-companion/releases/latest/download/fit-companion-armv7.apk" data-i18n="armv7">32-bit version</a> ·
-          <a class="dl-universal" href="https://github.com/MahdiHaf2410/fit-companion/releases/latest/download/fit-companion-universal.apk" data-i18n="universal">Universal (all phones)</a>
-        </p>
       </div>
 
-      <!-- Phone mockup (pure CSS, mirrors the app's dashboard) -->
-      <div class="phone-wrap" aria-hidden="true">
-        <div class="phone">
-          <div class="notch"></div>
-          <div class="screen">
-            <div class="s-head"><div><small data-i18n="mGood">Good evening</small><b>Mahdi</b></div><div class="s-avatar"></div></div>
-            <div class="s-card hero-card">
-              <div class="ring" style="--p:72"><div><b>1 842</b><small>kcal</small></div></div>
-              <div class="macros">
-                <div><small>P</small><i style="--w:80%;--c:#ff5c8a"></i></div>
-                <div><small>C</small><i style="--w:62%;--c:#ffb020"></i></div>
-                <div><small>F</small><i style="--w:45%;--c:#22d3ee"></i></div>
-              </div>
-            </div>
-            <div class="s-card row"><span class="ico lime">🏋️</span><div><b data-i18n="mPush">Push day</b><small>6 · 52 min</small></div><span class="pill">PR</span></div>
-            <div class="s-card row"><span class="ico violet">⚡</span><div><b>LVL 12 · Warrior</b><small>3 240 XP</small></div></div>
-            <div class="s-card row"><span class="ico cyan">💧</span><div><b>2.1 / 2.5 L</b><small data-i18n="mWater">Water</small></div></div>
-            <div class="s-nav"><i class="on"></i><i></i><i></i><i></i><i></i></div>
-          </div>
+      <!-- The one moment of motion: plates load onto the bar when the page opens. -->
+      <figure class="bar-fig" aria-label="A barbell loaded with competition plates: 160 kilograms">
+        <svg class="barbell" viewBox="0 0 1200 220" role="img" aria-hidden="true">
+          <rect class="shaft" x="20" y="102" width="1160" height="16" rx="3" />
+          <rect class="sleeve" x="20" y="96" width="250" height="28" rx="4" />
+          <rect class="sleeve" x="930" y="96" width="250" height="28" rx="4" />
+          <rect class="collar" x="262" y="86" width="14" height="48" rx="2" />
+          <rect class="collar" x="924" y="86" width="14" height="48" rx="2" />
+          <g class="side side-l">
+            <rect class="p red"    x="214" y="10" width="44" height="200" rx="8" />
+            <rect class="p blue"   x="174" y="10" width="38" height="200" rx="8" />
+            <rect class="p yellow" x="140" y="10" width="32" height="200" rx="8" />
+            <rect class="p green"  x="112" y="10" width="26" height="200" rx="8" />
+          </g>
+          <g class="side side-r">
+            <rect class="p red"    x="942" y="10" width="44" height="200" rx="8" />
+            <rect class="p blue"   x="988" y="10" width="38" height="200" rx="8" />
+            <rect class="p yellow" x="1028" y="10" width="32" height="200" rx="8" />
+            <rect class="p green"  x="1062" y="10" width="26" height="200" rx="8" />
+          </g>
+        </svg>
+        <figcaption><b>160 kg</b> <span data-i18n="barCaption">is 20 kg of bar and four plates a side. The app does this maths for you, and counts every rep you put on it.</span></figcaption>
+      </figure>
+    </section>
+
+    <!-- ============ WHAT'S INSIDE (grouped by the app's real tabs) ============ -->
+    <section id="inside" class="inside">
+      <h2 data-i18n="insideTitle">What's inside</h2>
+      <p class="intro" data-i18n="insideIntro">The app has four tabs. Here is what each one does for you.</p>
+
+      <article class="tab t-red">
+        <h3><i class="plate" aria-hidden="true"></i><span data-i18n="t1">Workouts</span></h3>
+        <div>
+          <p data-i18n="t1p">Build your own programs or start from a template, then log every set as you go. The rest timer runs in your notifications, and the app spots new records and tells you when to add weight.</p>
+          <ul>
+            <li data-i18n="t1a">420 exercises with Arabic names and a demo video for each</li>
+            <li data-i18n="t1b">Supersets, drop sets, warm-ups and effort (RPE)</li>
+            <li data-i18n="t1c">Warns you when it is time for a lighter week</li>
+          </ul>
         </div>
-        <div class="float f1">🤖 <span data-i18n="fAi">AI meal plan ready</span></div>
-        <div class="float f2">🏆 <span data-i18n="fPr">New PR: 100 kg</span></div>
+      </article>
+
+      <article class="tab t-green">
+        <h3><i class="plate" aria-hidden="true"></i><span data-i18n="t2">Nutrition</span></h3>
+        <div>
+          <p data-i18n="t2p">Log meals from a food list that includes Algerian dishes, scan a barcode, or take a photo of your plate and let the AI count it. You can also just say what you ate.</p>
+          <ul>
+            <li data-i18n="t2a">Calories and protein, carbs and fat against your goal</li>
+            <li data-i18n="t2b">Your real maintenance calories, worked out from your weight trend</li>
+            <li data-i18n="t2c">Water tracking and meal reminders</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="tab t-blue">
+        <h3><i class="plate" aria-hidden="true"></i><span data-i18n="t3">Progress</span></h3>
+        <div>
+          <p data-i18n="t3p">Weight, body fat and measurements on clear charts, and before and after photos you can compare side by side. Connect Health Connect to see how your sleep changes your training.</p>
+          <ul>
+            <li data-i18n="t3a">Weekly and monthly challenges with levels to reach</li>
+            <li data-i18n="t3b">A leaderboard with friends you add by code</li>
+            <li data-i18n="t3c">Share a workout or a level as an image</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="tab t-yellow">
+        <h3><i class="plate" aria-hidden="true"></i><span data-i18n="t4">Coach</span></h3>
+        <div>
+          <p data-i18n="t4p">Ask the coach anything about your training or food, with a photo or a video if it helps. It reads a short summary of your numbers, never your name or email.</p>
+          <ul>
+            <li data-i18n="t4a">A weekly report with a score and three goals</li>
+            <li data-i18n="t4b">A program built from the exercises in the app</li>
+            <li data-i18n="t4c">A full day of meals that fits your targets, with a shopping list</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ COACH SAMPLE ============ -->
+    <section id="coach" class="coach">
+      <div class="coach-text">
+        <h2 data-i18n="coachTitle">A coach that has read your log</h2>
+        <p data-i18n="coachP">Most apps give you the same tips as everyone else. This one answers from your own week: what you lifted, what you ate and how you slept.</p>
+      </div>
+      <div class="thread" aria-label="Example conversation">
+        <p class="me" data-i18n="c1">How was my week?</p>
+        <p class="bot"><b data-i18n="c2a">8.5 out of 10.</b> <span data-i18n="c2b">Four workouts, two new records and enough protein on five days. Next week, add one set to your leg day and aim for seven hours of sleep.</span></p>
+        <p class="me" data-i18n="c3">Two eggs, a piece of kesra and a coffee with milk.</p>
+        <p class="bot" data-i18n="c4">Added three items to breakfast: 512 kcal and 24 g of protein.</p>
       </div>
     </section>
 
-    <!-- ============ STATS ============ -->
-    <section class="stats">
-      <div><b>420+</b><span data-i18n="sEx">exercises</span></div>
-      <div><b>20</b><span data-i18n="sThemes">themes</span></div>
-      <div><b>AI</b><span data-i18n="sAi">Gemini coach</span></div>
-      <div><b>2</b><span data-i18n="sLang">languages (EN · ع)</span></div>
+    <!-- ============ LATEST UPDATE (read live from GitHub) ============ -->
+    <section id="changes" class="changes">
+      <h2><span data-i18n="changesTitle">Latest update</span> <span class="tag ver">1.7.1</span></h2>
+      <p class="intro"><span data-i18n="released">Released on</span> <time id="relDate">23 November 2026</time>. <a id="relLink" href="https://github.com/MahdiHaf2410/fit-companion/releases" data-i18n="allVersions">See all versions</a></p>
+      <div id="notes" class="notes"><p data-i18n="loading">Loading the change list.</p></div>
     </section>
 
-    <!-- ============ FEATURES ============ -->
-    <section id="features" class="section">
-      <h2 data-i18n="featTitle">Everything you need, in one app</h2>
-      <p class="sub" data-i18n="featSub">Works offline. Your data stays on your phone, with an optional free cloud backup.</p>
-      <div class="grid">
-        <article class="card"><div class="c-ico lime">🏋️</div><h3 data-i18n="f1t">Training</h3><p data-i18n="f1d">Build your own programs, log sets with RPE, supersets and drop sets, rest timer in the notification, PR detection and smart progressive overload.</p></article>
-        <article class="card"><div class="c-ico cyan">🎬</div><h3 data-i18n="f2t">420+ exercises with videos</h3><p data-i18n="f2d">Every muscle group (chest to neck) with Arabic names, filters by equipment, and a demo video inside the app for each exercise.</p></article>
-        <article class="card"><div class="c-ico orange">🥗</div><h3 data-i18n="f3t">Nutrition</h3><p data-i18n="f3d">Algerian & Maghreb foods, barcode scanner, AI meal photo analysis, voice logging in Darija, recipes and an adaptive TDEE.</p></article>
-        <article class="card"><div class="c-ico pink">📈</div><h3 data-i18n="f4t">Progress</h3><p data-i18n="f4d">Weight and body-fat charts, measurements, before/after photos with AI progress analysis, and sleep vs performance from Health Connect.</p></article>
-        <article class="card"><div class="c-ico violet">🏆</div><h3 data-i18n="f5t">Challenges & friends</h3><p data-i18n="f5d">Weekly and monthly challenges, XP levels from Beginner to Legend, a friends leaderboard and shareable image cards.</p></article>
-        <article class="card"><div class="c-ico lime">🎨</div><h3 data-i18n="f6t">20 themes</h3><p data-i18n="f6d">Light and dark, each with its own shapes and an animated background that reacts to your touch. Full Arabic right-to-left support.</p></article>
-      </div>
-    </section>
-
-    <!-- ============ AI ============ -->
-    <section id="ai" class="section ai">
-      <div class="ai-text">
-        <p class="eyebrow"><span class="dot"></span>Gemini</p>
-        <h2 data-i18n="aiTitle">An AI coach that knows your data</h2>
-        <p class="sub" data-i18n="aiSub">Only short summaries are sent. Never your name or email. Photos and voice are not stored.</p>
-        <ul class="checks">
-          <li data-i18n="ai1">Weekly report with a score and goals for next week</li>
-          <li data-i18n="ai2">Program builder using only exercises from the app</li>
-          <li data-i18n="ai3">One-day meal plan with local foods and a shopping list</li>
-          <li data-i18n="ai4">Snap a meal → items, grams and macros</li>
-          <li data-i18n="ai5">Say what you ate in Darija → logged</li>
-          <li data-i18n="ai6">Chat coach that accepts photos and videos</li>
-          <li data-i18n="ai7">Fatigue & deload detection, live notes during your workout</li>
-        </ul>
-      </div>
-      <div class="chat" aria-hidden="true">
-        <div class="msg me" data-i18n="c1">Rate my week 💪</div>
-        <div class="msg bot"><b>8.5 / 10</b><br /><span data-i18n="c2">4 workouts, 2 PRs and protein on target 5/7 days. Next week: add one set to legs and sleep 7 h+.</span></div>
-        <div class="msg me" data-i18n="c3">🎤 "Two eggs, kesra and a coffee with milk"</div>
-        <div class="msg bot" data-i18n="c4">Logged 3 items · 512 kcal · P 24 g ✓</div>
-      </div>
-    </section>
-
-    <!-- ============ WHAT'S NEW ============ -->
-    <section id="whatsnew" class="section">
-      <h2><span data-i18n="newTitle">What's new in</span> <span class="ver grad">v1.7.1</span></h2>
-      <p class="sub"><span data-i18n="released">Released</span> <span id="relDate">—</span> · <a id="relLink" href="https://github.com/MahdiHaf2410/fit-companion/releases/latest" target="_blank" rel="noopener" data-i18n="allReleases">All versions</a></p>
-      <div class="card notes" id="notes"><p data-i18n="loading">Loading…</p></div>
-    </section>
-
-    <!-- ============ INSTALL ============ -->
-    <section id="install" class="section">
-      <h2 data-i18n="instTitle">Install in 3 steps</h2>
-      <div class="steps">
-        <div class="step"><span>1</span><h3 data-i18n="st1t">Download</h3><p data-i18n="st1d">Tap "Download APK". Most phones from the last years need the main version.</p></div>
-        <div class="step"><span>2</span><h3 data-i18n="st2t">Allow the install</h3><p data-i18n="st2d">Android asks once to allow installing from your browser or files app. Allow it.</p></div>
-        <div class="step"><span>3</span><h3 data-i18n="st3t">Open & train</h3><p data-i18n="st3d">Updates install over the old version and keep your data. Just download the new APK from this page.</p></div>
-      </div>
-      <div class="cta center">
-        <a class="btn btn-lg dl-main" href="https://github.com/MahdiHaf2410/fit-companion/releases/latest/download/fit-companion-arm64.apk">
-          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/></svg>
-          <span><b data-i18n="downloadApk">Download APK</b><small class="ver-line"><span class="ver">v1.7.1</span> · Android 8+</small></span>
+    <!-- ============ INSTALL (a real sequence, so it is numbered) ============ -->
+    <section id="install" class="install">
+      <h2 data-i18n="installTitle">Install it in a minute</h2>
+      <ol class="steps">
+        <li><h3 data-i18n="s1">Download the app</h3><p data-i18n="s1p">Use the button below. It is the right file for almost every phone sold in the last five years.</p></li>
+        <li><h3 data-i18n="s2">Allow the install</h3><p data-i18n="s2p">Android asks once whether your browser may install apps. Say yes, then open the file.</p></li>
+        <li><h3 data-i18n="s3">Update the same way</h3><p data-i18n="s3p">When a new version comes out, download it from this page and install it over the old one. Your data stays.</p></li>
+      </ol>
+      <div class="install-get">
+        <a class="dl dl-main" href="https://github.com/MahdiHaf2410/fit-companion/releases/latest/download/fit-companion-arm64.apk">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M11 3h2v10.2l3.6-3.6 1.4 1.4-6 6-6-6 1.4-1.4 3.6 3.6V3zM4 19h16v2H4z"/></svg>
+          <span data-i18n="download">Download for Android</span>
         </a>
+        <p class="alt"><span data-i18n="older">Phone from before 2018?</span> <a class="dl-armv7" href="https://github.com/MahdiHaf2410/fit-companion/releases/latest/download/fit-companion-armv7.apk" data-i18n="armv7">Get the 32-bit version</a>. <span data-i18n="unsure">Not sure?</span> <a class="dl-universal" href="https://github.com/MahdiHaf2410/fit-companion/releases/latest/download/fit-companion-universal.apk" data-i18n="universal">This one works everywhere</a> <span data-i18n="bigger">but is larger.</span></p>
       </div>
     </section>
 
-    <!-- ============ FAQ ============ -->
-    <section class="section faq">
-      <h2 data-i18n="faqTitle">Questions</h2>
-      <details><summary data-i18n="q1">Is it free?</summary><p data-i18n="a1">Yes. The app, the cloud backup and the AI features are free (with fair daily limits for AI).</p></details>
-      <details><summary data-i18n="q2">Is my data private?</summary><p data-i18n="a2">Everything is stored on your phone. The optional cloud account is protected so only you can read your data, and friends only see a few public stats.</p></details>
-      <details><summary data-i18n="q3">Which phones are supported?</summary><p data-i18n="a3">Android 8.0 and newer. There is no iPhone version yet.</p></details>
-      <details><summary data-i18n="q4">Does it work without internet?</summary><p data-i18n="a4">Yes. Workouts, food logging and progress work offline. AI, videos, barcode lookup and cloud sync need internet.</p></details>
-      <details><summary data-i18n="q5">Android says the app is unknown. Is it safe?</summary><p data-i18n="a5">The app is installed from outside the Play Store, so Android warns you. The source code is public on GitHub.</p></details>
+    <!-- ============ QUESTIONS ============ -->
+    <section class="faq">
+      <h2 data-i18n="faqTitle">Questions people ask</h2>
+      <details><summary data-i18n="q1">Is it really free?</summary><p data-i18n="a1">Yes. There are no ads and no paid plan. The AI features have a daily limit so they stay free for everyone.</p></details>
+      <details><summary data-i18n="q2">Where is my data kept?</summary><p data-i18n="a2">On your phone. If you create an account, a backup is kept online that only you can read. Friends see your level and weekly totals, nothing else.</p></details>
+      <details><summary data-i18n="q3">Does it need the internet?</summary><p data-i18n="a3">Not for logging workouts, food or weight. The coach, the demo videos, barcode lookup and backups need a connection.</p></details>
+      <details><summary data-i18n="q4">Is there an iPhone version?</summary><p data-i18n="a4">Not yet. The app needs Android 8.0 or newer.</p></details>
+      <details><summary data-i18n="q5">Android warns me about an unknown app. Why?</summary><p data-i18n="a5">The app is installed from this site instead of the Play Store, so Android shows a warning. The full source code is public on GitHub if you want to check it.</p></details>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="brand"><img src="logo.png" alt="" width="28" height="28" /><span>Fit Companion</span></div>
-    <p><span data-i18n="dev">Designed & developed by</span> <b data-i18n="devName">Mahdi Hafiane</b></p>
-    <p><a href="https://github.com/MahdiHaf2410/fit-companion" target="_blank" rel="noopener">GitHub</a> · <span class="ver">v1.7.1</span></p>
+  <footer class="floor">
+    <div class="floor-in">
+      <p class="sig"><span data-i18n="madeBy">Designed and built by</span> <b data-i18n="devName">Mahdi Hafiane</b></p>
+      <p><a href="https://github.com/MahdiHaf2410/fit-companion" data-i18n="source">Source code on GitHub</a></p>
+    </div>
   </footer>
 
   <script src="app.js"></script>
