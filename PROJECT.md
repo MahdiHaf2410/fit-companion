@@ -225,6 +225,15 @@ features/
 - **⚠️ Required:** the secret **`YOUTUBE_API_KEY`** in Supabase (Edge Functions → Secrets). Without it the in-app videos don't work (the external button still works).
 - Note: `youtube_player_iframe` 6.0.4 is "no longer maintained"; its replacement is the `youtube_player` package (migration later if needed).
 
+## 4b-7) Version 1.7.0: the full exercise library (~420 exercises)
+- Added **274 new exercises** from the user's list (StrengthLog categories): chest, shoulders, biceps, triceps, legs, back, glutes, abs, calves, forearms/grip, neck. **Only the names** (EN + Arabic) + muscle group + equipment + type, with no copied instruction text.
+- Exercises that were already in the app (Bench Press, Squat, Deadlift, Pull-Up, …, ~85 of them) were **not repeated**.
+- Mapping to the app's groups: glutes and calves → `legs`, forearms → `arms`, neck → `back`, abs → `core`. Smith → `machine`. Timed exercises have "(reps = seconds)" in the name, like the old ones.
+- New equipment type **`band`** (rubber band): `kEquipments` + `equipBand` + in the AI program builder (with kettlebell).
+- **Source:** `tool/seed_v5_data.py` → `python tool/gen_seed_v5.py` generates `lib/core/database/seed_v5.dart` (it checks that no id or name repeats an older one). Inserted with `insertOrIgnore` on every start (`ensureSeedV3`), so **old users get them too with no migration**.
+- The video search strips "(reps = seconds)" from the name (`videoSearchName`).
+- Tests: `test/catalog_v5_test.dart` (no duplicates, valid groups/equipment, Arabic names, insertion is idempotent). Total 192 ✅.
+
 ## 4c) Supabase (cloud + coach)
 - **Project:** `fit-companion`, ID `keuheinbxgevhuhywfou`, region eu-west-3 (Paris), **free plan ($0)**.
 - **URL:** https://keuheinbxgevhuhywfou.supabase.co. The publishable key is in `lib/core/services/cloud_service.dart` (`SupabaseConfig`). It's safe in the APK because RLS protects everything.

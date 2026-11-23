@@ -2454,4 +2454,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get exerciseVideoUnavailable => 'فيديو الشرح غير متوفر حالياً.';
+
+  @override
+  String get equipBand => 'مطاط';
 }

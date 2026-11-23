@@ -4549,6 +4549,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The demo video isn\'t available right now.'**
   String get exerciseVideoUnavailable;
+
+  /// No description provided for @equipBand.
+  ///
+  /// In en, this message translates to:
+  /// **'Band'**
+  String get equipBand;
 }
 
 class _AppLocalizationsDelegate

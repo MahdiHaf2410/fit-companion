@@ -68,9 +68,9 @@ void main() {
     test('custom exercise is searchable and usable', () async {
       final db = await _db();
       final repo = WorkoutRepository(db);
-      final ex = await repo.createCustomExercise(name: 'Neck curl', muscleGroup: 'core', equipment: 'other');
+      final ex = await repo.createCustomExercise(name: 'Qzx custom curl', muscleGroup: 'core', equipment: 'other');
       expect(ex.isCustom, isTrue);
-      final found = await repo.searchExercisesStream(query: 'neck').first;
+      final found = await repo.searchExercisesStream(query: 'qzx').first;
       expect(found.single.id, ex.id);
       // Library is complete (base + v3 + v4)
       expect((await repo.searchExercisesStream().first).length, greaterThan(140));

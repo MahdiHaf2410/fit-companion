@@ -369,7 +369,7 @@ class ProgramBuilderScreen extends ConsumerStatefulWidget {
 class _ProgramBuilderScreenState extends ConsumerState<ProgramBuilderScreen> {
   int _days = 4;
   String _goal = 'hypertrophy';
-  final _equipment = <String>{'barbell', 'dumbbell', 'cable', 'machine', 'bodyweight'};
+  final _equipment = <String>{'barbell', 'dumbbell', 'cable', 'machine', 'bodyweight', 'kettlebell', 'band'};
   final _notes = TextEditingController();
   bool _busy = false;
   Map<String, dynamic>? _result;
@@ -448,6 +448,8 @@ class _ProgramBuilderScreenState extends ConsumerState<ProgramBuilderScreen> {
       'cable': l10n.aiEqCable,
       'machine': l10n.aiEqMachine,
       'bodyweight': l10n.aiEqBodyweight,
+      'kettlebell': l10n.equipKettlebell,
+      'band': l10n.equipBand,
     };
     final r = _result;
     return Scaffold(

@@ -2474,4 +2474,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get exerciseVideoUnavailable =>
       'The demo video isn\'t available right now.';
+
+  @override
+  String get equipBand => 'Band';
 }

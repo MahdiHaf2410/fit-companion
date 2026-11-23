@@ -7,9 +7,13 @@ import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../../l10n/app_localizations.dart';
 import '../services/cloud_service.dart';
 
+/// Exercise name without app-only hints like "(reps = seconds)", for video searches.
+String videoSearchName(String englishName) =>
+    englishName.replaceAll(RegExp(r'\s*\(reps\s*=[^)]*\)', caseSensitive: false), '').trim();
+
 /// YouTube search for an exercise's form demo (English name gives the best results).
 Uri exerciseVideoUri(String englishName) => Uri.https('www.youtube.com', '/results', {
-      'search_query': '$englishName exercise proper form',
+      'search_query': '${videoSearchName(englishName)} exercise proper form',
     });
 
 /// Opens [uri] (default: the YouTube search) in the YouTube app or the browser.
@@ -22,7 +26,7 @@ Future<void> openExerciseVideo(BuildContext context, String englishName, {Uri? u
 
 /// Demo videos for an exercise (cached on Supabase, looked up once per exercise).
 final exerciseVideosProvider = FutureProvider.autoDispose.family<List<ExerciseVideo>, String>(
-  (ref, englishName) => ref.watch(cloudServiceProvider).exerciseVideos(englishName),
+  (ref, englishName) => ref.watch(cloudServiceProvider).exerciseVideos(videoSearchName(englishName)),
 );
 
 /// Shows the demo inside the app in a bottom sheet (used during a workout).

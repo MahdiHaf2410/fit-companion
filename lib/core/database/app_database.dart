@@ -8,6 +8,7 @@ import 'tables.dart';
 import 'seed_data.dart';
 import 'seed_v3.dart';
 import 'seed_v4.dart';
+import 'seed_v5.dart';
 
 part 'app_database.g.dart';
 
@@ -183,8 +184,8 @@ class AppDatabase extends _$AppDatabase {
   Future<void> ensureSeedV3() async {
     final now = DateTime.now();
     await batch((b) {
-      // v4: full exercise library
-      for (final e in SeedV4.exercises) {
+      // v4 + v5: full exercise library
+      for (final e in [...SeedV4.exercises, ...SeedV5.exercises]) {
         b.insert(
           exercises,
           ExercisesCompanion.insert(

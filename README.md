@@ -11,8 +11,8 @@
 ![Android](https://img.shields.io/badge/Android-8.0%2B-3DDC84?logo=android)
 ![Supabase](https://img.shields.io/badge/Supabase-free%20plan-3FCF8E?logo=supabase)
 ![Gemini](https://img.shields.io/badge/AI-Gemini-8E75B2?logo=googlegemini)
-![Tests](https://img.shields.io/badge/tests-189%20passing-success)
-![Version](https://img.shields.io/badge/version-1.6.2-blue)
+![Tests](https://img.shields.io/badge/tests-192%20passing-success)
+![Version](https://img.shields.io/badge/version-1.7.0-blue)
 
 </div>
 
@@ -38,7 +38,7 @@ Under the hood it is a professional, tested codebase:
 
 ### 🏋️ Training
 - **Your own programs**: build unlimited custom programs, or copy ready-made templates (PPL, Upper/Lower, Full Body, 5/3/1)
-- **Large exercise library** with instructions (EN/AR), muscle groups and equipment, plus custom exercises
+- **~420 exercises** (EN/AR names) across chest, back, shoulders, arms, legs, glutes, abs, calves, forearms, neck and cardio, filterable by muscle and equipment (barbell, dumbbell, machine, cable, kettlebell, band, bodyweight), plus custom exercises
 - **▶ In-app demo video** for every exercise (YouTube player, looked up once and cached on the server)
 - **Live workout logger** with sets, reps and weight, warm-up and drop sets, supersets, RPE and a rest timer that shows in the notification
 - **Smart progressive overload** suggestions, plus estimated 1RM and personal-record detection

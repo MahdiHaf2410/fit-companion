@@ -1232,5 +1232,6 @@
   "exerciseOpenYoutube": "Open in YouTube",
   "exerciseAnotherVideo": "Another video",
   "exerciseVideoSignIn": "Sign in once to load the demo video inside the app.",
-  "exerciseVideoUnavailable": "The demo video isn't available right now."
+  "exerciseVideoUnavailable": "The demo video isn't available right now.",
+  "equipBand": "Band"
 }

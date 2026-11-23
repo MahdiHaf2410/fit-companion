@@ -9,7 +9,7 @@ import '../../../shared/providers/settings_provider.dart';
 import 'muscle_heatmap.dart' show muscleName;
 
 const kMuscleGroups = ['chest', 'back', 'shoulders', 'arms', 'legs', 'core', 'cardio'];
-const kEquipments = ['barbell', 'dumbbell', 'machine', 'cable', 'bodyweight', 'kettlebell', 'other'];
+const kEquipments = ['barbell', 'dumbbell', 'machine', 'cable', 'bodyweight', 'kettlebell', 'band', 'other'];
 
 String equipmentName(AppLocalizations l10n, String e) => switch (e) {
       'barbell' => l10n.equipBarbell,
@@ -18,6 +18,7 @@ String equipmentName(AppLocalizations l10n, String e) => switch (e) {
       'cable' => l10n.equipCable,
       'bodyweight' => l10n.equipBodyweight,
       'kettlebell' => l10n.equipKettlebell,
+      'band' => l10n.equipBand,
       _ => l10n.equipOther,
     };
 
