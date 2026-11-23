@@ -14,6 +14,8 @@
 ![Tests](https://img.shields.io/badge/tests-194%20passing-success)
 ![Version](https://img.shields.io/badge/version-1.7.1-blue)
 
+### [🌐 Website](https://mahdihaf2410.github.io/fit-companion/) · [⬇️ Download the latest APK](https://github.com/MahdiHaf2410/fit-companion/releases/latest/download/fit-companion-arm64.apk)
+
 </div>
 
 ---
@@ -152,6 +154,11 @@ flutter test
 flutter gen-l10n                                            # after editing .arb files
 dart run build_runner build --delete-conflicting-outputs    # after changing tables
 ```
+
+### Release a new version
+1. Bump `version:` in `pubspec.yaml`, build both APK variants (below).
+2. Write the notes in `tool/release-notes/vX.Y.Z.md` (English, then `<!-- ar -->`, then Arabic).
+3. `bash tool/release.sh tool/release-notes/vX.Y.Z.md` publishes a GitHub Release with fixed asset names. The website (`docs/`, GitHub Pages) reads the latest release, so its download buttons, version and "What's new" update automatically.
 
 ### Build the APK
 ```bash

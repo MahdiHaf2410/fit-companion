@@ -245,6 +245,25 @@ features/
   - "Create account" button when the account doesn't exist.
 - **Note:** the free plan's email sending is very limited (a few per hour). If a lot of people sign up, it's best to turn off "Confirm email" (Authentication → Sign In / Providers → Email) or add your own SMTP (free, e.g. Brevo/Resend).
 
+## 4b-9) Website + downloads that update automatically
+- **Website:** https://mahdihaf2410.github.io/fit-companion/ (GitHub Pages from the `docs/` folder on the `main` branch; free).
+  - Files: `docs/index.html` + `style.css` + `app.js`.
+  - Neon design like the app + a phone mockup + features + AI + "What's new" + install steps + FAQ + developer credit.
+  - EN/AR with RTL (the ع button, remembered in localStorage, picked automatically from the browser language).
+- **Downloads:** every version is a **GitHub Release** with fixed file names: `fit-companion-arm64.apk` (main), `fit-companion-armv7.apk` (old phones), `fit-companion-universal.apk`.
+  - The buttons point to `releases/latest/download/<name>`, which is **always the newest version**.
+  - `app.js` reads `api.github.com/.../releases/latest` → shows the version, size and date, plus the notes in the right language.
+- **⚠️ After every update (fixed steps):**
+  1. `version` in pubspec;
+  2. build `--release` + `--split-per-abi`;
+  3. write `tool/release-notes/vX.Y.Z.md` (EN then `<!-- ar -->` then AR);
+  4. `bash tool/release.sh tool/release-notes/vX.Y.Z.md`;
+  5. commit + push.
+
+  The site updates **on its own** with no changes to the code. The script refuses to publish if the APKs are older than pubspec.
+- The APK is built on this PC (debug key) and **not** on GitHub Actions, so updates install on top of each other.
+- Local preview: `.claude/launch.json` → "website" (python http.server on port 8765).
+
 ## 4c) Supabase (cloud + coach)
 - **Project:** `fit-companion`, ID `keuheinbxgevhuhywfou`, region eu-west-3 (Paris), **free plan ($0)**.
 - **URL:** https://keuheinbxgevhuhywfou.supabase.co. The publishable key is in `lib/core/services/cloud_service.dart` (`SupabaseConfig`). It's safe in the APK because RLS protects everything.
