@@ -271,6 +271,17 @@ features/
 - The APK is built on this PC (debug key) and **not** on GitHub Actions, so updates install on top of each other.
 - Local preview: `.claude/launch.json` → "website" (python http.server on port 8765).
 
+## 4b-10) Version 1.7.2: AI that holds up when Gemini is busy
+- **Problem:** "The AI servers are busy" for the meal plan. The logs showed Gemini 3.8 → 503 "high demand", 3.6 → cut off by our 40s timeout while it was still thinking (long answer), and flash-latest → 503.
+- **Fix: one shared caller** `supabase/functions/_shared/gemini.ts` (copied as `gemini.ts` into each function: ai-tools, ai-vision, ai-coach, ai-food-macros):
+  - **hedging:** if a model doesn't answer within 12s (45s for coach videos), the next model starts in parallel (max 2), and the first valid answer wins while the rest are aborted;
+  - an error (503/429/404/bad JSON) moves straight to the next model; a wrong key stops at once;
+  - **less thinking = faster:** `thinkingLevel: "low"` for Gemini 3, `thinkingBudget: 0` for 2.5 (never both); if a model rejects the setting, it retries without it;
+  - model order: 3.8-flash → 2.5-flash → 3.6-flash → flash-latest (+ optional GEMINI_MODEL);
+  - total time: ai-tools 110s, ai-vision 100s, ai-coach 110s, food-macros 50s (the free plan allows 150s); the app waits 125/115/125s.
+- Tests: `supabase/functions/_shared/gemini_test.ts` (5 tests with a simulated server) → `npx -y deno@2 test supabase/functions/_shared/gemini_test.ts`. Type check: `npx -y deno@2 check supabase/functions/*/index.ts`.
+- **When you edit `_shared/gemini.ts`:** copy it into the 4 functions, then redeploy them.
+
 ## 4c) Supabase (cloud + coach)
 - **Project:** `fit-companion`, ID `keuheinbxgevhuhywfou`, region eu-west-3 (Paris), **free plan ($0)**.
 - **URL:** https://keuheinbxgevhuhywfou.supabase.co. The publishable key is in `lib/core/services/cloud_service.dart` (`SupabaseConfig`). It's safe in the APK because RLS protects everything.

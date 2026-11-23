@@ -4,15 +4,13 @@
 // verify_jwt is OFF (ES256 user tokens); we authenticate with auth.getUser().
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { generate, modelList } from "./gemini.ts";
 
 const cors = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 const LIMITS: Record<string, number> = { food_photo: 60, label: 60, progress: 10 };
-const PER_MODEL_TIMEOUT_MS = 35_000;
-const TOTAL_BUDGET_MS = 75_000;
-const FALLBACK_MODELS = ["gemini-3.8-flash", "gemini-3.6-flash", "gemini-2.5-flash", "gemini-flash-latest"];
 const MAX_IMAGE_B64 = 6_000_000; // ~4.5 MB per image
 
 function json(body: unknown, status = 200) {
@@ -139,7 +137,6 @@ function prompt(mode: string, lang: string, body: Record<string, unknown>): stri
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
   if (req.method !== "POST") return json({ error: "method_not_allowed" }, 405);
-  const started = Date.now();
 
   const authHeader = req.headers.get("Authorization") ?? "";
   if (!authHeader.startsWith("Bearer ")) return json({ error: "unauthorized" }, 401);
@@ -152,7 +149,7 @@ Deno.serve(async (req) => {
   const apiKey = Deno.env.get("GEMINI_API_KEY");
   if (!apiKey) return json({ error: "missing_gemini_key" }, 503);
   const preferred = Deno.env.get("GEMINI_MODEL");
-  const models = [...new Set([...(preferred ? [preferred] : []), ...FALLBACK_MODELS])];
+  const models = modelList(preferred);
 
   let body: Record<string, unknown>;
   try {
@@ -185,56 +182,19 @@ Deno.serve(async (req) => {
   if ((count ?? 0) >= LIMITS[mode]) return json({ error: "daily_limit" }, 429);
 
   parts.push({ text: prompt(mode, lang, body) });
-  const payload = JSON.stringify({
+  const result = await generate<Record<string, unknown>>(apiKey, models, {
     contents: [{ role: "user", parts }],
     generationConfig: { temperature: 0.2, maxOutputTokens: 4096, responseMimeType: "application/json", responseSchema: SCHEMAS[mode] },
+  }, {
+    budgetMs: 100_000,
+    tag: mode,
+    parse: (text) => {
+      const v = JSON.parse(text);
+      return v && typeof v === "object" ? (v as Record<string, unknown>) : null;
+    },
   });
-
-  let parsed: Record<string, unknown> | null = null;
-  let lastError = "gemini_error";
-  for (const model of models) {
-    const remaining = TOTAL_BUDGET_MS - (Date.now() - started);
-    if (remaining < 6_000) {
-      lastError = "gemini_busy";
-      break;
-    }
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), Math.min(PER_MODEL_TIMEOUT_MS, remaining));
-    try {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
-        body: payload,
-        signal: ctrl.signal,
-      });
-      if (!res.ok) {
-        const detail = await res.text();
-        console.error("gemini_error", mode, model, res.status, detail.slice(0, 300));
-        if ((res.status === 400 || res.status === 401 || res.status === 403) && /API key|PERMISSION|api_key/i.test(detail)) {
-          return json({ error: "gemini_key" }, 502);
-        }
-        lastError = res.status === 429 ? "gemini_quota" : res.status === 404 ? "gemini_model" : "gemini_busy";
-        continue;
-      }
-      const out = await res.json();
-      const text = (out?.candidates?.[0]?.content?.parts ?? [])
-        .filter((p: { thought?: boolean }) => !p.thought)
-        .map((p: { text?: string }) => p.text ?? "")
-        .join("");
-      try {
-        parsed = JSON.parse(text);
-        break;
-      } catch {
-        lastError = "bad_ai_output";
-      }
-    } catch (e) {
-      console.error("gemini_timeout_or_network", mode, model, String(e).slice(0, 200));
-      lastError = "gemini_busy";
-    } finally {
-      clearTimeout(timer);
-    }
-  }
-  if (!parsed) return json({ error: lastError }, 502);
+  if (!result.ok) return json({ error: result.error }, 502);
+  const parsed = result.value;
 
   await supabase.from("ai_usage").insert({ kind: mode });
 

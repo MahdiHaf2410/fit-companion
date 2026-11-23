@@ -6,6 +6,7 @@
 // and sends its path; the function downloads it (as the user) and sends it inline to Gemini.
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { generate, modelList } from "./gemini.ts";
 import { encodeBase64 } from "jsr:@std/encoding@1/base64";
 
 const cors = {
@@ -14,11 +15,7 @@ const cors = {
 };
 
 const DAILY_LIMIT = 40; // protects the free Gemini quota
-const PER_MODEL_TIMEOUT_MS = 20_000;
-const MEDIA_TIMEOUT_MS = 60_000; // videos take longer
-const TOTAL_BUDGET_MS = 110_000;
 const MAX_MEDIA_BYTES = 40 * 1024 * 1024;
-const FALLBACK_MODELS = ["gemini-3.8-flash", "gemini-3.6-flash", "gemini-2.5-flash", "gemini-flash-latest"];
 
 function json(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), { status, headers: { ...cors, "Content-Type": "application/json" } });
@@ -42,7 +39,7 @@ Deno.serve(async (req) => {
   const apiKey = Deno.env.get("GEMINI_API_KEY");
   if (!apiKey) return json({ error: "missing_gemini_key" }, 503);
   const preferred = Deno.env.get("GEMINI_MODEL");
-  const models = [...new Set([...(preferred ? [preferred] : []), ...FALLBACK_MODELS])];
+  const models = modelList(preferred);
 
   let body: { message?: string; context?: string; language?: string; media?: { path?: string; type?: string; mime?: string } };
   try {
@@ -110,63 +107,21 @@ Deno.serve(async (req) => {
     "USER DATA SUMMARY:\n" + (context || "(no data shared)"),
   ].join("\n");
 
-  const payload = JSON.stringify({
+  const result = await generate<string>(apiKey, models, {
     systemInstruction: { parts: [{ text: system }] },
     contents,
     generationConfig: { temperature: 0.6, maxOutputTokens: 2048 },
+  }, {
+    budgetMs: 110_000,
+    // Videos are big: wait longer before sending a second copy to another model.
+    hedgeMs: mediaPart ? 45_000 : 12_000,
+    tag: "coach",
+    parse: (text) => text.trim() || null,
+    badRequestError: mediaPart ? "media_unsupported" : undefined,
   });
-
-  let reply = "";
-  let lastError = "gemini_error";
-  let usedModel = "";
-  const perModel = mediaPart ? MEDIA_TIMEOUT_MS : PER_MODEL_TIMEOUT_MS;
-  for (const model of models) {
-    const remaining = TOTAL_BUDGET_MS - (Date.now() - started);
-    if (remaining < 6_000) {
-      lastError = "gemini_busy";
-      break;
-    }
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), Math.min(perModel, remaining));
-    try {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
-        body: payload,
-        signal: ctrl.signal,
-      });
-      if (!res.ok) {
-        const detail = await res.text();
-        console.error("gemini_error", model, res.status, detail.slice(0, 300));
-        if ((res.status === 400 || res.status === 401 || res.status === 403) && /API key|PERMISSION|api_key/i.test(detail)) {
-          return json({ error: "gemini_key" }, 502);
-        }
-        if (res.status === 400 && mediaPart) {
-          lastError = "media_unsupported";
-          continue;
-        }
-        lastError = res.status === 429 ? "gemini_quota" : res.status === 404 ? "gemini_model" : "gemini_busy";
-        continue; // 404 / 429 / 5xx -> try the next model
-      }
-      const out = await res.json();
-      reply = (out?.candidates?.[0]?.content?.parts ?? [])
-        .filter((p: { thought?: boolean }) => !p.thought)
-        .map((p: { text?: string }) => p.text ?? "")
-        .join("")
-        .trim();
-      if (reply) {
-        usedModel = model;
-        break;
-      }
-      lastError = "empty_reply";
-    } catch (e) {
-      console.error("gemini_timeout_or_network", model, String(e).slice(0, 200));
-      lastError = "gemini_busy";
-    } finally {
-      clearTimeout(timer);
-    }
-  }
-  if (!reply) return json({ error: lastError }, 502);
+  if (!result.ok) return json({ error: result.error === "bad_ai_output" ? "empty_reply" : result.error }, 502);
+  const reply = result.value;
+  const usedModel = result.model;
   console.log("coach_ok", usedModel, mediaType ?? "text", Date.now() - started, "ms");
 
   // Insert sequentially so ids keep question-before-answer order.

@@ -4073,7 +4073,7 @@ abstract class AppLocalizations {
   /// No description provided for @aiThinking.
   ///
   /// In en, this message translates to:
-  /// **'The AI is working on it… (up to a minute)'**
+  /// **'The AI is working on it. When its servers are busy this can take up to two minutes.'**
   String get aiThinking;
 
   /// No description provided for @aiKcal.

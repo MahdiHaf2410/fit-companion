@@ -207,7 +207,7 @@ class CloudService {
       await _sb.storage
           .from('coach-media')
           .uploadBinary(path, bytes, fileOptions: FileOptions(contentType: mime, upsert: false))
-          .timeout(const Duration(seconds: 120));
+          .timeout(const Duration(seconds: 125));
     } on TimeoutException {
       throw CoachException('upload_failed');
     } on StorageException catch (e) {
@@ -307,7 +307,7 @@ class CloudService {
           for (final i in images) {'data': base64Encode(i.bytes), 'mime': i.mime, if (i.label != null) 'label': i.label},
         ],
         ...extra,
-      }).timeout(const Duration(seconds: 90));
+      }).timeout(const Duration(seconds: 115));
     } on TimeoutException {
       throw CoachException('gemini_busy');
     } on FunctionException catch (e) {
@@ -325,7 +325,7 @@ class CloudService {
     try {
       res = await _sb.functions
           .invoke('ai-tools', body: {'mode': mode, 'language': language, ...body})
-          .timeout(const Duration(seconds: 95));
+          .timeout(const Duration(seconds: 125));
     } on TimeoutException {
       throw CoachException('gemini_busy');
     } on FunctionException catch (e) {

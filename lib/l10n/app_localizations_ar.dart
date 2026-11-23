@@ -2188,7 +2188,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get aiRegenerate => 'أنشئ من جديد';
 
   @override
-  String get aiThinking => 'الذكاء الاصطناعي يحضّر… (حتى دقيقة)';
+  String get aiThinking =>
+      'الذكاء الاصطناعي راهو يحضّر. كي تكون السيرفرات مشغولة يقدر ياخذ حتى دقيقتين.';
 
   @override
   String get aiKcal => 'سعرة';

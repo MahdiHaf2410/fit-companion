@@ -1087,7 +1087,7 @@
   "aiSignIn": "Sign in",
   "aiGenerate": "Generate",
   "aiRegenerate": "Generate again",
-  "aiThinking": "The AI is working on it… (up to a minute)",
+  "aiThinking": "The AI is working on it. When its servers are busy this can take up to two minutes.",
   "aiKcal": "kcal",
   "aiReportTitle": "Weekly AI report",
   "aiReportIntro": "A coach-style review of your week: training, food, weight, sleep, with goals for next week.",

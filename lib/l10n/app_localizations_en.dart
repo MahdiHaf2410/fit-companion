@@ -2205,7 +2205,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aiRegenerate => 'Generate again';
 
   @override
-  String get aiThinking => 'The AI is working on it… (up to a minute)';
+  String get aiThinking =>
+      'The AI is working on it. When its servers are busy this can take up to two minutes.';
 
   @override
   String get aiKcal => 'kcal';

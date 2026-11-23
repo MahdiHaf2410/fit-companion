@@ -3,15 +3,13 @@
 // verify_jwt is OFF because user tokens are ES256; we authenticate with auth.getUser().
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { generate, modelList } from "./gemini.ts";
 
 const cors = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 const DAILY_LIMIT = 80;
-const PER_MODEL_TIMEOUT_MS = 20_000;
-const TOTAL_BUDGET_MS = 50_000;
-const FALLBACK_MODELS = ["gemini-3.8-flash", "gemini-3.6-flash", "gemini-2.5-flash", "gemini-flash-latest"];
 
 function json(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), { status, headers: { ...cors, "Content-Type": "application/json" } });
@@ -38,7 +36,6 @@ const schema = {
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
   if (req.method !== "POST") return json({ error: "method_not_allowed" }, 405);
-  const started = Date.now();
 
   const authHeader = req.headers.get("Authorization") ?? "";
   if (!authHeader.startsWith("Bearer ")) return json({ error: "unauthorized" }, 401);
@@ -51,7 +48,7 @@ Deno.serve(async (req) => {
   const apiKey = Deno.env.get("GEMINI_API_KEY");
   if (!apiKey) return json({ error: "missing_gemini_key" }, 503);
   const preferred = Deno.env.get("GEMINI_MODEL");
-  const models = [...new Set([...(preferred ? [preferred] : []), ...FALLBACK_MODELS])];
+  const models = modelList(preferred);
 
   let body: { name?: string; description?: string; grams?: number; language?: string };
   try {
@@ -83,56 +80,19 @@ Deno.serve(async (req) => {
     `Portion weight: ${grams} g (only for context; return per-100 g values).`,
   ].join("\n");
 
-  const payload = JSON.stringify({
+  const result = await generate<Record<string, unknown>>(apiKey, models, {
     contents: [{ role: "user", parts: [{ text: prompt }] }],
     generationConfig: { temperature: 0.1, maxOutputTokens: 2048, responseMimeType: "application/json", responseSchema: schema },
+  }, {
+    budgetMs: 50_000,
+    tag: "food_macros",
+    parse: (text) => {
+      const v = JSON.parse(text);
+      return v && typeof v === "object" ? (v as Record<string, unknown>) : null;
+    },
   });
-
-  let parsed: Record<string, unknown> | null = null;
-  let lastError = "gemini_error";
-  for (const model of models) {
-    const remaining = TOTAL_BUDGET_MS - (Date.now() - started);
-    if (remaining < 5_000) {
-      lastError = "gemini_busy";
-      break;
-    }
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), Math.min(PER_MODEL_TIMEOUT_MS, remaining));
-    try {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
-        body: payload,
-        signal: ctrl.signal,
-      });
-      if (!res.ok) {
-        const detail = await res.text();
-        console.error("gemini_error", model, res.status, detail.slice(0, 300));
-        if ((res.status === 400 || res.status === 401 || res.status === 403) && !detail.includes("not found") && !detail.includes("not supported")) {
-          return json({ error: "gemini_key" }, 502);
-        }
-        lastError = res.status === 429 ? "gemini_quota" : res.status === 404 ? "gemini_model" : "gemini_busy";
-        continue;
-      }
-      const out = await res.json();
-      const text = (out?.candidates?.[0]?.content?.parts ?? [])
-        .filter((p: { thought?: boolean }) => !p.thought)
-        .map((p: { text?: string }) => p.text ?? "")
-        .join("");
-      try {
-        parsed = JSON.parse(text);
-        break;
-      } catch {
-        lastError = "bad_ai_output";
-      }
-    } catch (e) {
-      console.error("gemini_timeout_or_network", model, String(e).slice(0, 200));
-      lastError = "gemini_busy";
-    } finally {
-      clearTimeout(timer);
-    }
-  }
-  if (!parsed) return json({ error: lastError }, 502);
+  if (!result.ok) return json({ error: result.error }, 502);
+  const parsed = result.value;
 
   // ---- Sanity checks so the numbers are always physically consistent ----
   let protein = num(parsed.protein_per_100g);
