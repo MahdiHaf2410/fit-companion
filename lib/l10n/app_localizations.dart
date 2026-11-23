@@ -4513,6 +4513,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Aim for 7–9 h: muscle is built while you sleep.'**
   String get sleepTip;
+
+  /// No description provided for @exerciseWatchHow.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch how'**
+  String get exerciseWatchHow;
+
+  /// No description provided for @exerciseVideoError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open the video'**
+  String get exerciseVideoError;
 }
 
 class _AppLocalizationsDelegate

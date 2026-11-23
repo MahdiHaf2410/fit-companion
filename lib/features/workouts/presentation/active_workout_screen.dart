@@ -15,6 +15,7 @@ import '../../../core/widgets/ui_kit.dart';
 import '../../../shared/providers/database_provider.dart';
 import '../../../shared/providers/settings_provider.dart';
 import '../data/workout_repository.dart';
+import '../../../core/utils/exercise_video.dart';
 import '../../../core/utils/insights.dart';
 import '../../insights/insights.dart' show coachNoteText;
 import 'exercise_detail_screen.dart' show exerciseHistoryProvider;
@@ -554,6 +555,8 @@ class _ExerciseCard extends ConsumerWidget {
                       await repo.setSuperset(sessionId: sessionId, exerciseId: first.exerciseId, nextExerciseId: nextExerciseId);
                     } else if (v == 'unlink') {
                       await repo.setSuperset(sessionId: sessionId, exerciseId: first.exerciseId);
+                    } else if (v == 'video') {
+                      if (context.mounted) await openExerciseVideo(context, first.exerciseName);
                     } else if (v == 'chart') {
                       if (context.mounted) context.push('/workouts/exercise/${first.exerciseId}');
                     }
@@ -563,6 +566,7 @@ class _ExerciseCard extends ConsumerWidget {
                       PopupMenuItem(value: 'link', child: ListTile(leading: const Icon(Icons.link_rounded), title: Text(l10n.setsSupersetWithNext))),
                     if (superset != null)
                       PopupMenuItem(value: 'unlink', child: ListTile(leading: const Icon(Icons.link_off_rounded), title: Text(l10n.setsRemoveSuperset))),
+                    PopupMenuItem(value: 'video', child: ListTile(leading: const Icon(Icons.play_circle_fill_rounded), title: Text(l10n.exerciseWatchHow))),
                     PopupMenuItem(value: 'chart', child: ListTile(leading: const Icon(Icons.show_chart_rounded), title: Text(l10n.exerciseProgress))),
                   ],
                 ),

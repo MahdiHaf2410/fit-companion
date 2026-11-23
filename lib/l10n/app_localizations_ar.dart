@@ -2435,4 +2435,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get sleepTip => 'حاول تنام 7–9 ساعات: العضلات تتبنى وأنت راقد.';
+
+  @override
+  String get exerciseWatchHow => 'شاهد طريقة الأداء';
+
+  @override
+  String get exerciseVideoError => 'تعذّر فتح الفيديو';
 }

@@ -2454,4 +2454,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sleepTip => 'Aim for 7–9 h: muscle is built while you sleep.';
+
+  @override
+  String get exerciseWatchHow => 'Watch how';
+
+  @override
+  String get exerciseVideoError => 'Could not open the video';
 }

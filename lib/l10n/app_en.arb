@@ -1226,5 +1226,7 @@
     }
   },
   "sleepNoEffect": "No clear effect of short nights on your volume yet",
-  "sleepTip": "Aim for 7–9 h: muscle is built while you sleep."
+  "sleepTip": "Aim for 7–9 h: muscle is built while you sleep.",
+  "exerciseWatchHow": "Watch how",
+  "exerciseVideoError": "Could not open the video"
 }

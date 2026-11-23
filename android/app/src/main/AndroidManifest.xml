@@ -90,6 +90,11 @@
 
          In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin. -->
     <queries>
+        <!-- Exercise demo videos (YouTube / browser) -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
         <!-- Health Connect -->
         <package android:name="com.google.android.apps.healthdata" />
         <intent>

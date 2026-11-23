@@ -1,3 +1,4 @@
+import '../../../core/utils/exercise_video.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -47,7 +48,17 @@ class _ExerciseDetailScreenState extends ConsumerState<ExerciseDetailScreen> {
     final primary = theme.colorScheme.primary;
 
     return Scaffold(
-      appBar: AppBar(title: Text(name, maxLines: 1, overflow: TextOverflow.ellipsis)),
+      appBar: AppBar(
+        title: Text(name, maxLines: 1, overflow: TextOverflow.ellipsis),
+        actions: [
+          if (exercise != null)
+            IconButton(
+              tooltip: l10n.exerciseWatchHow,
+              icon: const Icon(Icons.play_circle_fill_rounded),
+              onPressed: () => openExerciseVideo(context, exercise.name),
+            ),
+        ],
+      ),
       body: historyAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('${l10n.commonError}: $e')),
@@ -62,6 +73,10 @@ class _ExerciseDetailScreenState extends ConsumerState<ExerciseDetailScreen> {
                     Icon(Icons.show_chart_rounded, size: 48, color: context.textSecondary),
                     const SizedBox(height: 12),
                     Text(l10n.exerciseNoHistory, textAlign: TextAlign.center, style: theme.textTheme.bodyMedium),
+                    if (exercise != null) ...[
+                      const SizedBox(height: 14),
+                      ExerciseVideoButton(englishName: exercise.name),
+                    ],
                     if (exercise?.instructions != null) ...[
                       const SizedBox(height: 16),
                       Text(

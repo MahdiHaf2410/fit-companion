@@ -213,6 +213,11 @@ features/
 **Sources in the repo:** `supabase/functions/*/index.ts` + `supabase/migrations/*.sql` (copied from what's deployed).
 **Tests:** 184 ✅ (incl. layout tests for the new screens at 360px en/ar light/dark).
 
+## 4b-6) Version 1.6.1: exercise demo videos
+- A **"Watch how" ▶** button on every exercise: in the exercise screen (app bar + when there is no history) and in the ⋮ menu during the workout. It opens a **YouTube search** for `"<English name> exercise proper form"` in the YouTube app or the browser (`lib/core/utils/exercise_video.dart`, package `url_launcher`, an https VIEW `<queries>` in the manifest).
+- **Why not 3D GIFs inside the app?** The 3D animations with highlighted muscles (Gymvisual / ExerciseDB) are copyrighted and need a paid license, and the code is public on GitHub. If you buy a license later, you can add a GIF per exercise inside the app.
+- A search rather than a fixed link: no video gets deleted or breaks, and the results include many 3D-style videos. It needs internet.
+
 ## 4c) Supabase (cloud + coach)
 - **Project:** `fit-companion`, ID `keuheinbxgevhuhywfou`, region eu-west-3 (Paris), **free plan ($0)**.
 - **URL:** https://keuheinbxgevhuhywfou.supabase.co. The publishable key is in `lib/core/services/cloud_service.dart` (`SupabaseConfig`). It's safe in the APK because RLS protects everything.
