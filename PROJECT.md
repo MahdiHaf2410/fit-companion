@@ -255,6 +255,7 @@ features/
     - Count-up numbers (IntersectionObserver), "What's new" from GitHub, steps, FAQ.
     - On phones: the phone stays at the top (scale 0.58) and the text scrolls in white cards under it.
     - `prefers-reduced-motion` is respected.
+    - **Dark mode:** follows the phone/computer setting automatically (`prefers-color-scheme`), plus a 🌙/☀️ button that remembers the choice (`localStorage fc_theme` → `data-theme`). A small script in `<head>` applies the choice before the first paint (no flash). The colours are variables (`--bg/--surface/--ink/--btn/--band…`) with dark values, and the tour colours have a dark version (`TINT.dark` in app.js).
     - Note: in a hidden browser pane the browser pauses rAF, so screenshots may catch late states. That doesn't happen to visitors.
 - **Downloads:** every version is a **GitHub Release** with fixed file names: `fit-companion-arm64.apk` (main), `fit-companion-armv7.apk` (old phones), `fit-companion-universal.apk`.
   - The buttons point to `releases/latest/download/<name>`, which is **always the newest version**.

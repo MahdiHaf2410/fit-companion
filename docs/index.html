@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fit Companion: training log, nutrition and coach for Android</title>
   <meta name="description" content="Log your workouts, track what you eat and follow your progress in one free Android app. 420 exercises with demo videos, Algerian foods, an AI coach. English and Arabic." />
-  <meta name="theme-color" content="#f7f8fb" />
+  <meta name="theme-color" content="#f7f8fb" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0b0f19" media="(prefers-color-scheme: dark)" />
   <meta property="og:title" content="Fit Companion" />
   <meta property="og:description" content="Training log, nutrition and coach in one free Android app. English and Arabic." />
   <meta property="og:image" content="logo.png" />
@@ -16,6 +17,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Reem+Kufi:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script>
+    // Apply the saved theme before the first paint (no flash of the wrong colours).
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('fc_theme'); } catch (e) {}
+      var dark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (t) document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.setAttribute('data-mode', dark ? 'dark' : 'light');
+    })();
+  </script>
 </head>
 <body>
   <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
@@ -30,6 +41,10 @@
       <a href="#changes" data-i18n="navChanges">Latest update</a>
       <a href="#install" data-i18n="navInstall">Install</a>
     </nav>
+    <button class="theme" id="themeBtn" type="button" aria-label="Switch to dark mode" data-i18n-label="toDark">
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-13h0a1 1 0 0 1 1-1v0a1 1 0 0 1-2 0V3a1 1 0 0 1 1 1zm0 17a1 1 0 0 1 1 1v0a1 1 0 0 1-2 0v0a1 1 0 0 1 1-1zM4 12a1 1 0 0 1-1 1H3a1 1 0 0 1 0-2h0a1 1 0 0 1 1 1zm17 0a1 1 0 0 1 1-1h0a1 1 0 0 1 0 2h0a1 1 0 0 1-1-1zM6.3 6.3a1 1 0 0 1-1.4 0l0 0a1 1 0 0 1 1.4-1.4l0 0a1 1 0 0 1 0 1.4zm12.8 12.8a1 1 0 0 1-1.4 0l0 0a1 1 0 0 1 1.4-1.4l0 0a1 1 0 0 1 0 1.4zm0-14.2a1 1 0 0 1 0 1.4l0 0a1 1 0 0 1-1.4-1.4l0 0a1 1 0 0 1 1.4 0zM6.3 17.7a1 1 0 0 1 0 1.4l0 0a1 1 0 0 1-1.4-1.4l0 0a1 1 0 0 1 1.4 0z"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.7 14.6A8.5 8.5 0 0 1 9.4 3.3a.7.7 0 0 0-.9-.9A10 10 0 1 0 21.6 15.5a.7.7 0 0 0-.9-.9z"/></svg>
+    </button>
     <button class="lang" id="langBtn" type="button" lang="ar">العربية</button>
     <a class="dl dl-sm dl-main" href="https://github.com/MahdiHaf2410/fit-companion/releases/latest/download/fit-companion-arm64.apk" data-i18n="downloadShort">Download</a>
   </header>

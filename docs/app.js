@@ -65,9 +65,27 @@
     btn.textContent = l === 'ar' ? 'English' : 'العربية';
     btn.lang = l === 'ar' ? 'en' : 'ar';
     try { localStorage.setItem('fc_lang', l); } catch (_) {}
+    if (typeof setMode === 'function') setMode(root.dataset.mode === 'dark');
     renderRelease();
   }
   btn.addEventListener('click', () => applyLang(lang === 'ar' ? 'en' : 'ar'));
+
+  // ---------------- light / dark ----------------
+  const themeBtn = document.getElementById('themeBtn');
+  const system = window.matchMedia('(prefers-color-scheme: dark)');
+  function setMode(dark) {
+    root.dataset.mode = dark ? 'dark' : 'light';
+    themeBtn.setAttribute('aria-label', dark ? (lang === 'ar' ? 'الوضع الفاتح' : 'Switch to light mode') : (lang === 'ar' ? 'الوضع الداكن' : 'Switch to dark mode'));
+    themeBtn.setAttribute('aria-pressed', String(dark));
+    const ch = current; current = undefined; if (ch !== undefined) activate(ch); // repaint the chapter colour
+  }
+  themeBtn.addEventListener('click', () => {
+    const dark = root.dataset.mode !== 'dark';
+    root.dataset.theme = dark ? 'dark' : 'light';
+    try { localStorage.setItem('fc_theme', root.dataset.theme); } catch (_) {}
+    setMode(dark);
+  });
+  system.addEventListener('change', (e) => { if (!root.dataset.theme) setMode(e.matches); });
 
   // ---------------- count-up numbers ----------------
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -103,8 +121,14 @@
 
   // ---------------- scroll tour ----------------
   const TINT = {
-    red: ['#ffe9ec', '#ff3b4f'], orange: ['#fff0e1', '#ff8a1f'], green: ['#e2f7ec', '#12b06a'],
-    blue: ['#e6eeff', '#2f6bff'], violet: ['#efeaff', '#7b5cff'], yellow: ['#fff6d4', '#f5b800'],
+    light: {
+      red: ['#ffe9ec', '#ff3b4f'], orange: ['#fff0e1', '#ff8a1f'], green: ['#e2f7ec', '#12b06a'],
+      blue: ['#e6eeff', '#2f6bff'], violet: ['#efeaff', '#7b5cff'], yellow: ['#fff6d4', '#f5b800'],
+    },
+    dark: {
+      red: ['#2a0f16', '#ff3b4f'], orange: ['#2a180a', '#ff8a1f'], green: ['#0a2418', '#12b06a'],
+      blue: ['#0c1733', '#2f6bff'], violet: ['#1a1236', '#7b5cff'], yellow: ['#2a2208', '#f5b800'],
+    },
   };
   const chapters = [...document.querySelectorAll('.chapter')];
   const screens = Object.fromEntries([...document.querySelectorAll('.scr')].map((s) => [s.dataset.scr, s]));
@@ -119,7 +143,7 @@
       root.style.removeProperty('--accent');
       return;
     }
-    const [tint, accent] = TINT[ch.dataset.c];
+    const [tint, accent] = TINT[root.dataset.mode === 'dark' ? 'dark' : 'light'][ch.dataset.c];
     root.style.setProperty('--tint', tint);
     root.style.setProperty('--accent', accent);
     const target = screens[ch.dataset.show];
