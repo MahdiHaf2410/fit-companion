@@ -123,10 +123,15 @@ class ReminderConfig {
   String encode() => jsonEncode(toJson());
 
   /// Hours (inclusive range) at which a water reminder fires.
+  /// Hours of the day for water reminders. The window may cross midnight
+  /// (e.g. 07:00 → 01:00): it then wraps instead of producing nothing.
   List<int> waterHours() {
+    final step = waterEveryHours.clamp(1, 12);
+    var end = waterEndHour;
+    if (end < waterStartHour) end += 24;
     final hours = <int>[];
-    for (int h = waterStartHour; h <= waterEndHour; h += waterEveryHours.clamp(1, 12)) {
-      hours.add(h);
+    for (int h = waterStartHour; h <= end && hours.length < 24; h += step) {
+      hours.add(h % 24);
     }
     return hours;
   }
@@ -153,6 +158,8 @@ class ReminderTexts {
 abstract class NotificationService {
   Future<void> init();
   Future<bool> requestPermission();
+  /// Shows a notification right now (to check that reminders can reach the phone).
+  Future<void> showTest({required String title, required String body});
   Future<void> applyReminders(ReminderConfig config, ReminderTexts texts);
 
   /// Live countdown (mirrors to paired smartwatches) + alert when it ends.
@@ -171,6 +178,8 @@ class NoopNotificationService implements NotificationService {
   Future<void> applyReminders(ReminderConfig config, ReminderTexts texts) async {}
   @override
   Future<void> showRestTimer({required DateTime endsAt, required String title, required String endTitle, required String endBody}) async {}
+  @override
+  Future<void> showTest({required String title, required String body}) async {}
   @override
   Future<void> cancelRestTimer() async {}
   @override
@@ -335,6 +344,14 @@ class LocalNotificationService implements NotificationService {
   }
 
   static const _weeklyReportId = 500;
+  static const _testId = 600;
+
+  @override
+  Future<void> showTest({required String title, required String body}) async {
+    await init();
+    if (!_ready) return;
+    await _plugin.show(id: _testId, title: title, body: body, notificationDetails: const NotificationDetails(android: _reminderChannel));
+  }
 
   @override
   Future<void> scheduleWeeklyReport({required bool enabled, required String title, required String body}) async {

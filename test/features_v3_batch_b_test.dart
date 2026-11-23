@@ -112,6 +112,13 @@ void main() {
   test('reminder config', () {
     const c = ReminderConfig(water: true, waterEveryHours: 3, waterStartHour: 9, waterEndHour: 21);
     expect(c.waterHours(), [9, 12, 15, 18, 21]);
+    // A window that crosses midnight (07:00 → 01:00) must not be empty.
+    const night = ReminderConfig(water: true, waterEveryHours: 1, waterStartHour: 7, waterEndHour: 1);
+    expect(night.waterHours(), [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1]);
+    const every3 = ReminderConfig(water: true, waterEveryHours: 3, waterStartHour: 20, waterEndHour: 4);
+    expect(every3.waterHours(), [20, 23, 2]);
+    const same = ReminderConfig(water: true, waterEveryHours: 2, waterStartHour: 8, waterEndHour: 8);
+    expect(same.waterHours(), [8]);
     final back = ReminderConfig.decode(c.copyWith(workoutWeekdays: [2, 4]).encode());
     expect(back.water, isTrue);
     expect(back.workoutWeekdays, [2, 4]);

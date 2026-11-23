@@ -2519,4 +2519,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cloudCreateAccountAction => 'Create account';
+
+  @override
+  String get remTestButton => 'Send a test notification';
+
+  @override
+  String get remTestTitle => 'Notifications work ✓';
+
+  @override
+  String get remTestBody => 'Your reminders will arrive like this.';
+
+  @override
+  String get remTestHint =>
+      'If reminders are late or missing, allow the app to run in the background: Settings → Apps → Fit Companion → Battery → No restrictions (on Xiaomi also turn on Autostart).';
 }

@@ -282,6 +282,12 @@ features/
 - Tests: `supabase/functions/_shared/gemini_test.ts` (5 tests with a simulated server) → `npx -y deno@2 test supabase/functions/_shared/gemini_test.ts`. Type check: `npx -y deno@2 check supabase/functions/*/index.ts`.
 - **When you edit `_shared/gemini.ts`:** copy it into the 4 functions, then redeploy them.
 
+## 4b-11) Version 1.7.3: water reminders past midnight
+- **Bug:** `ReminderConfig.waterHours()` counted from start up to end. When the window crosses midnight (07:00 → 01:00), end < start, so the list came out **empty** and **no water reminder at all** was scheduled. Fix: if end < start, then end += 24 and hours = h % 24 (max 24). Tests in `test/features_v3_batch_b_test.dart`.
+- **`ReminderSync`** (in `reminders_screen.dart`, wraps the shell in the router): reapplies the saved reminders once each time the app opens. This fixes the "reminders don't reschedule after a restore/update" problem.
+- **"Send a test notification" button** (`NotificationService.showTest`, id 600) + a tip for Xiaomi phones etc.: Battery → No restrictions + Autostart.
+- Note: reminders use `inexactAllowWhileIdle`, so Android may delay them by a few minutes in Doze mode. That's normal.
+
 ## 4c) Supabase (cloud + coach)
 - **Project:** `fit-companion`, ID `keuheinbxgevhuhywfou`, region eu-west-3 (Paris), **free plan ($0)**.
 - **URL:** https://keuheinbxgevhuhywfou.supabase.co. The publishable key is in `lib/core/services/cloud_service.dart` (`SupabaseConfig`). It's safe in the APK because RLS protects everything.
@@ -334,7 +340,7 @@ dart run build_runner build --delete-conflicting-outputs   # after changing tabl
 - ⏳ Not yet tested on a real Android phone (only analyze + 98 tests + APK build)
 - ⏳ Cloud sync is snapshot-based (whole file): if two phones edit at the same time, it asks which copy to keep, it does not merge record by record
 - ⏳ The sync `updated_at` comes from the phone's clock (a server trigger would be safer)
-- ⏳ After a restore / cloud download, the reminders don't reschedule on their own; open the Reminders screen and save to reapply them
+- ✅ The reminders reschedule on their own when the app opens (ReminderSync, v1.7.3)
 - ⏳ 5/3/1: the percentages are in the program notes + the 1RM tool; the weights are not calculated automatically from the Training Max
 - ⏳ The home-screen widget refreshes when the app is opened (and every 30 minutes from Android), not instantly when the app is closed
 

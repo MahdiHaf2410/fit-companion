@@ -4621,6 +4621,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Create account'**
   String get cloudCreateAccountAction;
+
+  /// No description provided for @remTestButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a test notification'**
+  String get remTestButton;
+
+  /// No description provided for @remTestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications work ✓'**
+  String get remTestTitle;
+
+  /// No description provided for @remTestBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your reminders will arrive like this.'**
+  String get remTestBody;
+
+  /// No description provided for @remTestHint.
+  ///
+  /// In en, this message translates to:
+  /// **'If reminders are late or missing, allow the app to run in the background: Settings → Apps → Fit Companion → Battery → No restrictions (on Xiaomi also turn on Autostart).'**
+  String get remTestHint;
 }
 
 class _AppLocalizationsDelegate

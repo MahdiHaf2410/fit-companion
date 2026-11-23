@@ -1244,5 +1244,9 @@
   "cloudErrNetwork": "No connection to the server. Check your internet.",
   "cloudResend": "Resend",
   "cloudResent": "Confirmation email sent again",
-  "cloudCreateAccountAction": "Create account"
+  "cloudCreateAccountAction": "Create account",
+  "remTestButton": "Send a test notification",
+  "remTestTitle": "Notifications work ✓",
+  "remTestBody": "Your reminders will arrive like this.",
+  "remTestHint": "If reminders are late or missing, allow the app to run in the background: Settings → Apps → Fit Companion → Battery → No restrictions (on Xiaomi also turn on Autostart)."
 }

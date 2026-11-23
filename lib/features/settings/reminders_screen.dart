@@ -19,6 +19,42 @@ final reminderConfigProvider = StreamProvider<ReminderConfig>((ref) {
       .map((row) => ReminderConfig.decode(row?.value));
 });
 
+/// Re-schedules the saved reminders once each time the app opens, so fixes to the
+/// scheduling (and restores/backups) take effect without visiting the Reminders screen.
+class ReminderSync extends ConsumerStatefulWidget {
+  final Widget child;
+  const ReminderSync({super.key, required this.child});
+
+  @override
+  ConsumerState<ReminderSync> createState() => _ReminderSyncState();
+}
+
+class _ReminderSyncState extends ConsumerState<ReminderSync> {
+  bool _done = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_done) return;
+    _done = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted) return;
+      final l10n = AppLocalizations.of(context);
+      if (l10n == null) return;
+      final texts = reminderTexts(l10n);
+      try {
+        final c = await ref.read(reminderConfigProvider.future);
+        if (c.water || c.meals || c.workout || c.weighIn) {
+          await ref.read(notificationServiceProvider).applyReminders(c, texts);
+        }
+      } catch (_) {}
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.child;
+}
+
 ReminderTexts reminderTexts(AppLocalizations l10n) => ReminderTexts(
       waterTitle: l10n.remWaterTitle,
       waterBody: l10n.remWaterBody,
@@ -177,6 +213,31 @@ class RemindersScreen extends ConsumerWidget {
                 }),
               ),
             ],
+          ),
+          const SizedBox(height: 8),
+          AppCard(
+            padding: const EdgeInsets.all(14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(l10n.remTestHint, style: Theme.of(context).textTheme.bodySmall),
+                const SizedBox(height: 10),
+                OutlinedButton.icon(
+                  icon: const Icon(Icons.notifications_active_rounded),
+                  label: Text(l10n.remTestButton),
+                  onPressed: () async {
+                    final service = ref.read(notificationServiceProvider);
+                    final granted = await service.requestPermission();
+                    if (!context.mounted) return;
+                    if (!granted) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.remPermissionDenied)));
+                      return;
+                    }
+                    await service.showTest(title: l10n.remTestTitle, body: l10n.remTestBody);
+                  },
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: 8),
           AppCard(

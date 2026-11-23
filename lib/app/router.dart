@@ -91,7 +91,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
-          return HomeWidgetSync(child: AppScaffoldShell(navigationShell: navigationShell));
+          return ReminderSync(child: HomeWidgetSync(child: AppScaffoldShell(navigationShell: navigationShell)));
         },
         branches: [
           // Branch 0: Home

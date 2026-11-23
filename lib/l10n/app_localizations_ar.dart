@@ -2496,4 +2496,17 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get cloudCreateAccountAction => 'أنشئ حساب';
+
+  @override
+  String get remTestButton => 'ابعث إشعار تجريبي';
+
+  @override
+  String get remTestTitle => 'الإشعارات تخدم ✓';
+
+  @override
+  String get remTestBody => 'التذكيرات تاعك راح توصلك هكذا.';
+
+  @override
+  String get remTestHint =>
+      'إذا التذكيرات تتأخر ولا ما توصلش، خلّي التطبيق يخدم في الخلفية: الإعدادات ← التطبيقات ← Fit Companion ← البطارية ← بلا قيود (في Xiaomi فعّل حتى التشغيل التلقائي Autostart).';
 }
