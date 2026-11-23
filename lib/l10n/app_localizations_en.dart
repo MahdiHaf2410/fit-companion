@@ -2477,4 +2477,45 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get equipBand => 'Band';
+
+  @override
+  String get cloudEmailConfirmedSignedIn =>
+      'Email confirmed ✓ You are signed in.';
+
+  @override
+  String get cloudEmailConfirmedSignIn =>
+      'Email confirmed ✓ Now sign in with your email and password.';
+
+  @override
+  String get cloudErrInvalidCredentials =>
+      'Wrong email or password. No account yet? Create one first.';
+
+  @override
+  String get cloudErrNotConfirmed =>
+      'Your email isn\'t confirmed yet. Open the link we sent you (check spam too).';
+
+  @override
+  String get cloudErrExists =>
+      'This email already has an account. Sign in instead.';
+
+  @override
+  String get cloudErrRateLimit =>
+      'Too many emails sent. Wait a few minutes and try again.';
+
+  @override
+  String get cloudErrWeakPassword =>
+      'Password is too weak. Use at least 6 characters.';
+
+  @override
+  String get cloudErrNetwork =>
+      'No connection to the server. Check your internet.';
+
+  @override
+  String get cloudResend => 'Resend';
+
+  @override
+  String get cloudResent => 'Confirmation email sent again';
+
+  @override
+  String get cloudCreateAccountAction => 'Create account';
 }

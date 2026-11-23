@@ -37,6 +37,7 @@ import '../features/progress/presentation/progress_screen.dart';
 import '../features/progress/presentation/add_metric_screen.dart';
 import '../features/profile/presentation/profile_screen.dart';
 import '../features/profile/presentation/data_export_screen.dart';
+import '../core/services/cloud_service.dart' show isAuthCallback, pendingAuthCallback;
 import '../features/ai/ai_tools.dart';
 import '../features/challenges/challenges.dart';
 import '../features/social/social.dart';
@@ -59,6 +60,11 @@ final routerProvider = Provider<GoRouter>((ref) {
     initialLocation: const String.fromEnvironment('INITIAL_ROUTE', defaultValue: '/home'),
     refreshListenable: refresh,
     redirect: (context, state) {
+      // E-mail confirmation link → finish the sign-in on the Cloud screen (not a "page not found").
+      if (isAuthCallback(state.uri)) {
+        pendingAuthCallback.value = state.uri;
+        return '/settings/cloud';
+      }
       // Check if user is onboarded
       final profileAsync = ref.read(profileStreamProvider);
       final profile = profileAsync.value;

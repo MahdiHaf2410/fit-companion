@@ -862,5 +862,16 @@
   "exerciseAnotherVideo": "فيديو آخر",
   "exerciseVideoSignIn": "سجّل الدخول مرة وحدة باش يتحمّل الفيديو داخل التطبيق.",
   "exerciseVideoUnavailable": "فيديو الشرح غير متوفر حالياً.",
-  "equipBand": "مطاط"
+  "equipBand": "مطاط",
+  "cloudEmailConfirmedSignedIn": "تم تأكيد الإيميل ✓ راك مسجّل الدخول.",
+  "cloudEmailConfirmedSignIn": "تم تأكيد الإيميل ✓ درك سجّل الدخول بالإيميل وكلمة السر.",
+  "cloudErrInvalidCredentials": "الإيميل ولا كلمة السر غالطين. ما عندكش حساب؟ أنشئ حساب أولاً.",
+  "cloudErrNotConfirmed": "الإيميل تاعك مازال ما تأكدش. افتح الرابط اللي بعثناهولك (شوف حتى في spam).",
+  "cloudErrExists": "هاذ الإيميل عندو حساب من قبل. سجّل الدخول.",
+  "cloudErrRateLimit": "تبعثو بزاف إيميلات. استنى شوية دقايق وعاود.",
+  "cloudErrWeakPassword": "كلمة السر ضعيفة. استعمل 6 حروف على الأقل.",
+  "cloudErrNetwork": "ما كاينش اتصال بالسيرفر. شوف الإنترنت.",
+  "cloudResend": "عاود ابعث",
+  "cloudResent": "تبعث إيميل التأكيد من جديد",
+  "cloudCreateAccountAction": "أنشئ حساب"
 }

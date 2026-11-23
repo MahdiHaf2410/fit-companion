@@ -234,6 +234,17 @@ features/
 - The video search strips "(reps = seconds)" from the name (`videoSearchName`).
 - Tests: `test/catalog_v5_test.dart` (no duplicates, valid groups/equipment, Arabic names, insertion is idempotent). Total 192 ✅.
 
+## 4b-8) Version 1.7.1: fixing account creation and email confirmation
+- **Problem:** the confirmation link (`io.fitcompanion://login-callback?code=…`) opened "Page Not Found" (go_router didn't recognise it). The account got confirmed on the server, but the user didn't end up signed in. It also opened as a copy of the app inside Gmail.
+- **Fix:**
+  - `redirect` in the router: `isAuthCallback(uri)` → saves it in `pendingAuthCallback` → `/settings/cloud`.
+  - The Cloud screen finishes the sign-in (`completeAuthCallback`: waits for supabase_flutter, otherwise `getSessionFromUrl`). If that fails, it shows "Email confirmed ✓, now sign in with the password".
+  - The activity is now `singleTask` (no `taskAffinity=""`), so the link opens the app itself.
+- **Clear error messages** instead of `AuthApiException`:
+  - wrong password, email not confirmed (+ a **"Resend"** button), account already exists (Supabase hides it: `identities` empty → `SignUpResult.alreadyExists`), too many emails, weak password, no internet;
+  - "Create account" button when the account doesn't exist.
+- **Note:** the free plan's email sending is very limited (a few per hour). If a lot of people sign up, it's best to turn off "Confirm email" (Authentication → Sign In / Providers → Email) or add your own SMTP (free, e.g. Brevo/Resend).
+
 ## 4c) Supabase (cloud + coach)
 - **Project:** `fit-companion`, ID `keuheinbxgevhuhywfou`, region eu-west-3 (Paris), **free plan ($0)**.
 - **URL:** https://keuheinbxgevhuhywfou.supabase.co. The publishable key is in `lib/core/services/cloud_service.dart` (`SupabaseConfig`). It's safe in the APK because RLS protects everything.

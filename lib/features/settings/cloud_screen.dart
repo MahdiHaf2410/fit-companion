@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart' hide TextDirection;
+import 'package:supabase_flutter/supabase_flutter.dart' show AuthException;
 
 import '../../core/services/cloud_service.dart';
 import '../../core/theme/app_colors.dart';
@@ -26,7 +27,41 @@ class _CloudScreenState extends ConsumerState<CloudScreen> {
   bool _register = false;
 
   @override
+  void initState() {
+    super.initState();
+    pendingAuthCallback.addListener(_onAuthLink);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _onAuthLink());
+  }
+
+  /// Opened from the confirmation e-mail: the address is already confirmed on the server,
+  /// finish the sign-in (or ask for the password if the link can't sign in on this phone).
+  Future<void> _onAuthLink() async {
+    final uri = pendingAuthCallback.value;
+    if (uri == null || !mounted) return;
+    pendingAuthCallback.value = null;
+    final l10n = AppLocalizations.of(context)!;
+    setState(() => _busy = true);
+    final ok = await ref.read(cloudServiceProvider).completeAuthCallback(uri);
+    if (!mounted) return;
+    setState(() => _busy = false);
+    ref.invalidate(cloudStatusProvider);
+    _toast(ok ? l10n.cloudEmailConfirmedSignedIn : l10n.cloudEmailConfirmedSignIn);
+  }
+
+  String _authErrorText(AppLocalizations l10n, Object e) => switch (authErrorCode(e)) {
+        'invalid_credentials' => l10n.cloudErrInvalidCredentials,
+        'email_not_confirmed' => l10n.cloudErrNotConfirmed,
+        'user_already_exists' || 'email_exists' => l10n.cloudErrExists,
+        'over_email_send_rate_limit' || 'over_request_rate_limit' => l10n.cloudErrRateLimit,
+        'weak_password' => l10n.cloudErrWeakPassword,
+        'email_address_invalid' || 'validation_failed' => l10n.cloudInvalidForm,
+        'network' => l10n.cloudErrNetwork,
+        _ => '${l10n.commonError}: ${e is AuthException ? e.message : e}',
+      };
+
+  @override
   void dispose() {
+    pendingAuthCallback.removeListener(_onAuthLink);
     _email.dispose();
     _password.dispose();
     super.dispose();
@@ -57,16 +92,50 @@ class _CloudScreenState extends ConsumerState<CloudScreen> {
       _toast(l10n.cloudInvalidForm);
       return;
     }
-    await _run(() async {
-      final cloud = ref.read(cloudServiceProvider);
+    final cloud = ref.read(cloudServiceProvider);
+    setState(() => _busy = true);
+    try {
       if (_register) {
         final r = await cloud.signUp(email, pass);
-        _toast(r == SignUpResult.confirmEmail ? l10n.cloudConfirmEmail : l10n.cloudSignedIn);
+        switch (r) {
+          case SignUpResult.signedIn:
+            _toast(l10n.cloudSignedIn);
+          case SignUpResult.confirmEmail:
+            _toast(l10n.cloudConfirmEmail);
+          case SignUpResult.alreadyExists:
+            setState(() => _register = false);
+            _toast(l10n.cloudErrExists);
+        }
       } else {
         await cloud.signIn(email, pass);
         _toast(l10n.cloudSignedIn);
       }
-    });
+    } catch (e) {
+      if (!mounted) return;
+      final code = authErrorCode(e);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        duration: const Duration(seconds: 6),
+        content: Text(_authErrorText(l10n, e)),
+        action: code == 'email_not_confirmed'
+            ? SnackBarAction(
+                label: l10n.cloudResend,
+                onPressed: () async {
+                  try {
+                    await cloud.resendConfirmation(email);
+                    _toast(l10n.cloudResent);
+                  } catch (e2) {
+                    _toast(_authErrorText(l10n, e2));
+                  }
+                },
+              )
+            : (code == 'invalid_credentials' && !_register
+                ? SnackBarAction(label: l10n.cloudCreateAccountAction, onPressed: () => setState(() => _register = true))
+                : null),
+      ));
+    } finally {
+      if (mounted) setState(() => _busy = false);
+      ref.invalidate(cloudStatusProvider);
+    }
   }
 
   Future<bool> _confirm(String title, String body) async {

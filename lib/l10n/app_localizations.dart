@@ -4555,6 +4555,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Band'**
   String get equipBand;
+
+  /// No description provided for @cloudEmailConfirmedSignedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Email confirmed ✓ You are signed in.'**
+  String get cloudEmailConfirmedSignedIn;
+
+  /// No description provided for @cloudEmailConfirmedSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Email confirmed ✓ Now sign in with your email and password.'**
+  String get cloudEmailConfirmedSignIn;
+
+  /// No description provided for @cloudErrInvalidCredentials.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong email or password. No account yet? Create one first.'**
+  String get cloudErrInvalidCredentials;
+
+  /// No description provided for @cloudErrNotConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Your email isn\'t confirmed yet. Open the link we sent you (check spam too).'**
+  String get cloudErrNotConfirmed;
+
+  /// No description provided for @cloudErrExists.
+  ///
+  /// In en, this message translates to:
+  /// **'This email already has an account. Sign in instead.'**
+  String get cloudErrExists;
+
+  /// No description provided for @cloudErrRateLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many emails sent. Wait a few minutes and try again.'**
+  String get cloudErrRateLimit;
+
+  /// No description provided for @cloudErrWeakPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Password is too weak. Use at least 6 characters.'**
+  String get cloudErrWeakPassword;
+
+  /// No description provided for @cloudErrNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'No connection to the server. Check your internet.'**
+  String get cloudErrNetwork;
+
+  /// No description provided for @cloudResend.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend'**
+  String get cloudResend;
+
+  /// No description provided for @cloudResent.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmation email sent again'**
+  String get cloudResent;
+
+  /// No description provided for @cloudCreateAccountAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Create account'**
+  String get cloudCreateAccountAction;
 }
 
 class _AppLocalizationsDelegate

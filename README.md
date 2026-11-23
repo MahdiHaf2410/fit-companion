@@ -11,8 +11,8 @@
 ![Android](https://img.shields.io/badge/Android-8.0%2B-3DDC84?logo=android)
 ![Supabase](https://img.shields.io/badge/Supabase-free%20plan-3FCF8E?logo=supabase)
 ![Gemini](https://img.shields.io/badge/AI-Gemini-8E75B2?logo=googlegemini)
-![Tests](https://img.shields.io/badge/tests-192%20passing-success)
-![Version](https://img.shields.io/badge/version-1.7.0-blue)
+![Tests](https://img.shields.io/badge/tests-194%20passing-success)
+![Version](https://img.shields.io/badge/version-1.7.1-blue)
 
 </div>
 

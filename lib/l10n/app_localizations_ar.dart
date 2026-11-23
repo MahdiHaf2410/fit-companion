@@ -2457,4 +2457,42 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get equipBand => 'مطاط';
+
+  @override
+  String get cloudEmailConfirmedSignedIn =>
+      'تم تأكيد الإيميل ✓ راك مسجّل الدخول.';
+
+  @override
+  String get cloudEmailConfirmedSignIn =>
+      'تم تأكيد الإيميل ✓ درك سجّل الدخول بالإيميل وكلمة السر.';
+
+  @override
+  String get cloudErrInvalidCredentials =>
+      'الإيميل ولا كلمة السر غالطين. ما عندكش حساب؟ أنشئ حساب أولاً.';
+
+  @override
+  String get cloudErrNotConfirmed =>
+      'الإيميل تاعك مازال ما تأكدش. افتح الرابط اللي بعثناهولك (شوف حتى في spam).';
+
+  @override
+  String get cloudErrExists => 'هاذ الإيميل عندو حساب من قبل. سجّل الدخول.';
+
+  @override
+  String get cloudErrRateLimit => 'تبعثو بزاف إيميلات. استنى شوية دقايق وعاود.';
+
+  @override
+  String get cloudErrWeakPassword =>
+      'كلمة السر ضعيفة. استعمل 6 حروف على الأقل.';
+
+  @override
+  String get cloudErrNetwork => 'ما كاينش اتصال بالسيرفر. شوف الإنترنت.';
+
+  @override
+  String get cloudResend => 'عاود ابعث';
+
+  @override
+  String get cloudResent => 'تبعث إيميل التأكيد من جديد';
+
+  @override
+  String get cloudCreateAccountAction => 'أنشئ حساب';
 }

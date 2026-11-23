@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:drift/drift.dart' show Value;
+import 'package:flutter/foundation.dart' show ValueNotifier;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -36,7 +37,28 @@ class CloudStatus {
       remoteUpdatedAt != null && (lastSyncedAt == null || remoteUpdatedAt!.isAfter(lastSyncedAt!.add(const Duration(seconds: 2))));
 }
 
-enum SignUpResult { signedIn, confirmEmail }
+enum SignUpResult { signedIn, confirmEmail, alreadyExists }
+
+/// True for the e-mail confirmation deep link (io.fitcompanion://login-callback?code=…).
+bool isAuthCallback(Uri uri) => uri.scheme == 'io.fitcompanion' || uri.host == 'login-callback' || uri.path.contains('login-callback');
+
+/// The last confirmation link the router received; the Cloud screen finishes the sign-in.
+final pendingAuthCallback = ValueNotifier<Uri?>(null);
+
+/// Short, stable code for an auth error (e.g. invalid_credentials, email_not_confirmed).
+String authErrorCode(Object e) {
+  if (e is AuthException) {
+    final c = e.code;
+    if (c != null && c.isNotEmpty) return c;
+    final m = e.message.toLowerCase();
+    if (m.contains('invalid login')) return 'invalid_credentials';
+    if (m.contains('not confirmed')) return 'email_not_confirmed';
+    if (m.contains('already registered')) return 'user_already_exists';
+    if (m.contains('rate limit')) return 'over_email_send_rate_limit';
+    return 'auth_error';
+  }
+  return 'network';
+}
 
 /// Snapshot-based cloud sync: the whole local DB (same JSON as the local backup)
 /// is stored in `user_backups` (one row per user).
@@ -57,7 +79,28 @@ class CloudService {
 
   Future<SignUpResult> signUp(String email, String password) async {
     final res = await _sb.auth.signUp(email: email, password: password, emailRedirectTo: SupabaseConfig.authRedirect);
-    return res.session != null ? SignUpResult.signedIn : SignUpResult.confirmEmail;
+    if (res.session != null) return SignUpResult.signedIn;
+    // Supabase hides existing accounts: it returns a user with no identities instead of an error.
+    if (res.user != null && (res.user!.identities?.isEmpty ?? false)) return SignUpResult.alreadyExists;
+    return SignUpResult.confirmEmail;
+  }
+
+  Future<void> resendConfirmation(String email) =>
+      _sb.auth.resend(type: OtpType.signup, email: email, emailRedirectTo: SupabaseConfig.authRedirect);
+
+  /// Finishes sign-in from the confirmation link. supabase_flutter usually does it by itself
+  /// (deep-link listener), so we wait a moment and only exchange the code if no session appeared.
+  /// Returns true when the user ends up signed in.
+  Future<bool> completeAuthCallback(Uri uri) async {
+    if (!enabled) return false;
+    for (int i = 0; i < 8 && _sb.auth.currentSession == null; i++) {
+      await Future<void>.delayed(const Duration(milliseconds: 250));
+    }
+    if (_sb.auth.currentSession != null) return true;
+    try {
+      await _sb.auth.getSessionFromUrl(uri);
+    } catch (_) {}
+    return _sb.auth.currentSession != null;
   }
 
   Future<void> signIn(String email, String password) => _sb.auth.signInWithPassword(email: email, password: password);
