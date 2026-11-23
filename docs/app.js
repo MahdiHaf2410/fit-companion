@@ -1,26 +1,41 @@
-// Fit Companion site: Arabic/English switch (with RTL) and the latest release read from GitHub,
-// so the download buttons, version and change list follow every new release automatically.
+// Fit Companion site
+// 1) Scroll tour: the chapter in the middle of the screen picks the phone screen and the page colour,
+//    and restarts that screen's animation.  2) Count-up numbers.  3) Arabic / English with RTL.
+// 4) Latest release from GitHub (download links, version, size, change list follow every release).
 (() => {
   const REPO = 'MahdiHaf2410/fit-companion';
+  const root = document.documentElement;
+  root.classList.add('js');
+
+  // ---------------- translations ----------------
   const AR = {
-    skip: 'انتقل إلى المحتوى',
-    navInside: 'محتوى التطبيق', navCoach: 'المدرب', navChanges: 'آخر تحديث', navInstall: 'التثبيت',
-    h1: 'سجّل التمرين. غذِّ عضلاتك. وشوف الأرقام تطلع.',
+    skip: 'انتقل إلى المحتوى', navTour: 'جولة في التطبيق', navChanges: 'آخر تحديث', navInstall: 'التثبيت', downloadShort: 'تحميل',
+    h1a: 'سجّل التمرين.', h1b: 'غذِّ عضلاتك.', h1c: 'وشوف الأرقام تطلع.',
     lead: 'Fit Companion هو سجل تمارين، ومفكرة أكل، ومدرب، في تطبيق أندرويد واحد. يخدم بلا إنترنت، يهدر بالعربية والإنجليزية، ويعرف واش هي الكسرة والشوربة.',
-    download: 'حمّل للأندرويد', version: 'الإصدار', free: 'مجاني وبلا إشهار.',
-    barCaption: 'هي 20 كغ تاع البار وأربع أقراص في كل جهة. التطبيق يحسبها عليك، ويحسب كل تكرار ترفعو.',
-    insideTitle: 'واش كاين في التطبيق', insideIntro: 'التطبيق فيه أربع خانات. هذا واش تديرلك كل وحدة.',
-    t1: 'التمارين', t1p: 'ابنِ برامجك بنفسك ولا ابدا من برنامج جاهز، وسجّل كل مجموعة وأنت تتمرّن. مؤقت الراحة يبان في الإشعارات، والتطبيق يكتشف أرقامك القياسية ويقولك وقتاش تزيد الوزن.',
-    t1a: '420 تمرين بأسماء عربية وفيديو شرح لكل واحد', t1b: 'سوبرسيت، دروب سيت، إحماء ومستوى المجهود (RPE)', t1c: 'ينبّهك كي يجي وقت أسبوع خفيف',
-    t2: 'التغذية', t2p: 'سجّل وجباتك من قائمة فيها الأكل الجزائري، امسح الباركود، ولا صوّر صحنك وخلّي الذكاء الاصطناعي يحسبو. وتقدر غير تقول واش كليت.',
-    t2a: 'السعرات والبروتين والنشويات والدهون مقارنة بهدفك', t2b: 'سعراتك الحقيقية للثبات، محسوبة من تطوّر وزنك', t2c: 'تتبّع الماء وتذكير بالوجبات',
-    t3: 'التقدّم', t3p: 'الوزن ونسبة الدهون والقياسات في منحنيات واضحة، وصور قبل وبعد تقارنهم جنب بعض. اربط Health Connect وشوف كيفاش النوم يأثّر على تمرينك.',
-    t3a: 'تحديات أسبوعية وشهرية ومستويات توصلّها', t3b: 'ترتيب مع الأصدقاء اللي تضيفهم برمز', t3c: 'شارك تمرين ولا مستوى كصورة',
-    t4: 'المدرب', t4p: 'اسأل المدرب على تمرينك ولا أكلك، ومعاها صورة ولا فيديو إذا لزم. يقرا ملخص قصير لأرقامك برك، عمرو ما يشوف اسمك ولا إيميلك.',
-    t4a: 'تقرير أسبوعي بنقطة وثلاث أهداف', t4b: 'برنامج مبني من تمارين التطبيق', t4c: 'نهار كامل من الوجبات يناسب أهدافك، مع قائمة المشتريات',
-    coachTitle: 'مدرب قرا سجلك', coachP: 'أغلب التطبيقات تعطيك نفس النصائح اللي تعطيها للناس الكل. هذا يجاوبك من أسبوعك أنت: واش رفعت، واش كليت وكيفاش رقدت.',
-    c1: 'كيفاش كان أسبوعي؟', c2a: '8.5 من 10.', c2b: 'أربع حصص، رقمين قياسيين جداد، والبروتين كافي في خمس أيام. الأسبوع الجاي زيد مجموعة في يوم الأرجل وحاول ترقد سبع ساعات.',
-    c3: 'زوج بيضات، طرف كسرة وقهوة بالحليب.', c4: 'تزادو ثلاث عناصر للفطور: 512 سعرة و24 غ بروتين.',
+    download: 'حمّل للأندرويد', tourCta: 'انزل لتحت وشوف كيفاش يخدم', version: 'الإصدار', free: 'مجاني وبلا إشهار.',
+    pGood: 'مساء الخير', pPush: 'يوم الدفع', pWater: 'الماء', st1: 'رقم قياسي جديد 💪', st2: '+250 XP',
+    tourTitle: 'انزل لتحت. التلفون يوريلك التطبيق.',
+    pRest: 'راحة', pPr: 'رقم قياسي جديد: 100 كغ', pSearch: 'تفتيح بالدمبل',
+    pChest: 'صدر', pBack: 'ظهر', pLegs: 'أرجل', pArms: 'ذراعين',
+    pChestDb: 'صدر · دمبل', pChestBb: 'صدر · بار', pChestMa: 'صدر · آلة', pChestCa: 'صدر · كابل',
+    pFound: 'لقينا 3 عناصر', pEggs: 'زوج بيضات', pKesra: 'كسرة، 80 غ', pCoffee: 'قهوة بالحليب',
+    pWeek: '−0.4 كغ في الأسبوع، راك في الطريق', pBefore: 'جانفي', pAfter: 'درك',
+    pCoach: 'المدرب الذكي', c1: 'كيفاش كان أسبوعي؟', c2a: '8.5 من 10.', c2b: 'أربع حصص، رقمين قياسيين، والبروتين كافي في خمس أيام.',
+    c3: '🎤 زوج بيضات وطرف كسرة', c4: 'تزادو للفطور: 402 سعرة، 21 غ بروتين.',
+    pLevel: 'المستوى', pWarrior: 'محارب', pLvlUp: 'طلعت للمستوى 12!', pLeader: 'الأصدقاء هاذ الأسبوع', pYou: 'أنت',
+    k1: 'التمارين', h31: 'كل مجموعة تتسجّل بضغطة.', p31: 'علّم المجموعة ومؤقت الراحة يبدا في الإشعارات. ترفع أكثر من أي مرة قبل؟ التطبيق يقولك ديريكت.',
+    l11: 'برامجك أنت، ولا ابدا من برنامج جاهز', l12: 'سوبرسيت، دروب سيت، إحماء ومستوى المجهود (RPE)', l13: 'يقولك وقتاش تزيد الوزن ووقتاش ترتاح',
+    k2: 'التمارين بالفيديو', h32: '420 تمرين، كل واحد بفيديو.', p32: 'قلّب بالعربية ولا بالإنجليزية، فلتر حسب العضلة ولا حسب واش كاين في الجيم تاعك، وشوف كيفاش يتدار قبل أول تكرار.',
+    l21: 'من الصدر حتى الرقبة، والكارديو', l22: 'بار، دمبل، آلة، كابل، كيتلبل، مطاط', l23: 'وتقدر تزيد تمارينك أنت',
+    k3: 'التغذية', h33: 'صوّر صحنك. يحسبلك السعرات.', p33: 'صوّر صحنك، امسح الباركود، ولا غير قول واش كليت بالدارجة. الأكل الجزائري راهو في القائمة.',
+    l31: 'البروتين والنشويات والدهون مقارنة بهدفك', l32: 'سعراتك الحقيقية للثبات، من تطوّر وزنك', l33: 'تتبّع الماء وتذكير بالوجبات',
+    k4: 'التقدّم', h34: 'شوف التغيير، أسبوع بأسبوع.', p34: 'الوزن ونسبة الدهون والقياسات في منحنيات واضحة، وصور قبل وبعد جنب بعض. اربط Health Connect وشوف كيفاش النوم يحرّك أرقامك.',
+    l41: 'صور التقدّم بالتاريخ', l42: 'قياسات الجسم ونسبة الدهون', l43: 'النوم مقارنة بتمرينك',
+    k5: 'المدرب الذكي', h35: 'مدرب قرا سجلك.', p35: 'يجاوبك من أسبوعك أنت: واش رفعت، واش كليت وكيفاش رقدت. عمرو ما يشوف اسمك ولا إيميلك.',
+    l51: 'تقرير أسبوعي بنقطة وثلاث أهداف', l52: 'برنامج مبني من تمارين التطبيق', l53: 'نهار كامل من الوجبات مع قائمة المشتريات',
+    k6: 'التحديات', h36: 'اطلع في المستوى مع صحابك.', p36: 'التحديات الأسبوعية والشهرية تعطيك XP. زيد صحابك برمز وشوف شكون رفع أكثر هاذ الأسبوع.',
+    l61: 'مستويات من مبتدئ حتى أسطورة', l62: 'ترتيب ما يشوفوه غير صحابك', l63: 'شارك تمرين ولا مستوى كصورة',
+    n1: 'تمرين بأسماء عربية', n2: 'ثيم، فاتح وداكن', n3: 'لغات، من اليمين لليسار تاني', n4: 'إشهار، وبلا اشتراك',
     changesTitle: 'آخر تحديث', released: 'صدر في', allVersions: 'شوف كل الإصدارات', loading: 'جاري تحميل قائمة التغييرات.',
     installTitle: 'ثبّتو في دقيقة',
     s1: 'حمّل التطبيق', s1p: 'استعمل الزر اللي تحت. هو الملف المناسب لأغلب التلفونات اللي خرجو في آخر خمس سنين.',
@@ -35,62 +50,127 @@
     q5: 'أندرويد يقولي تطبيق غير معروف. علاش؟', a5: 'التطبيق يتثبت من هاذ الموقع ماشي من Play Store، لهذا أندرويد يبيّن تحذير. الكود المصدري كامل متاح على GitHub إذا حبيت تتأكد.',
     madeBy: 'صمّمه وطوّره', devName: 'حفيان المهدي', source: 'الكود المصدري على GitHub',
   };
-
-  // ---------- language ----------
   const EN = {};
   document.querySelectorAll('[data-i18n]').forEach((el) => (EN[el.dataset.i18n] = el.textContent));
   const btn = document.getElementById('langBtn');
   let lang = 'en';
-  try {
-    lang = localStorage.getItem('fc_lang') || ((navigator.language || '').toLowerCase().startsWith('ar') ? 'ar' : 'en');
-  } catch (_) {}
+  try { lang = localStorage.getItem('fc_lang') || ((navigator.language || '').toLowerCase().startsWith('ar') ? 'ar' : 'en'); } catch (_) {}
 
-  function apply(l) {
+  function applyLang(l) {
     lang = l;
     const dict = l === 'ar' ? AR : EN;
-    document.documentElement.lang = l;
-    document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
-    document.querySelectorAll('[data-i18n]').forEach((el) => {
-      const v = dict[el.dataset.i18n];
-      if (v) el.textContent = v;
-    });
+    root.lang = l;
+    root.dir = l === 'ar' ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-i18n]').forEach((el) => { const v = dict[el.dataset.i18n]; if (v) el.textContent = v; });
     btn.textContent = l === 'ar' ? 'English' : 'العربية';
     btn.lang = l === 'ar' ? 'en' : 'ar';
     try { localStorage.setItem('fc_lang', l); } catch (_) {}
     renderRelease();
   }
-  btn.addEventListener('click', () => apply(lang === 'ar' ? 'en' : 'ar'));
+  btn.addEventListener('click', () => applyLang(lang === 'ar' ? 'en' : 'ar'));
 
-  // ---------- latest release ----------
+  // ---------------- count-up numbers ----------------
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const timers = new WeakMap();
+  function countUp(el) {
+    clearTimeout(timers.get(el));
+    const to = parseFloat(el.dataset.to);
+    const from = parseFloat(el.dataset.from || '0');
+    const dec = parseInt(el.dataset.dec || '0', 10);
+    const fmt = (v) => v.toFixed(dec);
+    if (reduce) { el.textContent = fmt(to); return; }
+    el.textContent = fmt(from);
+    timers.set(el, setTimeout(() => {
+      const start = performance.now();
+      const dur = 1300;
+      const step = (t) => {
+        const k = Math.min(1, (t - start) / dur);
+        const e = 1 - Math.pow(1 - k, 3);
+        el.textContent = fmt(from + (to - from) * e);
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, parseInt(el.dataset.delay || '0', 10)));
+  }
+  document.querySelectorAll('.hero .count').forEach(countUp);
+  const numbers = document.querySelector('.numbers');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.querySelectorAll('.count').forEach(countUp); io.unobserve(e.target); }
+    }), { threshold: 0.4 });
+    io.observe(numbers);
+  } else numbers.querySelectorAll('.count').forEach(countUp);
+
+  // ---------------- scroll tour ----------------
+  const TINT = {
+    red: ['#ffe9ec', '#ff3b4f'], orange: ['#fff0e1', '#ff8a1f'], green: ['#e2f7ec', '#12b06a'],
+    blue: ['#e6eeff', '#2f6bff'], violet: ['#efeaff', '#7b5cff'], yellow: ['#fff6d4', '#f5b800'],
+  };
+  const chapters = [...document.querySelectorAll('.chapter')];
+  const screens = Object.fromEntries([...document.querySelectorAll('.scr')].map((s) => [s.dataset.scr, s]));
+  let current = null;
+
+  function activate(ch) {
+    if (ch === current) return;
+    current = ch;
+    chapters.forEach((c) => c.classList.toggle('on', c === ch));
+    if (!ch) {
+      root.style.removeProperty('--tint');
+      root.style.removeProperty('--accent');
+      return;
+    }
+    const [tint, accent] = TINT[ch.dataset.c];
+    root.style.setProperty('--tint', tint);
+    root.style.setProperty('--accent', accent);
+    const target = screens[ch.dataset.show];
+    Object.values(screens).forEach((s) => s.classList.remove('on'));
+    void target.offsetWidth; // restart the screen's animations every time it comes back
+    target.classList.add('on');
+    target.querySelectorAll('.count').forEach(countUp);
+  }
+
+  let ticking = false;
+  function onScroll() {
+    ticking = false;
+    // on phones the text card switches the screen as soon as it enters, so the animation plays above it
+    const line = window.innerHeight * (window.innerWidth <= 960 ? 0.92 : 0.5);
+    let hit = null;
+    for (const c of chapters) {
+      const r = c.getBoundingClientRect();
+      if (r.top <= line && r.bottom >= line) { hit = c; break; }
+    }
+    // keep the last screen while between chapters inside the tour; reset colour outside it
+    const tour = document.getElementById('tour').getBoundingClientRect();
+    if (!hit && tour.top < line && tour.bottom > line) return;
+    activate(hit);
+  }
+  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  window.addEventListener('resize', onScroll);
+  // the phone already shows the first screen before the first chapter is reached
+  screens.workout.classList.add('on');
+
+  // ---------------- latest release ----------------
   let release = null;
   const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const inline = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-
   function renderRelease() {
     if (!release) return;
     const parts = (release.body || '').split('<!-- ar -->');
     const text = (lang === 'ar' && parts[1] ? parts[1] : parts[0]).trim();
     const items = text.split('\n').map((l) => l.trim()).filter((l) => l.startsWith('- ')).map((l) => `<li>${inline(l.slice(2))}</li>`);
     document.getElementById('notes').innerHTML = items.length ? `<ul>${items.join('')}</ul>` : `<p>${inline(text)}</p>`;
-    const d = new Date(release.published_at);
     const t = document.getElementById('relDate');
     t.dateTime = release.published_at;
-    t.textContent = d.toLocaleDateString(lang === 'ar' ? 'ar-DZ' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    t.textContent = new Date(release.published_at).toLocaleDateString(lang === 'ar' ? 'ar-DZ' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   }
-
   async function loadRelease() {
     try {
       const res = await fetch(`https://api.github.com/repos/${REPO}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } });
       if (!res.ok) throw new Error(String(res.status));
       release = await res.json();
-      const version = release.tag_name.replace(/^v/, '');
-      document.querySelectorAll('.ver').forEach((el) => (el.textContent = version));
-      const asset = (name) => (release.assets || []).find((a) => a.name === name);
-      const point = (selector, name) => {
-        const a = asset(name);
-        if (a) document.querySelectorAll(selector).forEach((el) => (el.href = a.browser_download_url));
-        return a;
-      };
+      document.querySelectorAll('.ver').forEach((el) => (el.textContent = release.tag_name.replace(/^v/, '')));
+      const find = (n) => (release.assets || []).find((a) => a.name === n);
+      const point = (sel, n) => { const a = find(n); if (a) document.querySelectorAll(sel).forEach((el) => (el.href = a.browser_download_url)); return a; };
       const main = point('.dl-main', 'fit-companion-arm64.apk');
       point('.dl-armv7', 'fit-companion-armv7.apk');
       point('.dl-universal', 'fit-companion-universal.apk');
@@ -98,12 +178,11 @@
       document.getElementById('relLink').href = release.html_url;
       renderRelease();
     } catch (_) {
-      // Offline or rate limited: the buttons already point at /releases/latest/download/…, which is always the newest file.
-      document.getElementById('notes').innerHTML =
-        `<p><a href="https://github.com/${REPO}/releases/latest">github.com/${REPO}/releases</a></p>`;
+      document.getElementById('notes').innerHTML = `<p><a href="https://github.com/${REPO}/releases/latest">github.com/${REPO}/releases</a></p>`;
     }
   }
 
-  apply(lang);
+  applyLang(lang);
   loadRelease();
+  onScroll();
 })();

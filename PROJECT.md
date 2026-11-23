@@ -248,12 +248,14 @@ features/
 ## 4b-9) Website + downloads that update automatically
 - **Website:** https://mahdihaf2410.github.io/fit-companion/ (GitHub Pages from the `docs/` folder on the `main` branch; free).
   - Files: `docs/index.html` + `style.css` + `app.js`.
-  - **Design (v2, redone so it doesn't look generated):** "training log + competition barbell".
-    - Chalk background `#EEF1F4`, steel ink `#172033`, and the IWF plate colours. Each colour marks one of the app's tabs: red training / green nutrition / blue progress / yellow coach.
-    - Type: Big Shoulders Display + IBM Plex Sans; in Arabic: Reem Kufi + IBM Plex Sans Arabic.
-    - The memorable thing: an SVG barbell (160 kg) whose plates load once when the page opens. That's the only motion on the page.
-    - No cards / eyebrows / orbs / scroll animations. Numbers only on the install steps.
-  - EN/AR with RTL (the ع button, remembered in localStorage, picked automatically from the browser language).
+  - **Design (v3, interactive at the user's request):** a colourful site that explains the app **while you scroll** (scroll-telling).
+    - **Hero:** each line of the headline in a different colour, a phone showing the home screen (the calorie ring fills and the number counts up), stickers, and the 160 kg barbell loading.
+    - **The tour (`#tour`):** a phone fixed in place (sticky) with 6 screens (`.scr[data-scr]`) and 6 sections (`.chapter[data-show][data-c]`). `app.js` → `onScroll` picks the section that crosses the line (50% of the screen on desktop, 92% on phones). It changes the page colour (`--tint`/`--accent`), switches the screen, and restarts its CSS animation (remove `.on` → reflow → add `.on`).
+    - The 6 screens: workout (sets get ticked → rest timer → PR), exercises (search typing + video with a dumbbell fly), nutrition (scanning the plate → items → ring), progress (the chart draws itself + weight counts down), coach (messages + "typing…"), challenges (XP → Level up → climbing the leaderboard).
+    - Count-up numbers (IntersectionObserver), "What's new" from GitHub, steps, FAQ.
+    - On phones: the phone stays at the top (scale 0.58) and the text scrolls in white cards under it.
+    - `prefers-reduced-motion` is respected.
+    - Note: in a hidden browser pane the browser pauses rAF, so screenshots may catch late states. That doesn't happen to visitors.
 - **Downloads:** every version is a **GitHub Release** with fixed file names: `fit-companion-arm64.apk` (main), `fit-companion-armv7.apk` (old phones), `fit-companion-universal.apk`.
   - The buttons point to `releases/latest/download/<name>`, which is **always the newest version**.
   - `app.js` reads `api.github.com/.../releases/latest` → shows the version, size and date, plus the notes in the right language.

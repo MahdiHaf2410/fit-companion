@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fit Companion: training log, nutrition and coach for Android</title>
   <meta name="description" content="Log your workouts, track what you eat and follow your progress in one free Android app. 420 exercises with demo videos, Algerian foods, an AI coach. English and Arabic." />
-  <meta name="theme-color" content="#EEF1F4" />
+  <meta name="theme-color" content="#f7f8fb" />
   <meta property="og:title" content="Fit Companion" />
   <meta property="og:description" content="Training log, nutrition and coach in one free Android app. English and Arabic." />
   <meta property="og:image" content="logo.png" />
@@ -26,131 +26,231 @@
       <span>Fit Companion</span>
     </a>
     <nav class="menu" aria-label="Sections">
-      <a href="#inside" data-i18n="navInside">What's inside</a>
-      <a href="#coach" data-i18n="navCoach">AI coach</a>
+      <a href="#tour" data-i18n="navTour">Take the tour</a>
       <a href="#changes" data-i18n="navChanges">Latest update</a>
       <a href="#install" data-i18n="navInstall">Install</a>
     </nav>
     <button class="lang" id="langBtn" type="button" lang="ar">العربية</button>
+    <a class="dl dl-sm dl-main" href="https://github.com/MahdiHaf2410/fit-companion/releases/latest/download/fit-companion-arm64.apk" data-i18n="downloadShort">Download</a>
   </header>
 
   <main id="main">
-    <!-- ============ HERO ============ -->
+    <!-- ================= HERO ================= -->
     <section class="hero">
-      <h1 data-i18n="h1">Log the lift. Fuel the lift. Watch it go up.</h1>
-      <div class="hero-row">
+      <div class="hero-text">
+        <h1>
+          <span class="l1" data-i18n="h1a">Log the lift.</span>
+          <span class="l2" data-i18n="h1b">Fuel the lift.</span>
+          <span class="l3" data-i18n="h1c">Watch it go up.</span>
+        </h1>
         <p class="lead" data-i18n="lead">Fit Companion is a training log, a food diary and a coach in one Android app. It works offline, speaks Arabic and English, and knows what kesra and chorba are.</p>
         <div class="get">
           <a class="dl dl-main" href="https://github.com/MahdiHaf2410/fit-companion/releases/latest/download/fit-companion-arm64.apk">
             <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M11 3h2v10.2l3.6-3.6 1.4 1.4-6 6-6-6 1.4-1.4 3.6 3.6V3zM4 19h16v2H4z"/></svg>
             <span data-i18n="download">Download for Android</span>
           </a>
-          <p class="dl-meta"><span data-i18n="version">Version</span> <span class="ver">1.7.1</span>, <span class="size">35 MB</span>. <span data-i18n="free">Free, no ads.</span></p>
+          <a class="ghost" href="#tour" data-i18n="tourCta">Scroll to see how it works</a>
         </div>
+        <p class="dl-meta"><span data-i18n="version">Version</span> <span class="ver">1.7.1</span>, <span class="size">35 MB</span>. <span data-i18n="free">Free, no ads.</span></p>
       </div>
 
-      <!-- The one moment of motion: plates load onto the bar when the page opens. -->
-      <figure class="bar-fig" aria-label="A barbell loaded with competition plates: 160 kilograms">
-        <svg class="barbell" viewBox="0 0 1200 220" role="img" aria-hidden="true">
-          <rect class="shaft" x="20" y="102" width="1160" height="16" rx="3" />
-          <rect class="sleeve" x="20" y="96" width="250" height="28" rx="4" />
-          <rect class="sleeve" x="930" y="96" width="250" height="28" rx="4" />
-          <rect class="collar" x="262" y="86" width="14" height="48" rx="2" />
-          <rect class="collar" x="924" y="86" width="14" height="48" rx="2" />
-          <g class="side side-l">
-            <rect class="p red"    x="214" y="10" width="44" height="200" rx="8" />
-            <rect class="p blue"   x="174" y="10" width="38" height="200" rx="8" />
-            <rect class="p yellow" x="140" y="10" width="32" height="200" rx="8" />
-            <rect class="p green"  x="112" y="10" width="26" height="200" rx="8" />
-          </g>
-          <g class="side side-r">
-            <rect class="p red"    x="942" y="10" width="44" height="200" rx="8" />
-            <rect class="p blue"   x="988" y="10" width="38" height="200" rx="8" />
-            <rect class="p yellow" x="1028" y="10" width="32" height="200" rx="8" />
-            <rect class="p green"  x="1062" y="10" width="26" height="200" rx="8" />
-          </g>
-        </svg>
-        <figcaption><b>160 kg</b> <span data-i18n="barCaption">is 20 kg of bar and four plates a side. The app does this maths for you, and counts every rep you put on it.</span></figcaption>
-      </figure>
-    </section>
-
-    <!-- ============ WHAT'S INSIDE (grouped by the app's real tabs) ============ -->
-    <section id="inside" class="inside">
-      <h2 data-i18n="insideTitle">What's inside</h2>
-      <p class="intro" data-i18n="insideIntro">The app has four tabs. Here is what each one does for you.</p>
-
-      <article class="tab t-red">
-        <h3><i class="plate" aria-hidden="true"></i><span data-i18n="t1">Workouts</span></h3>
-        <div>
-          <p data-i18n="t1p">Build your own programs or start from a template, then log every set as you go. The rest timer runs in your notifications, and the app spots new records and tells you when to add weight.</p>
-          <ul>
-            <li data-i18n="t1a">420 exercises with Arabic names and a demo video for each</li>
-            <li data-i18n="t1b">Supersets, drop sets, warm-ups and effort (RPE)</li>
-            <li data-i18n="t1c">Warns you when it is time for a lighter week</li>
-          </ul>
+      <!-- Hero phone: the home screen -->
+      <div class="hero-phone" aria-hidden="true">
+        <div class="phone">
+          <div class="screen scr-dash">
+            <div class="sh"><div><small data-i18n="pGood">Good evening</small><b>Mahdi</b></div><span class="av"></span></div>
+            <div class="kcal">
+              <svg viewBox="0 0 120 120" class="ring"><circle cx="60" cy="60" r="50" class="trk" /><circle cx="60" cy="60" r="50" class="val" pathLength="100" /></svg>
+              <div class="kcal-n"><b class="count" data-to="1842" data-delay="600">0</b><small>kcal</small></div>
+            </div>
+            <div class="mac">
+              <div><span>P</span><i style="--w:82%;--c:var(--red)"></i></div>
+              <div><span>C</span><i style="--w:64%;--c:var(--yellow)"></i></div>
+              <div><span>F</span><i style="--w:46%;--c:var(--blue)"></i></div>
+            </div>
+            <div class="tile t-red"><span class="em">🏋️</span><div><b data-i18n="pPush">Push day</b><small>6 · 52 min</small></div></div>
+            <div class="tile t-green"><span class="em">💧</span><div><b>2.1 / 2.5 L</b><small data-i18n="pWater">Water</small></div></div>
+          </div>
         </div>
-      </article>
-
-      <article class="tab t-green">
-        <h3><i class="plate" aria-hidden="true"></i><span data-i18n="t2">Nutrition</span></h3>
-        <div>
-          <p data-i18n="t2p">Log meals from a food list that includes Algerian dishes, scan a barcode, or take a photo of your plate and let the AI count it. You can also just say what you ate.</p>
-          <ul>
-            <li data-i18n="t2a">Calories and protein, carbs and fat against your goal</li>
-            <li data-i18n="t2b">Your real maintenance calories, worked out from your weight trend</li>
-            <li data-i18n="t2c">Water tracking and meal reminders</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="tab t-blue">
-        <h3><i class="plate" aria-hidden="true"></i><span data-i18n="t3">Progress</span></h3>
-        <div>
-          <p data-i18n="t3p">Weight, body fat and measurements on clear charts, and before and after photos you can compare side by side. Connect Health Connect to see how your sleep changes your training.</p>
-          <ul>
-            <li data-i18n="t3a">Weekly and monthly challenges with levels to reach</li>
-            <li data-i18n="t3b">A leaderboard with friends you add by code</li>
-            <li data-i18n="t3c">Share a workout or a level as an image</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="tab t-yellow">
-        <h3><i class="plate" aria-hidden="true"></i><span data-i18n="t4">Coach</span></h3>
-        <div>
-          <p data-i18n="t4p">Ask the coach anything about your training or food, with a photo or a video if it helps. It reads a short summary of your numbers, never your name or email.</p>
-          <ul>
-            <li data-i18n="t4a">A weekly report with a score and three goals</li>
-            <li data-i18n="t4b">A program built from the exercises in the app</li>
-            <li data-i18n="t4c">A full day of meals that fits your targets, with a shopping list</li>
-          </ul>
-        </div>
-      </article>
-    </section>
-
-    <!-- ============ COACH SAMPLE ============ -->
-    <section id="coach" class="coach">
-      <div class="coach-text">
-        <h2 data-i18n="coachTitle">A coach that has read your log</h2>
-        <p data-i18n="coachP">Most apps give you the same tips as everyone else. This one answers from your own week: what you lifted, what you ate and how you slept.</p>
-      </div>
-      <div class="thread" aria-label="Example conversation">
-        <p class="me" data-i18n="c1">How was my week?</p>
-        <p class="bot"><b data-i18n="c2a">8.5 out of 10.</b> <span data-i18n="c2b">Four workouts, two new records and enough protein on five days. Next week, add one set to your leg day and aim for seven hours of sleep.</span></p>
-        <p class="me" data-i18n="c3">Two eggs, a piece of kesra and a coffee with milk.</p>
-        <p class="bot" data-i18n="c4">Added three items to breakfast: 512 kcal and 24 g of protein.</p>
+        <span class="sticker s1" data-i18n="st1">New PR 💪</span>
+        <span class="sticker s2" data-i18n="st2">+250 XP</span>
       </div>
     </section>
 
-    <!-- ============ LATEST UPDATE (read live from GitHub) ============ -->
-    <section id="changes" class="changes">
+    <figure class="bar-fig" aria-label="A barbell loaded with competition plates: 160 kilograms">
+      <svg class="barbell" viewBox="0 0 1200 220" aria-hidden="true">
+        <rect class="shaft" x="20" y="102" width="1160" height="16" rx="3" />
+        <rect class="sleeve" x="20" y="96" width="250" height="28" rx="4" />
+        <rect class="sleeve" x="930" y="96" width="250" height="28" rx="4" />
+        <rect class="collar" x="262" y="86" width="14" height="48" rx="2" />
+        <rect class="collar" x="924" y="86" width="14" height="48" rx="2" />
+        <g class="side side-l">
+          <rect class="p red" x="214" y="10" width="44" height="200" rx="8" />
+          <rect class="p blue" x="174" y="10" width="38" height="200" rx="8" />
+          <rect class="p yellow" x="140" y="10" width="32" height="200" rx="8" />
+          <rect class="p green" x="112" y="10" width="26" height="200" rx="8" />
+        </g>
+        <g class="side side-r">
+          <rect class="p red" x="942" y="10" width="44" height="200" rx="8" />
+          <rect class="p blue" x="988" y="10" width="38" height="200" rx="8" />
+          <rect class="p yellow" x="1028" y="10" width="32" height="200" rx="8" />
+          <rect class="p green" x="1062" y="10" width="26" height="200" rx="8" />
+        </g>
+      </svg>
+    </figure>
+
+    <!-- ================= SCROLL TOUR ================= -->
+    <section id="tour" class="tour">
+      <h2 class="tour-title" data-i18n="tourTitle">Scroll down. The phone shows you the app.</h2>
+
+      <div class="tour-grid">
+        <!-- Sticky phone with one screen per chapter -->
+        <div class="stage" aria-hidden="true">
+          <div class="phone">
+            <!-- 1. Workout -->
+            <div class="screen scr scr-workout" data-scr="workout">
+              <div class="bar-top"><b data-i18n="pPush">Push day</b><span class="clock">32:14</span></div>
+              <p class="ex-name">Bench Press</p>
+              <div class="sets">
+                <div class="set"><span>1</span><b>60 kg</b><b>× 10</b><i class="tick"></i></div>
+                <div class="set"><span>2</span><b>80 kg</b><b>× 8</b><i class="tick"></i></div>
+                <div class="set"><span>3</span><b>90 kg</b><b>× 6</b><i class="tick"></i></div>
+                <div class="set pr-set"><span>4</span><b>100 kg</b><b>× 5</b><i class="tick"></i></div>
+              </div>
+              <div class="rest"><span data-i18n="pRest">Rest</span><b class="rest-n">1:30</b><i class="rest-bar"></i></div>
+              <div class="pr-pop">🏆 <span data-i18n="pPr">New record: 100 kg</span></div>
+            </div>
+
+            <!-- 2. Exercise library + video -->
+            <div class="screen scr scr-library" data-scr="library">
+              <div class="search">🔍 <span class="typed" data-i18n="pSearch">dumbbell fly</span></div>
+              <div class="chips"><i class="on" data-i18n="pChest">Chest</i><i data-i18n="pBack">Back</i><i data-i18n="pLegs">Legs</i><i data-i18n="pArms">Arms</i></div>
+              <div class="video">
+                <div class="vid-bg"><span class="db l"></span><span class="db r"></span><span class="bench"></span></div>
+                <span class="play">▶</span>
+                <i class="vid-prog"></i>
+              </div>
+              <ul class="lib">
+                <li><b>Dumbbell Fly</b><small data-i18n="pChestDb">Chest · Dumbbell</small></li>
+                <li><b>Incline Bench Press</b><small data-i18n="pChestBb">Chest · Barbell</small></li>
+                <li><b>Pec Deck</b><small data-i18n="pChestMa">Chest · Machine</small></li>
+                <li><b>Cable Chest Press</b><small data-i18n="pChestCa">Chest · Cable</small></li>
+              </ul>
+            </div>
+
+            <!-- 3. Nutrition -->
+            <div class="screen scr scr-food" data-scr="food">
+              <div class="snap"><span class="plate-em">🍳</span><i class="scanline"></i><span class="snap-tag" data-i18n="pFound">3 items found</span></div>
+              <div class="foods">
+                <div class="food"><span>🥚</span><b data-i18n="pEggs">2 eggs</b><small>156 kcal</small></div>
+                <div class="food"><span>🫓</span><b data-i18n="pKesra">Kesra, 80 g</b><small>246 kcal</small></div>
+                <div class="food"><span>☕</span><b data-i18n="pCoffee">Coffee with milk</b><small>110 kcal</small></div>
+              </div>
+              <div class="kcal small">
+                <svg viewBox="0 0 120 120" class="ring"><circle cx="60" cy="60" r="50" class="trk" /><circle cx="60" cy="60" r="50" class="val" pathLength="100" /></svg>
+                <div class="kcal-n"><b class="count" data-to="512" data-delay="2900">0</b><small>kcal</small></div>
+              </div>
+            </div>
+
+            <!-- 4. Progress -->
+            <div class="screen scr scr-progress" data-scr="progress">
+              <p class="wt"><b class="count" data-from="84.6" data-to="78.9" data-dec="1" data-delay="300">84.6</b> <small>kg</small></p>
+              <p class="wt-sub" data-i18n="pWeek">−0.4 kg a week, on track</p>
+              <svg class="chart" viewBox="0 0 260 130" preserveAspectRatio="none">
+                <path class="grid-l" d="M0 30H260M0 65H260M0 100H260" />
+                <path class="line" pathLength="100" d="M0 18 C30 22, 45 30, 70 34 S110 52, 135 58 S180 74, 205 86 S240 98, 260 108" />
+                <circle class="dotend" cx="260" cy="108" r="5" />
+              </svg>
+              <div class="ba">
+                <div class="ba-b"><span class="fig f-before"></span><small data-i18n="pBefore">January</small></div>
+                <div class="ba-a"><span class="fig f-after"></span><small data-i18n="pAfter">Now</small></div>
+              </div>
+            </div>
+
+            <!-- 5. Coach -->
+            <div class="screen scr scr-coach" data-scr="coach">
+              <div class="bar-top"><b data-i18n="pCoach">AI coach</b><span class="online"></span></div>
+              <p class="msg me m1" data-i18n="c1">How was my week?</p>
+              <p class="msg typing"><i></i><i></i><i></i></p>
+              <p class="msg bot m2"><b data-i18n="c2a">8.5 out of 10.</b> <span data-i18n="c2b">Four workouts, two new records and enough protein on five days.</span></p>
+              <p class="msg me m3" data-i18n="c3">🎤 Two eggs and a piece of kesra</p>
+              <p class="msg bot m4" data-i18n="c4">Added to breakfast: 402 kcal, 21 g protein.</p>
+            </div>
+
+            <!-- 6. Challenges -->
+            <div class="screen scr scr-xp" data-scr="xp">
+              <div class="lvl"><b class="lvl-n">11</b><div><small data-i18n="pLevel">Level</small><b data-i18n="pWarrior">Warrior</b></div></div>
+              <div class="xpbar"><i></i></div>
+              <div class="lvlup" data-i18n="pLvlUp">Level up! 12</div>
+              <p class="lb-t" data-i18n="pLeader">Friends this week</p>
+              <ol class="lb">
+                <li class="me-row"><span>🥇</span><b data-i18n="pYou">You</b><small>18.4 t</small></li>
+                <li><span>🥈</span><b>Yacine</b><small>17.9 t</small></li>
+                <li><span>🥉</span><b>Amine</b><small>15.2 t</small></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chapters (text) -->
+        <div class="chapters">
+          <article class="chapter" data-show="workout" data-c="red">
+            <span class="chip" data-i18n="k1">Workouts</span>
+            <h3 data-i18n="h31">Every set, logged in one tap.</h3>
+            <p data-i18n="p31">Tick a set and the rest timer starts in your notifications. Lift more than ever before and the app tells you straight away.</p>
+            <ul><li data-i18n="l11">Your own programs, or start from a template</li><li data-i18n="l12">Supersets, drop sets, warm-ups and effort (RPE)</li><li data-i18n="l13">Tells you when to add weight, and when to rest</li></ul>
+          </article>
+          <article class="chapter" data-show="library" data-c="orange">
+            <span class="chip" data-i18n="k2">Exercises</span>
+            <h3 data-i18n="h32">420 exercises, each with a video.</h3>
+            <p data-i18n="p32">Search in Arabic or English, filter by muscle or by what your gym has, and watch how it is done before your first rep.</p>
+            <ul><li data-i18n="l21">Chest to neck, plus cardio</li><li data-i18n="l22">Barbell, dumbbell, machine, cable, kettlebell, band</li><li data-i18n="l23">Add your own exercises too</li></ul>
+          </article>
+          <article class="chapter" data-show="food" data-c="green">
+            <span class="chip" data-i18n="k3">Nutrition</span>
+            <h3 data-i18n="h33">Take a photo. It counts the calories.</h3>
+            <p data-i18n="p33">Photograph your plate, scan a barcode, or just say what you ate in Darija. Algerian dishes are already in the list.</p>
+            <ul><li data-i18n="l31">Protein, carbs and fat against your goal</li><li data-i18n="l32">Your real maintenance calories, from your weight trend</li><li data-i18n="l33">Water tracking and meal reminders</li></ul>
+          </article>
+          <article class="chapter" data-show="progress" data-c="blue">
+            <span class="chip" data-i18n="k4">Progress</span>
+            <h3 data-i18n="h34">See the change, week by week.</h3>
+            <p data-i18n="p34">Weight, body fat and measurements on clear charts, and before and after photos side by side. Connect Health Connect to see how sleep moves your numbers.</p>
+            <ul><li data-i18n="l41">Progress photos with dates</li><li data-i18n="l42">Body measurements and body fat</li><li data-i18n="l43">Sleep compared with your training</li></ul>
+          </article>
+          <article class="chapter" data-show="coach" data-c="violet">
+            <span class="chip" data-i18n="k5">AI coach</span>
+            <h3 data-i18n="h35">A coach that has read your log.</h3>
+            <p data-i18n="p35">It answers from your own week: what you lifted, what you ate and how you slept. It never sees your name or email.</p>
+            <ul><li data-i18n="l51">Weekly report with a score and three goals</li><li data-i18n="l52">A program built from the app's exercises</li><li data-i18n="l53">A full day of meals with a shopping list</li></ul>
+          </article>
+          <article class="chapter" data-show="xp" data-c="yellow">
+            <span class="chip" data-i18n="k6">Challenges</span>
+            <h3 data-i18n="h36">Level up with your friends.</h3>
+            <p data-i18n="p36">Weekly and monthly challenges give you XP. Add friends with a code and see who lifted the most this week.</p>
+            <ul><li data-i18n="l61">Levels from Beginner to Legend</li><li data-i18n="l62">A leaderboard only your friends can see</li><li data-i18n="l63">Share a workout or a level as an image</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= NUMBERS ================= -->
+    <section class="numbers">
+      <div><b class="count" data-to="420">0</b><span data-i18n="n1">exercises with Arabic names</span></div>
+      <div><b class="count" data-to="20">0</b><span data-i18n="n2">themes, light and dark</span></div>
+      <div><b class="count" data-to="2">0</b><span data-i18n="n3">languages, right to left included</span></div>
+      <div><b class="count" data-to="0">0</b><span data-i18n="n4">ads, and no subscription</span></div>
+    </section>
+
+    <!-- ================= LATEST UPDATE ================= -->
+    <section id="changes" class="block changes">
       <h2><span data-i18n="changesTitle">Latest update</span> <span class="tag ver">1.7.1</span></h2>
       <p class="intro"><span data-i18n="released">Released on</span> <time id="relDate">23 November 2026</time>. <a id="relLink" href="https://github.com/MahdiHaf2410/fit-companion/releases" data-i18n="allVersions">See all versions</a></p>
       <div id="notes" class="notes"><p data-i18n="loading">Loading the change list.</p></div>
     </section>
 
-    <!-- ============ INSTALL (a real sequence, so it is numbered) ============ -->
-    <section id="install" class="install">
+    <!-- ================= INSTALL ================= -->
+    <section id="install" class="block install">
       <h2 data-i18n="installTitle">Install it in a minute</h2>
       <ol class="steps">
         <li><h3 data-i18n="s1">Download the app</h3><p data-i18n="s1p">Use the button below. It is the right file for almost every phone sold in the last five years.</p></li>
@@ -166,8 +266,8 @@
       </div>
     </section>
 
-    <!-- ============ QUESTIONS ============ -->
-    <section class="faq">
+    <!-- ================= QUESTIONS ================= -->
+    <section class="block faq">
       <h2 data-i18n="faqTitle">Questions people ask</h2>
       <details><summary data-i18n="q1">Is it really free?</summary><p data-i18n="a1">Yes. There are no ads and no paid plan. The AI features have a daily limit so they stay free for everyone.</p></details>
       <details><summary data-i18n="q2">Where is my data kept?</summary><p data-i18n="a2">On your phone. If you create an account, a backup is kept online that only you can read. Friends see your level and weekly totals, nothing else.</p></details>
