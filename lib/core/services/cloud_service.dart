@@ -326,6 +326,50 @@ class CloudService {
   }
 
   Future<void> removeFriend(String friendId) => _sb.rpc('remove_friend', params: {'friend': friendId});
+  // ---------------- Exercise demo videos ----------------
+
+  /// Cached YouTube demos for an exercise (shared cache, readable without an account);
+  /// if nothing is cached and the user is signed in, asks `exercise-video` to look it up once.
+  Future<List<ExerciseVideo>> exerciseVideos(String englishName) async {
+    if (!enabled) return const [];
+    final query = ExerciseVideo.normalize(englishName);
+    try {
+      final row = await _sb.from('exercise_videos').select('videos').eq('query', query).maybeSingle();
+      final cached = ExerciseVideo.listFrom(row?['videos']);
+      if (cached.isNotEmpty) return cached;
+    } catch (_) {}
+    if (user == null) throw CoachException('unauthorized');
+    final FunctionResponse res;
+    try {
+      res = await _sb.functions.invoke('exercise-video', body: {'name': englishName}).timeout(const Duration(seconds: 20));
+    } on TimeoutException {
+      throw CoachException('network');
+    } on FunctionException catch (e) {
+      final d = e.details;
+      throw CoachException((d is Map ? d['error'] : null)?.toString() ?? 'http_${e.status}');
+    }
+    final data = res.data;
+    return ExerciseVideo.listFrom(data is Map ? data['videos'] : null);
+  }
+}
+
+class ExerciseVideo {
+  final String id;
+  final String title;
+  final String channel;
+  const ExerciseVideo(this.id, this.title, this.channel);
+
+  /// Must match `normalize` in supabase/functions/exercise-video.
+  static String normalize(String s) {
+    final t = s.toLowerCase().replaceAll(RegExp(r'\s+'), ' ').trim();
+    return t.length > 80 ? t.substring(0, 80) : t;
+  }
+
+  static List<ExerciseVideo> listFrom(Object? raw) => [
+        if (raw is List)
+          for (final v in raw)
+            if (v is Map && v['id'] is String) ExerciseVideo(v['id'] as String, '${v['title'] ?? ''}', '${v['channel'] ?? ''}'),
+      ];
 }
 
 class CoachException implements Exception {

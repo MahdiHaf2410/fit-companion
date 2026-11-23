@@ -65,8 +65,8 @@ class _ExerciseDetailScreenState extends ConsumerState<ExerciseDetailScreen> {
         data: (history) {
           if (history.isEmpty) {
             return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(32),
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(24),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -75,7 +75,7 @@ class _ExerciseDetailScreenState extends ConsumerState<ExerciseDetailScreen> {
                     Text(l10n.exerciseNoHistory, textAlign: TextAlign.center, style: theme.textTheme.bodyMedium),
                     if (exercise != null) ...[
                       const SizedBox(height: 14),
-                      ExerciseVideoButton(englishName: exercise.name),
+                      ExerciseVideoPlayer(englishName: exercise.name),
                     ],
                     if (exercise?.instructions != null) ...[
                       const SizedBox(height: 16),
@@ -106,6 +106,10 @@ class _ExerciseDetailScreenState extends ConsumerState<ExerciseDetailScreen> {
           return ListView(
             padding: const EdgeInsets.fromLTRB(18, 4, 18, 30),
             children: [
+              if (exercise != null) ...[
+                ExerciseVideoPlayer(englishName: exercise.name),
+                const SizedBox(height: 14),
+              ],
               Row(
                 children: [
                   Expanded(child: StatTile(icon: Icons.emoji_events_rounded, color: AppColors.carbs, value: bestE1rm.toStringAsFixed(1), label: l10n.progressEst1RM)),

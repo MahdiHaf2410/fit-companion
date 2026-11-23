@@ -2441,4 +2441,17 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get exerciseVideoError => 'تعذّر فتح الفيديو';
+
+  @override
+  String get exerciseOpenYoutube => 'افتح في YouTube';
+
+  @override
+  String get exerciseAnotherVideo => 'فيديو آخر';
+
+  @override
+  String get exerciseVideoSignIn =>
+      'سجّل الدخول مرة وحدة باش يتحمّل الفيديو داخل التطبيق.';
+
+  @override
+  String get exerciseVideoUnavailable => 'فيديو الشرح غير متوفر حالياً.';
 }

@@ -213,10 +213,17 @@ features/
 **Sources in the repo:** `supabase/functions/*/index.ts` + `supabase/migrations/*.sql` (copied from what's deployed).
 **Tests:** 184 ✅ (incl. layout tests for the new screens at 360px en/ar light/dark).
 
-## 4b-6) Version 1.6.1: exercise demo videos
-- A **"Watch how" ▶** button on every exercise: in the exercise screen (app bar + when there is no history) and in the ⋮ menu during the workout. It opens a **YouTube search** for `"<English name> exercise proper form"` in the YouTube app or the browser (`lib/core/utils/exercise_video.dart`, package `url_launcher`, an https VIEW `<queries>` in the manifest).
-- **Why not 3D GIFs inside the app?** The 3D animations with highlighted muscles (Gymvisual / ExerciseDB) are copyrighted and need a paid license, and the code is public on GitHub. If you buy a license later, you can add a GIF per exercise inside the app.
-- A search rather than a fixed link: no video gets deleted or breaks, and the results include many 3D-style videos. It needs internet.
+## 4b-6) Versions 1.6.1 → 1.6.2: exercise demo videos inside the app
+- Every exercise has a **video player inside the app** (`ExerciseVideoPlayer` in `lib/core/utils/exercise_video.dart`, package `youtube_player_iframe`, WebView):
+  - On the exercise screen it sits at the top (both with and without history). During the workout: ⋮ → "Watch how" → a bottom sheet that plays the video immediately.
+  - A thumbnail first (no WebView until you tap ▶), then it plays inline. Fullscreen by rotating the phone or with the button. "Another video" switches between up to 6 results, and ↗ opens it in YouTube.
+- **How the video is chosen:** the Edge Function **`exercise-video`** searches the YouTube Data API **once per exercise** (`"<name> exercise proper form"`, embeddable + safeSearch strict).
+  - The results are saved in the table **`exercise_videos`** (key = lower-case name). Anyone can read it (even without an account, RLS select for anon); only the function writes to it (service role).
+  - The search itself (a cache miss) requires sign-in, with a limit of 60/day per user (`ai_usage.kind = 'video'`).
+  - Free quota: 10,000 units/day, a search = 100 units, and the ~130 exercises are searched only once.
+- **Fallbacks:** if the user isn't signed in and the exercise isn't in the cache → "Sign in" + "Open in YouTube". If the key is missing or there's an error → "Open in YouTube" (a search).
+- **⚠️ Required:** the secret **`YOUTUBE_API_KEY`** in Supabase (Edge Functions → Secrets). Without it the in-app videos don't work (the external button still works).
+- Note: `youtube_player_iframe` 6.0.4 is "no longer maintained"; its replacement is the `youtube_player` package (migration later if needed).
 
 ## 4c) Supabase (cloud + coach)
 - **Project:** `fit-companion`, ID `keuheinbxgevhuhywfou`, region eu-west-3 (Paris), **free plan ($0)**.

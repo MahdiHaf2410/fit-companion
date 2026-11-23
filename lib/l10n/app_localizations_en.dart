@@ -2460,4 +2460,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exerciseVideoError => 'Could not open the video';
+
+  @override
+  String get exerciseOpenYoutube => 'Open in YouTube';
+
+  @override
+  String get exerciseAnotherVideo => 'Another video';
+
+  @override
+  String get exerciseVideoSignIn =>
+      'Sign in once to load the demo video inside the app.';
+
+  @override
+  String get exerciseVideoUnavailable =>
+      'The demo video isn\'t available right now.';
 }

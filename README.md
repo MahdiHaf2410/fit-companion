@@ -11,8 +11,8 @@
 ![Android](https://img.shields.io/badge/Android-8.0%2B-3DDC84?logo=android)
 ![Supabase](https://img.shields.io/badge/Supabase-free%20plan-3FCF8E?logo=supabase)
 ![Gemini](https://img.shields.io/badge/AI-Gemini-8E75B2?logo=googlegemini)
-![Tests](https://img.shields.io/badge/tests-185%20passing-success)
-![Version](https://img.shields.io/badge/version-1.6.1-blue)
+![Tests](https://img.shields.io/badge/tests-189%20passing-success)
+![Version](https://img.shields.io/badge/version-1.6.2-blue)
 
 </div>
 
@@ -39,7 +39,7 @@ Under the hood it is a professional, tested codebase:
 ### 🏋️ Training
 - **Your own programs**: build unlimited custom programs, or copy ready-made templates (PPL, Upper/Lower, Full Body, 5/3/1)
 - **Large exercise library** with instructions (EN/AR), muscle groups and equipment, plus custom exercises
-- **▶ "Watch how"** demo video for every exercise (opens YouTube)
+- **▶ In-app demo video** for every exercise (YouTube player, looked up once and cached on the server)
 - **Live workout logger** with sets, reps and weight, warm-up and drop sets, supersets, RPE and a rest timer that shows in the notification
 - **Smart progressive overload** suggestions, plus estimated 1RM and personal-record detection
 - **Live coach notes** during the workout: a skipped set, a dropping weight, missed reps, or that you're close to a PR
@@ -167,8 +167,8 @@ Output: `build/app/outputs/flutter-apk/`
 The app works offline without any account. To enable the cloud features with your own Supabase project:
 
 1. Create a free Supabase project and run the SQL files in `supabase/migrations/` in order.
-2. Deploy the Edge Functions in `supabase/functions/` (`ai-coach`, `ai-food-macros`, `ai-vision`, `ai-tools`) with **verify_jwt disabled**. Each function authenticates the user itself via `auth.getUser()`.
-3. Add the secret **`GEMINI_API_KEY`** (free from [Google AI Studio](https://aistudio.google.com)). `GEMINI_MODEL` is optional.
+2. Deploy the Edge Functions in `supabase/functions/` (`ai-coach`, `ai-food-macros`, `ai-vision`, `ai-tools`, `exercise-video`) with **verify_jwt disabled**. Each function authenticates the user itself via `auth.getUser()`.
+3. Add the secret **`GEMINI_API_KEY`** (free from [Google AI Studio](https://aistudio.google.com)) and **`YOUTUBE_API_KEY`** (YouTube Data API v3, free, for the exercise videos). `GEMINI_MODEL` is optional.
 4. In **Authentication → URL Configuration**, set the Site URL and a Redirect URL to `io.fitcompanion://login-callback`.
 5. Put your project URL and **publishable** key in `lib/core/services/cloud_service.dart` (`SupabaseConfig`).
 

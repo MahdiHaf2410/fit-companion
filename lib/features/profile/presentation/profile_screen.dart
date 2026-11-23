@@ -293,7 +293,7 @@ class ProfileScreen extends ConsumerWidget {
                   const SizedBox(height: 10),
                   Text(l10n.appTitle, style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900)),
                   const SizedBox(height: 2),
-                  Text('v1.6.1', style: theme.textTheme.bodySmall),
+                  Text('v1.6.2', style: theme.textTheme.bodySmall),
                   const SizedBox(height: 12),
                   Text(l10n.aboutDevelopedBy, textAlign: TextAlign.center, style: theme.textTheme.bodySmall),
                   const SizedBox(height: 2),

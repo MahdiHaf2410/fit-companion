@@ -556,7 +556,7 @@ class _ExerciseCard extends ConsumerWidget {
                     } else if (v == 'unlink') {
                       await repo.setSuperset(sessionId: sessionId, exerciseId: first.exerciseId);
                     } else if (v == 'video') {
-                      if (context.mounted) await openExerciseVideo(context, first.exerciseName);
+                      if (context.mounted) await showExerciseVideoSheet(context, englishName: first.exerciseName, title: first.exerciseName);
                     } else if (v == 'chart') {
                       if (context.mounted) context.push('/workouts/exercise/${first.exerciseId}');
                     }

@@ -4525,6 +4525,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not open the video'**
   String get exerciseVideoError;
+
+  /// No description provided for @exerciseOpenYoutube.
+  ///
+  /// In en, this message translates to:
+  /// **'Open in YouTube'**
+  String get exerciseOpenYoutube;
+
+  /// No description provided for @exerciseAnotherVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Another video'**
+  String get exerciseAnotherVideo;
+
+  /// No description provided for @exerciseVideoSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in once to load the demo video inside the app.'**
+  String get exerciseVideoSignIn;
+
+  /// No description provided for @exerciseVideoUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'The demo video isn\'t available right now.'**
+  String get exerciseVideoUnavailable;
 }
 
 class _AppLocalizationsDelegate
